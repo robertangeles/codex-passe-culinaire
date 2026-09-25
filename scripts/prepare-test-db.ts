@@ -1,16 +1,11 @@
 import { spawnSync } from 'node:child_process'
 import { rmSync } from 'node:fs'
 import path from 'node:path'
+import { validateTestDatabase } from './test-database.mjs'
 
 process.loadEnvFile('.env')
 
-const appUri = process.env.DATABASE_URI
-const testUri = process.env.TEST_DATABASE_URI
-if (!appUri || !testUri) throw new Error('DATABASE_URI and TEST_DATABASE_URI are required for integration tests.')
-const app = new URL(appUri)
-const test = new URL(testUri)
-if (decodeURIComponent(app.pathname) === decodeURIComponent(test.pathname) || test.pathname !== '/passe_culinaire_test' || !['127.0.0.1', 'localhost'].includes(test.hostname))
-  throw new Error('TEST_DATABASE_URI must target the separate local passe_culinaire_test database.')
+const testUri = validateTestDatabase(process.env.DATABASE_URI, process.env.TEST_DATABASE_URI)
 
 const mediaDir = path.resolve('.local/test-media')
 rmSync(mediaDir, { recursive: true, force: true })

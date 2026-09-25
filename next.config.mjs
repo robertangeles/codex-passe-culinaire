@@ -3,6 +3,8 @@ import { withPayload } from '@payloadcms/next/withPayload'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   expireTime: 87000,
+  distDir: process.env.NEXT_DIST_DIR || '.next',
+  experimental: { inlineCss: true },
   async rewrites() {
     return { beforeFiles: [
       { source: '/sitemap-:kind(pages|posts|taxonomies|authors|services|training).xml', destination: '/sitemaps/:kind' },
@@ -11,4 +13,19 @@ const nextConfig = {
   },
 }
 
-export default withPayload(nextConfig)
+const payloadConfig = withPayload(nextConfig)
+
+const config = {
+  ...payloadConfig,
+  async headers() {
+    // Payload needs colour-scheme hints in its editor. Public themes use CSS and
+    // a local preference script, so they must not restart navigation for a hint.
+    return (await payloadConfig.headers()).map(rule =>
+      rule.source === '/:path*' && rule.headers.some(header => header.key.toLowerCase() === 'critical-ch')
+        ? { ...rule, source: '/admin/:path*' }
+        : rule,
+    )
+  },
+}
+
+export default config

@@ -6,5 +6,5 @@ export default defineConfig([
   ...nextCoreWebVitals,
   ...nextTypescript,
   { rules: { '@typescript-eslint/no-explicit-any': 'error' } },
-  globalIgnores(['.next/**', 'node_modules/**', 'src/payload-types.ts']),
+  globalIgnores(['.next/**', '.next-quality/**', 'node_modules/**', 'src/payload-types.ts']),
 ])

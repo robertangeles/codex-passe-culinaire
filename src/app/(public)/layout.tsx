@@ -22,6 +22,7 @@ const jetbrainsMono = localFont({
   src: '../../fonts/jetbrains-mono-latin-variable.woff2',
   display: 'swap',
   variable: '--loaded-jetbrains-mono',
+  preload: false,
   weight: '100 800',
 })
 

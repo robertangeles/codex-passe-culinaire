@@ -7,6 +7,7 @@ import styles from './FounderCardBlock.module.css'
 
 type FounderCardBlockProps = {
   block: FounderCard
+  priority?: boolean
   externalEmbedsEnabled?: boolean
 }
 
@@ -30,7 +31,7 @@ function hasRenderablePortrait(portrait: FounderCard['portrait']): portrait is M
   )
 }
 
-export function FounderCardBlock({ block, externalEmbedsEnabled = false }: FounderCardBlockProps) {
+export function FounderCardBlock({ block, priority = false, externalEmbedsEnabled = false }: FounderCardBlockProps) {
   const portrait = hasRenderablePortrait(block.portrait) ? block.portrait : undefined
   const links = (block.links ?? []).flatMap((link) => {
     const href = safePublicHref(link?.url)
@@ -48,6 +49,7 @@ export function FounderCardBlock({ block, externalEmbedsEnabled = false }: Found
           <div className={styles.portrait}>
             <ResponsiveMedia
               media={portrait}
+              priority={priority}
               sizes="(min-width: 960px) 30vw, 100vw"
             />
           </div>

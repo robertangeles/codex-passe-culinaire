@@ -50,7 +50,7 @@ function renderBlock(
     case 'pullQuote':
       return <PullQuoteBlock key={key} block={block} />
     case 'founderCard':
-      return <FounderCardBlock key={key} block={block} externalEmbedsEnabled={props.externalEmbedsEnabled} />
+      return <FounderCardBlock key={key} block={block} priority={index < 3} externalEmbedsEnabled={props.externalEmbedsEnabled} />
     case 'productSpotlight':
       return <ProductSpotlightBlock key={key} block={block} externalEmbedsEnabled={props.externalEmbedsEnabled} />
     case 'journalFeed':

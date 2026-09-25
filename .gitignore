@@ -14,3 +14,7 @@
 
 # Local Payload uploads.
 /media/
+
+# Isolated browser and performance builds.
+/.next-quality/
+/.lighthouseci/

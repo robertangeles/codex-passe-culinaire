@@ -929,7 +929,7 @@ Use Payload’s supported admin graphics, UI fields, named/unnamed tabs, live-pr
 
 OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailable because automatic approval review rejected export of this plan payload. No cross-model agreement is claimed.
 
-VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1–4 are accepted for local implementation. Phases 5–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
+VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1–5 are accepted for local implementation. Phase 6 acceptance and Phase 7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
 
 **UNRESOLVED DECISIONS:**
 - D6 / E-P1: fixed stack versus strict home JavaScript ceiling; user answer pending.
@@ -944,3 +944,18 @@ Parent gate: `pnpm lint && pnpm typecheck && pnpm test && pnpm build` passed. Ac
 Browser evidence: branded admin sign-in, SEO preview, saved draft side-by-side refresh, missing/repeated Melbourne time rejection, valid UTC job listing through real Payload JSON queries, and successful cancellation. HTTP evidence for both seeded administrators: sign in, create block draft, private authenticated preview, anonymous draft denial, immediate publication, safe duplication, and scheduled publication while the editor was closed. Public HTML and sitemap updated in 87–106 ms; scheduled HTML appeared 116–130 ms after its due instant. Expired preview returned private 401. Caddy forwarding accepted the configured public origin and reached the expected unauthenticated 401 rather than a false origin rejection. Temporary fixtures were removed and invalidation run. Evidence: `.local/phase5-browser-evidence.json` and `.local/phase5-http-evidence.json`.
 
 Built: all Phase 5 editorial features and operator guidance in `docs/EDITORIAL.md`. Skipped: live VPS/domain execution, which needs a deployment target and private production configuration. Assumed: Melbourne default and UTC alternative; administrators schedule jobs, editors retain immediate publication but cannot manage jobs. No production services, events or sample posts were published. The ten-link content gate and Phase 6 performance budgets remain open.
+
+
+## 40. Phase 6 verification checkpoint: budgets remain open
+
+Built: isolated desktop/mobile Playwright suites, axe accessibility checks, strict home JavaScript measurement, and three-run Lighthouse CI through the deployment Caddy TLS/HTTP2 handlers. Temporary credentials exist only in the test process, provider calls are disabled, and reports remain local. The shared database guard rejects connection overrides and encoded aliases before any test reset. No production database or external service is used by these quality commands.
+
+Loading fixes preserve the approved design: retain Fraunces optical-size and weight axes while pinning unused axes to their defaults; load the mono font when used; eagerly request early founder portraits; add a licensed outlined favicon; inline CSS; and scope Payload colour-scheme negotiation to admin routes. The last fix removes an unnecessary browser navigation restart on public pages. Neither the stack nor an acceptance limit has been changed.
+
+Actual browser output: `20 passed (19.7s)`, `2 failed`. Both failures are the home JavaScript budget: 158,225 bytes desktop and 158,194 bytes mobile against fewer than 120,000 bytes. Prior measurements with external CSS were 146,621 bytes with Turbopack and 147,725 bytes with Webpack; switching bundlers did not meet the ceiling.
+
+Caddy HTTPS/HTTP2 measurements use the documented 150 ms RTT, 1,638.4 kbit/s, 4x CPU mobile profile. All five routes scored 97–99 Performance and 100 Accessibility, Best Practices and SEO. Median LCP: home 2,478 ms, about 2,481 ms, CulinAIre Kitchen 2,345 ms, journal 2,326 ms, contact 1,951 ms. Reasserting saved reports with explicit median aggregation exits 1 because four medians exceed the 1,999 ms ceiling. These are failed acceptance checks, not waived requirements. Manual mobile-light and desktop-dark inspection found no new console errors.
+
+Built/skipped/assumed: the automated harness and loading fixes are built; Phase 6 acceptance and Phase 7 deployment work are not complete. Live DNS, publicly trusted TLS, VPS execution, provider delivery and final photography have not been verified. Measurements use truthful seeded launch content and clearly labelled placeholder media. D6 remains unanswered. Any exception must cover the measured JavaScript and LCP limits explicitly; continuing work does not imply approval to relax either limit. Evidence: `docs/QUALITY.md`, `.local/phase6-e2e.log`, `.local/phase6-lighthouse-summary.json`, and local browser/Lighthouse reports.
+
+Parent full-diff review and fresh independent code review returned PASS after database-guard fixes. Final integration gate output on 26 September 2026: `Test Files 53 passed (53)`, `Tests 296 passed (296)`, `Compiled successfully in 459ms`, `GATE_EXIT=0`. Command: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`; log: `.local/phase6-gate-final.log`. Code review PASS does not accept the failed Phase 6 performance gate.
