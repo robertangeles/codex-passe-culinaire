@@ -12,6 +12,9 @@ process.loadEnvFile('.env')
 const testUri = process.env.TEST_DATABASE_URI
 if (!testUri || testUri === process.env.DATABASE_URI) throw new Error('A separate TEST_DATABASE_URI is required.')
 process.env.MEDIA_DIR = path.resolve('.local/test-media')
+process.env.MEDIA_STORAGE = 'local'
+process.env.MAIL_PROVIDER = 'smtp'
+process.env.RUN_JOBS = 'false'
 process.env.CONTACT_TO_ADDRESS = ''
 process.env.SMTP_HOST = ''
 process.env.RESEND_API_KEY = ''

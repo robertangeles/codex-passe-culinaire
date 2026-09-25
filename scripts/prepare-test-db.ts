@@ -14,7 +14,17 @@ if (decodeURIComponent(app.pathname) === decodeURIComponent(test.pathname) || te
 
 const mediaDir = path.resolve('.local/test-media')
 rmSync(mediaDir, { recursive: true, force: true })
-const env = { ...process.env, DATABASE_URI: testUri, MEDIA_DIR: mediaDir, CONTACT_TO_ADDRESS: '', SMTP_HOST: '', RESEND_API_KEY: '' }
+const env = {
+  ...process.env,
+  DATABASE_URI: testUri,
+  MEDIA_DIR: mediaDir,
+  MEDIA_STORAGE: 'local',
+  MAIL_PROVIDER: 'smtp',
+  RUN_JOBS: 'false',
+  CONTACT_TO_ADDRESS: '',
+  SMTP_HOST: '',
+  RESEND_API_KEY: '',
+}
 function run(command: string, args: string[]): void {
   const result = spawnSync(command, args, { env, stdio: 'inherit' })
   if (result.error) throw result.error
