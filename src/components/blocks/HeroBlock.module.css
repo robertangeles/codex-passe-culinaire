@@ -4,6 +4,7 @@
   gap: var(--space-4);
   max-width: 1600px;
   margin-inline: auto;
+  padding-inline: var(--space-6);
   color: var(--foreground);
 }
 
@@ -102,6 +103,10 @@
 }
 
 @media (max-width: 800px) {
+  .hero {
+    padding-inline: var(--space-4);
+  }
+
   .quiet {
     padding-block: var(--space-24);
   }

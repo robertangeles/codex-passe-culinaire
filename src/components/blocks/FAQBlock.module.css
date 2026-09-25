@@ -1,0 +1,25 @@
+.items {
+  max-width: var(--measure);
+}
+
+.item {
+  padding-block: var(--space-6);
+}
+
+.item + .item {
+  border-block-start: var(--rule);
+}
+
+.question {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-optical-sizing: auto;
+  font-size: var(--step-1);
+  font-weight: 400;
+  line-height: var(--display-leading);
+}
+
+.item > :global(div) {
+  margin-block-start: var(--space-4);
+}

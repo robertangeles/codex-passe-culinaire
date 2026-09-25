@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Hero, Media } from '../../payload-types'
 import { ResponsiveMedia } from '../ResponsiveMedia'
 import styles from './HeroBlock.module.css'
@@ -67,9 +68,9 @@ export function HeroBlock({ block, headingLevel = 2, home = false }: HeroBlockPr
         <Heading className={home ? styles.wordmark : styles.heading}>{block.heading}</Heading>
         {block.summary && <p className={styles.summary}>{block.summary}</p>}
         {home && (
-          <a className={styles.primaryLink} href="/culinaire-kitchen">
+          <Link className={styles.primaryLink} href="/culinaire-kitchen" prefetch={false}>
             Explore CulinAIre Kitchen
-          </a>
+          </Link>
         )}
       </div>
     </section>
