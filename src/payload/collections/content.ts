@@ -5,7 +5,7 @@ import { seoFields, slugField, validatePublication, validateSlugOnSave } from '.
 import { guardMediaWrite } from '../mediaReferences'
 import { deriveContentText } from '../contentText'
 import { queuePublicationChange, queuePublicationDelete } from '../publication'
-import { isSafeInternalPath } from '../../lib/urls'
+import { isRedirectPath, redirectLookupCapability } from '../../lib/redirects'
 
 const access: CollectionConfig['access'] = { create: staffOnly, read: publishedOrStaff, update: staffOnly, delete: adminOnly }
 const versions: CollectionConfig['versions'] = { drafts: { autosave: true }, maxPerDoc: 30 }
@@ -81,12 +81,12 @@ export const Testimonials: CollectionConfig = {
 }
 
 export const Redirects: CollectionConfig = {
-  slug: 'redirects', access: { create: adminOnly, read: adminOnly, update: adminOnly, delete: adminOnly },
+  slug: 'redirects', access: { create: adminOnly, read: args => args.req.context.redirectLookup === redirectLookupCapability || adminOnly(args), update: adminOnly, delete: adminOnly },
   fields: [
     { name: 'from', type: 'text', required: true, unique: true,
-      validate: (value: unknown) => isSafeInternalPath(value, true) || 'Use an internal pathname.' },
+      validate: (value: unknown) => isRedirectPath(value, true) || 'Use a public internal pathname.' },
     { name: 'to', type: 'text', required: true,
-      validate: (value: unknown) => isSafeInternalPath(value) || 'Use an internal path.' },
+      validate: (value: unknown) => isRedirectPath(value) || 'Use a public internal path.' },
     { name: 'statusCode', type: 'select', required: true, defaultValue: '301', options: ['301', '302', '307', '308'] },
   ],
 }

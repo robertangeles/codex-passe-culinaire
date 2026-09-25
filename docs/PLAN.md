@@ -1,6 +1,6 @@
 # Passe Culinaire build plan
 
-Status: approved with defaults. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1 and 2 accepted; Phase 3 implementation and verification in progress. See the latest checkpoint below.
+Status: approved with defaults. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–3 accepted; Phase 4 machine readability and discovery is next. See the latest checkpoint below.
 
 ## 1. Approved defaults and remaining production inputs
 
@@ -869,6 +869,26 @@ Within-scope decisions: list routes use at most 1,000 pages with an explicit dis
 
 Built: all routes and form behaviour described above. Skipped within this checkpoint: none. Remaining Phase 3: managed redirects, branded missing/error states and final responsive/keyboard/freshness acceptance. Phase 4 discovery/metadata, Phase 5 automatic publishing, Phase 6 measured quality budgets and Phase 7 deployment/CI remain. D6 is still unanswered; no performance requirement was relaxed.
 
+## 36. Phase 3 acceptance: redirects and error delivery
+
+Phase 3 is accepted after parent full-diff review, independent reviewer PASS after fixes, all-route HTTP verification and focused browser checks. The new Node proxy resolves managed same-site redirects using exact indexed reads and a server-only read capability, preserving admin-only REST access. It protects infrastructure paths after repeated decoding, bounds chains and avoids cycles. Actual 301, 302, 307 and 308 responses, immediate rule updates, deletion and 403 for anonymous redirect collection reads all passed. Temporary rules were removed.
+
+Branded missing-page and retry components are built. A framework issue persisted with both root and nested not-found experiments: bare Next returns a 404 shell whose content needs hydration. The approved native Caddy boundary now supplies complete static 404 and 503 documents with local licensed fonts. These responses work with JavaScript off and the error assets remain available when Next is stopped. Caddy adds the exact `public, s-maxage=600, stale-while-revalidate=86400` header to anonymous shared-cache responses while preserving private contact/preview responses. This boundary is mandatory in production and recorded in deploy/Caddyfile; full VPS setup remains Phase 7.
+
+Final mandatory check output:
+
+```text
+pnpm lint: eslint ... --max-warnings=0, exit 0
+pnpm typecheck: tsc --noEmit, exit 0
+pnpm test: Test Files 31 passed (31); Tests 194 passed (194)
+pnpm build: Compiled successfully in 2.6s; TypeScript finished; static pages 7/7
+Caddy validate: Valid configuration
+```
+
+Additional production-mode evidence: all route classes provide published text in initial HTML; draft/unpublished records return 404; real search excludes draft revisions; public authors exclude account fields. The transactionally queued publication path and reversed-job ordering were proved at the earlier CMS checkpoint, and the expanded content/listing/search fixtures reflected invalidation without rebuilding. Mobile journal/services/training/search all have one h1 and no horizontal overflow at 375 px. Search skip-link focus reaches main-content, fresh console is clear, and desktop search plus mobile static 404 were visually inspected. Contact native-request, duplicate, validation-retention and receipt-reset checks are recorded in Section 35.
+
+Built: the complete Phase 3 public rendering, search, contact, preview, redirect and response-boundary scope. Skipped: no Phase 3 feature. External email delivery remains unverified; automated scheduling and continuous job execution are Phase 5. Phase 6 still requires the broader automated accessibility/performance suite and budgets. Assumptions retained: same-site redirect destinations, loopback Next behind Caddy, initial offerings and posts remain drafts, truthful empty states. D6 remains unanswered, with stack and home-JavaScript requirements unchanged. The proxy's additional indexed lookup must be included in performance measurement.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
@@ -881,7 +901,7 @@ Built: all routes and form behaviour described above. Skipped within this checkp
 
 OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailable because automatic approval review rejected export of this plan payload. No cross-model agreement is claimed.
 
-VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1 and 2 are accepted. Phase 3 CMS rendering and public routes/contact are accepted as checkpoints; redirects and final acceptance checks are open. Phases 4–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
+VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1–3 are accepted. Phases 4–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
 
 **UNRESOLVED DECISIONS:**
 - D6 / E-P1: fixed stack versus strict home JavaScript ceiling; user answer pending.

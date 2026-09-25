@@ -1,0 +1,76 @@
+.main {
+  min-height: 60vh;
+  padding: var(--space-24) var(--space-4);
+  background: var(--surface);
+  color: var(--foreground);
+}
+
+.main:focus {
+  outline: 2px solid currentColor;
+  outline-offset: -6px;
+}
+
+.content {
+  width: min(100%, var(--measure));
+  margin-inline: auto;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-6);
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+}
+
+.heading {
+  max-width: 16ch;
+  margin: 0;
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-size: var(--step-3);
+  font-weight: 400;
+  line-height: var(--display-leading);
+}
+
+.message {
+  max-width: 42ch;
+  margin: var(--space-6) 0 0;
+  line-height: var(--body-leading);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.retry {
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid currentColor;
+  border-radius: 0;
+  background: transparent;
+  color: var(--foreground);
+  font: inherit;
+  cursor: pointer;
+}
+
+.retry:focus-visible,
+.home:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.home {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--link);
+}
+
+@media (min-width: 48rem) {
+  .main {
+    padding-inline: var(--space-6);
+  }
+}

@@ -557,4 +557,17 @@ describe('Phase 2 PostgreSQL integration', () => {
     expect(await getPublicAuthor(privateUser.slug)).toBeNull()
   })
 
+  it('resolves managed redirects without exposing their admin-only collection', async () => {
+    const { findManagedRedirect } = await import('../src/lib/redirects')
+    const from = `/old-${randomUUID()}`
+    const redirect = await payload.create({ collection: 'redirects', overrideAccess: true, data: { from, to: '/about', statusCode: '301' } })
+    await expect(payload.find({ collection: 'redirects', overrideAccess: false })).rejects.toMatchObject({ status: 403 })
+    await expect(payload.find({ collection: 'redirects', overrideAccess: false, context: { redirectLookup: true } })).rejects.toMatchObject({ status: 403 })
+    expect(await findManagedRedirect(payload, from)).toEqual({ to: '/about', status: 301 })
+    await payload.update({ collection: 'redirects', id: redirect.id, overrideAccess: true, data: { to: '/culinaire-kitchen', statusCode: '307' } })
+    expect(await findManagedRedirect(payload, from)).toEqual({ to: '/culinaire-kitchen', status: 307 })
+    await payload.delete({ collection: 'redirects', id: redirect.id, overrideAccess: true })
+    expect(await findManagedRedirect(payload, from)).toBeNull()
+  })
+
 })
