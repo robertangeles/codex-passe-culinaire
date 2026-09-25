@@ -775,13 +775,39 @@ Suppressed findings: none. The unverified HTTP 503 implementation is explicitly 
 
 Engineering artifacts saved and read back: /home/robangeles/.gstack/projects/codex-passe-culinaire/robangeles-main-eng-review-test-plan-20260925-062702.md and tasks-eng-review-20260925-062702.jsonl (five tasks). Local review history records issues_open and outside unavailable. Artifact synchronisation remains off. Navigation follows the existing user-authorised build; no additional permission gate is introduced.
 
+## 32. Pending performance decision D6
+
+New evidence after engineering review: the isolated accepted scaffold built successfully with the installed supported webpack flag. Modern linked scripts measure 132304 bytes gzip, versus 134360 under Turbopack. Both exclude the verified nomodule legacy script; this is not an application-feature payload. The webpack probe used /tmp/passe-webpack-probe-m4v_yoy9 and did not change the working application.
+
+E-P1 reopened for an actual constraint choice. Current approved values remain Next 16/Payload 3 and home JS below 120 kB; no relaxation has been applied. This is a measured conflict in the tested implementations, not proof that every possible Next optimisation is impossible.
+
+Question D6 sent through request_user_input_async:
+The empty Next.js 16/Payload home page measures 132–134 kB of modern-browser JavaScript with both supported bundlers, above your 120 kB limit before adding interactions. Which constraint should take priority? This clarification comes from the conflicting stack and performance requirements in your brief; Phase 2 can continue meanwhile.
+
+Options:
+A) Keep the fixed stack; allow a 160 kB home JavaScript ceiling
+B) Keep the strict 120 kB ceiling; investigate a different public-site stack
+
+Recommendation: A preserves the user's required application stack and reserves a small interaction budget. B authorises investigation only; it does not approve a replacement framework or discard completed CMS work.
+
+| Constraint | Current approval | A | B |
+|---|---|---|---|
+| CMS/framework | Next 16 + Payload 3 | retained | retained pending investigation and a separate implementation choice |
+| Home JS ceiling | <120 kB gzip | <160 kB gzip | <120 kB gzip |
+| Other performance/accessibility requirements | unchanged | unchanged | unchanged |
+| Phase 2 content work | authorised | continue | continue |
+
+State: pending
+Actual answer: none received
+Accepted scope: unchanged; continue independent content work. Do not use elapsed time or the UI preselection as approval.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
 |---|---|---|---:|---|---|
 | CEO Review | /plan-ceo-review | Scope and strategy | 1 documented | CLEAR; prior local history no longer returned by current lookup | Approved HOLD SCOPE; no unresolved policy choices |
 | Outside Review | Claude Code plan review | Independent challenge | 0 completed | UNAVAILABLE | Export rejected; no outside result |
-| Eng Review | /plan-eng-review | Architecture and tests | 1 | ISSUES OPEN (PLAN); logged and read back | 21 findings/gap groups mapped, 0 unresolved decisions, 0 unhandled silent policy gaps |
+| Eng Review | /plan-eng-review | Architecture and tests | 1 | ISSUES OPEN (PLAN); logged and read back | 21 findings/gap groups mapped, 1 reopened decision, 0 unhandled silent policy gaps |
 | Design Review | /plan-design-review | Detailed UI/UX | 0 | NOT RUN | Approved office-hours sketch remains source |
 | DX Review | /plan-devex-review | Developer experience | 0 | NOT RUN | Not separately invoked |
 
@@ -789,4 +815,5 @@ OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailab
 
 VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phase 1 is accepted. Phase 2 is in progress; Phases 3–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
 
-NO UNRESOLVED DECISIONS
+**UNRESOLVED DECISIONS:**
+- D6 / E-P1: fixed stack versus strict home JavaScript ceiling; user answer pending.
