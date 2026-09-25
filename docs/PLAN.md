@@ -1,6 +1,6 @@
 # Passe Culinaire build plan
 
-Status: approved with defaults. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–3 accepted; Phase 4 machine readability and discovery is next. See the latest checkpoint below.
+Status: approved with defaults. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–4 accepted for local implementation; Phase 5 editorial workflow is next. The ten-link LLM index remains a production content gate. See the latest checkpoint below.
 
 ## 1. Approved defaults and remaining production inputs
 
@@ -889,6 +889,34 @@ Additional production-mode evidence: all route classes provide published text in
 
 Built: the complete Phase 3 public rendering, search, contact, preview, redirect and response-boundary scope. Skipped: no Phase 3 feature. External email delivery remains unverified; automated scheduling and continuous job execution are Phase 5. Phase 6 still requires the broader automated accessibility/performance suite and budgets. Assumptions retained: same-site redirect destinations, loopback Next behind Caddy, initial offerings and posts remain drafts, truthful empty states. D6 remains unanswered, with stack and home-JavaScript requirements unchanged. The proxy's additional indexed lookup must be included in performance measurement.
 
+## 37. Phase 4 acceptance: discovery and publication
+
+The parent reviewed all delegated source and tests, reran the full gate, and obtained a final reviewer PASS. The reviewer’s earlier finding that LLM summaries implied available published services, training dates and posts was corrected to truthful descriptions suitable for the empty states. Initial offerings and journal samples remain drafts.
+
+Built: route metadata and canonical URLs; safe route-specific JSON-LD and visible related testimonials; six root-named child sitemaps and the index; full RSS and JSON Feed; Markdown article mirrors and full page/post LLM exports; editable curated LLM index; named crawler robots rules; local Fraunces OG rendering; environment-gated IndexNow submission after cache invalidation. Exports finish their database work before returning 200, use bounded document batches and stream completed temporary files. Private author fields, drafts and noIndex content are excluded according to the discovery policy.
+
+Production-mode HTTP verification through Caddy passed with temporary fixtures subsequently deleted. Publication reached all dependent discovery outputs in 116 ms without rebuilding. Populated RSS and image sitemap XML parsed; JSON Feed contained article HTML; published article metadata and schemas matched its HTML. Generated PNG: 1200 × 630, 33,780 bytes, visually inspected. noIndex removed every export and the Markdown mirror; sitemap-only exclusion retained feed/Markdown content; unpublishing removed the mirror and feed item. Service/training quotes were present in visible HTML and Review graphs. The baseline machine endpoints returned 200 with their specified MIME/cache headers.
+
+The HTTP probe caught two defects beyond mocks: the server font retained variable metadata, and separately compiled Next bundles created different redirect capability symbols when a feed initialised Payload first. The font is now a fully static local instance with a real PNG regression test. The server capability uses a shared registry symbol, which HTTP JSON cannot construct; a module-reload regression and cold feed-first `/feed.json`, `/`, `/journal` sequence all pass. Public redirect API access remains protected.
+
+Actual final gate output, 25 September 2026:
+
+```text
+$ eslint src tests scripts *.mjs vitest.config.ts --max-warnings=0
+$ tsc --noEmit
+Test Files  47 passed (47)
+     Tests  266 passed (266)
+✓ Compiled successfully in 1961ms
+✓ Generating static pages using 19 workers (7/7) in 310ms
+GATE_EXIT=0
+```
+
+Evidence retained locally in `.local/phase4-gate-final.log`, `.local/discovery-http-baseline.json` and `.local/discovery-publication-probe.json`. IndexNow 200/202/retry/order behavior was tested with a stub provider; no live key exists and no production submission is claimed. Nine genuine curated destinations currently exist; a tenth approved published page/post remains a production content input. No fictitious offering was published to fill the index. Any future response-caching CDN needs publication-triggered purging to preserve the 60-second contract.
+
+## 38. Phase 5 implementation direction
+
+Use Payload’s supported admin graphics, UI fields, named/unnamed tabs, live-preview configuration, built-in duplication hooks and scheduled-publish jobs. Keep existing content field paths stable, so moving fields into visual tabs does not rename database columns. Use the existing authenticated draft endpoint for the preview iframe and refresh only an authenticated preview after an allowed same-origin save message. Use built-in scheduling identity restoration and verify permissions at execution time. An authenticated worker path and documented systemd cadence must run without an open browser. Test both admins and retain existing editor/global/media restrictions. Parent owns all configuration, migration, access and route integration; executor tasks own individual admin components or bounded routes.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
@@ -901,7 +929,7 @@ Built: the complete Phase 3 public rendering, search, contact, preview, redirect
 
 OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailable because automatic approval review rejected export of this plan payload. No cross-model agreement is claimed.
 
-VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1–3 are accepted. Phases 4–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
+VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1–4 are accepted for local implementation. Phases 5–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
 
 **UNRESOLVED DECISIONS:**
 - D6 / E-P1: fixed stack versus strict home JavaScript ceiling; user answer pending.

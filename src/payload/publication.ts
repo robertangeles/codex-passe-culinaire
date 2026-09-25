@@ -1,3 +1,5 @@
+import { contentPath, notifyIndexNow } from '../lib/indexnow'
+import { isPublishedExport } from '../lib/discovery-policy'
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook, GlobalAfterChangeHook, TaskConfig } from 'payload'
 
 const publicCollections = new Set(['pages', 'posts', 'services', 'events'])
@@ -9,6 +11,8 @@ type PublicationInput = {
   documentId: number | string
   previousSlug?: string
   savedSlug?: string
+  previousPublished?: boolean
+  savedPublished?: boolean
 }
 
 export const publicationTask: TaskConfig<{ input: PublicationInput; output: { invalidated: boolean } }> = {
@@ -19,6 +23,8 @@ export const publicationTask: TaskConfig<{ input: PublicationInput; output: { in
     { name: 'documentId', type: 'text', required: true },
     { name: 'previousSlug', type: 'text' },
     { name: 'savedSlug', type: 'text' },
+    { name: 'previousPublished', type: 'checkbox' },
+    { name: 'savedPublished', type: 'checkbox' },
   ],
   retries: { attempts: 5, backoff: { delay: 10000, type: 'fixed' } },
   handler: async ({ input, req }) => {
@@ -44,6 +50,13 @@ export const publicationTask: TaskConfig<{ input: PublicationInput; output: { in
       }),
     })
     if (!response.ok) throw new Error(`Publication invalidation failed with HTTP ${response.status}.`)
+    const candidates = [
+      current && isPublishedExport(current) ? contentPath(input.collection, current.slug) : undefined,
+      input.previousPublished ? contentPath(input.collection, input.previousSlug) : undefined,
+      input.savedPublished ? contentPath(input.collection, input.savedSlug) : undefined,
+    ].filter((path): path is string => typeof path === 'string')
+    const result = await notifyIndexNow(candidates, origin)
+    if (result === 'submitted' || result === 'pending') req.payload.logger.info({ status: result, count: new Set(candidates).size }, 'IndexNow notification recorded.')
     return { output: { invalidated: true } }
   },
 }
@@ -54,6 +67,7 @@ export const queuePublicationChange: CollectionAfterChangeHook = async ({ collec
     collection: collection.slug, scope: publicCollections.has(collection.slug) ? 'content' : 'dependent', documentId: String(doc.id),
     previousSlug: typeof previousDoc?.slug === 'string' ? previousDoc.slug : undefined,
     savedSlug: typeof doc.slug === 'string' ? doc.slug : undefined,
+    previousPublished: Boolean(previousDoc && isPublishedExport(previousDoc)), savedPublished: isPublishedExport(doc),
   } })
   return doc
 }
@@ -62,7 +76,7 @@ export const queuePublicationDelete: CollectionAfterDeleteHook = async ({ collec
   if (!publicCollections.has(collection.slug) && !dependentCollections.has(collection.slug)) return doc
   await req.payload.jobs.queue({ task: 'propagate-publication', req, input: {
     collection: collection.slug, scope: publicCollections.has(collection.slug) ? 'content' : 'dependent', documentId: String(doc.id),
-    previousSlug: typeof doc.slug === 'string' ? doc.slug : undefined,
+    previousSlug: typeof doc.slug === 'string' ? doc.slug : undefined, previousPublished: isPublishedExport(doc),
   } })
   return doc
 }

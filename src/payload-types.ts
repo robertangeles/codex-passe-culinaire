@@ -2150,6 +2150,8 @@ export interface TaskPropagatePublication {
     documentId: string;
     previousSlug?: string | null;
     savedSlug?: string | null;
+    previousPublished?: boolean | null;
+    savedPublished?: boolean | null;
   };
   output?: unknown;
 }

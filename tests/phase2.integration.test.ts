@@ -17,6 +17,7 @@ process.env.MEDIA_DIR = path.resolve('.local/test-media')
 process.env.MEDIA_STORAGE = 'local'
 process.env.MAIL_PROVIDER = 'smtp'
 process.env.RUN_JOBS = 'false'
+process.env.INDEXNOW_KEY = ''
 process.env.CONTACT_TO_ADDRESS = ''
 process.env.SMTP_HOST = ''
 process.env.RESEND_API_KEY = ''
@@ -440,6 +441,49 @@ describe('Phase 2 PostgreSQL integration', () => {
     }
   }, 30000)
 
+  it('notifies IndexNow only after successful invalidation and never sends draft-only addresses', async () => {
+    const oldKey = process.env.INDEXNOW_KEY
+    const oldOrigin = process.env.NEXT_PUBLIC_SERVER_URL
+    const oldSecret = process.env.REVALIDATE_SECRET
+    process.env.INDEXNOW_KEY = 'test-key-12345'
+    process.env.NEXT_PUBLIC_SERVER_URL = 'https://example.test'
+    process.env.REVALIDATE_SECRET = 'test-only-revalidation-secret'
+    const requests: { url: string; body: Record<string, unknown> }[] = []
+    let failInvalidation = false
+    vi.stubGlobal('fetch', vi.fn(async (url: RequestInfo | URL, init?: RequestInit) => {
+      requests.push({ url: String(url), body: JSON.parse(String(init?.body)) as Record<string, unknown> })
+      return new Response('{}', { status: failInvalidation ? 503 : 200 })
+    }))
+    try {
+      const page = await payload.create({ collection: 'pages', overrideAccess: true, draft: true,
+        data: { title: 'Notification test', slug: `notification-${randomUUID()}`, _status: 'draft',
+          layout: [{ blockType: 'hero', heading: 'Notification test', style: 'quiet' }], seo: { metaDescription: 'A publication notification test.' } } })
+      const runLatest = async () => {
+        const job = (await payload.find({ collection: 'payload-jobs', overrideAccess: true, sort: '-id', limit: 1 })).docs[0]
+        const result = await payload.jobs.runByID({ id: job.id, silent: true })
+        return result.jobStatus?.[String(job.id)]?.status
+      }
+      expect(await runLatest()).toBe('success')
+      expect(requests.map(item => item.url)).toEqual(['https://example.test/api/revalidate'])
+      requests.length = 0
+      await payload.update({ collection: 'pages', id: page.id, overrideAccess: true, data: { _status: 'published' } })
+      expect(await runLatest()).toBe('success')
+      expect(requests.map(item => item.url)).toEqual(['https://example.test/api/revalidate', 'https://www.bing.com/indexnow'])
+      expect(requests[1].body.urlList).toEqual([`https://example.test/${page.slug}`])
+      requests.length = 0
+      await payload.update({ collection: 'pages', id: page.id, overrideAccess: true, data: { title: 'Saved despite notification failure' } })
+      failInvalidation = true
+      expect(await runLatest()).not.toBe('success')
+      expect(requests.map(item => item.url)).toEqual(['https://example.test/api/revalidate'])
+      expect((await payload.findByID({ collection: 'pages', id: page.id, overrideAccess: true })).title).toBe('Saved despite notification failure')
+    } finally {
+      vi.unstubAllGlobals()
+      process.env.INDEXNOW_KEY = oldKey
+      process.env.NEXT_PUBLIC_SERVER_URL = oldOrigin
+      process.env.REVALIDATE_SECRET = oldSecret
+    }
+  }, 30000)
+
   it('queues publication in the content transaction and exposes it after commit', async () => {
     const slug = `queue-${randomUUID()}`
     const draft = await payload.create({ collection: 'pages', overrideAccess: true, draft: true,
@@ -568,6 +612,28 @@ describe('Phase 2 PostgreSQL integration', () => {
     expect(await findManagedRedirect(payload, from)).toEqual({ to: '/culinaire-kitchen', status: 307 })
     await payload.delete({ collection: 'redirects', id: redirect.id, overrideAccess: true })
     expect(await findManagedRedirect(payload, from)).toBeNull()
+  })
+
+  it('reads only published testimonials for the exact public service relationship', async () => {
+    const service = await payload.create({ collection: 'services', overrideAccess: true, data: {
+      title: 'Review projection fixture', slug: `review-fixture-${randomUUID()}`, oneLiner: 'A verification fixture.',
+      _status: 'published', seo: { metaDescription: 'A verification fixture.' },
+    } })
+    const publicReview = await payload.create({ collection: 'testimonials', overrideAccess: true, data: {
+      name: 'Fixture reviewer', quote: 'Visible review fixture.', published: true, relatedTo: { relationTo: 'services', value: service.id },
+    } })
+    const privateReview = await payload.create({ collection: 'testimonials', overrideAccess: true, data: {
+      name: 'Private fixture', quote: 'Private review fixture.', published: false, relatedTo: { relationTo: 'services', value: service.id },
+    } })
+    try {
+      const { getPublicTestimonials } = await import('../src/lib/public-content')
+      expect((await getPublicTestimonials('services', service.id)).map(item => item.id)).toEqual([publicReview.id])
+      expect(await getPublicTestimonials('events', service.id)).toEqual([])
+    } finally {
+      await payload.delete({ collection: 'testimonials', id: publicReview.id, overrideAccess: true })
+      await payload.delete({ collection: 'testimonials', id: privateReview.id, overrideAccess: true })
+      await payload.delete({ collection: 'services', id: service.id, overrideAccess: true })
+    }
   })
 
 })
