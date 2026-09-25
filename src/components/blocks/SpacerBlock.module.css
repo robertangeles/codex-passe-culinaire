@@ -1,0 +1,25 @@
+.small {
+  height: var(--space-8);
+}
+
+.medium {
+  height: var(--space-16);
+}
+
+.large {
+  height: var(--space-24);
+}
+
+@media (max-width: 640px) {
+  .small {
+    height: var(--space-6);
+  }
+
+  .medium {
+    height: var(--space-12);
+  }
+
+  .large {
+    height: var(--space-16);
+  }
+}

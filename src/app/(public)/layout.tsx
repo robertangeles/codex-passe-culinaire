@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import type { ReactNode } from 'react'
 
+import PublicShell from '../../components/PublicShell'
 import '../../styles/globals.css'
+import { themeInitScript } from '../../lib/theme-script'
 
 const fraunces = localFont({
   src: '../../fonts/fraunces-latin-variable.woff2',
@@ -30,10 +32,17 @@ export const metadata: Metadata = {
 
 export default function PublicLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en-AU" className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en-AU"
+      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body>
         <a className="skip-link" href="#main-content">Skip to content</a>
-        {children}
+        <PublicShell>{children}</PublicShell>
       </body>
     </html>
   )

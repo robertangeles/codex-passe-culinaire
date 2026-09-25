@@ -1,0 +1,10 @@
+.statement {
+  max-width: 30ch;
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-optical-sizing: auto;
+  font-size: var(--step-3);
+  font-weight: 300;
+  line-height: 1.15;
+}

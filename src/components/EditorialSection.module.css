@@ -1,0 +1,40 @@
+.section {
+  padding-block: var(--space-16);
+  color: var(--foreground);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-4);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.content {
+  grid-column: 2 / 12;
+  min-width: 0;
+  max-width: var(--measure);
+}
+
+.wide {
+  grid-column: 1 / -1;
+  max-width: none;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+
+  .grid {
+    padding-inline: var(--space-4);
+  }
+
+  .content {
+    grid-column: 1 / -1;
+  }
+}

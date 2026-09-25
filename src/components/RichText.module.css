@@ -1,0 +1,181 @@
+.richText {
+  max-width: 62ch;
+  color: var(--foreground);
+  font-family: var(--loaded-inter), var(--font-body), sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+
+.paragraph {
+  margin: 0 0 1.25em;
+}
+
+.heading,
+.minorHeading {
+  color: var(--foreground);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 1.5em 0 0.55em;
+}
+
+.heading {
+  font-size: var(--step-2);
+}
+
+.minorHeading {
+  font-size: var(--step-1);
+}
+
+.link {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+}
+
+.link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.list {
+  margin: 0 0 1.5em;
+  padding-inline-start: 1.5em;
+}
+
+.list li + li {
+  margin-block-start: 0.4em;
+}
+
+.checklist {
+  list-style: none;
+  margin: 0 0 1.5em;
+  padding: 0;
+}
+
+.checklistItem {
+  display: flex;
+  gap: 0.65em;
+  align-items: baseline;
+}
+
+.checklistItem + .checklistItem {
+  margin-block-start: 0.45em;
+}
+
+.checkmark {
+  accent-color: var(--foreground);
+  flex: 0 0 auto;
+  margin: 0;
+  width: 1em;
+  height: 1em;
+}
+
+.quote {
+  border-inline-start: 2px solid color-mix(in srgb, var(--color-ash) 30%, transparent);
+  margin: 1.5em 0;
+  padding-inline-start: 1.25em;
+}
+
+.pullQuote {
+  border-block: 1px solid color-mix(in srgb, var(--color-ash) 30%, transparent);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-size: var(--step-2);
+  line-height: 1.2;
+  margin: 2em 0;
+  padding-block: 1.25em;
+}
+
+.pullQuote blockquote,
+.pullQuote p {
+  margin: 0;
+}
+
+.pullQuote figcaption,
+.caption {
+  color: var(--foreground);
+  font-family: var(--loaded-jetbrains-mono), var(--font-mono), monospace;
+  font-size: var(--step--1);
+  line-height: 1.45;
+}
+
+.pullQuote figcaption {
+  margin-block-start: 0.75em;
+}
+
+.image {
+  margin-block: 1.5em;
+}
+
+.codeFigure {
+  margin: 1.5em 0;
+}
+
+.codeFigure pre {
+  background: var(--color-charcoal);
+  color: var(--color-bone);
+  margin: 0;
+  overflow-x: auto;
+  padding: 1em;
+  white-space: pre;
+}
+
+.code {
+  font-family: var(--loaded-jetbrains-mono), var(--font-mono), monospace;
+  font-size: var(--step--1);
+}
+
+.codeFigure .caption {
+  margin-block-start: 0.35em;
+}
+
+.embed {
+  margin: 1.5em 0;
+}
+
+.embedFrame {
+  aspect-ratio: 16 / 9;
+  background: var(--color-charcoal);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.embedFrame iframe {
+  border: 0;
+  height: 100%;
+  inset: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.caption {
+  display: flex;
+  gap: 0.75em;
+  margin-block-start: 0.5em;
+}
+
+.embedNote {
+  margin: 1.5em 0;
+}
+
+.rule {
+  border: 0;
+  border-block-start: 1px solid color-mix(in srgb, var(--color-ash) 30%, transparent);
+  margin: 2em 0;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}

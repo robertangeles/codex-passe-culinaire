@@ -1,6 +1,6 @@
 export default function HomePage() {
   return (
-    <main id="main-content" className="home-shell">
+    <main id="main-content" tabIndex={-1} className="home-shell">
       <div className="editorial-grid">
         <p className="home-location">Melbourne, Australia</p>
         <div className="home-intro">
