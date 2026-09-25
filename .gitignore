@@ -1,0 +1,13 @@
+# Downloaded tooling, generated skills, and local runtime data.
+/.tools/
+/.agents/skills/gstack*
+/.context-mode/
+/.gstack/
+/.gbrain/
+/.local/
+.env*
+!.env.example
+/node_modules/
+/.next/
+/out/
+/tsconfig.tsbuildinfo
