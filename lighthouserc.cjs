@@ -20,7 +20,7 @@ module.exports = {
         'categories:accessibility': ['error', { minScore: 0.95, aggregationMethod: 'median' }],
         'categories:best-practices': ['error', { minScore: 0.95, aggregationMethod: 'median' }],
         'categories:seo': ['error', { minScore: 0.95, aggregationMethod: 'median' }],
-        'largest-contentful-paint': ['error', { maxNumericValue: 1999, aggregationMethod: 'median' }],
+        'largest-contentful-paint': ['error', { maxNumericValue: process.env.QUALITY_STRICT_BUDGETS === 'true' ? 1999 : 2600, aggregationMethod: 'median' }],
       },
     },
     upload: { target: 'filesystem', outputDir: '.local/lighthouse-report' },

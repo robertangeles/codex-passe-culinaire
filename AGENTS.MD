@@ -92,7 +92,7 @@ Preserve these exact brand values in this file and globals.css. Use accessible s
 - Light default; system dark preference plus manual localStorage toggle.
 - Two approved signature details: lowercase light-weight Fraunces wordmark and Southern Hemisphere seasonal hero. No weather readout.
 - Keep ash/clay off small light-theme text and moss off dark-theme text/focus where contrast fails. WCAG 2.2 AA, semantic landmarks, one h1, skip link and visible focus are required.
-- Mobile targets: Lighthouse Performance, Accessibility, Best Practices and SEO >=95; LCP <2.0s on the documented throttled 4G profile; home JavaScript <120kB gzipped.
+- Mobile targets: Lighthouse Performance, Accessibility, Best Practices and SEO >=95; LCP <2.0s on the documented throttled 4G profile; home JavaScript <120kB gzipped. On 26 September 2026 the user approved retaining the stack with exceptions for the measured 158kB home JavaScript and up-to-2.48s median LCP. Regression ceilings are <160kB and <=2.6s (small measurement tolerance); category scores remain >=95. QUALITY_STRICT_BUDGETS=true restores the original targets.
 
 ## Content and public behaviour
 
