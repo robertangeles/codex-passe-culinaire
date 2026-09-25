@@ -1,6 +1,6 @@
 # Passe Culinaire build plan
 
-Status: approved with defaults by the user. Office-hours design and sketch approved; CEO review complete; engineering review remains; application implementation has not started.
+Status: approved with defaults. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1 and 2 accepted; Phase 3 implementation and verification in progress. See the latest checkpoint below.
 
 ## 1. Approved defaults and remaining production inputs
 
@@ -848,6 +848,27 @@ Actual required-DB-failure probe: bare Next returns 500; the tested Caddy bounda
 
 Remaining Phase 3: journal/taxonomy/author/service/training routes, PostgreSQL search, contact submission UI/endpoint, redirect use, complete responsive/keyboard/error checks and all-route freshness. Background automatic job execution and scheduling remain Phase 5. Machine-readable outputs remain Phase 4. D6 remains unanswered.
 
+## 35. Phase 3 public routes and contact checkpoint
+
+Accepted portion: journal index/detail and category/tag/author pagination; service and training index/detail; shared listing navigation; indexed PostgreSQL search over published page/post text; a discoverable search link; private contact page and progressively enhanced server action. All new public routes provide their content in initial HTML. The search-index migration has been applied to the development database and to a fresh test database.
+
+Parent full-diff review and independent reviewer PASS after fixes. Actual final command output:
+
+```text
+pnpm lint: eslint ... --max-warnings=0, exit 0
+pnpm typecheck: tsc --noEmit, exit 0
+pnpm test: Test Files 30 passed (30); Tests 189 passed (189)
+pnpm build: Compiled successfully in 2.4s; TypeScript finished; static pages 7/7
+```
+
+Production HTTP fixtures exercised journal body paragraphs, category/tag/author results, service and cancelled training details, all three indexes and search. Every checked response returned 200, server text and exactly one h1. Unpublishing the test post returned 404; all temporary publishing fixtures were removed. A real author-route 500 exposed an invalid anonymous query on the private publicProfile field. The reader now relies on the collection access predicate; a PostgreSQL regression proves public profiles work, private profiles remain absent and account fields stay excluded.
+
+Contact verification used actual browser submissions and native multipart HTTP requests with no client JavaScript. Distinct initial responses receive distinct request IDs; all contact responses are private/no-store. Validation retains text and select values; keyboard focus moves to the error or receipt. A saved enquiry with no configured email provider reports notification failure truthfully. Repeating a request returns the same receipt. Starting another enquiry now performs a native GET and opens an empty form; the earlier client navigation retained stale receipt state. Mobile width 375 px has no horizontal overflow and no console errors. Four labelled local submission probes were removed. SMTP/Resend delivery remains unverified without production configuration.
+
+Within-scope decisions: list routes use at most 1,000 pages with an explicit display at the bound; search shows at most 1,200 matches with a refine-search note. No navigation points beyond the supported limits. Machine exports will still include all eligible content. Contact remains private instead of using shared caching, as required for per-visitor submission identifiers. Native browser no-script toggling was unavailable in the installed browse tool; direct multipart requests verified progressive enhancement without executing JavaScript.
+
+Built: all routes and form behaviour described above. Skipped within this checkpoint: none. Remaining Phase 3: managed redirects, branded missing/error states and final responsive/keyboard/freshness acceptance. Phase 4 discovery/metadata, Phase 5 automatic publishing, Phase 6 measured quality budgets and Phase 7 deployment/CI remain. D6 is still unanswered; no performance requirement was relaxed.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
@@ -860,7 +881,7 @@ Remaining Phase 3: journal/taxonomy/author/service/training routes, PostgreSQL s
 
 OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailable because automatic approval review rejected export of this plan payload. No cross-model agreement is claimed.
 
-VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1 and 2 are accepted. Phase 3 CMS rendering is accepted as a checkpoint; its remaining routes and acceptance checks are open. Phases 4–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
+VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1 and 2 are accepted. Phase 3 CMS rendering and public routes/contact are accepted as checkpoints; redirects and final acceptance checks are open. Phases 4–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
 
 **UNRESOLVED DECISIONS:**
 - D6 / E-P1: fixed stack versus strict home JavaScript ceiling; user answer pending.

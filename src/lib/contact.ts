@@ -11,6 +11,13 @@ export type ContactInput = {
   message: string
 }
 
+export class ContactValidationError extends Error {
+  constructor(message: string, readonly field: keyof ContactInput) {
+    super(message)
+    this.name = 'ContactValidationError'
+  }
+}
+
 const roles = new Set(['chef', 'owner', 'manager', 'other'])
 const needs = new Set(['training', 'advisory', 'culinaire-kitchen', 'press', 'other'])
 
@@ -23,12 +30,13 @@ export function validateContact(input: unknown): ContactInput {
   const message = typeof record.message === 'string' ? record.message.trim() : ''
   const role = typeof record.role === 'string' && roles.has(record.role) ? record.role as ContactInput['role'] : undefined
   const need = typeof record.need === 'string' && needs.has(record.need) ? record.need as ContactInput['need'] : undefined
-  if (!/^[a-f0-9-]{36}$/.test(requestId)) throw new Error('Please refresh the form and try again.')
-  if (!name || name.length > 120) throw new Error('Add your name, up to 120 characters.')
-  if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Add a valid reply email.')
-  if (venue.length > 160) throw new Error('Keep the venue name under 160 characters.')
-  if (!role || !need) throw new Error('Choose a role and topic.')
-  if (!message || message.length > 5000) throw new Error('Add a message, up to 5000 characters.')
+  if (!/^[a-f0-9-]{36}$/.test(requestId)) throw new ContactValidationError('Please refresh the form and try again.', 'requestId')
+  if (!name || name.length > 120) throw new ContactValidationError('Add your name, up to 120 characters.', 'name')
+  if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new ContactValidationError('Add a valid reply email.', 'email')
+  if (venue.length > 160) throw new ContactValidationError('Keep the venue name under 160 characters.', 'venue')
+  if (!role) throw new ContactValidationError('Choose your role.', 'role')
+  if (!need) throw new ContactValidationError('Choose a topic.', 'need')
+  if (!message || message.length > 5000) throw new ContactValidationError('Add a message, up to 5000 characters.', 'message')
   return { requestId, name, email, venue, role, need, message }
 }
 
