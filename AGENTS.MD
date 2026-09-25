@@ -1,0 +1,127 @@
+The parent session is the advisor. It owns the plan, architecture, integration review, verification and acceptance. It does not delegate those.
+ 
+Two implementation subagents:
+- `builder` (Sol): multi-step foundation work. Scaffolding, collection and global schemas, migrations, database and storage adapters, auth and access control, hooks that cross collections. Phases 1 and 2.
+- `executor` (Luna): bounded, fully specified work. One block component, one route, one JSON-LD builder with tests, one feed or sitemap generator, one Playwright test. Phases 3 to 7.
+One task per subagent per spawn. Every task carries acceptance criteria, a file list, and the commands to run.
+ 
+Keep on the parent: AGENTS.md changes, .codex changes, plan changes, any task whose file list overlaps a running subagent.
+ 
+After each subagent returns: read the full diff yourself, rerun `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, then spawn `reviewer` on the diff. Any fix-first verdict requires a new review after the fix.
+ 
+If the parent is running on Sol rather than Astra, do Phase 1 and 2 work on the parent thread instead of spawning builder, and delegate only to executor.
+ 
+Never run two subagents on files that overlap. Never let a subagent change the plan.
+ 
+
+## Installed project tools
+
+- gstack's Codex skills are in `.agents/skills/`. Use `$gstack` to select a workflow, `$review` for review, and `$qa` for browser QA. Runtime assets are under `.agents/skills/gstack/`.
+- context-mode and Ponytail are enabled for this project through `.codex/config.toml` and the `passe-culinaire-tools` marketplace.
+- When context-mode MCP tools are available, use `ctx_batch_execute`, `ctx_execute_file`, and `ctx_search` for large outputs and analysis. Use `ctx_fetch_and_index` for indexing web content; use gstack for interactive browser QA. Read `.tools/context-mode/configs/codex/AGENTS.md` for the full routing guidance when using context-mode. If its tools are unavailable, use the available host tools.
+- Use `$ponytail:ponytail` for the simplest correct implementation and `$ponytail:ponytail-review` to check for unnecessary complexity. Existing project delegation and verification requirements still apply.
+- Installation details and verification are recorded in `AI-TOOLS.md`.
+
+- ADHD is installed at `.agents/skills/adhd/`. Invoke `$adhd` for divergent brainstorming; use its pre-flight gate and respect the available agent concurrency limit. The parent still owns architecture, integration, and acceptance.
+
+## Application commands
+
+Use pnpm and Node 22 LTS or newer. Phase 1 establishes the install/dev/check/build scripts; Phase 2 supplies the full seed script. Do not describe a future command as already verified.
+
+| Task | Command |
+|---|---|
+| Install | `pnpm install` (use `pnpm install --frozen-lockfile` for reproducible CI once the lockfile exists) |
+| Development | `pnpm dev` |
+| Lint | `pnpm lint` |
+| Typecheck | `pnpm typecheck` |
+| Unit/integration tests | `pnpm test` |
+| Build | `pnpm build` |
+| Production server | `pnpm start` |
+| Seed | `pnpm seed` |
+| Browser smoke tests | `pnpm test:e2e` (established with browser coverage) |
+
+At the end of every phase run `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, show actual output, and report built/skipped/assumed items. Failure is not acceptance. Do not weaken checks to pass.
+
+## Application layout
+
+- `src/app/`: separate public and Payload App Router groups and server endpoints.
+- `src/payload/`: collection, global, block, access and hook definitions.
+- `src/components/`: public blocks and shared interface elements.
+- `src/lib/`: typed public content projections, renderers, SEO and serializers.
+- `src/styles/globals.css`: Tailwind entry, exact brand tokens and global styles.
+- `src/fonts/`: self-hosted Fraunces, Inter and JetBrains Mono plus licences.
+- `src/migrations/`: committed database migrations; never push mode.
+- `scripts/`: seed and operational helpers; preserve existing tool scripts.
+- `tests/`: Vitest and Playwright coverage.
+- `docs/PLAN.md`: approved plan and review record, parent-owned.
+- `docs/designs/`: approved design, sketch and review evidence.
+- `docs/DEPLOY.md`: plain Node VPS deployment and recovery instructions.
+- The supported Payload integration determines the exact config/generated file locations after installed docs/types are checked.
+
+## Design tokens
+
+Preserve these exact brand values in this file and globals.css. Use accessible semantic aliases for their roles; not every foreground/background combination passes contrast.
+
+```css
+--font-display: "Fraunces"; /* variable, opsz + wght, self-hosted */
+--font-body: "Inter"; /* variable, self-hosted */
+--font-mono: "JetBrains Mono"; /* self-hosted, code and captions */
+
+--color-bone: #F4F1EA;
+--color-ink: #1A1A18;
+--color-moss: #4A5A3F;
+--color-clay: #B8674B;
+--color-ash: #8A8A82;
+--color-charcoal: #141412;
+--color-linen: #E8E4DA;
+
+--step--1: clamp(0.83rem, 0.8rem + 0.2vw, 0.95rem);
+--step-0: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+--step-1: clamp(1.3rem, 1.2rem + 0.6vw, 1.7rem);
+--step-2: clamp(1.7rem, 1.4rem + 1.4vw, 2.6rem);
+--step-3: clamp(2.3rem, 1.6rem + 3vw, 4.2rem);
+--step-4: clamp(3rem, 1.5rem + 6.5vw, 7.5rem);
+```
+
+- Prose maximum measure: 62ch. Body line height: 1.55. Display line height: 1.05.
+- Spacing scale: 4, 8, 12, 16, 24, 32, 48, 64, 96, 144 px.
+- Radius: zero except 2 px on form inputs.
+- Rules: 1 px ash at 30% opacity.
+- Editorial 12-column grid, generous whitespace, full-bleed or quiet text hero; no shadow cards, gradient buttons, parallax, autoplay video or looping motion.
+- Reveal motion: 200–300 ms opacity/transform, respecting prefers-reduced-motion.
+- Light default; system dark preference plus manual localStorage toggle.
+- Two approved signature details: lowercase light-weight Fraunces wordmark and Southern Hemisphere seasonal hero. No weather readout.
+- Keep ash/clay off small light-theme text and moss off dark-theme text/focus where contrast fails. WCAG 2.2 AA, semantic landmarks, one h1, skip link and visible focus are required.
+- Mobile targets: Lighthouse Performance, Accessibility, Best Practices and SEO >=95; LCP <2.0s on the documented throttled 4G profile; home JavaScript <120kB gzipped.
+
+## Content and public behaviour
+
+- Australian English. Chef to chef, kitchen nouns before technology nouns. The home priority is chefs and owners understanding Passe Culinaire and exploring CulinAIre Kitchen.
+- CulinAIre Kitchen is the first offer, not the entire company. Retain company identity, training, advisory and publishing scope.
+- Use supplied founder facts only. Unknown facts stay [TO CONFIRM] until confirmed; no invented claims in public structured data. Real testimonials only; seed none.
+- Banned public copy: leverage, unlock, revolutionise, seamless, cutting-edge, powered by AI, AI-driven, smart, intelligent, next-generation, transform your business. No em dashes, exclamation marks or emoji in public copy.
+- Explain AI with a concrete, verified kitchen example; never invent product capability or savings claims.
+- Admin labels use Journal, Training and Publish. Empty states/errors are short and calm.
+- Every public content route is server-rendered or statically generated with its text in HTML. Preview and private responses must never enter shared public caches.
+- Public Payload Local API calls must respect access controls and publication rules. Public author projections exclude authentication/private fields.
+- noIndex content is excluded from sitemap, feeds and LLM exports; sitemap-only exclusion affects sitemap only.
+- Keep public media crawler-accessible while preserving the required /api robots disallow. The exact ten-link llms.txt requirement remains a production content gate.
+- Changes become public within 60 seconds without a rebuild; prove commit/invalidation ordering and dependent-output freshness.
+- Commit migrations; no schema push mode. Use private environment configuration for admin credentials. Never commit working secrets.
+- Preserve all existing project tools and unrelated user work.
+
+## Never rules
+
+- Never render public content client-side only.
+- Never call a third-party font, script, or analytics host from the client without a config flag defaulting to off.
+- Never use any. Never disable a lint rule to pass a check.
+- Never add a package without stating why in the commit message.
+- Never write marketing copy in the seed data. Plain sentences only.
+- Never use em dashes in seed copy or UI text.
+- Never add Docker, docker-compose, or snap-based instructions.
+
+## Approved execution and verification
+
+The user approved the build plan with defaults and the reviewed office-hours design and sketch. Those approvals stand. The CEO review is complete; implementation and engineering/diff review gates remain. Follow the seven phases and keep commits small with imperative messages. Keep this file updated when a rule changes.
+
+All initial services, events and sample posts are drafts. Do not publish fictitious offerings to populate the site. The current design preserves truthful empty states and the company-to-product path. Detailed requirements and acceptance criteria are in docs/PLAN.md and the original supplied brief.
