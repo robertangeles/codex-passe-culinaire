@@ -1,6 +1,6 @@
 # Passe Culinaire build plan
 
-Status: approved with defaults. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–5 accepted for local implementation; Phase 6 quality and performance verification is next. The ten-link LLM index remains a production content gate. See the latest checkpoint below.
+Status: approved with defaults. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–7 are accepted for local implementation, with explicitly approved Phase 6 performance exceptions. Live deployment and production content inputs remain outstanding. The ten-link LLM index remains a production content gate. See the latest checkpoint below.
 
 ## 1. Approved defaults and remaining production inputs
 
@@ -929,10 +929,10 @@ Use Payload’s supported admin graphics, UI fields, named/unnamed tabs, live-pr
 
 OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailable because automatic approval review rejected export of this plan payload. No cross-model agreement is claimed.
 
-VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1–5 are accepted for local implementation. Phase 6 acceptance and Phase 7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
+VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1–5 are accepted for local implementation. Phase 6 has approved performance exceptions; Phase 7 is accepted locally. Live deployment remains outstanding. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
 
 **UNRESOLVED DECISIONS:**
-- D6 / E-P1: fixed stack versus strict home JavaScript ceiling; user answer pending.
+- D6 / E-P1 resolved on 26 September 2026: retain the stack with the measured JavaScript and LCP exceptions, as recorded in Section 41.
 
 
 ## 39. Phase 5 acceptance: editorial workflow
@@ -959,3 +959,46 @@ Caddy HTTPS/HTTP2 measurements use the documented 150 ms RTT, 1,638.4 kbit/s, 4x
 Built/skipped/assumed: the automated harness and loading fixes are built; Phase 6 acceptance and Phase 7 deployment work are not complete. Live DNS, publicly trusted TLS, VPS execution, provider delivery and final photography have not been verified. Measurements use truthful seeded launch content and clearly labelled placeholder media. D6 remains unanswered. Any exception must cover the measured JavaScript and LCP limits explicitly; continuing work does not imply approval to relax either limit. Evidence: `docs/QUALITY.md`, `.local/phase6-e2e.log`, `.local/phase6-lighthouse-summary.json`, and local browser/Lighthouse reports.
 
 Parent full-diff review and fresh independent code review returned PASS after database-guard fixes. Final integration gate output on 26 September 2026: `Test Files 53 passed (53)`, `Tests 296 passed (296)`, `Compiled successfully in 459ms`, `GATE_EXIT=0`. Command: `pnpm lint && pnpm typecheck && pnpm test && pnpm build`; log: `.local/phase6-gate-final.log`. Code review PASS does not accept the failed Phase 6 performance gate.
+
+
+## 41. Approved performance exceptions and Phase 7 direction
+
+On 26 September 2026 the user replied “Apporve” to the explicit choice to retain the stack and document exceptions for both measured performance limits, then asked to continue. This resolves D6/E-P1. Phase 6 is accepted locally with those disclosed exceptions; the original 120 kB and 2-second targets were not met. Preserve scores >=95 in every Lighthouse category. Default regression guards use <160,000 bytes home JavaScript and <=2,600 ms median mobile LCP, providing a small tolerance around 158,225 bytes and 2,481 ms. `QUALITY_STRICT_BUDGETS=true` restores the original failing targets for ongoing optimisation. This is an approved trade-off, not a retroactive claim that the original gate passed.
+
+Phase 7 uses one native Node process behind Caddy, PostgreSQL 16, persistent local media, and a systemd timer calling the existing authenticated job endpoint every ten seconds. Disable embedded autoRun when the timer is installed. Add a bounded, independent database health probe; nightly matched database/media backups during a brief write pause; a restore rehearsal in a separate local database; and GitHub Actions using native PostgreSQL without service containers. Builds use isolated seeded data with the production canonical origin, never production database credentials; clear persisted route/data caches before the new process serves live content. No live VPS, DNS or external delivery is assumed available.
+
+
+## 42. Phase 7 implementation and operations rehearsal
+
+Built: bounded Node health route using a one-connection PostgreSQL probe with connection/query/server timeouts and a response deadline; matching local database/media backup with checksums, atomic completion and retention; systemd application, ten-second worker and nightly backup units; startup revalidation/warm-up; native PostgreSQL GitHub Actions matrix for integration/browser/performance; completed environment reference and Ubuntu deployment/recovery/S3 runbook. Direct `pg` and `@types/pg` dependencies make health independent of unbounded CMS initialisation while reusing the already installed driver version.
+
+The parent reviewed the full executor diff and integrated it. The final 306-test, 56-file integration gate passes. Browser output is `22 passed (19.3s)` under the approved regression ceilings. Final Lighthouse assertions and independent review pass, as recorded below.
+
+Actual rehearsal restored a matching PostgreSQL 16 dump and 351 media files to a separate database/directory in 714 ms; page data and all media bytes matched. A failing SQL transaction rolled back and stopped the subsequent rollout command. Healthy HTTP returned private/no-store 200; an unreachable database returned private/no-store 503 in 224 ms with only a status value. Startup invalidation replaced cached build content with the distinct restored page title; restored media returned 200 with the correct MIME type and identical bytes. Evidence: `.local/phase7-restore-evidence.json`, `.local/phase7-health-failure.json`.
+
+Configuration checks: actionlint 1.7.12 PASS; systemd-analyze verify PASS with the future Node executable path substituted locally (one unrelated host-unit warning); backup wrapper bash syntax PASS. These do not claim a live service install, reboot or hosted CI run. Native application/test migrations and idempotent seed execute in the ordinary gate. Live VPS/DNS/public TLS, external mail/S3, off-host backups, the ten-link LLM content gate and final assets remain explicit production inputs. No existing project tool files or unrelated user work were removed.
+
+
+## 43. Phase 7 local acceptance and final handoff
+
+Accepted locally on 26 September 2026 after parent full-diff review and fresh independent reviewer PASS. Review fixes canonicalise backup/media paths before archiving, preserve damaged old manifests without failing new backups, and gate Caddy proxy traffic with service readiness. Caddy remains available for static 503 pages and error assets while Next is down or warming. The app removes stale readiness before startup and after shutdown; warm-up creates it only after successful database health, broad invalidation and route checks. Real HTTP rehearsal confirms closed/open/down states; regression tests cover successful and failed warm-up. The final design supersedes the transient service-binding experiment, which would have removed the static fallback.
+
+Actual final verification output:
+
+```text
+pnpm lint: exit 0
+pnpm typecheck: exit 0
+Test Files  56 passed (56)
+     Tests  306 passed (306)
+Compiled successfully in 446ms
+GATE_EXIT=0
+Playwright: 22 passed (19.3s)
+Lighthouse: 5 URLs, 15 runs; all assertions processed successfully
+PERFORMANCE_EXIT=0
+```
+
+Final Lighthouse medians: home 2,102 ms, about 2,478 ms, CulinAIre Kitchen 1,952 ms, journal 2,330 ms, contact 2,327 ms. Every route/run scored at least 97 Performance and 100 Accessibility, Best Practices and SEO. Both browser JavaScript assertions pass the approved <160,000-byte ceiling. These results pass the approved exceptions, not the original 120 kB/<2-second targets. Strict mode remains available. Logs: `.local/phase7-readiness-gate.log`, `.local/phase7-e2e.log`, `.local/phase7-performance-final.log`, `.local/phase7-lighthouse-final-summary.json`.
+
+Built: all seven implementation phases, committed CMS migrations/seed, public/editorial/discovery features, quality checks, health, backup/recovery tooling, native CI configuration and deployment runbook. Skipped because no target/credentials were supplied: live VPS installation/reboot, hosted GitHub Actions execution, DNS/public certificate issuance, live mail/S3 and off-host backup delivery. No automatic deployment was added. Assumptions: one Ubuntu 24.04 VPS, PostgreSQL 16, local media by default, one timer-driven worker, manual releases and brief maintenance windows.
+
+Production inputs still required: repository remote and approved deployment target/domain, private production configuration, final photographs and confirmed copy/capabilities, notification provider/recipient, off-host backup destination/retention, and a tenth genuinely published curated LLM destination. Initial offerings/posts remain drafts. The website is not claimed live or launch-content complete. Deployment procedures and the recovery evidence are in `docs/DEPLOY.md`.

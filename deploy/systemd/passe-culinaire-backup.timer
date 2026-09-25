@@ -1,0 +1,10 @@
+[Unit]
+Description=Nightly Passe Culinaire backup with a brief write pause
+
+[Timer]
+OnCalendar=*-*-* 03:15:00 Australia/Melbourne
+Persistent=true
+Unit=passe-culinaire-backup.service
+
+[Install]
+WantedBy=timers.target

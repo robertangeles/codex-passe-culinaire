@@ -5,6 +5,10 @@ import path from 'node:path'
 const root = process.cwd()
 const caddy = process.env.CADDY_BIN || (existsSync('.local/bin/caddy') ? path.resolve('.local/bin/caddy') : 'caddy')
 mkdirSync('.local/quality-caddy', { recursive: true })
+const readinessDir = path.resolve('.local/quality-readiness')
+mkdirSync(readinessDir, { recursive: true })
+// Isolated quality server uses seeded fixtures and is checked before Lighthouse runs.
+writeFileSync(path.join(readinessDir, 'ready'), 'ready\n', { mode: 0o644 })
 const source = readFileSync('deploy/Caddyfile', 'utf8')
 if (!source.startsWith('{')) throw new Error('Expected the deployment Caddy global options block.')
 const configPath = path.resolve('.local/quality.Caddyfile')
@@ -18,7 +22,7 @@ writeFileSync(configPath, source.replace(/^\{/, `{
   }`))
 const next = spawn(process.execPath, [path.resolve('node_modules/next/dist/bin/next'), 'start', '--hostname', '127.0.0.1', '--port', '3100'], { stdio: ['ignore', 'pipe', 'pipe'] })
 const proxy = spawn(caddy, ['run', '--config', configPath, '--adapter', 'caddyfile'], {
-  env: { ...process.env, SITE_ADDRESS: 'https://localhost:3443', APP_ROOT: root, PORT: '3100', CADDY_ADMIN: 'off' },
+  env: { ...process.env, SITE_ADDRESS: 'https://localhost:3443', APP_ROOT: root, PORT: '3100', CADDY_ADMIN: 'off', READINESS_DIR: readinessDir },
   stdio: ['ignore', 'pipe', 'pipe'],
 })
 let nextReady = false
