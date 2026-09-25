@@ -631,18 +631,162 @@ Initial migration applied to a fresh private PostgreSQL 16.15 database. Browser:
 
 Early performance measurement: linked script files total 173733 bytes gzip including the legacy nomodule script (39373 bytes). Modern-browser baseline is 134360 bytes, above the final 120 kB home budget. This is a measured Phase 6 acceptance risk, not a relaxed requirement or a claimed pass. Verify actual browser transfer/request set and optimise before final acceptance.
 
+## 31. Engineering review of docs/PLAN.md
+
+Review date: 25 September 2026. Target and report: this approved plan. Baseline: 75dcd11. Scope: FULL_REVIEW, using the user's "Approve with defaults" and subsequent "Approve"; the fixed stack, complete feature list and original directory arrangement remain approved. No feature cuts or new products are proposed. The parent owns this review. Phase 2 code under construction is not credited as verified behavior.
+
+### Scope challenge and existing solutions
+
+The 32-file Phase 1 scaffold already passes its gate. The full plan necessarily exceeds eight files: it includes 12 requested collections, three globals, 15 blocks, public routes and discovery outputs. The original arrangement at PLAN.md:34 remains appropriate; collapsing these into one file would not reduce operational complexity. Feature answers: D1–D5. Structure: original arrangement under the user's approval of the full plan and defaults. Accepted scope: all seven phases, no cuts. Pending policy remedies: none. This record reuses approvals; it does not invent a new user answer.
+
+[Layer 1] Reuse Payload authentication, drafts, versions, migrations, local API, official storage/email adapters and its jobs queue. [Layer 1] Use PostgreSQL transactions and transaction-scoped advisory locks for atomic media-reference rules. [Layer 1] Use supported Next cache invalidation and server rendering. Do not introduce Redis, another queue, a generic repository layer or a second CMS.
+
+Existing authored reuse points: src/payload.config.ts:18 owns framework configuration; src/payload/collections/Users.ts owns authentication; public layout owns local fonts. Proposed shared visibility/SEO/rich-text functions have several planned callers (HTML, feeds, Markdown and structured data) with explicitly different output policies. Extract only the common publication predicate and typed document projection; keep sitemap-only exclusion separate. No verified duplicated first-party implementation exists yet, so no speculative extraction or line-savings claim is made.
+
+History contains the approved-plan and scaffold commits, with no reverts. No TODOS.md exists. No prior learning was returned by the helper. Its current post-initial-commit review-history lookup returned NO_REVIEWS; earlier CEO records remain documented above and are not presented as fresh helper-discovered records.
+
+Search evidence: [Payload transactions](https://payloadcms.com/docs/database/transactions), [Payload jobs](https://payloadcms.com/docs/jobs-queue/jobs), [PostgreSQL 16 locking](https://www.postgresql.org/docs/16/explicit-locking.html), [Next revalidateTag](https://nextjs.org/docs/app/api-reference/functions/revalidateTag). Installed code, rather than mutable web examples, determines exact signatures.
+
+### Architecture review
+
+Boundaries: one Node app, embedded CMS, one Postgres database and a persistent media directory or selected S3 adapter. Public HTML and machine outputs share safe content projections. Private preview, auth, submissions and admin bypass shared caches. Single-host failure and backups remain explicit. Distribution stays native Node on Ubuntu 24.04 with CI checks and manual deployment.
+
+E-A1 [P1] (confidence 10/10), PLAN.md:96: "Published changes appear within 60 seconds." Installed Payload create.js:388–421 executes afterChange before commit. Immediate hook-side invalidation can read the old transaction state. Required implementation of the already-approved ordering contract: enqueue the existing Payload job with the same req, invalidate after committed visibility, and query current state rather than replaying document snapshots. Carry old/new slugs and dependent-output invalidations. A worker interval must leave headroom inside 60 seconds. No new infrastructure is authorised or needed.
+
+E-A2 [P1] (confidence 9/10), PLAN.md:45: "Admin, authentication, preview, submissions and personalised responses must never use shared public caching." Route invalidation alone does not expire all tagged content, and stale-while-revalidate can serve an old response on the first post-publish request. Required proof: invalidate relevant tags with supported immediate-expiry semantics where correctness requires it, plus old/new route paths; test public, noIndex, unpublish and preview behavior on a production server. Do not treat a helper invocation as proof of public freshness.
+
+The public-media endpoint is now explicitly included with Phase 2 storage implementation: /media/[filename], validated against stored filenames/variants, with bounded file delivery. This implements the already-approved crawler contract; it does not add a new feature. Media metadata mutations remain access-controlled.
+
+Error flow: DB write fails -> transaction rollback and failed save; media in use -> conflict/clear rejection; invalid public slug -> 404; required DB read fails -> approved 503/no-store; invalid preview/job credential -> denial; email/IndexNow failure -> retained DB state and inspectable delivery/job error. The HTTP 503 implementation still needs a supported framework-boundary proof in Phase 3; an ordinary error.js boundary returning 500 is insufficient.
+
+### Code quality review
+
+No issues found in the accepted Phase 1 source. Parent Ponytail review found no unnecessary application abstraction to remove. The package additions each have a stated purpose in the scaffold commit. Generated migrations, lockfiles and font licences are retained.
+
+For planned code, use a small schema field builder only where the same SEO fields are actually shared; do not erase service/event distinctions. Keep pure serializers independent of database access and side effects. Use typed exhaustive block handling, URL allowlists for controlled embeds, explicit server-only modules, and narrow public author fields. Errors must preserve useful state and avoid credential logging. Existing architecture and ordering diagrams remain accurate; add inline explanations beside transaction-lock and publication-queue hooks when implemented.
+
+### Test review and coverage diagram
+
+Detected framework: Vitest 5.0.1, tests/home.test.tsx. Playwright remains the approved browser framework for later phases. The existing test performs real React server rendering but is a smoke test, not CMS coverage. The following map describes proposed paths and required proof; it does not pretend future code or tests already exist.
+
+```text
+ENTRY / BRANCH                                      COVERAGE AND USER FLOW
+Home -> render heading/main/product link            [smoke TESTED] home.test.tsx:7
+Configuration -> missing env / invalid mode          [GAP T01] calm startup failure
+CMS read -> admin/editor/anonymous                   [GAP T02 ->E2E] access + no private fields
+CMS save -> incomplete draft / valid publish / bad  [GAP T03 ->E2E] field errors, draft retained
+Slug -> empty/reserved/duplicate/rename/.md          [GAP T04] 404 and collision handling
+Media -> valid/invalid/small/oriented/oversized      [GAP T05 ->E2E] 8 variants or useful rejection
+Media delete/attach -> either transaction first     [GAP T06 ->E2E] no dangling draft reference
+Seed -> fresh / repeat / editor-modified records    [GAP T07 ->E2E] no duplicates or overwrite
+Contact -> invalid/spam/new/duplicate/DB failure     [GAP T08 ->E2E] fields + same receipt
+Contact email -> success/failure/operator handled   [GAP T09 ->E2E] saved enquiry survives
+Publish -> commit/rollback/old job/new job/retry     [GAP T10 ->E2E] current HTML within 60s
+Public lookup -> found/empty/draft/missing/DB error  [GAP T11 ->E2E] full HTML, 404 or 503
+Preview -> valid/expired/anonymous/cache collision  [GAP T12 ->E2E] private draft only
+Search/listings -> empty/query/pagination/status    [GAP T13 ->E2E] correct public results
+Discovery -> visibility/canonical/XML/JSON/Markdown [GAP T14] exact outputs and content types
+Admin -> duplicate/schedule/timezone/cancel/stale   [GAP T15 ->E2E] draft-safe editor workflow
+Navigation/theme/forms -> keyboard/mobile/storage [GAP T16 ->E2E] focus and recovery
+Images/JS/cache -> cold/warm/mobile/third-party     [GAP T17 ->E2E] measured budgets
+Operations -> DB down/migrate/backup/restore/reboot [GAP T18 ->E2E] health and durable recovery
+
+Proposed publication sequence:
+ editor save -> validate -> DB transaction [content + queued task]
+                              | rollback -> neither visible
+                              + commit -> worker -> expire tags + paths
+                                           | failure -> retry/visible job error
+                                           + success -> next read uses committed state
+ Two jobs in reverse order -> invalidate only -> never restore old snapshots
+
+Proposed media sequence:
+ writer/delete -> same transaction lock -> current + draft/version refs
+                   | attach after deleted ID -> reject
+                   | delete with reference -> reject
+                   + unreferenced delete -> DB commit -> storage cleanup
+ Storage failure after DB change -> recorded recoverable cleanup condition
+```
+
+Coverage inventory: 1/19 path groups has an automated smoke test; 18 planned groups remain. This is a planning inventory, not statement or branch coverage. Browser checks also verified the Phase 1 home/admin manually. No product LLM call or prompt change exists, so no model-quality eval suite is needed. Agent role configuration follows the explicit user orchestration and has not been labelled as product AI coverage.
+
+Required tests (proposed filenames may be fitted to the implemented modules):
+- tests/config.test.ts: missing signing secret/DB URI and inconsistent provider configuration fail without revealing values.
+- tests/access.integration.test.ts: admin/editor/anonymous direct REST and Local API reads/writes, field-level author projection, privilege escalation, drafts, settings and private submissions.
+- tests/publication.integration.test.ts: incomplete draft survives; invalid publish rejected; rollback creates no task; successful transaction queues task; both revision orders, delete/unpublish/rename and retries preserve newest state.
+- tests/media.integration.test.ts: all eight actual decoded variant dimensions/formats, small/oriented input policy, unsupported/oversized upload, public URL traversal, current/draft/version/global/Lexical references, and both concurrent attach/delete orders.
+- tests/seed.integration.test.ts: fresh migration, exact requested seed counts/statuses, repeated run stable, editorial changes preserved, no testimonials.
+- tests/contact.integration.test.ts: invalid/missing reply email, abuse limits, concurrent same receipt, DB failure, email success/failure, no duplicate mail, operator recovery state.
+- tests/slug.test.ts and tests/visibility.test.ts: reserved names, suffix collision, noIndex versus sitemap-only exclusion, draft/public author rules.
+- tests/rendering.test.tsx: each block and Lexical type, empty collections, escaped unsafe text/URLs, heading hierarchy and missing optional relationships.
+- tests/discovery.test.ts: JSON-LD stable linked IDs, each schema type, safe overrides; six sitemap children, XML escaping/date/image entries, RSS/JSON full content, Markdown parity, curated ten-link production gate and complete paginated llms-full output.
+- tests/site.spec.ts: five core routes plus detail/taxonomy/author/service/training/search, no-JS content, preview isolation, two-admin publish within 60 seconds, duplicate/schedule, theme storage failure, focus, keyboard, rapid contact resubmit and recovery after navigation.
+- tests/operations.integration.test.ts plus deployment drill: health status, native clean DB migration, persistence after restart, backup restore and schema-aware rollback.
+- Lighthouse/axe checks: all required mobile budgets and WCAG checks against representative content; no waived or silently skipped failures.
+
+All listed tests implement existing approved behavior. No optional coverage policy or new runtime guarantee is introduced. Regression priority: Phase 1 SSR/local-font behavior and auth privacy must remain intact throughout Phase 2.
+
+### Performance review
+
+E-P1 [P1] (confidence 10/10), PLAN.md:103: "home-route JavaScript below 120 kB gzipped." The accepted Phase 1 HTML references 173733 gzip bytes of scripts, including 39373 bytes in a legacy nomodule script; modern scripts total 134360 bytes. This exceeds the final budget before custom interactions. Required work: confirm the real cold-browser request set, attribute framework versus application code, test supported bundler/Next options without weakening required functionality, and rerun the final budget. No claim of infeasibility or permission to raise the budget is made.
+
+Other planned performance paths: bound database page sizes and relation depth; use indexed published/slug/search queries; avoid per-block repeated queries; constrain upload bytes/pixels and encoding concurrency; stream or paginate full exports without truncating content; keep client islands narrow; reserve hero dimensions and select existing variants. Single-VPS resource limits and actual p95/p99 remain measurement questions, not invented service promises.
+
+### Failure modes, scope and dependency order
+
+All 18 gap groups have an explicit planned error policy or required test above and in the CEO registry. Critical gaps with neither error handling nor tests specified: 0. Unimplemented tests remain visible; this is not a shipping clearance.
+
+NOT in scope: newsletter (user-approved omission), live weather (two different signature details selected), automatic deployments (explicitly excluded), new capacity infrastructure, real testimonials without source material, and invented product outcomes. Nothing required by the brief is deferred out of v1.
+
+| Step | Modules touched | Depends on |
+|---|---|---|
+| Foundation | app/config/fonts/styles | accepted Phase 1 |
+| Content | payload/lib/migrations/scripts/tests | foundation |
+| Public views | app/components/styles/tests | accepted content |
+| Discovery | app/lib/tests | accepted content and public route contracts |
+| Admin workflow | payload/components/tests | accepted content |
+| Quality/operations | tests/docs/CI | integrated application |
+
+Implementation is sequential while collection schemas, shared utilities and generated types are changing. Later executor tasks may run only on explicitly disjoint files. Shared layout/config/schema edits remain sequential. The user requires a parent full-diff read, four checks and independent review after every subagent; this overrides any generic worktree-parallelisation suggestion. Current lanes: builder implementation and parent-owned review/documentation, with no shared-file edits.
+
+### Decision ledger and readiness
+
+E-A1: approved contract from D1–D5 and PLAN.md:96; implementation detail uses built-in transactional jobs. Required proof remains pending.
+E-A2: approved public/private cache contract at PLAN.md:45 and publication target at :96; no changed policy.
+T01–T18: required proof of the original brief and approved phases; future paths explicitly labelled.
+E-P1: original 120 kB budget retained; investigation and optimisation authorised by the build request. A proposed budget change would need a separate user decision.
+Approval readiness: PASS for these existing contracts under "Approve with defaults" and final "Approve". New unresolved policy choices: 0. Implementation readiness does not mean shipping readiness.
+
+### Implementation tasks from engineering findings
+
+Effort estimates assume existing framework APIs and include tests; they are estimates, not deadlines.
+- E1 (P1, human ~1 day / agent ~1 hour): prove committed publication and immediate dependent-output expiry; Phase 2–4 hooks/jobs/cache plus publication integration tests. Sources E-A1, E-A2, T10/T12.
+- E2 (P1, human ~2 days / agent ~2 hours): complete model/access/media/contact integration proofs; src/payload, src/lib, scripts and tests. Sources T01–T09.
+- E3 (P1, human ~2 days / agent ~2 hours): complete public rendering/discovery/admin workflow proofs; app/components/lib/tests. Sources T11–T16.
+- E4 (P1, human ~1 day / agent ~1 hour): reduce and verify the measured home JS baseline and all mobile budgets; app/config/quality checks. Sources E-P1, T17.
+- E5 (P1, human ~1 day / agent ~1 hour): verify native migrations, backup restoration, health and restart; operational scripts/docs/CI/tests. Source T18.
+No new tasks from Code Quality. No standalone TODO proposals. These tasks refine the existing phase work rather than replacing it.
+
+### Outside coverage, completion and suppressed findings
+
+Outside voice remains unavailable: automatic approval review previously rejected sending this plan's business/architecture content to Claude Code. No retry or alternate export was attempted. The skill's exact native fallback requires undeclared Plan/TaskOutput/TaskStop capabilities and was not substituted with a general-purpose agent. Independent Phase 1 implementation review is real, separate coverage; it is not called an outside plan review.
+
+Completion: Scope accepted as-is; Architecture 2 findings; Code Quality 0; Tests 18 planned gap groups mapped; Performance 1 finding; total 21. NOT in scope and existing reuse recorded. TODO proposals 0. Critical silent policy gaps 0. Unresolved decisions 0. Shipping issues remain until implementation proof and performance pass. Outside voice unavailable. Parallelism: one implementation lane plus parent review, subsequent shared-code work sequential. Lake Score N/A (no new coverage-choice question).
+Suppressed findings: none. The unverified HTTP 503 implementation is explicitly a pending implementation proof, not an observed defect.
+
+Engineering artifacts saved and read back: /home/robangeles/.gstack/projects/codex-passe-culinaire/robangeles-main-eng-review-test-plan-20260925-062702.md and tasks-eng-review-20260925-062702.jsonl (five tasks). Local review history records issues_open and outside unavailable. Artifact synchronisation remains off. Navigation follows the existing user-authorised build; no additional permission gate is introduced.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
 |---|---|---|---:|---|---|
-| CEO Review | /plan-ceo-review | Scope and strategy | 1 | CLEAR; logged | HOLD SCOPE; 20 clarification findings captured; 0 unresolved policy choices or unhandled failure policies |
-| Outside Review | Claude Code, standard plan-review step | Independent challenge | 0 | UNAVAILABLE | Export blocked before execution; no completed external review |
-| Eng Review | /plan-eng-review | Architecture and tests | 0 | NOT RUN | Required by current configuration |
-| Design Review | /plan-design-review | Detailed UI/UX review | 0 | NOT RUN | Approved office-hours sketch is not a completed design-review run |
-| DX Review | /plan-devex-review | Developer experience | 0 | NOT RUN | No separate DX review invoked |
+| CEO Review | /plan-ceo-review | Scope and strategy | 1 documented | CLEAR; prior local history no longer returned by current lookup | Approved HOLD SCOPE; no unresolved policy choices |
+| Outside Review | Claude Code plan review | Independent challenge | 0 completed | UNAVAILABLE | Export rejected; no outside result |
+| Eng Review | /plan-eng-review | Architecture and tests | 1 | ISSUES OPEN (PLAN); logged and read back | 21 findings/gap groups mapped, 0 unresolved decisions, 0 unhandled silent policy gaps |
+| Design Review | /plan-design-review | Detailed UI/UX | 0 | NOT RUN | Approved office-hours sketch remains source |
+| DX Review | /plan-devex-review | Developer experience | 0 | NOT RUN | Not separately invoked |
 
-OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailable because automatic approval review rejected export of the plan payload. No external result or cross-model agreement. Required native-fallback capabilities were unavailable; no substitute was launched.
+OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailable because automatic approval review rejected export of this plan payload. No cross-model agreement is claimed.
 
-VERDICT: CEO review CLEAR for the approved scope; eng review required. This is a planning result. Phase 1 is accepted; Phases 2–7 remain, and actual product facts/assets, production configuration and ten eligible curated destinations remain launch inputs.
+VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phase 1 is accepted. Phase 2 is in progress; Phases 3–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
 
 NO UNRESOLVED DECISIONS
