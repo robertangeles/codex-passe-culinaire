@@ -826,6 +826,28 @@ Skipped within Phase 2: none. Live SMTP/Resend and S3 service calls require exte
 
 Decisions within approved scope: use same-site redirects; enlarge small sources to provide all eight required renditions; use Payload's supported generation hook to narrow Lexical node discriminators to string; leave the background worker disabled until its secured consumer exists. Added packages: email-nodemailer for SMTP, email-resend for Resend, storage-s3 for configurable object storage, and tsx for typed seed/test setup. All additions are pinned.
 
+## 34. Phase 3 CMS rendering checkpoint
+
+Accepted portion: all 15 server-rendered blocks, shared Lexical renderer, CMS-driven header/footer, persistent theme preference, the CMS home and generic page routes, bounded batched feed reads, authenticated draft reader/preview endpoint, and secured publication invalidation. This is a checkpoint, not Phase 3 acceptance.
+
+Parent full diff review and independent reviewer PASS. Final gate after the browser-found hero gutter correction:
+
+```text
+pnpm lint: passed, zero warnings
+pnpm typecheck: passed
+pnpm test: 14 files passed, 82 tests passed
+pnpm build: compiled successfully
+/: static, revalidate 10m, expiry about 1d
+/[slug]: on-demand static generation
+/api/preview and /api/revalidate: dynamic server endpoints
+```
+
+Production HTTP proof: home/about/product return 200 with full text and one h1; `s-maxage=600, stale-while-revalidate=86400`. Draft responses are private/no-store and require current staff authentication; a draft-mode cookie alone gives no draft access. A committed auto-queued publication job refreshed a temporary page in 78 ms; reversed revision jobs retained current content; unpublish returned 404. The temporary record was removed. Mobile home has a 16 px gutter, no horizontal overflow at 375 px, and no browser console errors. Keyboard skip focus and theme storage-denial behaviour also pass.
+
+Actual required-DB-failure probe: bare Next returns 500; the tested Caddy boundary returns 503/no-store and readable initial HTML, without an early successful response. Phase 7 must include this boundary. Caddy must also make the explicit `public` cache directive part of the production header; current Next includes the required shared-cache intervals but omits that redundant keyword.
+
+Remaining Phase 3: journal/taxonomy/author/service/training routes, PostgreSQL search, contact submission UI/endpoint, redirect use, complete responsive/keyboard/error checks and all-route freshness. Background automatic job execution and scheduling remain Phase 5. Machine-readable outputs remain Phase 4. D6 remains unanswered.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
@@ -838,7 +860,7 @@ Decisions within approved scope: use same-site redirects; enlarge small sources 
 
 OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailable because automatic approval review rejected export of this plan payload. No cross-model agreement is claimed.
 
-VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1 and 2 are accepted. Phase 3 is starting; Phases 4–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
+VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1 and 2 are accepted. Phase 3 CMS rendering is accepted as a checkpoint; its remaining routes and acceptance checks are open. Phases 4–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
 
 **UNRESOLVED DECISIONS:**
 - D6 / E-P1: fixed stack versus strict home JavaScript ceiling; user answer pending.

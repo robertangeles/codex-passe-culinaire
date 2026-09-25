@@ -61,3 +61,27 @@ A temporary Caddy configuration on loopback port 3080 used reverse_proxy handle_
 Evidence files are .local/Caddyfile-probe and .local/caddy-boundary-probe.json; the verified binary is .local/bin/caddy. This is architecture feasibility evidence only. Phase 3 must repeat it against real failing CMS reads and exclude an early streamed 200, and Phase 7 must provide and verify the production configuration.
 
 Phase 2 final outcome: all review corrections passed independent re-review; final parent suite passed 25 tests, lint, typecheck and production build. Generated migration whitespace was normalized without SQL changes and git diff --cached --check is clean. Phase 2 is accepted as recorded in PLAN section 33.
+
+
+## Phase 3 checkpoint, 25 September 2026
+
+Accepted commits: f26377e public queries/media/theme/hero; 61c35f3 test adapter isolation; 150aca4 public shell, rich text and six additional content blocks. Parent full review and independent reviewer PASS. Latest accepted four-command gate: lint pass, typecheck pass, 49 tests in 8 files pass, production build pass. Expected contact failure-path logs in the integration suite are deliberate assertions, not a failed gate.
+
+Production browser proof: Tab focuses Skip to content, Enter focuses main#main-content, next Tab reaches the in-main product link. No console errors. Theme persistence and storage-denied behaviour previously verified. The current accepted home body remains the Phase 1 shell until the renderer integration is accepted.
+
+In progress: remaining eight blocks, complete BlockRenderer, shared batched page view model, separate authenticated request/draft reader, secure publication endpoint. New files are not yet accepted. Phase 3 route coverage, preview HTTP cache proof, publication freshness and actual database-failure 503 proof remain open. D6 is still unanswered; no budget or stack requirement has changed.
+
+Operational note: the task-owned Next production server remains alive after SIGTERM in this environment. Identify its exact PID before stopping it; do not kill unrelated servers. Native PostgreSQL is separate and should remain running between checks.
+
+
+### CMS integration evidence
+
+The next batch passes parent full review and independent reviewer PASS. The initial four-command gate passed 82 tests in 14 files and a production build. A browser-found missing hero gutter was corrected and requires the recorded final rerun before committing.
+
+Actual production HTTP (temporary page created and removed): home, about and CulinAIre Kitchen each return 200, one h1 and readable CMS HTML with `s-maxage=600, stale-while-revalidate=86400`. Staff draft preview returns 200 and `private, no-cache, no-store, max-age=0, must-revalidate`; anonymous and draft-cookie-only requests return 404 without draft text. The automatically queued publication job made a new publication visible in 78 ms. Running new then old revision jobs preserved the newest committed text. Unpublishing returned 404. Local evidence: `.local/phase3-http-probe.json`.
+
+The isolated database-failure server uses dummy credentials and an unreachable loopback database, without stopping the working PostgreSQL cluster. A fresh uncached CMS route returns HTTP 500 directly from Next; Caddy interception returns HTTP 503, `Cache-Control: no-store`, and complete readable HTML. No early HTTP 200 was observed with a browser user agent. Local evidence: `.local/database-boundary-probe.json`. Production Caddy configuration and deployment documentation still must carry this boundary in Phase 7; bare Next alone does not meet the 503 contract.
+
+Operational correction: Payload removes completed jobs by default. Verify `runByID`'s `jobStatus[id].status === 'success'`, not a subsequent job-record lookup. The first probe expected a retained record and failed; its temporary page was removed, and the corrected probe passed.
+
+Final checkpoint rerun passed: lint, typecheck, 82 tests in 14 files, production build. Corrected mobile home measured h1 x=16, width=343, viewport/scroll width=375; screenshot `/tmp/passe-cms-home-gutter.png` inspected, no browser console errors.
