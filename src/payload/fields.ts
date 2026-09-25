@@ -7,15 +7,15 @@ export const reservedSlugs = new Set([
 ])
 
 export const validateSlugValue = (value: unknown, allowReserved = false): true | string => {
-    if (typeof value !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value))
-      return 'Use lowercase letters, numbers and hyphens.'
+    if (typeof value !== 'string' || value.length > 200 || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value))
+      return 'Use up to 200 lowercase letters, numbers and hyphens.'
     if (value.endsWith('.md') || (reservedSlugs.has(value) && !(allowReserved && ['home', 'about', 'contact', 'culinaire-kitchen'].includes(value))))
       return 'This address is reserved.'
     return true
 }
 
 export const slugField = (allowReserved = false): Field => ({
-  name: 'slug', type: 'text', unique: true, index: true, required: true,
+  name: 'slug', type: 'text', unique: true, index: true, required: true, maxLength: 200,
   validate: (value: unknown) => validateSlugValue(value, allowReserved),
 })
 

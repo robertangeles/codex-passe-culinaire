@@ -8,6 +8,8 @@ import { readFile } from 'node:fs/promises'
 import { REST_GET } from '@payloadcms/next/routes'
 import { submitContact } from '../src/lib/contact'
 
+vi.mock('next/cache', () => ({ unstable_cache: <A extends unknown[], R>(callback: (...args: A) => R) => callback }))
+
 process.loadEnvFile('.env')
 const testUri = process.env.TEST_DATABASE_URI
 if (!testUri || testUri === process.env.DATABASE_URI) throw new Error('A separate TEST_DATABASE_URI is required.')
@@ -137,7 +139,9 @@ describe('Phase 2 PostgreSQL integration', () => {
     expect((await payload.findByID({ collection: 'pages', id: draft.id, overrideAccess: true }))._status).toBe('draft')
   })
 
-  it('rejects reserved addresses', async () => {
+  it('rejects reserved and overlong addresses', async () => {
+    await expect(payload.create({ collection: 'pages', overrideAccess: true, draft: true,
+      data: { title: 'Overlong address', slug: 'a'.repeat(201), _status: 'draft' } })).rejects.toThrow()
     await expect(payload.create({ collection: 'posts', overrideAccess: true, draft: true,
       data: { title: 'Reserved address', slug: 'admin', _status: 'draft' } })).rejects.toThrow()
   })
@@ -516,4 +520,41 @@ describe('Phase 2 PostgreSQL integration', () => {
       await attachAttempt
     }
   }, 60000)
+  it('searches indexed published text without exposing draft revisions or interpolating input', async () => {
+    const { queryPublishedSearch } = await import('../src/lib/search')
+    const marker = `quince${randomUUID().replaceAll('-', '')}`
+    const privateMarker = `private${randomUUID().replaceAll('-', '')}`
+    const page = await payload.create({ collection: 'pages', overrideAccess: true, data: {
+      title: 'Search verification page', slug: `search-${randomUUID()}`, _status: 'published',
+      layout: [{ blockType: 'plainStatement', statement: marker }],
+      seo: { metaDescription: 'A page used to verify published search.' },
+    } })
+    const post = await payload.create({ collection: 'posts', overrideAccess: true, data: {
+      title: 'Search verification post', slug: `search-${randomUUID()}`, _status: 'published',
+      excerpt: marker, seo: { metaDescription: 'A post used to verify published search.' },
+    } })
+    await payload.update({ collection: 'posts', id: post.id, overrideAccess: true, draft: true, data: { excerpt: privateMarker, _status: 'draft' } })
+    const found = await queryPublishedSearch(payload, marker)
+    expect(found.hits.map(hit => `${hit.kind}:${hit.id}`).sort()).toEqual([`page:${page.id}`, `post:${post.id}`].sort())
+    expect((await queryPublishedSearch(payload, privateMarker)).hits).toEqual([])
+    expect((await queryPublishedSearch(payload, "' OR 1=1 --")).hits).toEqual([])
+    await payload.update({ collection: 'pages', id: page.id, overrideAccess: true, data: { _status: 'draft' } })
+    expect((await queryPublishedSearch(payload, marker)).hits.map(hit => hit.id)).toEqual([post.id])
+    const indexes = await payload.db.pool.query<{ indexname: string }>("SELECT indexname FROM pg_indexes WHERE indexname IN ('pages_public_search_idx', 'posts_public_search_idx')")
+    expect(indexes.rows).toHaveLength(2)
+  })
+
+  it('reads public author profiles through the real access policy and excludes private profiles', async () => {
+    const { getPublicAuthor } = await import('../src/lib/public-content')
+    const publicUser = (await payload.find({ collection: 'users', overrideAccess: true, where: { publicProfile: { equals: true } }, limit: 1 })).docs[0]
+    const privateUser = (await payload.find({ collection: 'users', overrideAccess: true, where: { publicProfile: { equals: false } }, limit: 1 })).docs[0]
+    expect(publicUser).toBeTruthy()
+    expect(privateUser).toBeTruthy()
+    const author = await getPublicAuthor(publicUser.slug)
+    expect(author?.name).toBe(publicUser.name)
+    expect(author).not.toHaveProperty('email')
+    expect(author).not.toHaveProperty('role')
+    expect(await getPublicAuthor(privateUser.slug)).toBeNull()
+  })
+
 })

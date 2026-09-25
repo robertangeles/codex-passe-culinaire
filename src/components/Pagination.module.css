@@ -1,0 +1,31 @@
+.pagination {
+  display: flex;
+  width: min(100%, 62ch);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin: var(--space-8) auto 0;
+}
+
+.status {
+  color: var(--foreground);
+  font-size: var(--step--1);
+  text-align: center;
+}
+
+.link {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-3);
+  color: var(--foreground);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}

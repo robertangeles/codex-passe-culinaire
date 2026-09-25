@@ -123,7 +123,8 @@ const getAuthor = async (slug: string): Promise<PublicAuthor | null> => {
   const payload = await payloadClient()
   const result = await payload.find({
     collection: 'users',
-    where: { and: [{ slug: { equals: slug } }, { publicProfile: { equals: true } }] },
+    // Users.read adds the publicProfile predicate. It is a private field and cannot be queried anonymously.
+    where: { slug: { equals: slug } },
     select: {
       id: true,
       name: true,

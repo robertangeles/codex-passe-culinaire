@@ -122,6 +122,7 @@ export default async function PublicShell({ children }: { children: ReactNode })
               <p>ABN: {footer.abn?.trim() || '[TO CONFIRM]'}</p>
             </div>
             <SocialLinks links={siteSettings.socialLinks} />
+            <Link className={styles.footerLink} href="/search" prefetch={false}>Search</Link>
             <ThemeControl />
           </div>
         </div>

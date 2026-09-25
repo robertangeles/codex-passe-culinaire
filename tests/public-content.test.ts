@@ -140,7 +140,7 @@ describe('public content access', () => {
       overrideAccess: boolean
       user?: unknown
     }
-    expect(query.where.and).toContainEqual({ publicProfile: { equals: true } })
+    expect(query.where).toEqual({ slug: { equals: 'alex' } })
     expect(query).toMatchObject({ overrideAccess: false })
     expect(query.user).toBeUndefined()
     expect(Object.keys(query.select).sort()).toEqual([

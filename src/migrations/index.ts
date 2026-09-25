@@ -1,3 +1,4 @@
+import * as migration_20260925_190000_search_indexes from './20260925_190000_search_indexes';
 import * as migration_20260925_060905_phase1_initial from './20260925_060905_phase1_initial';
 import * as migration_20260925_063228 from './20260925_063228';
 import * as migration_20260925_063612 from './20260925_063612';
@@ -41,5 +42,10 @@ export const migrations = [
     up: migration_20260925_065737.up,
     down: migration_20260925_065737.down,
     name: '20260925_065737'
+  },
+  {
+    up: migration_20260925_190000_search_indexes.up,
+    down: migration_20260925_190000_search_indexes.down,
+    name: '20260925_190000_search_indexes',
   },
 ];
