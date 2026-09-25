@@ -23,6 +23,11 @@ import { StrikethroughFeatureClient as StrikethroughFeatureClient_e70f5e05f09f93
 import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
+import { default as default_23b325bdfd6cd0fdb544ed14d37365e3 } from '../../../components/admin/SeoPreview'
+import { default as default_fe8e92dcc7751297f2f843c8f9b8e55f } from '../../../components/admin/SchedulePanel'
+import { Icon as Icon_29d742ad8de9b37cf19b5fefa5c7e9aa } from '../../../components/admin/Brand'
+import { Logo as Logo_29d742ad8de9b37cf19b5fefa5c7e9aa } from '../../../components/admin/Brand'
+import { Welcome as Welcome_29d742ad8de9b37cf19b5fefa5c7e9aa } from '../../../components/admin/Brand'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 /** @type import('payload').ImportMap */
@@ -52,5 +57,10 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#UnderlineFeatureClient": UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "./components/admin/SeoPreview#default": default_23b325bdfd6cd0fdb544ed14d37365e3,
+  "./components/admin/SchedulePanel#default": default_fe8e92dcc7751297f2f843c8f9b8e55f,
+  "./components/admin/Brand#Icon": Icon_29d742ad8de9b37cf19b5fefa5c7e9aa,
+  "./components/admin/Brand#Logo": Logo_29d742ad8de9b37cf19b5fefa5c7e9aa,
+  "./components/admin/Brand#Welcome": Welcome_29d742ad8de9b37cf19b5fefa5c7e9aa,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }

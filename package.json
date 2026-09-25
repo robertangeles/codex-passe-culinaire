@@ -18,15 +18,18 @@
     "payload": "payload",
     "migrate": "payload migrate",
     "migrate:create": "payload migrate:create",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "tsx scripts/seed.ts",
+    "jobs:run": "node --env-file-if-exists=.env scripts/run-jobs.mjs"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.90.2",
     "@payloadcms/email-nodemailer": "3.90.2",
     "@payloadcms/email-resend": "3.90.2",
+    "@payloadcms/live-preview-react": "3.90.2",
     "@payloadcms/next": "3.90.2",
     "@payloadcms/richtext-lexical": "3.90.2",
     "@payloadcms/storage-s3": "3.90.2",
+    "@payloadcms/ui": "3.90.2",
     "graphql": "16.11.0",
     "next": "16.3.6",
     "payload": "3.90.2",

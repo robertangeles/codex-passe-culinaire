@@ -1,3 +1,4 @@
+import { LivePreviewRefresh } from '../../components/LivePreviewRefresh'
 import { JsonLd } from '../../components/JsonLd'
 import { buildPageGraph } from '../../lib/seo/page'
 import type { Metadata } from 'next'
@@ -32,6 +33,7 @@ export default async function HomePage() {
       {!preview && <JsonLd nodes={buildPageGraph(page, siteOrigin())} />}
       {preview && (
         <aside aria-label="Draft preview">
+          <LivePreviewRefresh />
           <p>Draft preview</p>
           <Link href="/api/preview?exit=1" prefetch={false}>Exit preview</Link>
         </aside>

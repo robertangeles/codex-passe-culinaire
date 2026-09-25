@@ -6,16 +6,38 @@ import { guardMediaWrite } from '../mediaReferences'
 import { deriveContentText } from '../contentText'
 import { queuePublicationChange, queuePublicationDelete } from '../publication'
 import { isRedirectPath, redirectLookupCapability } from '../../lib/redirects'
+import { duplicateEditorialSlug, stampPublication } from '../editorial'
 
 const access: CollectionConfig['access'] = { create: staffOnly, read: publishedOrStaff, update: staffOnly, delete: adminOnly }
-const versions: CollectionConfig['versions'] = { drafts: { autosave: true }, maxPerDoc: 30 }
+const versions: CollectionConfig['versions'] = { drafts: { autosave: { interval: 800, showSaveDraftButton: true } }, maxPerDoc: 30 }
 const title: Field = { name: 'title', type: 'text', required: true, maxLength: 120 }
 const publishDate: Field = { name: 'publishedAt', type: 'date', admin: { date: { pickerAppearance: 'dayAndTime' } } }
 const settings = (slug: string, label: string, fields: Field[], priority: string, allowReserved = false): CollectionConfig => ({
-  slug, labels: { singular: label, plural: label === 'Journal' ? 'Journal' : `${label}s` },
-  admin: { useAsTitle: 'title', defaultColumns: ['title', 'slug', '_status', 'updatedAt'] },
-  access, versions, fields: [title, slugField(allowReserved), ...fields, seoFields(priority), publishDate],
-  hooks: { beforeValidate: [validateSlugOnSave(allowReserved), validatePublication], beforeChange: [guardMediaWrite, deriveContentText], afterChange: [queuePublicationChange], afterDelete: [queuePublicationDelete] },
+  slug, labels: { singular: label, plural: label === 'Journal' || label === 'Training' ? label : `${label}s` },
+  admin: {
+    useAsTitle: 'title', defaultColumns: ['title', 'slug', '_status', 'updatedAt'],
+    description: 'Save a draft while you work. Publish when it is ready. Scheduled times use the timezone shown in the date picker.',
+    ...(slug === 'pages' || slug === 'posts' ? {
+      preview: data => typeof data.slug === 'string' ? `/api/preview?collection=${slug}&slug=${encodeURIComponent(data.slug)}` : null,
+      livePreview: {
+        url: ({ data }) => data.id && typeof data.slug === 'string' ? `/api/preview?collection=${slug}&slug=${encodeURIComponent(data.slug)}` : null,
+        breakpoints: [{ label: 'Mobile', name: 'mobile', width: 375, height: 812 }, { label: 'Desktop', name: 'desktop', width: 1440, height: 900 }],
+      },
+    } : {}),
+  },
+  access, versions, fields: [
+    title, { ...slugField(allowReserved), hooks: { beforeDuplicate: [duplicateEditorialSlug] } } as Field,
+    { type: 'tabs', tabs: [
+      { label: 'Content', fields },
+      { label: 'SEO', fields: [
+        { name: 'seoPreview', type: 'ui', admin: { components: { Field: { path: './components/admin/SeoPreview', clientProps: { publicOrigin: process.env.NEXT_PUBLIC_SERVER_URL || '', collection: slug } } } } },
+        seoFields(priority),
+      ] },
+      { label: 'Publish', fields: [{ name: 'schedulePanel', type: 'ui', admin: { components: { Field: './components/admin/SchedulePanel' } } }] },
+    ] },
+    { ...publishDate, disableDuplicate: true } as Field,
+  ],
+  hooks: { beforeValidate: [validateSlugOnSave(allowReserved), validatePublication], beforeChange: [stampPublication, guardMediaWrite, deriveContentText], afterChange: [queuePublicationChange], afterDelete: [queuePublicationDelete] },
 })
 
 export const Pages = settings('pages', 'Page', [
@@ -32,7 +54,7 @@ export const Posts = settings('posts', 'Journal', [
   { name: 'tags', type: 'relationship', relationTo: 'tags', hasMany: true },
   { name: 'readingTime', type: 'number', admin: { readOnly: true } },
   { name: 'searchText', type: 'textarea', admin: { hidden: true, readOnly: true } },
-  { name: 'scheduledPublishAt', type: 'date', admin: { date: { pickerAppearance: 'dayAndTime' } } },
+  { name: 'scheduledPublishAt', type: 'date', disableDuplicate: true, admin: { hidden: true, readOnly: true, description: 'Legacy field. Use the Schedule publish action.' } },
 ], '0.5')
 
 export const Services = settings('services', 'Service', [

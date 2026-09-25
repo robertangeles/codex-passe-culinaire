@@ -12,54 +12,7 @@
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "supportedTimezones".
  */
-export type SupportedTimezones =
-  | 'Pacific/Midway'
-  | 'Pacific/Niue'
-  | 'Pacific/Honolulu'
-  | 'Pacific/Rarotonga'
-  | 'America/Anchorage'
-  | 'Pacific/Gambier'
-  | 'America/Los_Angeles'
-  | 'America/Tijuana'
-  | 'America/Denver'
-  | 'America/Phoenix'
-  | 'America/Chicago'
-  | 'America/Guatemala'
-  | 'America/New_York'
-  | 'America/Bogota'
-  | 'America/Caracas'
-  | 'America/Santiago'
-  | 'America/Buenos_Aires'
-  | 'America/Sao_Paulo'
-  | 'Atlantic/South_Georgia'
-  | 'Atlantic/Azores'
-  | 'Atlantic/Cape_Verde'
-  | 'Europe/London'
-  | 'Europe/Berlin'
-  | 'Africa/Lagos'
-  | 'Europe/Athens'
-  | 'Africa/Cairo'
-  | 'Europe/Moscow'
-  | 'Asia/Riyadh'
-  | 'Asia/Dubai'
-  | 'Asia/Baku'
-  | 'Asia/Karachi'
-  | 'Asia/Tashkent'
-  | 'Asia/Calcutta'
-  | 'Asia/Dhaka'
-  | 'Asia/Almaty'
-  | 'Asia/Jakarta'
-  | 'Asia/Bangkok'
-  | 'Asia/Shanghai'
-  | 'Asia/Singapore'
-  | 'Asia/Tokyo'
-  | 'Asia/Seoul'
-  | 'Australia/Brisbane'
-  | 'Australia/Sydney'
-  | 'Pacific/Guam'
-  | 'Pacific/Noumea'
-  | 'Pacific/Auckland'
-  | 'Pacific/Fiji';
+export type SupportedTimezones = 'Australia/Melbourne' | 'UTC';
 
 export interface Config {
   auth: {
@@ -143,6 +96,7 @@ export interface Config {
   jobs: {
     tasks: {
       'propagate-publication': TaskPropagatePublication;
+      schedulePublish: TaskSchedulePublish;
       inline: {
         input: unknown;
         output: unknown;
@@ -471,6 +425,8 @@ export interface ServiceList {
   blockType: 'serviceList';
 }
 /**
+ * Save a draft while you work. Publish when it is ready. Scheduled times use the timezone shown in the date picker.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services".
  */
@@ -598,6 +554,8 @@ export interface Testimonial1 {
   createdAt: string;
 }
 /**
+ * Save a draft while you work. Publish when it is ready. Scheduled times use the timezone shown in the date picker.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "events".
  */
@@ -746,6 +704,8 @@ export interface Spacer {
   blockType: 'spacer';
 }
 /**
+ * Save a draft while you work. Publish when it is ready. Scheduled times use the timezone shown in the date picker.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
@@ -991,6 +951,8 @@ export interface Page {
   _status?: ('draft' | 'published') | null;
 }
 /**
+ * Save a draft while you work. Publish when it is ready. Scheduled times use the timezone shown in the date picker.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts".
  */
@@ -1020,6 +982,9 @@ export interface Post {
   tags?: (number | Tag)[] | null;
   readingTime?: number | null;
   searchText?: string | null;
+  /**
+   * Legacy field. Use the Schedule publish action.
+   */
   scheduledPublishAt?: string | null;
   /**
    * Search preview uses the page title and description when overrides are blank.
@@ -1195,7 +1160,7 @@ export interface PayloadJob {
     | {
         executedAt: string;
         completedAt: string;
-        taskSlug: 'inline' | 'propagate-publication';
+        taskSlug: 'inline' | 'propagate-publication' | 'schedulePublish';
         taskID: string;
         input?:
           | {
@@ -1228,7 +1193,7 @@ export interface PayloadJob {
         id?: string | null;
       }[]
     | null;
-  taskSlug?: ('inline' | 'propagate-publication') | null;
+  taskSlug?: ('inline' | 'propagate-publication' | 'schedulePublish') | null;
   queue?: string | null;
   waitUntil?: string | null;
   processing?: boolean | null;
@@ -2152,6 +2117,39 @@ export interface TaskPropagatePublication {
     savedSlug?: string | null;
     previousPublished?: boolean | null;
     savedPublished?: boolean | null;
+  };
+  output?: unknown;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TaskSchedulePublish".
+ */
+export interface TaskSchedulePublish {
+  input: {
+    type: 'publish' | 'unpublish';
+    doc:
+      | {
+          relationTo: 'pages';
+          value: number | Page;
+        }
+      | {
+          relationTo: 'posts';
+          value: number | Post;
+        }
+      | {
+          relationTo: 'services';
+          value: number | Service;
+        }
+      | {
+          relationTo: 'events';
+          value: number | Event;
+        };
+    user: {
+      relationTo: 'users';
+      value: number | User;
+    };
+    timezone?: string | null;
+    localTime?: string | null;
   };
   output?: unknown;
 }

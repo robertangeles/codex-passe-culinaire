@@ -1,3 +1,4 @@
+import { LivePreviewRefresh } from '../../../../components/LivePreviewRefresh'
 import { RouteSchema } from '../../../../components/RouteSchema'
 import { buildArticleGraph } from '../../../../lib/seo/article'
 import { applySchemaOverride } from '../../../../lib/seo/page'
@@ -138,6 +139,7 @@ export default async function JournalDetailPage({ params }: PageProps) {
         nodes={buildArticleGraph(post, siteOrigin()).map((node, index) => index === 0 ? applySchemaOverride(node, post.seo?.structuredDataOverride) : node)} />}
       {preview && (
         <aside className={styles.preview} aria-label="Draft preview">
+          <LivePreviewRefresh />
           <p>Draft preview</p>
           <Link href="/api/preview?exit=1" prefetch={false}>Exit preview</Link>
         </aside>

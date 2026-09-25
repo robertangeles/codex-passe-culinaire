@@ -374,10 +374,13 @@ describe('Phase 2 PostgreSQL integration', () => {
     }
   })
 
-  it('denies editor settings and user administration', async () => {
-    const admin = (await payload.find({ collection: 'users', overrideAccess: true, limit: 1 })).docs[0]
+  it('denies editor settings, user administration and raw job access', async () => {
+    const admin = (await payload.find({ collection: 'users', overrideAccess: true, where: { role: { equals: 'admin' } }, limit: 1 })).docs[0]
     const editorReq = await createLocalReq({ user: { ...admin, role: 'editor' } }, payload)
     await expect(payload.updateGlobal({ slug: 'site-settings', req: editorReq, overrideAccess: false, data: { tagline: 'Changed' } })).rejects.toThrow()
+    await expect(payload.find({ collection: 'payload-jobs', req: editorReq, overrideAccess: false })).rejects.toThrow()
+    const adminReq = await createLocalReq({ user: admin }, payload)
+    await expect(payload.find({ collection: 'payload-jobs', req: adminReq, overrideAccess: false, limit: 1 })).resolves.toHaveProperty('docs')
     await expect(payload.create({ collection: 'users', req: editorReq, overrideAccess: false,
       data: { name: 'Unapproved', slug: `unapproved-${randomUUID()}`, email: `unapproved-${randomUUID()}@example.test`, password: 'long-test-only-password', role: 'admin' } })).rejects.toThrow()
   })
@@ -483,6 +486,70 @@ describe('Phase 2 PostgreSQL integration', () => {
       process.env.REVALIDATE_SECRET = oldSecret
     }
   }, 30000)
+
+  it('lets each seeded admin duplicate safely and schedule a draft without an open browser', async () => {
+    for (const emailKey of ['ROB_ADMIN_EMAIL', 'ALEX_ADMIN_EMAIL'] as const) {
+      const user = (await payload.find({ collection: 'users', overrideAccess: true, where: { email: { equals: process.env[emailKey] } } })).docs[0]
+      const slug = `editorial-${randomUUID()}`
+      const page = await payload.create({ collection: 'pages', user, overrideAccess: false,
+        data: { title: 'Editorial workflow', slug, _status: 'published', publishedAt: new Date().toISOString(),
+          layout: [{ blockType: 'hero', style: 'quiet', heading: 'Editorial workflow' }],
+          seo: { metaDescription: 'An editorial workflow verification page.', canonicalUrl: `https://example.test/${slug}` } } })
+      const copy = await payload.duplicate({ collection: 'pages', id: page.id, user, overrideAccess: false })
+      expect(copy._status).toBe('draft')
+      expect(copy.slug).toMatch(new RegExp(`^${slug}-copy-`))
+      expect(copy.slug.length).toBeLessThanOrEqual(200)
+      expect(copy.publishedAt).toBeFalsy()
+      expect(copy.seo?.canonicalUrl).toBeFalsy()
+      expect(copy.layout?.[0].blockType).toBe('hero')
+      await payload.update({ collection: 'pages', id: copy.id, draft: true, user, overrideAccess: false,
+        data: { title: 'Autosaved before scheduled publication', layout: [{ blockType: 'hero', style: 'quiet', heading: 'Latest saved draft' }] } })
+      const job = await payload.jobs.queue({ task: 'schedulePublish', waitUntil: new Date(Date.now() + 60000),
+        input: { type: 'publish', doc: { relationTo: 'pages', value: copy.id }, user: { relationTo: 'users', value: user.id } } })
+      const early = await payload.jobs.run({ overrideAccess: true, where: { id: { equals: job.id } }, silent: true })
+      expect(Object.keys(early.jobStatus || {})).toHaveLength(0)
+      expect((await payload.findByID({ collection: 'pages', id: copy.id, overrideAccess: true }))._status).toBe('draft')
+      await payload.update({ collection: 'payload-jobs', id: job.id, overrideAccess: true, data: { waitUntil: new Date(Date.now() - 1000).toISOString() } })
+      const result = await payload.jobs.runByID({ id: job.id, overrideAccess: true, silent: true })
+      expect(result.jobStatus?.[String(job.id)]?.status).toBe('success')
+      const published = await payload.findByID({ collection: 'pages', id: copy.id, overrideAccess: false, depth: 0 })
+      expect(published._status).toBe('published')
+      expect(published.title).toBe('Autosaved before scheduled publication')
+      expect(published.layout?.[0]).toMatchObject({ heading: 'Latest saved draft' })
+    }
+  }, 30000)
+
+  it('does not execute an administrator schedule after that account becomes an editor', async () => {
+    const user = await payload.create({ collection: 'users', overrideAccess: true,
+      data: { name: 'Temporary administrator', slug: `temporary-admin-${randomUUID()}`, email: `${randomUUID()}@example.test`, password: randomUUID(), role: 'admin', publicProfile: false } })
+    const page = await payload.create({ collection: 'pages', user, overrideAccess: false, draft: true,
+      data: { title: 'Scheduling permission recheck', slug: `demoted-${randomUUID()}`, _status: 'draft', seo: { metaDescription: 'A scheduling permission verification.' } } })
+    const job = await payload.jobs.queue({ task: 'schedulePublish', input: {
+      type: 'publish', doc: { relationTo: 'pages', value: page.id }, user: { relationTo: 'users', value: user.id },
+    } })
+    await payload.update({ collection: 'users', id: user.id, overrideAccess: true, data: { role: 'editor' } })
+    const result = await payload.jobs.runByID({ id: job.id, overrideAccess: true, silent: true })
+    expect(result.jobStatus?.[String(job.id)]?.status).not.toBe('success')
+    expect((await payload.findByID({ collection: 'pages', id: page.id, overrideAccess: true }))._status).toBe('draft')
+  })
+
+  it('fails scheduled publication closed when the scheduling identity is missing or no longer exists', async () => {
+    const user = await payload.create({ collection: 'users', overrideAccess: true,
+      data: { name: 'Temporary editor', slug: `temporary-editor-${randomUUID()}`, email: `${randomUUID()}@example.test`, password: randomUUID(), role: 'editor', publicProfile: false } })
+    const page = await payload.create({ collection: 'pages', user, overrideAccess: false, draft: true,
+      data: { title: 'Permission recheck', slug: `permission-${randomUUID()}`, _status: 'draft',
+        layout: [{ blockType: 'hero', style: 'quiet', heading: 'Permission recheck' }], seo: { metaDescription: 'A scheduling access test.' } } })
+    const removedUserJob = await payload.jobs.queue({ task: 'schedulePublish', input: {
+      type: 'publish', doc: { relationTo: 'pages', value: page.id }, user: { relationTo: 'users', value: user.id },
+    } })
+    await payload.delete({ collection: 'users', id: user.id, overrideAccess: true })
+    const missingIdentityJob = await payload.jobs.queue({ task: 'schedulePublish', input: { type: 'publish', doc: { relationTo: 'pages', value: page.id } } as never })
+    for (const job of [removedUserJob, missingIdentityJob]) {
+      const result = await payload.jobs.runByID({ id: job.id, overrideAccess: true, silent: true })
+      expect(result.jobStatus?.[String(job.id)]?.status).not.toBe('success')
+    }
+    expect((await payload.findByID({ collection: 'pages', id: page.id, overrideAccess: true }))._status).toBe('draft')
+  })
 
   it('queues publication in the content transaction and exposes it after commit', async () => {
     const slug = `queue-${randomUUID()}`

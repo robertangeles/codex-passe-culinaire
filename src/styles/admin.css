@@ -1,0 +1,161 @@
+@font-face {
+  font-family: "PC Admin Fraunces";
+  src: url("../fonts/fraunces-latin-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PC Admin Inter";
+  src: url("../fonts/inter-latin-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+/* The logo or icon marker scopes these overrides to Payload's admin document. */
+body:has(.pc-admin-logo, .pc-admin-icon) {
+  --theme-bg: #f4f1ea;
+  --theme-text: #1a1a18;
+  --theme-input-bg: #f4f1ea;
+  --theme-border-color: rgb(138 138 130 / 30%);
+  --theme-elevation-0: #f4f1ea;
+  --theme-elevation-50: #f4f1ea;
+  --theme-elevation-100: #f4f1ea;
+  --theme-elevation-150: #e8e4da;
+  --theme-elevation-200: #e8e4da;
+  --theme-elevation-250: #d8d4ca;
+  --theme-elevation-300: #bcbab1;
+  --theme-elevation-350: #a7a69f;
+  --theme-elevation-400: #8a8a82;
+  --theme-elevation-450: #70716a;
+  --theme-elevation-500: #595a54;
+  --theme-elevation-550: #454640;
+  --theme-elevation-600: #373832;
+  --theme-elevation-700: #292a25;
+  --theme-elevation-750: #23241f;
+  --theme-elevation-800: #1a1a18;
+  --theme-elevation-850: #1a1a18;
+  --theme-elevation-900: #1a1a18;
+  --theme-elevation-950: #1a1a18;
+  --theme-elevation-1000: #1a1a18;
+  color: var(--theme-text);
+  font-family: "PC Admin Inter", sans-serif;
+}
+
+body:has(.pc-admin-logo, .pc-admin-icon) * {
+  border-radius: 0;
+}
+
+body:has(.pc-admin-logo, .pc-admin-icon) :where(button, input, select, textarea) {
+  font: inherit;
+}
+
+body:has(.pc-admin-logo, .pc-admin-icon) :where(input, select, textarea) {
+  border-radius: 2px;
+}
+
+body:has(.pc-admin-logo, .pc-admin-icon) :where(h1, h2, h3, h4, h5, h6) {
+  font-family: "PC Admin Fraunces", Georgia, serif;
+  font-weight: 400;
+}
+
+body:has(.pc-admin-logo, .pc-admin-icon) :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.pc-admin-logo {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  color: #1a1a18;
+  text-decoration: none;
+}
+
+.pc-admin-logo__word {
+  font-family: "PC Admin Fraunces", Georgia, serif;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 350;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.pc-admin-icon {
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #1a1a18;
+  font-family: "PC Admin Fraunces", Georgia, serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 2.5rem;
+  text-align: center;
+}
+
+.pc-admin-welcome {
+  max-width: 48rem;
+  margin-block: 2rem;
+  padding-block: 1rem;
+  border-block: 1px solid rgb(138 138 130 / 30%);
+}
+
+.pc-admin-welcome h2 {
+  margin: 0 0 0.5rem;
+  color: #1a1a18;
+  font-family: "PC Admin Fraunces", Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.pc-admin-welcome p {
+  max-width: 62ch;
+  margin: 0;
+  color: #1a1a18;
+  font-family: "PC Admin Inter", sans-serif;
+  line-height: 1.55;
+}
+
+html[data-theme="dark"] .pc-admin-welcome h2,
+html[data-theme="dark"] .pc-admin-welcome p {
+  color: #e8e4da;
+}
+
+html[data-theme="dark"] body:has(.pc-admin-logo, .pc-admin-icon) {
+  --theme-bg: #141412;
+  --theme-text: #e8e4da;
+  --theme-input-bg: #141412;
+  --theme-border-color: rgb(232 228 218 / 30%);
+  --theme-elevation-0: #141412;
+  --theme-elevation-50: #141412;
+  --theme-elevation-100: #141412;
+  --theme-elevation-150: #22221f;
+  --theme-elevation-200: #292925;
+  --theme-elevation-250: #34342f;
+  --theme-elevation-300: #41413c;
+  --theme-elevation-350: #50504b;
+  --theme-elevation-400: #60605a;
+  --theme-elevation-450: #72726c;
+  --theme-elevation-500: #85857f;
+  --theme-elevation-550: #999991;
+  --theme-elevation-600: #aaa99f;
+  --theme-elevation-700: #c1c0b7;
+  --theme-elevation-750: #cfcec5;
+  --theme-elevation-800: #e8e4da;
+  --theme-elevation-850: #e8e4da;
+  --theme-elevation-900: #e8e4da;
+  --theme-elevation-950: #e8e4da;
+  --theme-elevation-1000: #e8e4da;
+}
+
+html[data-theme="dark"] .pc-admin-logo {
+  color: #e8e4da;
+}
+
+html[data-theme="dark"] .pc-admin-icon {
+  color: #e8e4da;
+}

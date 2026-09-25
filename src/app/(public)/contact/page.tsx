@@ -1,3 +1,4 @@
+import { LivePreviewRefresh } from '../../../components/LivePreviewRefresh'
 import { buildPageMetadata } from '../../../lib/seo/metadata'
 import { siteOrigin } from '../../../lib/seo/core'
 import { JsonLd } from '../../../components/JsonLd'
@@ -50,6 +51,7 @@ export default async function ContactPage() {
       {!preview && <JsonLd nodes={buildPageGraph(page, siteOrigin())} />}
       {preview && (
         <aside aria-label="Draft preview">
+          <LivePreviewRefresh />
           <p>Draft preview</p>
           <Link href="/api/preview?exit=1" prefetch={false}>Exit preview</Link>
         </aside>

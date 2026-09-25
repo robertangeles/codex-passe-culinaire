@@ -15,7 +15,8 @@ import { Media } from './payload/collections/Media'
 import { Users } from './payload/collections/Users'
 import { Footer, Header, SiteSettings } from './payload/globals'
 import { publicationTask } from './payload/publication'
-import { isAdmin } from './payload/access'
+import { isAdmin, adminOnly } from './payload/access'
+import { scheduledPublicationTask } from './payload/editorial'
 
 const dirname = path.dirname(fileURLToPath(import.meta.url))
 const databaseUri = process.env.DATABASE_URI
@@ -44,7 +45,11 @@ const email = mailProvider === 'resend'
 if (mailProvider === 'resend' && !process.env.RESEND_API_KEY) throw new Error('RESEND_API_KEY is required for Resend')
 
 export default buildConfig({
-  admin: { user: Users.slug, importMap: { baseDir: dirname } },
+  admin: { user: Users.slug, importMap: { baseDir: dirname },
+    meta: { titleSuffix: ' | Passe Culinaire' },
+    timezones: { defaultTimezone: 'Australia/Melbourne', supportedTimezones: [{ label: 'Australia/Melbourne', value: 'Australia/Melbourne' }, { label: 'UTC', value: 'UTC' }] },
+    components: { graphics: { Logo: './components/admin/Brand#Logo', Icon: './components/admin/Brand#Icon' }, beforeDashboard: ['./components/admin/Brand#Welcome'] },
+  },
   collections: [Users, Media, Pages, Posts, Categories, Tags, Services, Events, Testimonials, Redirects, Forms, FormSubmissions],
   globals: [SiteSettings, Header, Footer],
   db: postgresAdapter({ pool: { connectionString: databaseUri }, push: false, migrationDir: path.resolve(dirname, 'migrations') }),
@@ -56,7 +61,13 @@ export default buildConfig({
   blocks: pageBlocks,
   email,
   upload: { limits: { fileSize: 10 * 1024 * 1024 }, requestSizeLimit: 12 * 1024 * 1024 },
-  jobs: { tasks: [publicationTask], access: { queue: ({ req }) => isAdmin(req.user), run: ({ req }) => isAdmin(req.user), cancel: ({ req }) => isAdmin(req.user) }, autoRun: process.env.RUN_JOBS === 'true' && process.env.NODE_ENV === 'production' ? [{ cron: '*/10 * * * * *', limit: 20 }] : [] },
+  jobs: { tasks: [publicationTask, scheduledPublicationTask],
+    jobsCollectionOverrides: ({ defaultJobsCollection }) => ({ ...defaultJobsCollection,
+      labels: { singular: 'Publication job', plural: 'Publication jobs' },
+      access: { ...defaultJobsCollection.access, read: adminOnly },
+      admin: { ...defaultJobsCollection.admin, hidden: false, defaultColumns: ['taskSlug', 'waitUntil', 'completedAt', 'hasError', 'totalTried'] },
+    }),
+    access: { queue: ({ req }) => isAdmin(req.user), run: ({ req }) => isAdmin(req.user), cancel: ({ req }) => isAdmin(req.user) }, autoRun: process.env.RUN_JOBS === 'true' && process.env.NODE_ENV === 'production' ? [{ cron: '*/10 * * * * *', limit: 20 }] : [] },
   plugins: storage === 's3' ? [s3Storage({
     collections: { media: true }, bucket: s3Bucket!,
     config: { region: s3Region!, endpoint: process.env.S3_ENDPOINT || undefined, forcePathStyle: process.env.S3_FORCE_PATH_STYLE === 'true', credentials: process.env.S3_ACCESS_KEY_ID && process.env.S3_SECRET_ACCESS_KEY ? { accessKeyId: process.env.S3_ACCESS_KEY_ID, secretAccessKey: process.env.S3_SECRET_ACCESS_KEY } : undefined },

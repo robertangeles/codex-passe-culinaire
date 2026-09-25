@@ -1,6 +1,6 @@
 # Passe Culinaire build plan
 
-Status: approved with defaults. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–4 accepted for local implementation; Phase 5 editorial workflow is next. The ten-link LLM index remains a production content gate. See the latest checkpoint below.
+Status: approved with defaults. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–5 accepted for local implementation; Phase 6 quality and performance verification is next. The ten-link LLM index remains a production content gate. See the latest checkpoint below.
 
 ## 1. Approved defaults and remaining production inputs
 
@@ -915,7 +915,7 @@ Evidence retained locally in `.local/phase4-gate-final.log`, `.local/discovery-h
 
 ## 38. Phase 5 implementation direction
 
-Use Payload’s supported admin graphics, UI fields, named/unnamed tabs, live-preview configuration, built-in duplication hooks and scheduled-publish jobs. Keep existing content field paths stable, so moving fields into visual tabs does not rename database columns. Use the existing authenticated draft endpoint for the preview iframe and refresh only an authenticated preview after an allowed same-origin save message. Use built-in scheduling identity restoration and verify permissions at execution time. An authenticated worker path and documented systemd cadence must run without an open browser. Test both admins and retain existing editor/global/media restrictions. Parent owns all configuration, migration, access and route integration; executor tasks own individual admin components or bounded routes.
+Use Payload’s supported admin graphics, UI fields, named/unnamed tabs, live-preview configuration, built-in duplication hooks and the supported task queue. Keep existing content field paths stable, so moving fields into visual tabs does not rename database columns. Use the existing authenticated draft endpoint for the preview iframe and refresh only an authenticated preview after an allowed same-origin save message. Use explicit scheduling identity restoration and verify permissions at execution time. Installed Payload 3.90.2's native schedule drawer silently normalises DST wall times and shows a success toast for returned server errors. A small Publish-tab panel therefore validates the original wall-clock input before queuing the supported task, rejects missing/repeated Melbourne hours, offers explicit UTC and accurately displays failures. Native immediate Publish, drafts, versions and duplication remain in use. An authenticated worker path and documented systemd cadence must run without an open browser. Test both admins and retain existing editor/global/media restrictions. Parent owns all configuration, migration, access and route integration; executor tasks own individual admin components or bounded routes.
 
 ## GSTACK REVIEW REPORT
 
@@ -933,3 +933,14 @@ VERDICT: CEO scope approved; engineering review completed with implementation/te
 
 **UNRESOLVED DECISIONS:**
 - D6 / E-P1: fixed stack versus strict home JavaScript ceiling; user answer pending.
+
+
+## 39. Phase 5 acceptance: editorial workflow
+
+Accepted locally on 25 September 2026 after parent integration and fresh independent review. Added branded Payload admin, Content/SEO/Publish tabs, effective search preview and counters, authenticated save-triggered live preview, safe draft duplication, publication timestamps, and administrator-only scheduling with the supported Payload job queue. The small custom scheduling panel rejects ambiguous/missing Melbourne times, supports explicit UTC, reports server failures accurately, and lists/cancels pending jobs. Generic job permissions remain admin-only; execution rechecks the scheduling account, including demotion. The signed worker endpoint and operator command run two bounded batches to include dependent invalidation. Committed migration adds job enums without renaming content columns and refuses rollback while affected job history exists.
+
+Parent gate: `pnpm lint && pnpm typecheck && pnpm test && pnpm build` passed. Actual output: `Test Files 52 passed (52)`, `Tests 293 passed (293)`, `Compiled successfully in 1554ms`, `GATE_EXIT=0`. Log: `.local/phase5-gate.log`. Independent reviewer returned PASS after fixing admin-only scheduling and again after the proxy-origin fix. Scheduling compares Origin to the configured public origin, never an untrusted forwarded host or the internal proxy URL.
+
+Browser evidence: branded admin sign-in, SEO preview, saved draft side-by-side refresh, missing/repeated Melbourne time rejection, valid UTC job listing through real Payload JSON queries, and successful cancellation. HTTP evidence for both seeded administrators: sign in, create block draft, private authenticated preview, anonymous draft denial, immediate publication, safe duplication, and scheduled publication while the editor was closed. Public HTML and sitemap updated in 87–106 ms; scheduled HTML appeared 116–130 ms after its due instant. Expired preview returned private 401. Caddy forwarding accepted the configured public origin and reached the expected unauthenticated 401 rather than a false origin rejection. Temporary fixtures were removed and invalidation run. Evidence: `.local/phase5-browser-evidence.json` and `.local/phase5-http-evidence.json`.
+
+Built: all Phase 5 editorial features and operator guidance in `docs/EDITORIAL.md`. Skipped: live VPS/domain execution, which needs a deployment target and private production configuration. Assumed: Melbourne default and UTC alternative; administrators schedule jobs, editors retain immediate publication but cannot manage jobs. No production services, events or sample posts were published. The ten-link content gate and Phase 6 performance budgets remain open.

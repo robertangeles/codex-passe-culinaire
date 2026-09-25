@@ -1,3 +1,4 @@
+vi.mock('../src/components/LivePreviewRefresh', () => ({ LivePreviewRefresh: () => null }))
 import { renderToStaticMarkup } from 'react-dom/server'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
