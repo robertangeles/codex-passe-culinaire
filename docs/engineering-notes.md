@@ -43,3 +43,21 @@ After the editor/machine restart, the project source and local database persiste
 Read-only recovery counts: application users 2, media 12, pages 4, posts 3, services 3, events 2. Application migrations include 20260925_065737. The isolated test database was behind by that migration and contained old test fixtures; the builder owns making its setup repeatable. The application database must be preserved.
 
 Phase 2 remains unaccepted: builder handback, parent full-diff review, the four-command check suite and independent review are still required. Phase 1 remains accepted. D6 remains unresolved; neither the fixed framework nor the 120 kB JavaScript ceiling has been changed.
+
+## Phase 2 recovery verification
+
+The parent reran lint, typecheck, all 23 tests and the production build after restoring the session. All passed. A second parent run after the strict generated-type correction also passed. Payload's supported typescript.postProcess hook now narrows Lexical's generated child-node discriminator from any to string; repeated generation was identical. Independent review passed that correction.
+
+Production HTTP checks: both configured administrators logged in with status 200; anonymous users returned only the public author projection, draft posts returned zero results, submissions returned 403, and /media/placeholder-01.webp returned 200 image/webp. The seeded home page opened in the admin, all three rich-text editors hydrated, the screenshot showed their content, and the browser reported no console messages. The temporary production server was stopped afterwards.
+
+Independent Phase 2 review returned FIX FIRST for unvalidated redirect targets and missing image orientation/transparency assertions. A builder is correcting those specific findings and checking persisted focal points. Phase 2 is still unaccepted until the parent reruns the four checks and a new review passes. Live SMTP/S3 delivery and public invalidation freshness are not claimed by this checkpoint.
+
+## Caddy response-boundary feasibility
+
+The official Caddy 2.11.4 linux_amd64 archive was downloaded to an ignored local tool location and verified against the release's SHA-512 checksums. An initial SHA-256 comparison failed because it used the wrong digest algorithm; the unverified archive was never executed. No system service was installed.
+
+A temporary Caddy configuration on loopback port 3080 used reverse_proxy handle_response for upstream 5xx and handle_errors for transport errors, as documented at https://caddyserver.com/docs/caddyfile/directives/reverse_proxy and https://caddyserver.com/docs/caddyfile/directives/handle_errors. A local stub on port 3019 proved: 200 remains 200; 404 remains 404; upstream 500 becomes 503 with Cache-Control: no-store and readable complete HTML; a stopped upstream produces the same 503 body and headers. Both processes were stopped after the probe.
+
+Evidence files are .local/Caddyfile-probe and .local/caddy-boundary-probe.json; the verified binary is .local/bin/caddy. This is architecture feasibility evidence only. Phase 3 must repeat it against real failing CMS reads and exclude an early streamed 200, and Phase 7 must provide and verify the production configuration.
+
+Phase 2 final outcome: all review corrections passed independent re-review; final parent suite passed 25 tests, lint, typecheck and production build. Generated migration whitespace was normalized without SQL changes and git diff --cached --check is clean. Phase 2 is accepted as recorded in PLAN section 33.

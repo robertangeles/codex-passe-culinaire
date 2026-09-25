@@ -526,12 +526,12 @@ These are phase work packages, not permission to give an executor a broad assign
   - Files: `AGENTS.md`, `.codex/config.toml`.
   - Verify: Inspect both root instruction files and supported agent configuration; check every required command, design token and never rule.
 
-- [ ] **T2 (P1, human-team: ~8h / Codex+gstack: ~2h)** — Phase 1 foundation: Prove pinned framework compatibility and native Postgres verification.
+- [x] **T2 (P1, human-team: ~8h / Codex+gstack: ~2h)** — Phase 1 foundation: Prove pinned framework compatibility and native Postgres verification.
   - Surfaced by: A3, L2, P2: no application exists; compatibility, native DB and baseline performance need evidence.
   - Files: `package.json`, `pnpm-lock.yaml`.
   - Verify: Fresh install/migration, admin and server HTML, then pnpm lint && pnpm typecheck && pnpm test && pnpm build; measure baseline public JS.
 
-- [ ] **T3 (P1, human-team: ~16h / Codex+gstack: ~4h)** — Phase 2 access and media: Implement public projections, media readiness and atomic reference protection.
+- [x] **T3 (P1, human-team: ~16h / Codex+gstack: ~4h)** — Phase 2 access and media: Implement public projections, media readiness and atomic reference protection.
   - Surfaced by: A1, S1–S4, D6, P1: access, input and media attach/delete boundaries require enforcement.
   - Files: to be determined at task preparation.
   - Verify: Anonymous API/draft tests, eight rendition dimensions/formats, failed upload cleanup and both attach/delete completion orders.
@@ -598,7 +598,7 @@ Artifact status: this plan contains the review body and registries. Eight task r
 
 ## 29. Implementation progress
 
-Phase 1 started after the user's “Approve” response. The parent updated the existing AGENTS.md symlink target first, preserving tool and orchestration instructions. The builder is implementing the application scaffold within an explicit file boundary.
+Historical initial checkpoint, superseded by the acceptance records in sections 30 and 33. Phase 1 started after the user's “Approve” response. The parent updated the existing AGENTS.md symlink target first, preserving tool and orchestration instructions. The builder is implementing the application scaffold within an explicit file boundary.
 
 Parent preparation completed:
 - Created standalone project builder, executor and reviewer TOML roles using the current official Codex schema. Builder uses Sol, executor uses Luna; reviewer inherits the parent model and is read-only. The installed CLI reads the configuration, but its features command does not support --strict-config.
@@ -801,6 +801,31 @@ State: pending
 Actual answer: none received
 Accepted scope: unchanged; continue independent content work. Do not use elapsed time or the UI preselection as approval.
 
+## 33. Phase 2 acceptance
+
+Accepted on 25 September 2026 after parent full-diff review, repeated parent check runs, production HTTP/browser verification and independent reviewer PASS. Initial FIX FIRST findings for redirect validation and image edge-case coverage were corrected and reviewed again. A separate review passed the strict generated-type correction.
+
+Built: all 12 requested collections, three globals and 15 page-block schemas; Lexical image/quote/code/controlled-embed definitions; draft/version and publication validation; admin/editor permissions and public author projections; media in both formats at all four widths, reference locks across current records/drafts/versions/globals, and crawler-accessible delivery; safe internal redirect fields; saved/idempotent contact handling with SMTP/Resend configuration; same-transaction publication jobs and dependency hooks; six committed schema migrations after Phase 1; repeatable seed with two configurable admins, 12 placeholders, four company pages, three draft services, two draft training entries, three draft posts and no testimonials.
+
+Actual final parent command output:
+
+```text
+pnpm lint: eslint ... --max-warnings=0 (exit 0)
+pnpm typecheck: tsc --noEmit (exit 0)
+pnpm test: Test Files 2 passed (2); Tests 25 passed (25)
+pnpm build: Compiled successfully; TypeScript finished; static pages 3/3
+Routes: /, /_not-found, /admin/[[...segments]], /api/[...slug], /media/[filename]
+git diff --cached --check: clean
+```
+
+Tests migrate a fresh separate database, seed twice, preserve editorial changes, authenticate both admins and an editor through real JWT sessions, exercise anonymous REST/Local API projections, verify reference races in both orders and saved versions, and prove job visibility only after commit plus rollback and stale-job behavior. Contact tests cover concurrent duplicate requests and provider/status-write failures. Image tests inspect every rendition, EXIF pixel orientation, alpha and stored focal coordinates. Redirect tests exercise actual create/update rejection. An additional isolated corrupt-upload probe rejected the file without changing media count or stored files.
+
+Production verification: both administrator logins returned 200; anonymous author fields were public-only; draft journal results were empty; submissions returned 403; public media returned 200 image/webp. The seeded home block editor rendered three hydrated rich-text editors with their saved content, and no browser console messages. Native providers are configured but not falsely represented as exercised.
+
+Skipped within Phase 2: none. Live SMTP/Resend and S3 service calls require external configuration and remain explicitly unverified. Public revalidation endpoint, dependent-output freshness within 60 seconds, public routes and preview are Phase 3–5 work. Scheduled publishing and automatic first-publication timestamp stamping remain Phase 5 editorial work. D6 remains unanswered; neither stack nor JavaScript ceiling has changed.
+
+Decisions within approved scope: use same-site redirects; enlarge small sources to provide all eight required renditions; use Payload's supported generation hook to narrow Lexical node discriminators to string; leave the background worker disabled until its secured consumer exists. Added packages: email-nodemailer for SMTP, email-resend for Resend, storage-s3 for configurable object storage, and tsx for typed seed/test setup. All additions are pinned.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
@@ -813,7 +838,7 @@ Accepted scope: unchanged; continue independent content work. Do not use elapsed
 
 OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailable because automatic approval review rejected export of this plan payload. No cross-model agreement is claimed.
 
-VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phase 1 is accepted. Phase 2 is in progress; Phases 3–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
+VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1 and 2 are accepted. Phase 3 is starting; Phases 4–7 remain. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
 
 **UNRESOLVED DECISIONS:**
 - D6 / E-P1: fixed stack versus strict home JavaScript ceiling; user answer pending.

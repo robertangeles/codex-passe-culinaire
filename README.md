@@ -1,20 +1,25 @@
 # Passe Culinaire
 
-Phase 1 establishes the public shell and embedded Payload admin. Content collections and seed data follow in Phase 2.
-
-Use Node 22.12 or newer, pnpm 11.1.3, and a native PostgreSQL 16 server. Create a local application database and a database user with schema creation rights. Copy `.env.example` to `.env`, then set `DATABASE_URI` and a unique `PAYLOAD_SECRET`. Keep `.env` private. The database URL can point at a separate database for integration tests.
+The public shell and Payload admin use Node 22.12 or newer, pnpm 11.1.3 and native PostgreSQL 16. Copy `.env.example` to a private `.env`, create separate application and test databases, and replace the example credentials and signing values. The test database must be named `passe_culinaire_test` on localhost because `pnpm test` resets its public schema. Never point `TEST_DATABASE_URI` at the application database.
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm migrate
+pnpm seed
 pnpm dev
 ```
 
-Open `http://localhost:3000/` for the public shell and `http://localhost:3000/admin` for Payload. The local admin can bootstrap its first user through Payload's setup screen. In production, provision credentials privately. Database push mode is disabled, so run `pnpm migrate:create <name>` when changing the schema, commit the generated migration, and run `pnpm migrate` before starting the changed app.
+Open `/` for the public shell and `/admin` for Payload. The seed creates two admins from private environment credentials, 12 labelled image placeholders, four published company pages, and draft services, training entries and journal posts. It preserves existing records and non-empty globals on repeat. The placeholders and draft offerings are editorial starting points, not production claims. Replace or confirm them before publishing. The ten eligible curated `llms.txt` links remain a production content gate.
+
+Changes to Payload fields require a committed migration. Run `pnpm migrate:create <name>` after a schema change, inspect the generated SQL, and run `pnpm migrate` before starting the changed app. Database push mode is disabled. `pnpm test` migrates and seeds only the separate local test database, uses `.local/test-media`, and leaves the application database intact. It requires `psql` in `PATH` and the test database to exist.
 
 ```sh
 pnpm lint && pnpm typecheck && pnpm test && pnpm build
 pnpm start
 ```
+
+Uploads use local `MEDIA_DIR` by default. S3 mode requires bucket, region and a crawler-accessible HTTPS `S3_PUBLIC_BASE_URL`; endpoint and credentials are optional for compatible private configurations. Images accept JPEG, PNG, WebP and AVIF up to 10 MB. Payload and Sharp create AVIF and WebP renditions at 480, 960, 1440 and 2400 pixels; small images are enlarged to produce all eight sizes. Payload normalises orientation; inspect alpha and focal positioning when replacing placeholders. Public files are served at `/media/`, outside the `/api` robots disallow.
+
+Contact submissions are saved before delivery. Set `CONTACT_TO_ADDRESS` and either SMTP variables or `MAIL_PROVIDER=resend` with `RESEND_API_KEY` to enable notification. With no provider, the saved submission is marked failed for manual handling; no message is sent to a console adapter. `REVALIDATE_SECRET` and `NEXT_PUBLIC_SERVER_URL` configure the publication task. `RUN_JOBS=true` enables the ten-second worker in production only after the secured `/api/revalidate` endpoint is in place. Publishing and cache propagation are completed in later phases.
 
 The bundled Fraunces, Inter and JetBrains Mono files come from `@fontsource-variable/*` version 5.3.0. Their Open Font Licences are retained in `src/fonts`. Fonts load from the app itself through `next/font/local`.

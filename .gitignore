@@ -11,3 +11,6 @@
 /.next/
 /out/
 /tsconfig.tsbuildinfo
+
+# Local Payload uploads.
+/media/
