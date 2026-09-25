@@ -1,0 +1,36 @@
+.control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--foreground);
+}
+
+.label {
+  font-size: var(--step--1);
+}
+
+.select {
+  min-width: 7.5rem;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-3);
+  border: var(--rule);
+  border-radius: var(--input-radius);
+  background: var(--surface);
+  color: var(--foreground);
+  font: inherit;
+  font-size: var(--step--1);
+  color-scheme: light dark;
+}
+
+.select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+:global(:root[data-theme="light"]) .select {
+  color-scheme: light;
+}
+
+:global(:root[data-theme="dark"]) .select {
+  color-scheme: dark;
+}

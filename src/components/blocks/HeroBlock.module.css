@@ -1,0 +1,152 @@
+.hero {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-4);
+  max-width: 1600px;
+  margin-inline: auto;
+  color: var(--foreground);
+}
+
+.quiet {
+  padding-block: var(--space-36);
+}
+
+.quiet .content {
+  grid-column: 2 / 12;
+  align-self: center;
+}
+
+.withImage {
+  align-items: center;
+  padding-block: var(--space-16);
+}
+
+.media {
+  grid-column: 1 / 8;
+  min-width: 0;
+}
+
+.media :global(figure) {
+  width: 100%;
+}
+
+.media :global(img) {
+  width: 100%;
+  max-height: min(72vh, 760px);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.content {
+  grid-column: 8 / 12;
+  padding-block: var(--space-8);
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-4);
+  color: var(--foreground);
+  font-family: var(--loaded-jetbrains-mono), var(--font-mono), monospace;
+  font-size: var(--step--1);
+  line-height: 1.4;
+}
+
+.heading,
+.wordmark {
+  margin: 0;
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  line-height: var(--display-leading);
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.heading {
+  max-width: 12ch;
+  font-size: var(--step-3);
+}
+
+.wordmark {
+  font-weight: 300;
+  font-size: var(--step-4);
+}
+
+.summary {
+  max-width: 62ch;
+  margin: var(--space-8) 0 0;
+  font-size: var(--step-1);
+  line-height: var(--body-leading);
+}
+
+.primaryLink {
+  display: inline-block;
+  margin-top: var(--space-8);
+  padding-block: var(--space-3);
+  color: var(--link);
+  text-underline-offset: 0.25em;
+}
+
+.primaryLink:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.home.quiet {
+  min-height: min(76svh, 900px);
+  align-items: center;
+}
+
+.home.quiet .content {
+  grid-column: 2 / 12;
+  padding-block: var(--space-24);
+}
+
+@media (max-width: 800px) {
+  .quiet {
+    padding-block: var(--space-24);
+  }
+
+  .quiet .content,
+  .home.quiet .content {
+    grid-column: 1 / -1;
+  }
+
+  .withImage {
+    padding-block: var(--space-12);
+  }
+
+  .media,
+  .content {
+    grid-column: 1 / -1;
+  }
+
+  .content {
+    padding-block: var(--space-4) 0;
+  }
+
+  .media :global(img) {
+    max-height: none;
+  }
+
+  .home.quiet {
+    min-height: 66svh;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiet {
+    padding-block: var(--space-16);
+  }
+
+  .wordmark {
+    font-size: clamp(2.65rem, 14vw, 4.5rem);
+  }
+
+  .summary {
+    margin-top: var(--space-6);
+  }
+
+  .primaryLink {
+    margin-top: var(--space-6);
+  }
+}

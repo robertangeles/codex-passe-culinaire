@@ -1,0 +1,22 @@
+.figure {
+  max-width: 100%;
+  margin: 0;
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  color: inherit;
+  font-family: var(--loaded-jetbrains-mono), var(--font-mono), monospace;
+  font-size: var(--step--1);
+  line-height: 1.5;
+}
