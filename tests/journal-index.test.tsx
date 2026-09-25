@@ -23,6 +23,7 @@ function createModel(posts: Post[] = []): JournalModel {
     noIndex: false,
     author: null,
     externalEmbedsEnabled: false,
+    settings: { id: 1, name: 'Passe Culinaire' },
     listing: {
       docs: posts,
       totalDocs: posts.length,

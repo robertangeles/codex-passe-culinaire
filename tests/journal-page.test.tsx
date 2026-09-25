@@ -31,6 +31,7 @@ function createModel(page: number, totalPages: number, posts: Post[] = []): Jour
     noIndex: false,
     author: null,
     externalEmbedsEnabled: false,
+    settings: { id: 1, name: 'Passe Culinaire' },
     listing: {
       docs: posts,
       totalDocs: totalPages * 12,

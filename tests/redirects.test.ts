@@ -8,6 +8,12 @@ function client(records: Record<string, { to: string; statusCode: string }>) {
 }
 
 describe('managed redirects', () => {
+  it('retains its capability across independently loaded server modules', async () => {
+    vi.resetModules()
+    const separatelyLoaded = await import('../src/lib/redirects')
+    expect(separatelyLoaded.redirectLookupCapability).toBe(redirectLookupCapability)
+    expect(separatelyLoaded.redirectLookupCapability).not.toBe('passe-culinaire.redirect-lookup')
+  })
   it('protects infrastructure paths and rejects off-site destinations', () => {
     for (const path of ['/api/users', '/admin', '/_next/static/file', '/media/photo.avif', '/robots.txt', '/sitemaps/posts.xml', '/%61dmin', '/%2561dmin', '//evil.test', 'https://evil.test']) expect(isRedirectPath(path)).toBe(false)
     expect(isRedirectPath('/old/article.html', true)).toBe(true)

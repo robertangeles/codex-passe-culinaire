@@ -1,3 +1,9 @@
+import { RouteSchema } from '../../../../components/RouteSchema'
+import { TestimonialBlock } from '../../../../components/blocks/TestimonialBlock'
+import { buildPageMetadata } from '../../../../lib/seo/metadata'
+import { siteOrigin } from '../../../../lib/seo/core'
+import { applySchemaOverride } from '../../../../lib/seo/page'
+import { buildServiceGraph } from '../../../../lib/seo/service'
 import { cache } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -6,9 +12,9 @@ import { EditorialSection } from '../../../../components/EditorialSection'
 import { FAQBlock } from '../../../../components/blocks/FAQBlock'
 import { HeroBlock } from '../../../../components/blocks/HeroBlock'
 import { RichText } from '../../../../components/RichText'
-import type { Faq, Service } from '../../../../payload-types'
+import type { Faq, Service, SiteSetting, Testimonial1 } from '../../../../payload-types'
 import { safePublicHref } from '../../../../lib/urls'
-import { getPublicDocument, getPublicShell } from '../../../../lib/public-content'
+import { getPublicDocument, getPublicShell, getPublicTestimonials } from '../../../../lib/public-content'
 import styles from './page.module.css'
 
 export const revalidate = 600
@@ -16,6 +22,8 @@ export const revalidate = 600
 type PageProps = { params: Promise<{ slug: string }> }
 type ServiceViewModel = {
   service: Service
+  settings: SiteSetting
+  testimonials: Testimonial1[]
   externalEmbedsEnabled: boolean
 }
 
@@ -32,6 +40,8 @@ const getServiceViewModel = cache(async (slug: string): Promise<ServiceViewModel
   if (!service || service._status !== 'published') return null
   return {
     service,
+    settings: shell.siteSettings,
+    testimonials: await getPublicTestimonials('services', service.id),
     externalEmbedsEnabled: shell.siteSettings.externalEmbedsEnabled === true,
   }
 })
@@ -47,15 +57,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const model = await getServiceViewModel(slug)
   if (!model) return {}
 
-  const { service } = model
-  return {
-    title: service.seo?.metaTitle || service.title,
-    description: service.seo?.metaDescription || service.oneLiner || undefined,
-    robots: {
-      index: service.seo?.noIndex !== true,
-      follow: service.seo?.noFollow !== true,
-    },
-  }
+  const { service, settings } = model
+  return buildPageMetadata({ path: `/services/${service.slug}`, title: service.title,
+    description: service.oneLiner, seo: service.seo, heroImage: service.heroImage, settings }, siteOrigin())
 }
 
 function hasPopulatedHeroImage(service: Service): service is Service & { heroImage: Exclude<Service['heroImage'], number | null | undefined> } {
@@ -87,14 +91,16 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const model = await getServiceViewModel(slug)
   if (!model) notFound()
 
-  const { service, externalEmbedsEnabled } = model
+  const { service, externalEmbedsEnabled, testimonials } = model
   const heroImage = hasPopulatedHeroImage(service) ? service.heroImage : undefined
   const ctaLabel = service.cta?.label?.trim()
   const ctaHref = safePublicHref(service.cta?.url)
   const faqItems = populatedFaq(service)
 
+  const graph = buildServiceGraph(service, testimonials, siteOrigin()).map((node, index) => index === 0 ? applySchemaOverride(node, service.seo?.structuredDataOverride) : node)
   return (
     <main id="main-content" tabIndex={-1}>
+      <RouteSchema path={`/services/${service.slug}`} title={service.title} parents={[{ name: 'Services', path: '/services' }]} nodes={graph} />
       <HeroBlock
         block={{
           blockType: 'hero',
@@ -143,6 +149,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <a className={styles.cta} href={ctaHref}>{ctaLabel}</a>
         </EditorialSection>
       )}
+      {testimonials.map(testimonial => <TestimonialBlock key={testimonial.id} block={{ blockType: 'testimonial', testimonial }} />)}
     </main>
   )
 }

@@ -1,10 +1,10 @@
 import type { Payload } from 'payload'
 import { isSafeInternalPath } from './urls'
 
-/** Server-only capability: HTTP input cannot construct this symbol. */
-export const redirectLookupCapability = Symbol('redirect lookup')
+/** Server-only capability shared across Next's separately compiled server bundles. HTTP input cannot construct a symbol. */
+export const redirectLookupCapability = Symbol.for('passe-culinaire.redirect-lookup')
 const protectedPrefixes = ['/admin', '/api', '/_next', '/media', '/assets', '/.well-known']
-const protectedFiles = new Set(['/robots.txt', '/sitemap.xml', '/feed.xml', '/feed.json', '/llms.txt', '/llms-full.txt', '/favicon.ico'])
+const protectedFiles = new Set(['/robots.txt', '/sitemap.xml', '/feed.xml', '/feed.json', '/llms.txt', '/llms-full.txt', '/indexnow.txt', '/favicon.ico'])
 
 export function isRedirectPath(value: unknown, source = false): value is string {
   if (!isSafeInternalPath(value, source)) return false
@@ -14,7 +14,8 @@ export function isRedirectPath(value: unknown, source = false): value is string 
     if (decoded === pathname) break
     pathname = decoded
   }
-  return !protectedFiles.has(pathname) && !pathname.startsWith('/sitemaps/')
+  return !protectedFiles.has(pathname) && !pathname.startsWith('/sitemaps/') && !pathname.startsWith('/markdown/')
+    && !/^\/sitemap-[a-z]+\.xml$/.test(pathname) && !/^\/journal\/[^/]+\.md$/.test(pathname)
     && !protectedPrefixes.some(prefix => pathname === prefix || pathname.startsWith(`${prefix}/`))
 }
 

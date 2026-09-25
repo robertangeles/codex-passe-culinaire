@@ -1,3 +1,6 @@
+import { RouteSchema } from '../../../../components/RouteSchema'
+import { buildPageMetadata } from '../../../../lib/seo/metadata'
+import { siteOrigin } from '../../../../lib/seo/core'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { cache } from 'react'
@@ -8,7 +11,7 @@ import { EditorialSection } from '../../../../components/EditorialSection'
 import { HeroBlock } from '../../../../components/blocks/HeroBlock'
 import { Pagination } from '../../../../components/Pagination'
 import type { Event } from '../../../../payload-types'
-import { listPublicContent } from '../../../../lib/public-content'
+import { listPublicContent, getPublicShell } from '../../../../lib/public-content'
 import { safePublicHref } from '../../../../lib/urls'
 import styles from './page.module.css'
 
@@ -72,7 +75,8 @@ export async function generateStaticParams(): Promise<never[]> {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { page } = await getRouteListing(params)
-  return { title: page === 1 ? 'Training' : `Training · Page ${page}`, description: DESCRIPTION }
+  return buildPageMetadata({ title: page > 1 ? `Training · Page ${page}` : 'Training', description: DESCRIPTION,
+    path: page > 1 ? `/training/page/${page}` : '/training', settings: (await getPublicShell()).siteSettings }, siteOrigin())
 }
 
 function formatDate(value: Event['startDate'] | Event['endDate'], timezone: string): { iso: string; label: string } | undefined {
@@ -139,6 +143,8 @@ export default async function TrainingIndexPage({ params }: PageProps) {
   const archive = model.archive.docs.filter(isPublishedEvent)
   return (
     <main id="main-content" tabIndex={-1}>
+      <RouteSchema path={page > 1 ? `/training/page/${page}` : '/training'} title={page > 1 ? `Training · Page ${page}` : 'Training'}
+        parents={page > 1 ? [{ name: 'Training', path: '/training' }] : []} />
       <HeroBlock headingLevel={1} block={{ blockType: 'hero', heading: 'Training', style: 'quiet' }} />
       {(upcoming.length > 0 || page === 1) && (
         <EditorialSection wide>

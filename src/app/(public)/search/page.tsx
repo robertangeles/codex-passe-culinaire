@@ -1,3 +1,7 @@
+import { getPublicShell } from '../../../lib/public-content'
+import { RouteSchema } from '../../../components/RouteSchema'
+import { buildPageMetadata } from '../../../lib/seo/metadata'
+import { siteOrigin } from '../../../lib/seo/core'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -7,9 +11,8 @@ import styles from './page.module.css'
 import { MAX_SEARCH_PAGE, SEARCH_PAGE_SIZE, normaliseSearch, searchPublishedContent } from '../../../lib/search'
 import { safePublicHref } from '../../../lib/urls'
 
-export const metadata: Metadata = {
-  title: 'Search',
-  robots: { index: false, follow: false },
+export async function generateMetadata(): Promise<Metadata> {
+  return buildPageMetadata({ title: 'Search', path: '/search', seo: { noIndex: true, noFollow: true }, settings: (await getPublicShell()).siteSettings }, siteOrigin())
 }
 
 type SearchParams = { q?: string | string[]; page?: string | string[] }
@@ -77,6 +80,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
   return (
     <main id="main-content" tabIndex={-1}>
+      <RouteSchema path="/search" title="Search" />
       <HeroBlock block={hero} headingLevel={1} />
       <EditorialSection>
         <SearchForm query={input.query ?? undefined} message={input.message} />

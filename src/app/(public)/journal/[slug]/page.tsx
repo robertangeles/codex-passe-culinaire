@@ -1,3 +1,8 @@
+import { RouteSchema } from '../../../../components/RouteSchema'
+import { buildArticleGraph } from '../../../../lib/seo/article'
+import { applySchemaOverride } from '../../../../lib/seo/page'
+import { buildPageMetadata } from '../../../../lib/seo/metadata'
+import { siteOrigin } from '../../../../lib/seo/core'
 import { cache } from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -7,7 +12,7 @@ import { EditorialSection } from '../../../../components/EditorialSection'
 import { HeroBlock } from '../../../../components/blocks/HeroBlock'
 import { ResponsiveMedia } from '../../../../components/ResponsiveMedia'
 import { RichText } from '../../../../components/RichText'
-import type { Post } from '../../../../payload-types'
+import type { Post, SiteSetting } from '../../../../payload-types'
 import { getPublicShell } from '../../../../lib/public-content'
 import { getRequestDocument } from '../../../../lib/request-content'
 import { safePublicHref } from '../../../../lib/urls'
@@ -19,6 +24,7 @@ type PageProps = { params: Promise<{ slug: string }> }
 
 type JournalModel = {
   post: Post
+  settings: SiteSetting
   preview: boolean
   externalEmbedsEnabled: boolean
 }
@@ -35,6 +41,7 @@ const getJournalViewModel = cache(async (slug: string): Promise<JournalModel | n
   if (!document) return null
   return {
     post: document,
+    settings: shell.siteSettings,
     preview,
     externalEmbedsEnabled: shell.siteSettings.externalEmbedsEnabled === true,
   }
@@ -102,14 +109,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const model = await getJournalViewModel(slug)
   if (!model) return {}
-  const { post, preview } = model
-  return {
-    title: post.seo?.metaTitle || post.title,
-    description: post.seo?.metaDescription || post.excerpt || undefined,
-    robots: preview
-      ? { index: false, follow: false }
-      : { index: post.seo?.noIndex !== true, follow: post.seo?.noFollow !== true },
-  }
+  const { post, preview, settings } = model
+  return buildPageMetadata({ path: `/journal/${post.slug}`, title: post.title, description: post.excerpt,
+    seo: post.seo, heroImage: post.heroImage, generatedOgPath: `/journal/${post.slug}/og`,
+    article: post, settings, preview }, siteOrigin())
 }
 
 export default async function JournalDetailPage({ params }: PageProps) {
@@ -131,6 +134,8 @@ export default async function JournalDetailPage({ params }: PageProps) {
 
   return (
     <main id="main-content" tabIndex={-1}>
+      {!preview && <RouteSchema path={`/journal/${post.slug}`} title={post.title} parents={[{ name: 'Journal', path: '/journal' }]}
+        nodes={buildArticleGraph(post, siteOrigin()).map((node, index) => index === 0 ? applySchemaOverride(node, post.seo?.structuredDataOverride) : node)} />}
       {preview && (
         <aside className={styles.preview} aria-label="Draft preview">
           <p>Draft preview</p>

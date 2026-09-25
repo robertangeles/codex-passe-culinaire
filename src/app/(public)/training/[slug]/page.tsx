@@ -1,3 +1,9 @@
+import { RouteSchema } from '../../../../components/RouteSchema'
+import { TestimonialBlock } from '../../../../components/blocks/TestimonialBlock'
+import { buildPageMetadata } from '../../../../lib/seo/metadata'
+import { siteOrigin } from '../../../../lib/seo/core'
+import { applySchemaOverride } from '../../../../lib/seo/page'
+import { buildTrainingGraph } from '../../../../lib/seo/training'
 import type { Metadata } from 'next'
 import { cache } from 'react'
 import { notFound } from 'next/navigation'
@@ -6,7 +12,7 @@ import { HeroBlock } from '../../../../components/blocks/HeroBlock'
 import { EditorialSection } from '../../../../components/EditorialSection'
 import { RichText } from '../../../../components/RichText'
 import type { Event, Media, User } from '../../../../payload-types'
-import { getPublicDocument, getPublicShell } from '../../../../lib/public-content'
+import { getPublicDocument, getPublicShell, getPublicTestimonials } from '../../../../lib/public-content'
 import { safePublicHref } from '../../../../lib/urls'
 import styles from './page.module.css'
 
@@ -33,7 +39,7 @@ const getTrainingViewModel = cache(async (slug: string) => {
     getPublicShell(),
   ])
   if (!event || event._status !== 'published') return null
-  return { event, externalEmbedsEnabled: shell.siteSettings.externalEmbedsEnabled === true }
+  return { event, settings: shell.siteSettings, testimonials: await getPublicTestimonials('events', event.id), externalEmbedsEnabled: shell.siteSettings.externalEmbedsEnabled === true }
 })
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -47,15 +53,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const model = await getTrainingViewModel(slug)
   if (!model) notFound()
 
-  const { event } = model
-  return {
-    title: event.seo?.metaTitle || event.title,
-    description: event.seo?.metaDescription || event.descriptionSummary || undefined,
-    robots: {
-      index: event.seo?.noIndex !== true,
-      follow: event.seo?.noFollow !== true,
-    },
-  }
+  const { event, settings } = model
+  return buildPageMetadata({ path: `/training/${event.slug}`, title: event.title,
+    description: event.descriptionSummary, seo: event.seo, heroImage: event.heroImage, settings }, siteOrigin())
 }
 
 function timeZoneFor(value: string | null | undefined): string {
@@ -112,7 +112,7 @@ export default async function TrainingDetailPage({ params }: PageProps) {
   const model = await getTrainingViewModel(slug)
   if (!model) notFound()
 
-  const { event, externalEmbedsEnabled } = model
+  const { event, externalEmbedsEnabled, testimonials } = model
   const timezone = timeZoneFor(event.timezone)
   const start = eventDate(event.startDate, timezone)
   const end = eventDate(event.endDate, timezone)
@@ -124,8 +124,10 @@ export default async function TrainingDetailPage({ params }: PageProps) {
   const venueName = event.venue?.name?.trim()
   const address = event.venue?.address?.trim()
 
+  const graph = buildTrainingGraph(event, testimonials, siteOrigin()).map((node, index) => index === 0 ? applySchemaOverride(node, event.seo?.structuredDataOverride) : node)
   return (
     <main id="main-content" tabIndex={-1}>
+      <RouteSchema path={`/training/${event.slug}`} title={event.title} parents={[{ name: 'Training', path: '/training' }]} nodes={graph} />
       <HeroBlock
         headingLevel={1}
         block={{
@@ -184,6 +186,7 @@ export default async function TrainingDetailPage({ params }: PageProps) {
           </div>
         </EditorialSection>
       )}
+      {testimonials.map(testimonial => <TestimonialBlock key={testimonial.id} block={{ blockType: 'testimonial', testimonial }} />)}
     </main>
   )
 }

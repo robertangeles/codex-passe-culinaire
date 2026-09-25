@@ -3,7 +3,7 @@ import { ValidationError, type Field, type CollectionBeforeValidateHook } from '
 export const reservedSlugs = new Set([
   'admin', 'api', 'about', 'contact', 'culinaire-kitchen', 'services', 'training',
   'journal', 'search', 'media', 'feed.xml', 'feed.json', 'sitemap.xml',
-  'robots.txt', 'llms.txt', 'llms-full.txt',
+  'robots.txt', 'llms.txt', 'llms-full.txt', 'sitemaps', 'markdown',
 ])
 
 export const validateSlugValue = (value: unknown, allowReserved = false): true | string => {

@@ -24,6 +24,7 @@ const publishedModel = {
   },
   content: { posts: [], services: [], events: [] },
   preview: false,
+  settings: { id: 1, name: 'Passe Culinaire' },
   externalEmbedsEnabled: false,
 } satisfies NonNullable<Awaited<ReturnType<typeof getPageViewModel>>>
 

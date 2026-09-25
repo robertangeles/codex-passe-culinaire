@@ -6,5 +6,6 @@ export default defineConfig({
   test: {
     include: ['tests/**/*.test.ts', 'tests/**/*.test.tsx'],
     environment: 'node',
+    env: { NEXT_PUBLIC_SERVER_URL: 'https://passeculinaire.test' },
   },
 })

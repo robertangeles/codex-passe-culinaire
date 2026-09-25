@@ -11,6 +11,7 @@ import CMSPage, { generateMetadata, generateStaticParams } from '../src/app/(pub
 const companyModel = {
   page: {
     title: 'About Passe Culinaire',
+    slug: 'about',
     layout: [{ blockType: 'plainStatement', statement: 'We work with kitchens through training and publishing.' }],
     seo: { metaTitle: 'Our company', metaDescription: 'Company information' },
   },

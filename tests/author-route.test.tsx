@@ -75,6 +75,7 @@ function createModel(page = 1, totalPages = 1, posts: Post[] = []): JournalModel
       roles: ['admin'],
     } as JournalModel['author'],
     externalEmbedsEnabled: false,
+    settings: { id: 1, name: 'Passe Culinaire' },
     listing: {
       docs: posts,
       totalDocs: totalPages * 12,

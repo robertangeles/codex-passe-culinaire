@@ -1,3 +1,5 @@
+import { buildPageMetadata } from '../../../../../lib/seo/metadata'
+import { siteOrigin } from '../../../../../lib/seo/core'
 import type { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
 
@@ -27,11 +29,9 @@ export async function generateStaticParams(): Promise<never[]> {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { page, model } = await getRouteListing(params)
-  return {
-    title: `${model.title} · Page ${page}`,
-    description: model.description,
-    robots: { index: !model.noIndex },
-  }
+  return buildPageMetadata({ title: page > 1 ? `${model.title} · Page ${page}` : model.title, description: model.description,
+    path: page > 1 ? `${model.basePath}/page/${page}` : model.basePath,
+    seo: { noIndex: model.noIndex }, settings: model.settings }, siteOrigin())
 }
 
 export default async function JournalPageNumber({ params }: PageProps) {

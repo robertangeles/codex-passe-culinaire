@@ -18,6 +18,7 @@ const model = {
   noIndex: false,
   author: null,
   externalEmbedsEnabled: false,
+    settings: { id: 1, name: 'Passe Culinaire' },
   listing: {
     docs: [{
       id: 17,

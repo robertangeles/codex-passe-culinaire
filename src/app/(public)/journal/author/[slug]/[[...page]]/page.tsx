@@ -1,3 +1,5 @@
+import { buildPageMetadata } from '../../../../../../lib/seo/metadata'
+import { siteOrigin } from '../../../../../../lib/seo/core'
 import { cache } from 'react'
 import type { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
@@ -40,11 +42,9 @@ async function getRouteModel(params: PageProps['params']) {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { model, page } = await getRouteModel(params)
-  return {
-    title: page > 1 ? `${model.title} · Page ${page}` : model.title,
-    description: model.description,
-    robots: { index: !model.noIndex },
-  }
+  return buildPageMetadata({ title: page > 1 ? `${model.title} · Page ${page}` : model.title, description: model.description,
+    path: page > 1 ? `${model.basePath}/page/${page}` : model.basePath,
+    seo: { noIndex: model.noIndex }, settings: model.settings }, siteOrigin())
 }
 
 export default async function JournalAuthorPage({ params }: PageProps) {

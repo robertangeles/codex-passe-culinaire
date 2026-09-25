@@ -1,3 +1,7 @@
+import { buildPageMetadata } from '../../../lib/seo/metadata'
+import { siteOrigin } from '../../../lib/seo/core'
+import { JsonLd } from '../../../components/JsonLd'
+import { buildPageGraph } from '../../../lib/seo/page'
 import { randomUUID } from 'node:crypto'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -25,14 +29,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const model = await getPageViewModel('contact')
   if (!model) return {}
 
-  const { page, preview } = model
-  return {
-    title: page.seo?.metaTitle || page.title,
-    description: page.seo?.metaDescription || undefined,
-    robots: preview
-      ? { index: false, follow: false }
-      : { index: page.seo?.noIndex !== true, follow: page.seo?.noFollow !== true },
-  }
+  const { page, preview, settings } = model
+  return buildPageMetadata({ path: '/contact', title: page.title, seo: page.seo, preview, settings }, siteOrigin())
 }
 
 export default async function ContactPage() {
@@ -49,6 +47,7 @@ export default async function ContactPage() {
 
   return (
     <main id="main-content" tabIndex={-1}>
+      {!preview && <JsonLd nodes={buildPageGraph(page, siteOrigin())} />}
       {preview && (
         <aside aria-label="Draft preview">
           <p>Draft preview</p>

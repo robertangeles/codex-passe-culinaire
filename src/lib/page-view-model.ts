@@ -41,5 +41,5 @@ export const getPageViewModel = cache(async (slug: string) => {
   const [{ document: page, preview }, shell] = await Promise.all([getRequestDocument('pages', slug), getPublicShell()])
   if (!page) return null
   const content = await getBlockContent(page.layout)
-  return { page, content, preview, externalEmbedsEnabled: shell.siteSettings.externalEmbedsEnabled === true }
+  return { page, content, preview, settings: shell.siteSettings, externalEmbedsEnabled: shell.siteSettings.externalEmbedsEnabled === true }
 })

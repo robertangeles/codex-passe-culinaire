@@ -45,5 +45,5 @@ export const getJournalListing = cache(async (scope: JournalScope, slug = '', pa
     getPublicShell(),
   ])
   if (page > 1 && (!listing.docs.length || page > listing.totalPages)) return null
-  return { title, description, basePath, noIndex, author, listing, externalEmbedsEnabled: shell.siteSettings.externalEmbedsEnabled === true }
+  return { title, description, basePath, noIndex, author, listing, settings: shell.siteSettings, externalEmbedsEnabled: shell.siteSettings.externalEmbedsEnabled === true }
 })

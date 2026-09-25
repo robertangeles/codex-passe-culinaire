@@ -196,3 +196,22 @@ export const getPublicTaxonomy = <TCollection extends PublicTaxonomyCollection>(
   collection: TCollection,
   slug: string,
 ): Promise<PublicTaxonomy<TCollection> | null> => getCachedTaxonomy(collection)(slug)
+
+export const getPublicTestimonials = cached([PUBLIC_CONTENT_TAG, 'related-testimonials'], async (collection: 'services' | 'events', id: number) => {
+  const payload = await payloadClient()
+  const testimonials: Config['collections']['testimonials'][] = []
+  let after = 0
+  while (true) {
+    const result = await payload.find({ collection: 'testimonials', overrideAccess: false, depth: 0,
+      limit: 100, pagination: false, sort: 'id', where: { and: [
+        { published: { equals: true } }, { 'relatedTo.relationTo': { equals: collection } },
+        { 'relatedTo.value': { equals: id } }, { id: { greater_than: after } },
+      ] } })
+    testimonials.push(...result.docs)
+    if (result.docs.length < 100) break
+    const next = result.docs[result.docs.length - 1].id
+    if (next <= after) throw new Error('Testimonial pagination did not advance.')
+    after = next
+  }
+  return testimonials
+})

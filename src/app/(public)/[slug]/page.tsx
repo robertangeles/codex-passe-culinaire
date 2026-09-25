@@ -1,4 +1,8 @@
+import { JsonLd } from '../../../components/JsonLd'
+import { buildPageGraph } from '../../../lib/seo/page'
 import type { Metadata } from 'next'
+import { buildPageMetadata } from '../../../lib/seo/metadata'
+import { siteOrigin } from '../../../lib/seo/core'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -24,14 +28,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const model = await getPageViewModel(slug)
   if (!model) return {}
 
-  const { page, preview } = model
-  return {
-    title: page.seo?.metaTitle || page.title,
-    description: page.seo?.metaDescription || undefined,
-    robots: preview
-      ? { index: false, follow: false }
-      : { index: page.seo?.noIndex !== true, follow: page.seo?.noFollow !== true },
-  }
+  const { page, preview, settings } = model
+  const hero = page.layout?.find(block => block.blockType === 'hero')
+  return buildPageMetadata({ path: `/${page.slug}`, title: page.title,
+    description: hero?.summary, seo: page.seo, heroImage: hero?.image, preview, settings }, siteOrigin())
 }
 
 export default async function CMSPage({ params }: PageProps) {
@@ -45,6 +45,7 @@ export default async function CMSPage({ params }: PageProps) {
 
   return (
     <main id="main-content" tabIndex={-1}>
+      {!preview && <JsonLd nodes={buildPageGraph(page, siteOrigin())} />}
       {preview && (
         <aside aria-label="Draft preview">
           <p>Draft preview</p>

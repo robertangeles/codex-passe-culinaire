@@ -1,3 +1,5 @@
+import { buildPageMetadata } from '../../../lib/seo/metadata'
+import { siteOrigin } from '../../../lib/seo/core'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
@@ -10,11 +12,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const model = await getJournalListing('journal', '', 1)
   if (!model) return {}
 
-  return {
-    title: model.title,
-    description: model.description,
-    robots: { index: !model.noIndex },
-  }
+  return buildPageMetadata({ title: model.title, description: model.description,
+    path: model.basePath,
+    seo: { noIndex: model.noIndex }, settings: model.settings }, siteOrigin())
 }
 
 export default async function JournalIndexPage() {

@@ -4,12 +4,14 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 const mocks = vi.hoisted(() => ({
   document: vi.fn(),
   shell: vi.fn(),
+  testimonials: vi.fn().mockResolvedValue([]),
   notFound: vi.fn(() => { throw new Error('NEXT_NOT_FOUND') }),
 }))
 
 vi.mock('../src/lib/public-content', () => ({
   getPublicDocument: mocks.document,
   getPublicShell: mocks.shell,
+  getPublicTestimonials: mocks.testimonials,
 }))
 vi.mock('next/navigation', () => ({ notFound: mocks.notFound }))
 
@@ -114,4 +116,17 @@ describe('service detail route', () => {
   it('returns no static service slugs for on-demand generation', async () => {
     await expect(generateStaticParams()).resolves.toEqual([])
   })
+  it('renders each structured review as visible page content', async () => {
+    mocks.document.mockResolvedValue(service)
+    const review = { id: 77, published: true, name: 'Review author', quote: 'A real supplied kitchen review.',
+      relatedTo: { relationTo: 'services', value: 9 } }
+    mocks.testimonials.mockResolvedValueOnce([review])
+    const html = renderToStaticMarkup(await ServiceDetailPage({ params: Promise.resolve({ slug: 'kitchen-training' }) }))
+    const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '')
+    expect(visible).toContain('<p class=')
+    expect(visible).toContain(review.quote)
+    expect(visible).toContain(review.name)
+    expect(html).toContain('"reviewBody":"A real supplied kitchen review."')
+  })
+
 })

@@ -1,3 +1,5 @@
+import { buildPageMetadata } from '../../../../../../lib/seo/metadata'
+import { siteOrigin } from '../../../../../../lib/seo/core'
 import type { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
 
@@ -35,11 +37,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const model = await getJournalListing('category', slug, page)
   if (!model) return {}
 
-  return {
-    title: page > 1 ? `${model.title} · Page ${page}` : model.title,
-    description: model.description,
-    robots: { index: !model.noIndex },
-  }
+  return buildPageMetadata({ title: page > 1 ? `${model.title} · Page ${page}` : model.title, description: model.description,
+    path: page > 1 ? `${model.basePath}/page/${page}` : model.basePath,
+    seo: { noIndex: model.noIndex }, settings: model.settings }, siteOrigin())
 }
 
 export default async function JournalCategoryPage({ params }: PageProps) {

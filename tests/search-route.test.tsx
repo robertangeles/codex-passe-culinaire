@@ -1,3 +1,4 @@
+vi.mock('../src/lib/public-content', () => ({ getPublicShell: vi.fn().mockResolvedValue({ siteSettings: { id: 1, name: 'Passe Culinaire' } }) }))
 import { renderToStaticMarkup } from 'react-dom/server'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -18,7 +19,7 @@ vi.mock('../src/lib/search', () => ({
 }))
 vi.mock('next/navigation', () => ({ notFound: mocks.notFound }))
 
-import SearchPage, { metadata } from '../src/app/(public)/search/page'
+import SearchPage, { generateMetadata } from '../src/app/(public)/search/page'
 import type { SearchResult } from '../src/lib/search'
 
 const noHits: SearchResult = { hits: [], total: 0, page: 1, totalPages: 0 }
@@ -54,7 +55,7 @@ describe('search route', () => {
     expect(html).toContain('maxLength="120"')
     expect(html).toContain('Enter a word or phrase to search.')
     expect(mocks.search).not.toHaveBeenCalled()
-    expect(metadata).toMatchObject({ title: 'Search', robots: { index: false, follow: false } })
+    expect(await generateMetadata()).toMatchObject({ title: 'Search', robots: { index: false, follow: false } })
   })
 
   it('normalises a valid term and renders escaped result text with safe destinations', async () => {

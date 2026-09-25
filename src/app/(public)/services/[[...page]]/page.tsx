@@ -1,3 +1,6 @@
+import { RouteSchema } from '../../../../components/RouteSchema'
+import { buildPageMetadata } from '../../../../lib/seo/metadata'
+import { siteOrigin } from '../../../../lib/seo/core'
 import { cache } from 'react'
 import type { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
@@ -6,7 +9,7 @@ import { HeroBlock } from '../../../../components/blocks/HeroBlock'
 import { ServiceListBlock } from '../../../../components/blocks/ServiceListBlock'
 import { EditorialSection } from '../../../../components/EditorialSection'
 import { Pagination } from '../../../../components/Pagination'
-import { listPublicContent } from '../../../../lib/public-content'
+import { listPublicContent, getPublicShell } from '../../../../lib/public-content'
 
 export const revalidate = 600
 
@@ -55,10 +58,8 @@ async function getRouteModel(params: PageProps['params']) {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { page } = await getRouteModel(params)
-  return {
-    title: page > 1 ? `Services · Page ${page}` : 'Services',
-    description: 'Explore services from Passe Culinaire.',
-  }
+  return buildPageMetadata({ title: page > 1 ? `Services · Page ${page}` : 'Services', description: 'Explore services from Passe Culinaire.',
+    path: page > 1 ? `/services/page/${page}` : '/services', settings: (await getPublicShell()).siteSettings }, siteOrigin())
 }
 
 export default async function ServicesIndexPage({ params }: PageProps) {
@@ -70,6 +71,8 @@ export default async function ServicesIndexPage({ params }: PageProps) {
 
   return (
     <main id="main-content" tabIndex={-1}>
+      <RouteSchema path={page > 1 ? `/services/page/${page}` : '/services'} title={page > 1 ? `Services · Page ${page}` : 'Services'}
+        parents={page > 1 ? [{ name: 'Services', path: '/services' }] : []} />
       <HeroBlock block={{ blockType: 'hero', heading: 'Services', style: 'quiet' }} headingLevel={1} />
       <ServiceListBlock block={serviceList} services={listing.docs} />
       {listing.totalPages > 1 && (

@@ -7,7 +7,7 @@ const mocks = vi.hoisted(() => ({
   permanentRedirect: vi.fn((location: string) => { throw new Error(`NEXT_REDIRECT:${location}`) }),
 }))
 
-vi.mock('../src/lib/public-content', () => ({ listPublicContent: mocks.list }))
+vi.mock('../src/lib/public-content', () => ({ getPublicShell: vi.fn().mockResolvedValue({ siteSettings: { id: 1, name: 'Passe Culinaire' } }), listPublicContent: mocks.list }))
 vi.mock('next/navigation', () => ({ notFound: mocks.notFound, permanentRedirect: mocks.permanentRedirect }))
 
 import ServicesIndexPage, {

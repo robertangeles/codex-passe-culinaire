@@ -5,6 +5,9 @@ import type { Footer, Header, SiteSetting } from '../payload-types'
 import { getPublicShell } from '../lib/public-content'
 import { safePublicHref } from '../lib/urls'
 import ThemeControl from './ThemeControl'
+import { JsonLd } from './JsonLd'
+import { buildOrganisationGraph } from '../lib/seo/organisation'
+import { siteOrigin } from '../lib/seo/core'
 import styles from './PublicShell.module.css'
 
 type NavigationItem = NonNullable<Header['navItems']>[number]
@@ -102,6 +105,7 @@ export default async function PublicShell({ children }: { children: ReactNode })
 
   return (
     <>
+      <JsonLd nodes={buildOrganisationGraph(siteSettings, siteOrigin())} />
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <Link className={styles.wordmark} href="/" aria-label={companyName} prefetch={false}>
