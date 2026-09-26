@@ -1,0 +1,335 @@
+[
+  {
+    "at": 0,
+    "end": 7000,
+    "time": "07:00",
+    "title": "Start with the forecast",
+    "caption": "How many guests are we expecting? The chef turns the forecast into a preparation plan.",
+    "module": "Forecast & preparation",
+    "question": "What should we prepare?",
+    "rows": [
+      [
+        "Expected covers",
+        "80"
+      ],
+      [
+        "Pear tarts to prepare",
+        "24"
+      ],
+      [
+        "Recipe & menu cost",
+        "Reviewed"
+      ]
+    ],
+    "action": "The chef sets the plan",
+    "narrative": "Review expected covers, the menu and recipe requirements before deciding how much each section should prepare.",
+    "camera": [
+      280,
+      0,
+      800,
+      500
+    ],
+    "desktopCamera": [
+      0,
+      0,
+      1200,
+      675
+    ]
+  },
+  {
+    "at": 7000,
+    "end": 14000,
+    "time": "07:30",
+    "title": "Draw stock for mise en place",
+    "caption": "Take the ingredients from the pantry and bring them to the section, ready for preparation.",
+    "module": "Inventory & stock transfers",
+    "question": "What does the section need?",
+    "rows": [
+      [
+        "Pears in the pantry",
+        "8.0 kg"
+      ],
+      [
+        "Taken to pastry",
+        "3.0 kg"
+      ],
+      [
+        "Destination",
+        "Pastry section"
+      ]
+    ],
+    "action": "Ingredients move to the section",
+    "narrative": "Draw the ingredients needed for mise en place from the pantry. Keep the source and destination clear.",
+    "camera": [
+      100,
+      0,
+      800,
+      500
+    ],
+    "desktopCamera": [
+      80,
+      0,
+      1060,
+      596
+    ]
+  },
+  {
+    "at": 14000,
+    "end": 23000,
+    "time": "08:00",
+    "title": "Prepare the ingredients",
+    "caption": "Peel, portion and mix. The recipe guides the work as the section gets ready for service.",
+    "module": "Recipes & mise en place",
+    "question": "Is the preparation on track?",
+    "rows": [
+      [
+        "Preparation",
+        "Pear & almond tart"
+      ],
+      [
+        "Batch size",
+        "24 portions"
+      ],
+      [
+        "Recipe pears",
+        "2.4 kg"
+      ]
+    ],
+    "action": "The chef follows the preparation plan",
+    "narrative": "Prepare ingredients against the recipe: peel and portion the pears, prepare the filling and assemble the batch.",
+    "camera": [
+      320,
+      0,
+      760,
+      475
+    ],
+    "desktopCamera": [
+      330,
+      15,
+      740,
+      416
+    ]
+  },
+  {
+    "at": 23000,
+    "end": 30000,
+    "time": "09:00",
+    "title": "Bake, cook and get ready",
+    "caption": "Preparation becomes finished food. The tray goes into the oven, ready for the next stage of the day.",
+    "module": "Preparation & service readiness",
+    "question": "What will be ready for service?",
+    "rows": [
+      [
+        "Batch",
+        "Pear & almond tart"
+      ],
+      [
+        "Into the oven",
+        "24 portions"
+      ],
+      [
+        "Section plan",
+        "Updated by the chef"
+      ]
+    ],
+    "action": "The kitchen follows the plan",
+    "narrative": "Begin baking or cooking and keep the section’s preparation plan up to date as food becomes ready for service.",
+    "camera": [
+      400,
+      30,
+      800,
+      500
+    ],
+    "desktopCamera": [
+      420,
+      40,
+      780,
+      439
+    ]
+  },
+  {
+    "at": 30000,
+    "end": 37000,
+    "time": "09:30",
+    "title": "Record usage and wastage",
+    "caption": "Record what left the pantry, what went into the recipe, what was returned and what was wasted.",
+    "module": "Stock usage & waste",
+    "question": "Where did the ingredients go?",
+    "rows": [
+      [
+        "Drawn from pantry",
+        "3.0 kg"
+      ],
+      [
+        "Used in the recipe",
+        "2.4 kg"
+      ],
+      [
+        "Returned / peel waste",
+        "0.3 kg / 0.3 kg"
+      ]
+    ],
+    "action": "The chef records usage and waste",
+    "narrative": "Complete the stock record after preparation. In this illustrative batch, 3.0 kg drawn equals 2.4 kg used, 0.3 kg returned and 0.3 kg of peel waste.",
+    "camera": [
+      310,
+      0,
+      760,
+      475
+    ],
+    "desktopCamera": [
+      320,
+      5,
+      780,
+      439
+    ]
+  },
+  {
+    "at": 37000,
+    "end": 44000,
+    "time": "10:30",
+    "title": "Inspect and receive deliveries",
+    "caption": "Check the order, inspect the produce and record what is accepted before it enters stock.",
+    "module": "Purchasing & receiving",
+    "question": "Did we receive what we ordered?",
+    "rows": [
+      [
+        "Pears ordered",
+        "12.0 kg"
+      ],
+      [
+        "Inspected & accepted",
+        "10.0 kg"
+      ],
+      [
+        "Short delivery",
+        "2.0 kg to follow up"
+      ]
+    ],
+    "action": "The accepted quantity is recorded",
+    "narrative": "Inspect deliveries as they arrive, check quantities against the order and record the accepted stock. Follow up shortages with the supplier.",
+    "camera": [
+      0,
+      0,
+      830,
+      519
+    ],
+    "desktopCamera": [
+      0,
+      20,
+      920,
+      518
+    ]
+  },
+  {
+    "at": 44000,
+    "end": 51000,
+    "time": "11:00",
+    "title": "Keep the team in step",
+    "caption": "Review the roster, confirm section cover and share the handover before service.",
+    "module": "Rostering & messaging",
+    "question": "Does everyone know the plan?",
+    "rows": [
+      [
+        "Section cover",
+        "Reviewed"
+      ],
+      [
+        "Preparation handover",
+        "Shared with the team"
+      ],
+      [
+        "Service",
+        "Ready to begin"
+      ]
+    ],
+    "action": "The chef and owner review the team plan",
+    "narrative": "Manage the roster through the day and share preparation updates and handovers so the team can work from the same plan.",
+    "camera": [
+      410,
+      0,
+      790,
+      494
+    ],
+    "desktopCamera": [
+      390,
+      0,
+      810,
+      456
+    ]
+  },
+  {
+    "at": 51000,
+    "end": 58000,
+    "time": "21:30",
+    "title": "Upload the day’s sales",
+    "caption": "Upload sales data and compare what was sold with the morning’s forecast and preparation.",
+    "module": "Sales upload & review",
+    "question": "What actually happened today?",
+    "rows": [
+      [
+        "Sales file",
+        "daily-sales.csv"
+      ],
+      [
+        "Covers: forecast / actual",
+        "80 / 74"
+      ],
+      [
+        "Tarts: prepared / sold",
+        "24 / 21"
+      ]
+    ],
+    "action": "The owner uploads and reviews sales",
+    "narrative": "Upload the day’s sales data. Compare actual covers and dishes sold with what was forecast and prepared, then review the differences.",
+    "camera": [
+      430,
+      0,
+      770,
+      481
+    ],
+    "desktopCamera": [
+      690,
+      70,
+      510,
+      287
+    ]
+  },
+  {
+    "at": 58000,
+    "end": 65000,
+    "time": "Tomorrow",
+    "title": "See the whole working day",
+    "caption": "For the chef, a clearer preparation plan. For the owner, stock, waste, staffing and sales to review together.",
+    "module": "CulinAIre Kitchen",
+    "question": "What will tomorrow need?",
+    "rows": [
+      [
+        "Pears remaining",
+        "15.3 kg"
+      ],
+      [
+        "Tarts unsold",
+        "3 portions to review"
+      ],
+      [
+        "Next preparation plan",
+        "Informed by today"
+      ]
+    ],
+    "action": "The chef and owner plan the next day",
+    "narrative": "Bring the day’s records together to inform the next preparation plan. The illustrative pear balance is 8.0 kg opening stock, less 3.0 kg drawn, plus 0.3 kg returned and 10.0 kg received: 15.3 kg remaining.",
+    "camera": [
+      280,
+      0,
+      920,
+      575
+    ],
+    "desktopCamera": [
+      0,
+      0,
+      1200,
+      675
+    ]
+  }
+]

@@ -1098,6 +1098,17 @@ The storyboard is now available at http://127.0.0.1:4182/kitchen-operations-stor
 
 ## 55. Kitchen animation study replaces the rejected storyboard
 
+Historical record of study 02, superseded by the 65-second study in section 56.
+
 The user rejected the architectural layout and barely visible motion, and clarified that the experience should behave like an animation without chapter clicks. The [new animation study](designs/kitchen-animation/README.md) uses an illustrated kitchen, moving characters and props, and an automatic finite 32-second timeline with pause/replay. This prototype-specific motion treatment follows the user's latest direction; the production homepage and CMS remain unchanged. Reduced motion and no-JavaScript retain the full static narrative. Capability availability and automatic connections remain unconfirmed.
 
 Application checks pass: lint, typecheck, 57 files / 311 tests, production build. Browser checks cover actual playback, stopping, pause/replay, offscreen behaviour, small viewports, reduced motion and no JavaScript. Independent review returned READY after a mobile caption clipping fix and a fresh review of all five captions at 320px and 390px. User visual acceptance remains open.
+
+
+## 56. Chef and owner story, study 03
+
+The user accepted the previous animation as a starting point and requested substantially better human faces, a realistic working-day sequence and a selling tool for chefs and owners, allowing a minute or longer. The revised [study 03](designs/kitchen-animation/README.md) runs for 65 seconds across nine acts: forecast demand; draw stock for mise en place; prepare ingredients; bake or cook; record usage, returns and waste; inspect and receive orders; manage rosters and share handovers; upload sales; review the day for the next preparation plan.
+
+Generated adult character artwork replaces the distorted vector faces. Faces remain intact while a separate working forearm and kitchen props animate. Close views make actions more visible, while an adjacent CulinAIre Kitchen panel explains the record or decision involved. The sample stock and sales quantities reconcile. Human-entered actions are described explicitly; automatic integrations, autonomous forecasts, availability and savings remain unconfirmed. This local preview does not change the production homepage or CMS.
+
+Actual checks: lint and typecheck pass; 57 test files / 311 tests pass; production build passes. A real 65-second browser run verifies automatic playback, stopping, pause/resume, replay and keyboard seeking. All nine record panels fit at five tested widths from 320 to 1440 pixels. Reduced motion, no JavaScript and missing-asset fallbacks retain the full narrative. Current results are in `checks-v3.json`; previous `checks.json` and `screens/` are explicitly historical study-02 evidence. User visual acceptance and any future production integration/performance verification remain open. Independent review returned READY after the obsolete evidence was corrected and the final stable-height checks were supplied. All nine acts retain the same film height at each tested width, preventing page movement during chapter transitions.

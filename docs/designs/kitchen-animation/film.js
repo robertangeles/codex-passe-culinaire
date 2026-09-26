@@ -1,156 +1,178 @@
-const duration = 32000
+const acts = JSON.parse(document.querySelector('#story-data').textContent)
+const duration = acts.at(-1).end
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)')
+const smallScreen = matchMedia('(max-width: 740px)')
 const film = document.querySelector('#film')
-const stage = document.querySelector('#stage')
-const backdrop = document.querySelector('#backdrop')
+const illustration = document.querySelector('#illustration')
 const playButton = document.querySelector('#play-pause')
-const playLabel = document.querySelector('#play-label')
-const timeLabel = document.querySelector('#time')
-const progress = document.querySelector('#progress-fill')
-const acts = [
-  { at: 0, title: 'Before opening', caption: 'A recipe becomes a menu, a cost and an order for the day ahead.' },
-  { at: 6000, title: 'The delivery', caption: 'The chef checks the delivery. Ten kilos of pears are accepted and recorded.' },
-  { at: 12000, title: 'Mise en place', caption: 'Ingredients move to the section. The chef records the transfer and begins preparation.' },
-  { at: 20000, title: 'Service', caption: 'A prepared section and a shared handover bring the team to the pass.' },
-  { at: 26000, title: 'At the close', caption: 'Waste, stock and costs are reviewed before tomorrow’s decisions.' },
-]
+const transport = document.querySelector('#transport')
+const scrub = document.querySelector('#scrub')
+const motionNote = document.querySelector('#motion-note')
 const animations = []
 let elapsed = 0
 let startedAt = 0
 let playing = false
 let visible = false
 let userPaused = false
+let ready = false
 let frame
 let currentAct = -1
 
+// One clock drives paused native animations, so seeking and resuming never restart a finished effect.
 function animate(selector, keyframes, start, length, options = {}) {
-  const element = document.querySelector(selector)
-  if (!element) return
-  const animation = element.animate(keyframes, { delay: start, duration: length, fill: 'both', easing: 'ease-in-out', ...options })
-  animation.pause()
-  animation.currentTime = 0
-  animations.push(animation)
+  for (const element of document.querySelectorAll(selector)) {
+    const animation = element.animate(keyframes, {delay:start, duration:length, fill:'both', easing:'ease-in-out', ...options})
+    animation.pause()
+    animation.currentTime = 0
+    animations.push(animation)
+  }
 }
-function appear(selector, start, end) {
-  const element = document.querySelector(selector)
-  if (!element) return
-  if (element.classList.contains('scene-note') || selector === '#opening-card') element.style.display = 'block'
-  if (selector === '#film-brand') element.style.display = 'flex'
-  animate(selector, [{opacity:0,offset:0},{opacity:1,offset:.08},{opacity:1,offset:.9},{opacity:0,offset:1}],start,end-start)
+function show(selector, start, end, stay = false) {
+  animate(selector, [{opacity:0,offset:0},{opacity:1,offset:.08},{opacity:1,offset:.92},{opacity:stay?1:0,offset:1}],start,end-start)
+}
+function origin(selector, value) {
+  document.querySelector(selector).style.transformOrigin = value
 }
 function rig() {
-  appear('#opening-card', 0, 2300)
-  appear('#note-plan', 2200, 6100)
-  appear('#note-receive', 6200, 12100)
-  appear('#note-prep', 12300, 20100)
-  appear('#note-service', 20300, 26100)
-  appear('#note-close', 26200, 30900)
-  const brand = document.querySelector('#film-brand')
-  brand.style.display = 'flex'
-  animate('#film-brand', [{opacity:0,transform:'translateY(15px)'},{opacity:1,transform:'translateY(0)'}],30000,1400)
+  show('#planning-sheet',0,7000)
+  animate('#planning-sheet',[{transform:'translate(-60px,-40px) rotate(-5deg)'},{transform:'translate(0,0)'}],0,1800)
+  show('#pantry-stock',7000,14000)
+  show('#stock-basket',7400,14300)
+  animate('#stock-basket',[{transform:'translate(-180px,-35px)'},{transform:'translate(15px,0)'}],7800,4000)
+  show('#prep-board',14000,22500)
+  origin('#prep-board','580px 300px')
+  animate('#prep-board',[{transform:'scaleY(.35)'},{transform:'scaleY(.35)'}],0,duration)
+  origin('#mixing-bowl','670px 300px')
+  show('#chef-knife',14000,18100)
+  show('#chef-whisk',18300,23200)
+  show('#mixing-bowl',17900,23600)
+  animate('#mixing-bowl',[{transform:'translate(-55px,-10px) scale(.55)'},{transform:'translate(-55px,-10px) scale(.55)'}],0,duration)
+  origin('#chef-working-arm','370px 365px')
+  animate('#chef-working-arm',[{transform:'rotate(0deg)'},{transform:'rotate(9deg)'},{transform:'rotate(0deg)'}],14500,700,{iterations:5,fill:'none'})
+  animate('#chef-working-arm',[{transform:'rotate(10deg)'},{transform:'rotate(28deg)'},{transform:'rotate(10deg)'}],18500,850,{iterations:5,fill:'none'})
+  animate('#chef-working-arm',[{transform:'rotate(0deg)'},{transform:'rotate(8deg)'},{transform:'rotate(0deg)'}],31000,1400,{iterations:3,fill:'none'})
+  animate('#chef-position,#chef-arm-position',[
+    {transform:'translate(0,0)',offset:0},{transform:'translate(0,0)',offset:7/65},
+    {transform:'translate(-115px,0)',offset:9/65},{transform:'translate(-115px,0)',offset:11/65},
+    {transform:'translate(0,0)',offset:14/65},{transform:'translate(0,0)',offset:23/65},
+    {transform:'translate(130px,0)',offset:25/65},{transform:'translate(130px,0)',offset:28/65},
+    {transform:'translate(0,0)',offset:30/65},{transform:'translate(0,0)',offset:37/65},
+    {transform:'translate(-130px,0)',offset:39/65},{transform:'translate(-130px,0)',offset:42/65},
+    {transform:'translate(0,0)',offset:44/65},{transform:'translate(0,0)',offset:1}
+  ],0,duration)
 
-  animate('#chef', [{opacity:0,transform:'translateX(110px)'},{opacity:1,transform:'translateX(0)'}],500,1800)
-  animate('#chef-head', [{transform:'rotate(0deg)'},{transform:'rotate(-8deg)'},{transform:'rotate(0deg)'}],1800,2600)
-  document.querySelector('#chef-head').style.transformOrigin = '600px 290px'
-  if (document.querySelector('#chef-eyelids')) {
-    animate('#chef-eyelids',[{opacity:0},{opacity:1,offset:.45},{opacity:1,offset:.55},{opacity:0}],4700,180)
-  }
-  appear('#recipe-paper',1600,6200)
-  animate('#recipe-paper',[{transform:'translate(-100px, -85px) rotate(-14deg)'},{transform:'translate(0, 0) rotate(-5deg)'}],1500,1800)
+  show('#oven,#oven-door',23000,30300)
+  origin('#oven-door','865px 465px')
+  animate('#oven-door',[{transform:'scaleY(1)'},{transform:'scaleY(.15)',offset:.22},{transform:'scaleY(.15)',offset:.45},{transform:'scaleY(1)',offset:.55},{transform:'scaleY(1)',offset:.73},{transform:'scaleY(.15)',offset:1}],23200,5800)
+  show('#bake-tray',23800,29800)
+  animate('#bake-tray',[{transform:'translate(-150px,-50px)'},{transform:'translate(0,0)',offset:.4},{transform:'translate(0,0)',offset:.8},{transform:'translate(-90px,-50px)'}],24000,5400)
+  show('#steam',27500,30000)
+  animate('#steam',[{transform:'translate(0,10px)'},{transform:'translate(-8px,-18px)'}],27600,1800,{iterations:1})
 
-  appear('#delivery-person',6100,11200)
-  appear('#delivery-crate',6100,11800)
-  for(const selector of ['#delivery-person','#delivery-crate']) {
-    animate(selector,[{transform:'translate(-320px, 0)'},{transform:'translate(-180px, -9px)',offset:.42},{transform:'translate(0, 0)'}],6100,2700)
-  }
-  for(const [selector,origin,angle] of [['#delivery-leg-left','108px 474px',13],['#delivery-leg-right','151px 475px',-13]]) {
-    const element=document.querySelector(selector)
-    if(element) element.style.transformOrigin=origin
-    animate(selector,[{transform:`rotate(${-angle}deg)`},{transform:`rotate(${angle}deg)`},{transform:`rotate(${-angle}deg)`}],6100,650,{iterations:4})
-  }
-  appear('#stock-pears',9400,19100)
-  animate('#stock-pears',[{transform:'translate(-110px, 185px) scale(.85)'},{transform:'translate(0, 0) scale(1)'}],9400,1800)
+  show('#stock-record,#waste-scale',30200,36800)
+  animate('#stock-record',[{transform:'translate(-30px,25px) rotate(-4deg)'},{transform:'translate(0,0)'}],30500,1600)
+  animate('#waste-scale',[{transform:'translate(80px,-30px)'},{transform:'translate(0,0)'}],30700,1700)
+  show('#supplier-position',37000,43700)
+  animate('#supplier-position',[{transform:'translate(-260px,0)'},{transform:'translate(0,0)',offset:.4},{transform:'translate(0,0)',offset:.85},{transform:'translate(-45px,0)'}],37100,6100)
+  show('#receiving-scale,#receiving-cart',38100,43600)
+  show('#received-crate',39400,43700)
+  animate('#received-crate',[{transform:'translate(-115px,-70px)'},{transform:'translate(0,6px)'}],39500,1800)
+  show('#thermometer',40400,43200)
+  animate('#thermometer',[{transform:'translate(-25px,-40px)'},{transform:'translate(-25px,15px)'},{transform:'translate(-25px,-40px)'}],40400,2600)
 
-  appear('#prep-pear',11800,19800)
-  animate('#prep-pear',[{transform:'translate(-95px, -145px) rotate(-14deg)'},{transform:'translate(0, 0) rotate(0)'}],11800,1700)
-  appear('#prep-bowl',12300,20200)
-  appear('#whisk',12700,20100)
-  document.querySelector('#chef-upper-arm').style.transformOrigin='656px 323px'
-  document.querySelector('#chef-forearm').style.transformOrigin='660px 369px'
-  document.querySelector('#whisk').style.transformOrigin='660px 369px'
-  animate('#chef-upper-arm',[{transform:'rotate(0deg)'},{transform:'rotate(-3deg)'},{transform:'rotate(0deg)'}],13000,1100,{iterations:6})
-  for (const part of ['#chef-forearm', '#chef-hand', '#whisk']) {
-    document.querySelector(part).style.transformOrigin='660px 369px'
-    animate(part,[{transform:'rotate(0deg)'},{transform:'rotate(19deg)'},{transform:'rotate(0deg)'}],13000,1100,{iterations:6})
-  }
-  animate('#chef-head',[{transform:'rotate(-4deg)'},{transform:'rotate(3deg)'},{transform:'rotate(-4deg)'}],13000,2200,{iterations:3,composite:'add'})
-
-  appear('#service-plate',20000,26200)
-  appear('#service-hand',22400,26200)
-  animate('#service-plate',[{transform:'translate(-270px, 0)'},{transform:'translate(0, 0)',offset:.6},{transform:'translate(80px, 0)'}],20000,5500)
-  animate('#service-hand',[{transform:'translate(210px, 0)'},{transform:'translate(0, 0)',offset:.35},{transform:'translate(90px, 0)'}],22200,3500)
-  animate('#chef-head',[{transform:'rotate(0deg)'},{transform:'rotate(8deg)'},{transform:'rotate(0deg)'}],21000,2800,{composite:'add'})
-
-  appear('#waste-bowl',26000,31500)
-  appear('#closing-ledger',26700,32000)
-  animate('#waste-bowl',[{transform:'translate(-160px, -50px)'},{transform:'translate(0, 0)'}],25900,1500)
-  animate('#closing-ledger',[{transform:'translate(80px, 80px) rotate(12deg)'},{transform:'translate(0, 0) rotate(-3deg)'}],26600,1800)
+  show('#owner-position',44100,65000,true)
+  animate('#owner-position',[{transform:'translate(160px,0)'},{transform:'translate(0,0)'}],44100,1800)
+  show('#roster-sheet',44500,50800)
+  animate('#roster-sheet',[{transform:'translate(40px,-20px)'},{transform:'translate(0,0)'}],44700,1800)
+  show('#service-plates',46500,50900)
+  animate('#service-plates',[{transform:'translate(-170px,-30px)'},{transform:'translate(0,-30px)'}],46600,3300)
+  show('#sales-slip',51300,57000)
+  animate('#sales-slip',[{transform:'translate(-80px,40px)'},{transform:'translate(140px,10px) scale(.85)'}],51500,4400)
+  animate('.forecast-bar,.actual-bar',[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],53200,2100)
+  show('#connection-lines',58400,62200)
+  animate('#connection-lines',[{strokeDashoffset:180},{strokeDashoffset:0}],58400,3200)
+  show('#scene-end',59900,65000,true)
+  acts.forEach((act,index)=>{
+    for(let row=0;row<3;row++)animate(`#record-${index} .record-row:nth-child(${row+1})`,[{opacity:.2,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],act.at+500+row*550,700)
+  })
 }
-function renderClock() {
-  const act = acts.reduce((found,item,index)=>elapsed>=item.at?index:found,0)
-  if(act!==currentAct){
-    currentAct=act;film.dataset.act=String(act)
-    document.querySelector('#act-number').textContent=String(act+1).padStart(2,'0')
-    document.querySelector('#act-title').textContent=acts[act].title
-    document.querySelector('#caption').textContent=acts[act].caption
+function formatTime(value) {
+  const seconds = Math.floor(value/1000)
+  return `${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`
+}
+function setCamera() {
+  illustration.setAttribute('viewBox', smallScreen.matches ? acts[currentAct].camera.join(' ') : acts[currentAct].desktopCamera.join(' '))
+}
+function render() {
+  const index = acts.reduce((found,act,i)=>elapsed>=act.at?i:found,0)
+  if(index!==currentAct){
+    currentAct=index
+    const act=acts[index]
+    film.dataset.act=String(index)
+    document.querySelectorAll('.record').forEach((record,i)=>{record.hidden=i!==index})
+    document.querySelector('#act-number').textContent=String(index+1).padStart(2,'0')
+    document.querySelector('#caption').textContent=act.caption
+    document.querySelector('#scene-time').textContent=act.time
+    document.querySelector('#scene-title').textContent=act.title
+    document.querySelector('#record-action').textContent=act.action
+    setCamera()
   }
-  progress.style.transform=`scaleX(${Math.min(1,elapsed/duration)})`
-  timeLabel.textContent=`0:${String(Math.floor(elapsed/1000)).padStart(2,'0')} / 0:32`
+  animations.forEach(animation=>{animation.currentTime=elapsed})
+  scrub.value=String(elapsed/1000)
+  scrub.setAttribute('aria-valuetext',`${formatTime(elapsed)} of 1 minute 5 seconds`)
+  document.querySelector('#time').textContent=`${formatTime(elapsed)} / 1:05`
   film.dataset.playing=String(playing)
 }
 function renderButton(){
-  playLabel.textContent=playing?'Pause':elapsed>=duration?'Play again':'Play'
+  document.querySelector('#play-label').textContent=playing?'Pause':elapsed>=duration?'Play again':'Play'
   playButton.setAttribute('aria-label',playing?'Pause animation':elapsed>=duration?'Play animation again':'Play animation')
   document.querySelector('#pause-icon').style.display=playing?'':'none'
 }
 function tick(now){
   if(!playing)return
   elapsed=Math.min(duration,now-startedAt)
-  renderClock()
+  render()
   if(elapsed>=duration){pause();return}
   frame=requestAnimationFrame(tick)
 }
 function play(){
-  if(playing||reducedMotion.matches||document.hidden)return
+  if(playing||!ready||reducedMotion.matches||document.hidden)return
   if(elapsed>=duration)elapsed=0
-  playing=true;startedAt=performance.now()-elapsed
-  animations.forEach(a=>{a.currentTime=elapsed;if(elapsed<a.effect.getComputedTiming().endTime)a.play();else a.pause()})
-  renderButton();renderClock();frame=requestAnimationFrame(tick)
+  playing=true
+  startedAt=performance.now()-elapsed
+  renderButton();render();frame=requestAnimationFrame(tick)
 }
 function pause(){
   if(playing)elapsed=Math.min(duration,performance.now()-startedAt)
-  playing=false;cancelAnimationFrame(frame)
-  animations.forEach(a=>{a.pause();a.currentTime=elapsed})
-  renderButton();renderClock()
+  playing=false
+  cancelAnimationFrame(frame)
+  renderButton();render()
 }
+function startIfVisible(){if(visible&&!userPaused&&elapsed<duration)play()}
 function reducedState(){
-  pause();elapsed=16500;animations.forEach(a=>{a.currentTime=elapsed})
-  renderClock();document.querySelector('#transport').hidden=true
-  document.querySelector('#motion-note').hidden=false
+  pause();elapsed=3500;render()
+  transport.hidden=true
+  motionNote.textContent='Your reduced-motion preference is on. The complete story is available below.'
+  motionNote.hidden=false
 }
-function startIfVisible(){if(visible&&!userPaused&&elapsed<duration&&!document.hidden&&!reducedMotion.matches)play()}
-rig()
-// A readable, complete still remains if motion is reduced or autoplay has not begun.
-animations.forEach(a=>{a.currentTime=1700})
+rig();render();renderButton()
 playButton.addEventListener('click',()=>{if(playing){userPaused=true;pause()}else{userPaused=false;play()}})
 document.querySelector('#replay').addEventListener('click',()=>{pause();elapsed=0;userPaused=false;play()})
-reducedMotion.addEventListener('change',()=>{if(reducedMotion.matches)reducedState();else{document.querySelector('#transport').hidden=false;document.querySelector('#motion-note').hidden=true;elapsed=0;userPaused=true;animations.forEach(a=>{a.currentTime=1700});renderClock();renderButton()}})
+scrub.addEventListener('input',()=>{const position=Number(scrub.value)*1000;userPaused=true;pause();elapsed=position;render();renderButton()})
+smallScreen.addEventListener('change',setCamera)
+reducedMotion.addEventListener('change',()=>{if(reducedMotion.matches)reducedState();else{transport.hidden=!ready;motionNote.hidden=true;elapsed=0;userPaused=true;render();renderButton()}})
 document.addEventListener('visibilitychange',()=>{if(document.hidden)pause();else startIfVisible()})
-const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting&&entries[0].intersectionRatio>=.35;if(visible)startIfVisible();else if(playing)pause()},{threshold:.35})
-function ready(){
-  document.querySelector('#transport').hidden=false
+const observer=new IntersectionObserver(entries=>{
+  visible=entries[0].isIntersecting&&entries[0].intersectionRatio>=.75
+  if(visible)startIfVisible();else if(playing)pause()
+},{threshold:.75})
+// Wait for both image assets before starting. A missing asset leaves the complete HTML story readable.
+Promise.all(['assets/kitchen-setting.webp','assets/people-v3.webp'].map(src=>new Promise((resolve,reject)=>{
+  const image=new Image();image.onload=resolve;image.onerror=reject;image.src=src
+}))).then(()=>{
+  ready=true;transport.hidden=false
   if(reducedMotion.matches)reducedState()
-  observer.observe(stage)
-}
-if(backdrop.complete&&backdrop.naturalWidth>0)ready();else backdrop.addEventListener('load',ready,{once:true})
-backdrop.addEventListener('error',()=>{document.querySelector('#motion-note').textContent='The illustration could not load. The complete story is available below.';document.querySelector('#motion-note').hidden=false;pause()},{once:true})
+  observer.observe(document.querySelector('.film-body'))
+}).catch(()=>{
+  pause();transport.hidden=true;motionNote.textContent='The illustration could not load. The complete story is available below.';motionNote.hidden=false
+})
