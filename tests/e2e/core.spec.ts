@@ -4,8 +4,8 @@ import { expect, test } from '@playwright/test'
 const publicRoutes = [
   {
     path: '/',
-    heading: 'passe culinaire',
-    htmlText: 'A company built by chefs in Melbourne.',
+    heading: 'From craft to what comes next.',
+    htmlText: 'Kitchen experience, carried into the tools and knowledge of today.',
   },
   {
     path: '/about',
@@ -86,7 +86,7 @@ test('theme control exposes choices and persists the selected theme', async ({ p
   await page.goto('/')
 
   const themeControl = page.getByRole('combobox', { name: 'Colour theme' })
-  await expect(themeControl).toHaveValue('system')
+  await expect(themeControl).toHaveValue('dark')
   await expect(themeControl.locator('option')).toHaveText(['System', 'Light', 'Dark'])
 
   await themeControl.selectOption('dark')
@@ -99,8 +99,14 @@ test('theme control exposes choices and persists the selected theme', async ({ p
 })
 
 test('mobile navigation links can be reached and followed by keyboard', async ({ page }) => {
-  const mainNavigation = page.getByRole('navigation', { name: 'Main navigation' })
   await page.goto('/')
+  const menu = page.locator('header details').first()
+  const mobile = await menu.isVisible()
+  if (mobile) {
+    await menu.locator('summary').focus()
+    await page.keyboard.press('Enter')
+  }
+  const mainNavigation = page.getByRole('navigation', { name: mobile ? 'Mobile navigation' : 'Main navigation', exact: true })
 
   const aboutLink = mainNavigation.getByRole('link', { name: 'About' })
   await expect(aboutLink).toBeVisible()
@@ -117,4 +123,36 @@ test('mobile navigation links can be reached and followed by keyboard', async ({
 
   await expect(page).toHaveURL(/\/about$/u)
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('About')
+})
+
+
+test('light and system themes persist and the monogram stays readable', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'light' })
+  await page.goto('/')
+  const theme = page.getByRole('combobox', { name: 'Colour theme' })
+  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(20, 20, 18)')
+  await theme.selectOption('light')
+  await page.reload()
+  await expect(theme).toHaveValue('light')
+  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(244, 241, 234)')
+  await expect(page.locator('header svg')).toHaveCSS('color', 'rgb(26, 26, 24)')
+  await theme.selectOption('system')
+  await page.reload()
+  await expect(theme).toHaveValue('system')
+  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(244, 241, 234)')
+  await page.emulateMedia({ colorScheme: 'dark' })
+  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(20, 20, 18)')
+})
+
+test('theme control works when browser storage is blocked', async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, 'localStorage', { get: () => { throw new Error('Storage blocked') } })
+  })
+  await page.goto('/')
+  const theme = page.getByRole('combobox', { name: 'Colour theme' })
+  await theme.selectOption('light')
+  await expect(theme).toHaveValue('light')
+  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(244, 241, 234)')
+  await theme.selectOption('dark')
+  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(20, 20, 18)')
 })

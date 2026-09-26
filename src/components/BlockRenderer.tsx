@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+import { HomeFounders, HomeProduct, HomeScope } from './HomeEditorial'
 import type { Page } from '../payload-types'
 import type { BlockContent } from '../lib/page-view-model'
 import { CTABlock } from './blocks/CTABlock'
@@ -52,6 +54,7 @@ function renderBlock(
     case 'founderCard':
       return <FounderCardBlock key={key} block={block} priority={index < 3} externalEmbedsEnabled={props.externalEmbedsEnabled} />
     case 'productSpotlight':
+      if (props.home) return <HomeProduct key={key} block={block} externalEmbedsEnabled={props.externalEmbedsEnabled === true} />
       return <ProductSpotlightBlock key={key} block={block} externalEmbedsEnabled={props.externalEmbedsEnabled} />
     case 'journalFeed':
       return <JournalFeedBlock key={key} block={block} posts={props.content.posts} />
@@ -66,6 +69,7 @@ function renderBlock(
     case 'plainStatement':
       return <PlainStatementBlock key={key} block={block} />
     case 'cta':
+      if (props.home) return <HomeScope key={key} block={block} />
       return <CTABlock key={key} block={block} />
     case 'spacer':
       return <SpacerBlock key={key} block={block} />
@@ -83,13 +87,27 @@ export function BlockRenderer({
 }: BlockRendererProps) {
   const pageBlocks = blocks ?? []
   const startsWithHero = pageBlocks[0]?.blockType === 'hero'
+  const rendered: ReactNode[] = []
+  for (let index = 0; index < pageBlocks.length; index += 1) {
+    const block = pageBlocks[index]
+    if (home && block.blockType === 'founderCard') {
+      const founders = [block]
+      while (pageBlocks[index + 1]?.blockType === 'founderCard') {
+        const next = pageBlocks[++index]
+        if (next.blockType === 'founderCard') founders.push(next)
+      }
+      rendered.push(<HomeFounders key={block.id ?? `founders-${index}`} blocks={founders} externalEmbedsEnabled={externalEmbedsEnabled} />)
+    } else {
+      rendered.push(renderBlock(block, index, { content, externalEmbedsEnabled, home }))
+    }
+  }
 
   return (
     <>
       {!startsWithHero && (
         <HeroBlock block={{ blockType: 'hero', heading: title, style: 'quiet' }} headingLevel={1} home={home} />
       )}
-      {pageBlocks.map((block, index) => renderBlock(block, index, { content, externalEmbedsEnabled, home }))}
+      {rendered}
     </>
   )
 }

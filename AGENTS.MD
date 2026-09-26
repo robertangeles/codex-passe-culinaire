@@ -89,8 +89,8 @@ Preserve these exact brand values in this file and globals.css. Use accessible s
 - Rules: 1 px ash at 30% opacity.
 - Editorial 12-column grid, generous whitespace, full-bleed or quiet text hero; no shadow cards, gradient buttons, parallax, autoplay video or looping motion.
 - Reveal motion: 200–300 ms opacity/transform, respecting prefers-reduced-motion.
-- Light default; system dark preference plus manual localStorage toggle.
-- Two approved signature details: lowercase light-weight Fraunces wordmark and Southern Hemisphere seasonal hero. No weather readout.
+- C4 charcoal default (approved 26 September 2026); explicit light and system preferences plus manual localStorage control.
+- Approved signature details: the selected reinforced P/C monogram, lowercase light-weight Fraunces wordmark and Southern Hemisphere seasonal hero. No weather readout.
 - Keep ash/clay off small light-theme text and moss off dark-theme text/focus where contrast fails. WCAG 2.2 AA, semantic landmarks, one h1, skip link and visible focus are required.
 - Mobile targets: Lighthouse Performance, Accessibility, Best Practices and SEO >=95; LCP <2.0s on the documented throttled 4G profile; home JavaScript <120kB gzipped. On 26 September 2026 the user approved retaining the stack with exceptions for the measured 158kB home JavaScript and up-to-2.48s median LCP. Regression ceilings are <160kB and <=2.6s (small measurement tolerance); category scores remain >=95. QUALITY_STRICT_BUDGETS=true restores the original targets.
 
@@ -125,3 +125,13 @@ Preserve these exact brand values in this file and globals.css. Use accessible s
 The user approved the build plan with defaults and the reviewed office-hours design and sketch. Those approvals stand. The CEO review is complete; implementation and engineering/diff review gates remain. Follow the seven phases and keep commits small with imperative messages. Keep this file updated when a rule changes.
 
 All initial services, events and sample posts are drafts. Do not publish fictitious offerings to populate the site. The current design preserves truthful empty states and the company-to-product path. Detailed requirements and acceptance criteria are in docs/PLAN.md and the original supplied brief.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

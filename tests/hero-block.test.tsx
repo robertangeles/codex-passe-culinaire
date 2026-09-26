@@ -44,6 +44,7 @@ describe('HeroBlock', () => {
     expect(html).toContain('A company built by chefs in Melbourne.')
     expect(html).toContain('href="/culinaire-kitchen">Explore CulinAIre Kitchen</a>')
     expect(html).not.toContain('<img')
+    expect(html).toContain('<svg')
   })
 
   it('uses a section heading by default on non-home content', () => {
@@ -81,17 +82,31 @@ describe('HeroBlock', () => {
     expect(heroImageForDate(unpopulatedSeason, dateAtMelbourneAutumn)).toBeUndefined()
   })
 
+  it('does not let a seasonal placeholder replace the approved ordinary image', () => {
+    const ordinaryImage = { ...winterImage, id: 12, filename: 'approved-hero.avif' } satisfies Media
+    const placeholderSeasonal = { ...autumnImage, id: 13, filename: 'placeholder.avif', placeholder: true } satisfies Media
+    const block = {
+      ...homeBlock,
+      image: ordinaryImage,
+      seasonalImages: [{ season: 'autumn', image: placeholderSeasonal }],
+    } satisfies Hero
+
+    expect(heroImageForDate(block, new Date('2026-03-01T00:00:00.000Z'))).toBe(ordinaryImage)
+  })
+
   it('renders a large image separately from readable text and lets the shared component own its caption', () => {
     const imageBlock = {
       ...homeBlock,
       style: 'image',
-      image: winterImage,
+      image: { ...winterImage, caption: 'Concept photograph, not the founders or their premises.' },
       seasonalImages: null,
     } satisfies Hero
     const html = renderToStaticMarkup(<HeroBlock block={imageBlock} home />)
 
     expect(html).toContain('<picture>')
     expect(html).toContain('src="/media/winter.avif"')
+    expect(html).toContain('Concept photograph, not the founders or their premises.')
+    expect(html).toContain('object-position:50% 50%')
     expect(html).toContain('loading="eager"')
     expect(html).toContain('Explore CulinAIre Kitchen')
     expect(html.match(/<h2\b/g)).toHaveLength(1)

@@ -1,4 +1,5 @@
 import sharp from 'sharp'
+import { ensureHomepageImage, homepageLayout } from './homepage-content'
 import { getPayload } from 'payload'
 import type { Page, Post } from '../src/payload-types'
 
@@ -71,19 +72,9 @@ if (!(await payload.findGlobal({ slug: 'footer', overrideAccess: true })).create
 if (!(await exists('forms', 'key', 'contact'))) await payload.create({ collection: 'forms', overrideAccess: true,
   data: { key: 'contact', title: 'Contact', enabled: true, description: 'Send a note to the team.' } })
 
+const heroImage = await ensureHomepageImage(payload)
 const pages = [
-  { slug: 'home', title: 'Passe Culinaire', description: 'Passe Culinaire is a Melbourne company founded by two chefs. Explore CulinAIre Kitchen and our work.', layout: [
-    { blockType: 'hero', heading: 'passe culinaire', style: 'quiet', summary: 'A company built by chefs in Melbourne.', seasonalImages: [
-      { season: 'summer', image: image(1) }, { season: 'autumn', image: image(2) }, { season: 'winter', image: image(3) }, { season: 'spring', image: image(4) },
-    ] },
-    { blockType: 'plainStatement', statement: 'Kitchen work first. Tools second.' },
-    { blockType: 'productSpotlight', heading: 'CulinAIre Kitchen', body: rich("CulinAIre Kitchen uses AI to help organise a prep list from today's menu, including components used in more than one dish."), webUrl: '/culinaire-kitchen', image: image(11) },
-    { blockType: 'serviceList', heading: 'Services' },
-    { blockType: 'upcomingEvents', heading: 'Training', limit: 3 },
-    { blockType: 'journalFeed', heading: 'Journal', limit: 3 },
-    { blockType: 'founderCard', name: 'Alex Charasse', title: 'CEO', portrait: image(10), bio: rich('Alex Charasse founded Almost French Patisserie in Richmond and Almost French Epicure on Little Collins Street in Melbourne. He is a Maître Pâtissier and Maître Chocolatier.') },
-    { blockType: 'founderCard', name: 'Rob Angeles', title: 'CTO', portrait: image(10), bio: rich('Rob Angeles trained in pastry and hot kitchen. He is a Data Architect.') },
-  ] },
+  { slug: 'home', title: 'Passe Culinaire', description: 'Passe Culinaire is a Melbourne company founded by two chefs. Explore CulinAIre Kitchen and our work.', layout: homepageLayout(heroImage.id) },
   { slug: 'about', title: 'About Passe Culinaire', description: 'Meet chefs Alex Charasse and Rob Angeles, the founders of Passe Culinaire in Melbourne.', layout: [
     { blockType: 'hero', heading: 'About', style: 'quiet' },
     { blockType: 'prose', body: rich('Passe Culinaire is based in Melbourne. Alex Charasse and Rob Angeles are its founders.') },
@@ -142,6 +133,6 @@ for (const [slug, title, excerpt] of [
     data: { slug, title, excerpt, body: rich('[TO CONFIRM]'), authors: [rob.id, alex.id], heroImage: image(9),
       seo: { metaDescription: excerpt }, _status: 'draft' } })
 }
-console.log('Seed complete: two admins, twelve placeholders, four pages, three draft services, two draft training events, three draft journal entries.')
+console.log('Seed complete: two admins, twelve placeholders, one concept image, four pages, three draft services, two draft training events, three draft journal entries.')
 await payload.destroy()
 process.exit(0)

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Hero, Media } from '../../payload-types'
+import { BrandMonogram } from '../BrandMonogram'
 import { ResponsiveMedia } from '../ResponsiveMedia'
 import styles from './HeroBlock.module.css'
 
@@ -27,6 +28,7 @@ function isPopulatedMedia(image: Hero['image']): image is Media {
     && typeof image.height === 'number'
     && image.height > 0
     && typeof image.alt === 'string'
+    && image.placeholder !== true
 }
 
 export function seasonInMelbourne(date: Date): Season | null {
@@ -50,20 +52,22 @@ export function HeroBlock({ block, headingLevel = 2, home = false }: HeroBlockPr
   const Heading = headingLevel === 1 ? 'h1' : 'h2'
   const hasImage = block.style === 'image'
   const image = heroImageForDate(block, new Date())
+  const hasPopulatedImage = hasImage && isPopulatedMedia(image)
   const className = [
     styles.hero,
-    hasImage ? styles.withImage : styles.quiet,
+    hasPopulatedImage ? styles.withImage : styles.quiet,
     home ? styles.home : '',
   ].filter(Boolean).join(' ')
 
   return (
     <section className={className} aria-label={block.eyebrow || undefined}>
-      {hasImage && (
+      {hasPopulatedImage && (
         <div className={styles.media}>
-          <ResponsiveMedia media={image} priority={home || headingLevel === 1} sizes="(min-width: 960px) 58vw, 100vw" />
+          <ResponsiveMedia media={image} priority={home || headingLevel === 1} sizes={home ? '(min-width: 741px) 52vw, 100vw' : '(min-width: 960px) 58vw, 100vw'} />
         </div>
       )}
       <div className={styles.content}>
+        {home && <BrandMonogram className={styles.homeMonogram} display />}
         {block.eyebrow && <p className={styles.eyebrow}>{block.eyebrow}</p>}
         <Heading className={home ? styles.wordmark : styles.heading}>{block.heading}</Heading>
         {block.summary && <p className={styles.summary}>{block.summary}</p>}

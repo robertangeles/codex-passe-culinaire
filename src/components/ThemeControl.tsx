@@ -7,7 +7,7 @@ export type ThemePreference = "system" | "light" | "dark";
 
 const storageKey = "passe-theme";
 const listeners = new Set<() => void>();
-let memoryPreference: ThemePreference = "system";
+let memoryPreference: ThemePreference = "dark";
 let storageUnavailable = false;
 
 function isThemePreference(value: string | null): value is ThemePreference {
@@ -17,16 +17,16 @@ function isThemePreference(value: string | null): value is ThemePreference {
 function readDocumentPreference(): ThemePreference | null {
   if (typeof document === "undefined") return null;
   const value = document.documentElement.getAttribute("data-theme");
-  return value === "light" || value === "dark" ? value : null;
+  return isThemePreference(value) ? value : null;
 }
 
 function getPreference(): ThemePreference {
-  if (typeof window === "undefined") return "system";
+  if (typeof window === "undefined") return "dark";
   if (storageUnavailable) return memoryPreference;
 
   try {
     const stored = window.localStorage.getItem(storageKey);
-    return isThemePreference(stored) ? stored : "system";
+    return isThemePreference(stored) ? stored : "dark";
   } catch {
     storageUnavailable = true;
     memoryPreference = readDocumentPreference() ?? memoryPreference;
@@ -36,10 +36,6 @@ function getPreference(): ThemePreference {
 
 function applyPreference(preference: ThemePreference): void {
   if (typeof document === "undefined") return;
-  if (preference === "system") {
-    delete document.documentElement.dataset.theme;
-    return;
-  }
   document.documentElement.dataset.theme = preference;
 }
 
@@ -50,11 +46,7 @@ function notifySubscribers(): void {
 function setPreference(preference: ThemePreference): void {
   memoryPreference = preference;
   try {
-    if (preference === "system") {
-      window.localStorage.removeItem(storageKey);
-    } else {
-      window.localStorage.setItem(storageKey, preference);
-    }
+    window.localStorage.setItem(storageKey, preference);
     storageUnavailable = false;
   } catch {
     storageUnavailable = true;
@@ -65,7 +57,7 @@ function setPreference(preference: ThemePreference): void {
 
 function onStorage(event: StorageEvent): void {
   if (event.key !== storageKey && event.key !== null) return;
-  memoryPreference = isThemePreference(event.newValue) ? event.newValue : "system";
+  memoryPreference = isThemePreference(event.newValue) ? event.newValue : "dark";
   storageUnavailable = false;
   applyPreference(memoryPreference);
   notifySubscribers();
@@ -85,7 +77,7 @@ function subscribe(listener: () => void): () => void {
 }
 
 function getServerPreference(): ThemePreference {
-  return "system";
+  return "dark";
 }
 
 export default function ThemeControl() {

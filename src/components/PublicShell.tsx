@@ -5,6 +5,7 @@ import type { Footer, Header, SiteSetting } from '../payload-types'
 import { getPublicShell } from '../lib/public-content'
 import { safePublicHref } from '../lib/urls'
 import ThemeControl from './ThemeControl'
+import { BrandMonogram } from './BrandMonogram'
 import { JsonLd } from './JsonLd'
 import { buildOrganisationGraph } from '../lib/seo/organisation'
 import { siteOrigin } from '../lib/seo/core'
@@ -109,17 +110,27 @@ export default async function PublicShell({ children }: { children: ReactNode })
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <Link className={styles.wordmark} href="/" aria-label={companyName} prefetch={false}>
-            {companyName}
+            <BrandMonogram className={styles.headerMark} />
+            <span>{companyName}</span>
           </Link>
           <nav aria-label="Main navigation" className={styles.navigation}>
             <NavigationLinks items={header.navItems} />
           </nav>
+          <details className={styles.mobileMenu}>
+            <summary>Menu</summary>
+            <nav aria-label="Mobile navigation"><NavigationLinks items={header.navItems} /></nav>
+          </details>
         </div>
       </header>
       {children}
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
-          <FooterColumns columns={footer.columns} />
+          <div className={styles.footerTop}>
+            <Link className={styles.wordmark} href="/" aria-label={companyName} prefetch={false}>
+              <BrandMonogram className={styles.footerMark} /><span>{companyName}</span>
+            </Link>
+            <FooterColumns columns={footer.columns} />
+          </div>
           <div className={styles.footerBottom}>
             <div className={styles.legal}>
               {footer.legalText?.trim() ? <p>{footer.legalText}</p> : null}

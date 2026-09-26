@@ -35,23 +35,32 @@
   --display-leading: 1.05;
   --input-radius: 2px;
   --rule: 1px solid color-mix(in srgb, var(--color-ash) 30%, transparent);
+  --surface: var(--color-charcoal);
+  --surface-muted: #23251f;
+  --surface-panel: #272a22;
+  --foreground: var(--color-bone);
+  --link: var(--color-bone);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
   --surface: var(--color-bone);
+  --surface-muted: var(--color-linen);
+  --surface-panel: var(--color-linen);
   --foreground: var(--color-ink);
   --link: var(--color-moss);
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --surface: var(--color-charcoal);
-    --foreground: var(--color-linen);
-    --link: var(--color-linen);
+@media (prefers-color-scheme: light) {
+  :root[data-theme="system"] {
+    --surface: var(--color-bone);
+    --surface-muted: var(--color-linen);
+    --surface-panel: var(--color-linen);
+    --foreground: var(--color-ink);
+    --link: var(--color-moss);
+    color-scheme: light;
   }
-}
-
-:root[data-theme="dark"] {
-  --surface: var(--color-charcoal);
-  --foreground: var(--color-linen);
-  --link: var(--color-linen);
 }
 
 html { scroll-behavior: smooth; }

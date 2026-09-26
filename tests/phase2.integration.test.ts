@@ -33,7 +33,7 @@ describe('Phase 2 PostgreSQL integration', () => {
 
 
   it('has exact seed counts and keeps editorial changes on a repeated seed', async () => {
-    for (const [collection, count] of [['users', 2], ['media', 12], ['pages', 4], ['services', 3], ['events', 2], ['posts', 3], ['testimonials', 0]] as const)
+    for (const [collection, count] of [['users', 2], ['media', 13], ['pages', 4], ['services', 3], ['events', 2], ['posts', 3], ['testimonials', 0]] as const)
       expect((await payload.count({ collection, overrideAccess: true })).totalDocs).toBe(count)
     const home = (await payload.find({ collection: 'pages', overrideAccess: true, where: { slug: { equals: 'home' } } })).docs[0]
     await payload.update({ collection: 'pages', id: home.id, overrideAccess: true, data: { title: 'Editorial home title' } })
@@ -41,7 +41,7 @@ describe('Phase 2 PostgreSQL integration', () => {
     await payload.updateGlobal({ slug: 'header', overrideAccess: true, data: { navItems: [] } })
     await payload.updateGlobal({ slug: 'footer', overrideAccess: true, data: { columns: [] } })
     execFileSync('pnpm', ['seed'], { env: { ...process.env, DATABASE_URI: testUri, MEDIA_DIR: process.env.MEDIA_DIR }, stdio: 'pipe' })
-    expect((await payload.count({ collection: 'media', overrideAccess: true })).totalDocs).toBe(12)
+    expect((await payload.count({ collection: 'media', overrideAccess: true })).totalDocs).toBe(13)
     expect((await payload.count({ collection: 'pages', overrideAccess: true })).totalDocs).toBe(4)
     expect((await payload.findByID({ collection: 'pages', id: home.id, overrideAccess: true })).title).toBe('Editorial home title')
     expect((await payload.findGlobal({ slug: 'site-settings', overrideAccess: true })).tagline).toBe('Editorial tagline')

@@ -1,0 +1,163 @@
+[
+  {
+    "heading": "passe culinaire",
+    "summary": "A company built by chefs in Melbourne.",
+    "style": "quiet",
+    "seasonalImages": [
+      {
+        "season": "summer",
+        "image": {
+          "filename": "placeholder-01.webp"
+        }
+      },
+      {
+        "season": "autumn",
+        "image": {
+          "filename": "placeholder-02.webp"
+        }
+      },
+      {
+        "season": "winter",
+        "image": {
+          "filename": "placeholder-03.webp"
+        }
+      },
+      {
+        "season": "spring",
+        "image": {
+          "filename": "placeholder-04.webp"
+        }
+      }
+    ],
+    "blockType": "hero"
+  },
+  {
+    "statement": "Kitchen work first. Tools second.",
+    "blockType": "plainStatement"
+  },
+  {
+    "heading": "CulinAIre Kitchen",
+    "body": {
+      "root": {
+        "type": "root",
+        "format": "",
+        "indent": 0,
+        "version": 1,
+        "children": [
+          {
+            "type": "paragraph",
+            "format": "",
+            "indent": 0,
+            "version": 1,
+            "children": [
+              {
+                "mode": "normal",
+                "text": "CulinAIre Kitchen uses AI to help organise a prep list from today's menu, including components used in more than one dish.",
+                "type": "text",
+                "style": "",
+                "detail": 0,
+                "format": 0,
+                "version": 1
+              }
+            ],
+            "direction": "ltr"
+          }
+        ],
+        "direction": "ltr"
+      }
+    },
+    "image": {
+      "filename": "placeholder-11.webp"
+    },
+    "webUrl": "/culinaire-kitchen",
+    "blockType": "productSpotlight"
+  },
+  {
+    "heading": "Services",
+    "blockType": "serviceList"
+  },
+  {
+    "heading": "Training",
+    "limit": 3,
+    "blockType": "upcomingEvents"
+  },
+  {
+    "heading": "Journal",
+    "limit": 3,
+    "blockType": "journalFeed"
+  },
+  {
+    "name": "Alex Charasse",
+    "title": "CEO",
+    "portrait": {
+      "filename": "placeholder-10.webp"
+    },
+    "bio": {
+      "root": {
+        "type": "root",
+        "format": "",
+        "indent": 0,
+        "version": 1,
+        "children": [
+          {
+            "type": "paragraph",
+            "format": "",
+            "indent": 0,
+            "version": 1,
+            "children": [
+              {
+                "mode": "normal",
+                "text": "Alex Charasse founded Almost French Patisserie in Richmond and Almost French Epicure on Little Collins Street in Melbourne. He is a Maître Pâtissier and Maître Chocolatier.",
+                "type": "text",
+                "style": "",
+                "detail": 0,
+                "format": 0,
+                "version": 1
+              }
+            ],
+            "direction": "ltr"
+          }
+        ],
+        "direction": "ltr"
+      }
+    },
+    "blockType": "founderCard"
+  },
+  {
+    "name": "Rob Angeles",
+    "title": "CTO",
+    "portrait": {
+      "filename": "placeholder-10.webp"
+    },
+    "bio": {
+      "root": {
+        "type": "root",
+        "format": "",
+        "indent": 0,
+        "version": 1,
+        "children": [
+          {
+            "type": "paragraph",
+            "format": "",
+            "indent": 0,
+            "version": 1,
+            "children": [
+              {
+                "mode": "normal",
+                "text": "Rob Angeles trained in pastry and hot kitchen. He is a Data Architect.",
+                "type": "text",
+                "style": "",
+                "detail": 0,
+                "format": 0,
+                "version": 1
+              }
+            ],
+            "direction": "ltr"
+          }
+        ],
+        "direction": "ltr"
+      }
+    },
+    "blockType": "founderCard"
+  }
+]
