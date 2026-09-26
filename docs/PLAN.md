@@ -1089,3 +1089,9 @@ The local content-update command refuses remote database/media destinations, une
 | Design/browser verification | Approved C4 application | Actual desktop/mobile/light/dark site | Passed locally | Screenshots, 26 browser tests and five-route Lighthouse evidence |
 
 VERDICT: C4 implemented and verified locally under the user's explicit authorisation. D1–D4 for this implementation are resolved by the selected composition and tested responsive/theme behaviour. Outside-provider coverage remains unavailable; no clean external review is claimed. Production deployment, authentic photography and unconfirmed business facts are not assumed complete.
+
+## 54. Kitchen operations storyboard authorised
+
+The user described the broader CulinAIre Kitchen scope and approved building the proposed five-chapter browser storyboard plus a representative receiving-to-prep animation. [The storyboard plan](designs/kitchen-operations-story-proposal.md) controls this preview-only work. Product capability availability and automatic connections are still pending confirmation. Keep sample records visibly illustrative and leave production source/CMS unchanged while this concrete prototype is reviewed. Parent owns integration and verification; the executor owns only the SVG illustration.
+
+The storyboard is now available at http://127.0.0.1:4182/kitchen-operations-story/. [Implementation evidence](designs/kitchen-operations-story/README.md) includes five desktop/mobile states, keyboard/no-JavaScript/reduced-motion checks and a once-only transfer animation. Required application checks pass (311 tests plus lint, types and build). Independent preview review passed. Await storyboard feedback and capability confirmation before integrating it into the homepage.
