@@ -1,0 +1,113 @@
+{
+  "width": 960,
+  "height": 640,
+  "fps": 24,
+  "chapters": [
+    {
+      "id": "forecast",
+      "at": 0,
+      "end": 9,
+      "src": "forecast.png",
+      "columns": 2,
+      "rows": 3,
+      "frames": 6,
+      "mode": "once",
+      "order": [
+        0,
+        1,
+        2,
+        1,
+        2,
+        5
+      ]
+    },
+    {
+      "id": "pantry",
+      "at": 9,
+      "end": 19,
+      "src": "pantry.png",
+      "columns": 2,
+      "rows": 3,
+      "frames": 6,
+      "mode": "once"
+    },
+    {
+      "id": "preparation",
+      "at": 19,
+      "end": 29,
+      "src": "preparation.png",
+      "columns": 2,
+      "rows": 3,
+      "frames": 6,
+      "mode": "cycle"
+    },
+    {
+      "id": "cooking",
+      "at": 29,
+      "end": 39,
+      "src": "cooking.png",
+      "columns": 2,
+      "rows": 3,
+      "frames": 6,
+      "mode": "once"
+    },
+    {
+      "id": "waste",
+      "at": 39,
+      "end": 47,
+      "src": "waste.png",
+      "columns": 2,
+      "rows": 3,
+      "frames": 6,
+      "mode": "once"
+    },
+    {
+      "id": "receiving",
+      "at": 47,
+      "end": 57,
+      "src": "receiving.png",
+      "columns": 2,
+      "rows": 3,
+      "frames": 6,
+      "mode": "once"
+    },
+    {
+      "id": "team",
+      "at": 57,
+      "end": 65,
+      "src": "team.png",
+      "columns": 2,
+      "rows": 3,
+      "frames": 6,
+      "mode": "once"
+    },
+    {
+      "id": "sales",
+      "at": 65,
+      "end": 73,
+      "src": "sales.png",
+      "columns": 2,
+      "rows": 3,
+      "frames": 6,
+      "mode": "once",
+      "order": [
+        0,
+        2,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": "tomorrow",
+      "at": 73,
+      "end": 80,
+      "src": "tomorrow.png",
+      "columns": 2,
+      "rows": 3,
+      "frames": 6,
+      "mode": "once"
+    }
+  ]
+}
