@@ -1,0 +1,17 @@
+{
+  "unbounded_process_refused": true,
+  "bounded_limits_accepted": true,
+  "unbounded_swap_refused": true,
+  "checkpoint_roundtrip_preserves_batch": true,
+  "mismatched_checkpoint_refused": true,
+  "malformed_latents_refused_before_decode": true,
+  "occupied_gpu_refused": true,
+  "recovery_command_preserves_cwd_and_limits": true,
+  "actual_scope_oversize_test": {
+    "memory_cap_mib": 64,
+    "attempted_allocation_mib": 128,
+    "result": "isolated oom-kill",
+    "swap_peak": 0
+  },
+  "native_motion_quality": "unverified; first render was lost during workstation restart"
+}

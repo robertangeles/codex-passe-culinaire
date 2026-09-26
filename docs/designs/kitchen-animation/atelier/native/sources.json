@@ -1,0 +1,26 @@
+{
+  "forecast": {
+    "historical_extracted_pose": 1
+  },
+  "pantry": {
+    "historical_extracted_pose": 3
+  },
+  "preparation": {
+    "historical_extracted_pose": 1
+  },
+  "cooking": {
+    "historical_extracted_pose": 1
+  },
+  "waste": {
+    "historical_extracted_pose": 3
+  },
+  "receiving": {
+    "historical_extracted_pose": 2
+  },
+  "team": {
+    "historical_extracted_pose": 1
+  },
+  "tomorrow": {
+    "historical_extracted_pose": 1
+  }
+}

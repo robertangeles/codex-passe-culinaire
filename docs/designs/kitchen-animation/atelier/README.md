@@ -1,5 +1,7 @@
 # A day in the kitchen: complete illustrated film
 
+**Current review status:** the user likes the artwork but has rejected the contact motion. Fingers and props visibly merge in several transitions. The correction and render-recovery work is documented in [native/README.md](native/README.md); no corrected full film is available yet.
+
 The complete replacement film runs for **80 seconds**, across nine scenes. This follows the user's rejection of the robotic 3D characters and of a five-second motion sample as a substitute for the requested long animation. Visual acceptance remains with the user.
 
 Open http://127.0.0.1:4182/kitchen-animation/atelier/ after starting the local preview server:
