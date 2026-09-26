@@ -88,6 +88,7 @@ Preserve these exact brand values in this file and globals.css. Use accessible s
 - Radius: zero except 2 px on form inputs.
 - Rules: 1 px ash at 30% opacity.
 - Editorial 12-column grid, generous whitespace, full-bleed or quiet text hero; no shadow cards, gradient buttons, parallax, autoplay video or looping motion.
+- Kitchen-story preview exception: the user requested automatic animation without chapter clicks. This local study may use one finite, muted film that starts when visible, with pause/replay, offscreen and hidden-tab pause, and an initially paused reduced-motion state. No looping or production integration is authorised by this exception.
 - Reveal motion: 200–300 ms opacity/transform, respecting prefers-reduced-motion.
 - C4 charcoal default (approved 26 September 2026); explicit light and system preferences plus manual localStorage control.
 - Approved signature details: the selected reinforced P/C monogram, lowercase light-weight Fraunces wordmark and Southern Hemisphere seasonal hero. No weather readout.

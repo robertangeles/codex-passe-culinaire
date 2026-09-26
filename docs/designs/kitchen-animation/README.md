@@ -1,3 +1,13 @@
+# Current direction: study 04
+
+The 65-second composited version documented below was rejected by the user for character scale, overlaps and weak movement. Its old screenshots and passing control checks are historical evidence, not visual acceptance.
+
+The current rebuild is the [80-second miniature kitchen film](cinema/README.md), viewable at http://127.0.0.1:4182/kitchen-animation/cinema/ . It uses original articulated 3D characters and native film playback. Production source and CMS remain unchanged.
+
+---
+
+## Historical study 03
+
 # A day in your kitchen: study 03
 
 Current preview: http://127.0.0.1:4182/kitchen-animation/
