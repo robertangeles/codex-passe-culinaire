@@ -1123,3 +1123,10 @@ The user rejected study 03 for scale, overlapping people/props and mediocre move
 The authoring renderer is isolated from the application. The preview uses prerendered desktop/mobile H.264 films with synchronised HTML records and finite accessible playback. No homepage or CMS integration is approved by this work; user visual acceptance remains open. Verification evidence and licences live with the study.
 
 Final study-04 evidence: the native 80-second film runs in 80.026 seconds with zero dropped frames in the measured browser run; pause/replay/seeking/offscreen/reduced-motion and no-JavaScript/media-failure fallbacks pass. Both desktop/mobile Axe runs report zero violations. All nine chapters fit nine viewport widths from 320 to 1600px. Application lint, types, 311 tests and build pass. Independent visual and native-player review returned PASS with no fix-first findings. User visual acceptance remains separate and open.
+
+
+## 58. Study 04 characters rejected as robotic
+
+The user's explicit feedback, “They look like robots”, rejects the procedural character treatment. Study 04 is not visually accepted. Its technical evidence remains historical and must not be described as proof of acceptable human animation.
+
+The next bounded experiment is [a human motion study](designs/kitchen-animation/human-motion/README.md): one painted chef, shown close up, whisking through a generated frame sequence. It tests anatomy, human warmth and temporal consistency before another whole-film rebuild. This is a change of medium and an experiment, not an approved replacement art direction. The full kitchen narrative, production homepage and CMS remain unchanged. The source resolution and limitations are recorded explicitly.
