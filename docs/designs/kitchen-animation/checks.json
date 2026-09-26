@@ -1,0 +1,127 @@
+{
+  "autoplay": true,
+  "errors": [],
+  "states": [
+    {
+      "seconds": 3,
+      "id": "recipe-paper",
+      "before": "matrix(0.995287, -0.0969723, 0.0969723, 0.995287, -6.27612, -5.3347)",
+      "after": "matrix(0.996158, -0.0875691, 0.0875691, 0.996158, -0.264172, -0.224546)"
+    },
+    {
+      "seconds": 8,
+      "id": "delivery-person",
+      "before": "matrix(1, 0, 0, 1, -59.1734, -2.95867)",
+      "after": "matrix(1, 0, 0, 1, -28.0226, -1.40113)"
+    },
+    {
+      "seconds": 15,
+      "id": "whisk",
+      "before": "matrix(0.998608, 0.0527501, -0.0527501, 0.998608, 0, 0)",
+      "after": "matrix(0.999999, 0.00112594, -0.00112594, 0.999999, 0, 0)"
+    },
+    {
+      "seconds": 23,
+      "id": "service-plate",
+      "before": "matrix(1, 0, 0, 1, -12.3578, 0)",
+      "after": "matrix(1, 0, 0, 1, 9.66456, 0)"
+    },
+    {
+      "seconds": 29,
+      "id": "closing-ledger",
+      "before": "matrix(0.99863, -0.052336, 0.052336, 0.99863, 0, 0)",
+      "after": "matrix(0.99863, -0.052336, 0.052336, 0.99863, 0, 0)"
+    }
+  ],
+  "noLoop": true,
+  "pause": true,
+  "resume": true,
+  "offscreenPause": true,
+  "mobileNoOverflow": true,
+  "axe": [],
+  "reducedMotion": true,
+  "noJS": true,
+  "mobileCaptionFit": [
+    {
+      "width": 320,
+      "id": "plan",
+      "client": 100,
+      "scroll": 100,
+      "bottom": 761.75,
+      "last": 720.734375
+    },
+    {
+      "width": 320,
+      "id": "receive",
+      "client": 100,
+      "scroll": 100,
+      "bottom": 761.75,
+      "last": 720.734375
+    },
+    {
+      "width": 320,
+      "id": "prep",
+      "client": 100,
+      "scroll": 100,
+      "bottom": 761.75,
+      "last": 720.734375
+    },
+    {
+      "width": 320,
+      "id": "service",
+      "client": 100,
+      "scroll": 100,
+      "bottom": 761.75,
+      "last": 745.53125
+    },
+    {
+      "width": 320,
+      "id": "close",
+      "client": 100,
+      "scroll": 100,
+      "bottom": 761.75,
+      "last": 745.53125
+    },
+    {
+      "width": 390,
+      "id": "plan",
+      "client": 122,
+      "scroll": 122,
+      "bottom": 781.203125,
+      "last": 718.3125
+    },
+    {
+      "width": 390,
+      "id": "receive",
+      "client": 122,
+      "scroll": 122,
+      "bottom": 781.203125,
+      "last": 718.3125
+    },
+    {
+      "width": 390,
+      "id": "prep",
+      "client": 122,
+      "scroll": 122,
+      "bottom": 781.203125,
+      "last": 718.3125
+    },
+    {
+      "width": 390,
+      "id": "service",
+      "client": 122,
+      "scroll": 122,
+      "bottom": 781.203125,
+      "last": 718.3125
+    },
+    {
+      "width": 390,
+      "id": "close",
+      "client": 122,
+      "scroll": 122,
+      "bottom": 781.203125,
+      "last": 718.3125
+    }
+  ],
+  "desktopOpeningAxe": []
+}

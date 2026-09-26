@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">A kitchen at work</title>
+  <desc id="desc">A chef prepares pear pastry as a delivery arrives and service begins.</desc>
+  <defs>
+    <linearGradient id="jacket" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F8F0DC" /><stop offset="1" stop-color="#DCCEB1" /></linearGradient>
+    <linearGradient id="apron" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#536047" /><stop offset="1" stop-color="#30392F" /></linearGradient>
+    <linearGradient id="copper" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#DBA16E" /><stop offset=".5" stop-color="#A65E3E" /><stop offset="1" stop-color="#75412F" /></linearGradient>
+    <linearGradient id="pear" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#D9B96D" /><stop offset=".55" stop-color="#A9A65E" /><stop offset="1" stop-color="#647449" /></linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#AE7048" /><stop offset="1" stop-color="#70472F" /></linearGradient>
+  </defs>
+
+  
+  <g id="stock-pears">
+    <g transform="translate(420 290) scale(.55) translate(-420 -290)"><path d="M361 272h118l-10 13H371z" fill="#76503A" />
+    <path d="M375 268c0-12 9-19 15-29 5-9 0-20 9-25 12-6 26 4 27 17 2 11 11 19 11 32 0 16-13 25-31 25s-31-7-31-20Z" fill="url(#pear)" />
+    <path d="M403 215c2-9 0-14 7-20" stroke="#59452D" stroke-width="5" stroke-linecap="round" />
+    <path d="M414 204c8-10 19-9 24-4-5 9-13 12-24 10" fill="#6D7950" />
+    <path d="M423 270c0-11 8-18 13-27 4-9 0-18 8-22 11-5 24 5 24 17 1 10 9 17 9 30 0 14-12 23-28 23s-26-7-26-21Z" fill="#C29F57" />
+    <path d="M445 221c2-7 0-11 5-17" stroke="#59452D" stroke-width="4" stroke-linecap="round" />
+    <path d="M454 211c8-7 15-5 19-1-4 7-10 9-19 8" fill="#75804F" />
+    <path d="M347 275c0-10 7-16 12-24 4-8 0-15 7-19 9-5 20 4 21 14 1 8 7 15 7 25 0 13-10 20-24 20s-23-6-23-16Z" fill="#C98552" />
+    <path d="M366 232c2-6 0-9 4-14" stroke="#59452D" stroke-width="4" stroke-linecap="round" />
+    <path d="M374 224c6-5 13-4 16 0-3 6-9 7-16 7" fill="#69794C" />
+    <path d="M388 260c8 2 13 9 14 18" stroke="#E9D19A" stroke-opacity=".5" stroke-width="3" stroke-linecap="round" />
+    <path d="M447 257c6 2 10 8 11 14" stroke="#EAD79E" stroke-opacity=".55" stroke-width="3" stroke-linecap="round" />
+  </g></g>
+
+  
+  <g id="recipe-paper">
+    <g transform="rotate(-8 492 236)"><path d="m439 180 92-8 14 13-1 116-105 4z" fill="#E7D9BA" />
+    <path d="m531 172 1 17 13-4" fill="#C6AD7C" />
+    <path d="m452 199 44-4m-43 12 66-6m-66 14 55-5m-54 14 38-3m-35 17 53-5m-52 12 37-4" stroke="#746550" stroke-width="2" stroke-linecap="round" opacity=".68" />
+    <path d="m468 273 42-4" stroke="#A85D43" stroke-width="3" stroke-linecap="round" opacity=".8" />
+    <path d="M514 236c5-9 12-9 15-2-2 8-8 11-15 9m2 10c7-2 11-7 12-13" stroke="#9A5840" stroke-width="2" stroke-linecap="round" />
+    <circle cx="463" cy="187" r="2" fill="#B96548" />
+  </g></g>
+
+  
+  <g id="delivery-person">
+    <g id="delivery-leg-left">
+      <g transform="translate(108 474)"><path d="M8 0h44l-4 73-10 72H10l9-75z" fill="#485043" />
+      <path d="m11 130 28 4-4 19H2c-6 0-8-5-4-9z" fill="#563C30" />
+      <path d="m18 23 28 4" stroke="#68705A" stroke-width="3" opacity=".7" />
+    </g></g>
+    <g id="delivery-leg-right">
+      <g transform="translate(151 475)"><path d="M3 0h44l-7 70 17 72-31 8-20-74z" fill="#525847" />
+      <path d="m39 132 25 8 8 14c1 4-2 7-7 7H30c-6-1-7-5-3-9z" fill="#644531" />
+      <path d="m7 25 31 3" stroke="#69705A" stroke-width="3" opacity=".7" />
+    </g></g>
+    <path d="M103 330c9-23 29-36 54-36 30 0 47 16 54 43l8 143H96z" fill="url(#jacket)" />
+    <path d="m138 300 8 29-18 16 21 25 22-25-13-17 6-29z" fill="#A85E43" />
+    <path d="M112 353c22 13 63 13 87-1l13 125H97z" fill="url(#apron)" />
+    <path d="m117 359-18 63m93-62 17 62" stroke="#A78E69" stroke-width="5" stroke-linecap="round" />
+    <path d="M132 387h43m-41 10h39" stroke="#748065" stroke-width="2" opacity=".7" />
+    <path d="m132 344 17 17m20-17-19 17" stroke="#C8B99A" stroke-width="3" />
+    <circle cx="146" cy="377" r="2.4" fill="#8F826B" /><circle cx="146" cy="397" r="2.4" fill="#8F826B" /><circle cx="146" cy="417" r="2.4" fill="#8F826B" />
+    <path d="M109 338c-15 10-24 29-19 43l30 24 12-15-17-20 13-15z" fill="url(#jacket)" />
+    <path d="M193 338c13 6 27 22 28 39l-18 23-14-13 9-16-15-15z" fill="url(#jacket)" />
+    <path d="M96 374c-1 9 7 18 17 20 8 2 14-4 13-10l-7-8-10-7z" fill="#A86449" />
+    <path d="M199 380c4 8 13 12 20 10 8-3 8-11 4-17l-8-7-10 2z" fill="#A86449" />
+    <path d="M130 278c0-29 16-48 41-48s40 19 40 48v30c0 32-17 48-40 48s-41-18-41-49z" fill="#BC805F" />
+    <path d="M129 286c-2-27 5-49 21-61 21-16 53-7 65 17 8 16 6 35 2 51-5-9-11-17-22-22-23-9-41 3-66 15z" fill="#49372D" />
+    <path d="M192 287c3-6 9-9 14-7m-20 22c5 4 11 4 16 0" stroke="#55372E" stroke-width="3" stroke-linecap="round" />
+    <path d="M201 310c-5 4-10 5-16 4" stroke="#824F40" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M132 298c-6-2-10 1-9 7 1 7 5 11 11 11" fill="#A96E53" />
+    <path d="M126 272c1-26 17-43 43-43 26 0 43 17 44 43-14-6-29-8-45-7-15 0-29 3-42 7z" fill="#F4EAD5" />
+    <path d="M131 269c14-6 53-8 78-1" stroke="#D3C4A8" stroke-width="4" stroke-linecap="round" />
+    <path d="M139 267c9-13 20-18 31-18s23 5 31 17" stroke="#E1D3B8" stroke-width="2" opacity=".8" />
+  </g>
+
+  
+  <g id="chef">
+    <path d="M565 504h45l-8 61h-36z" fill="#4A5142" />
+    <path d="M613 504h46l13 61h-38z" fill="#3C4438" />
+    <path d="m567 553 33 4-2 15h-48c-8 0-10-6-4-11z" fill="#533C30" />
+    <path d="m635 555 31-4 18 10 1 12h-51c-7 0-8-6-3-10z" fill="#533C30" />
+    <path d="M559 310c9-28 31-43 66-43 35 0 57 18 66 49l12 160c-38 20-113 19-156-1l5-112z" fill="url(#jacket)" />
+    <path d="M590 275c6 12 17 19 32 19 14 0 24-7 31-19l20 21-29 38h-42l-29-38z" fill="#A96348" />
+    <path d="M575 329c28 17 72 17 100 0l27 147c-43 19-110 19-151-1z" fill="url(#apron)" />
+    <path d="m581 333 38 31-32 31m88-62-35 31 31 31" stroke="#B8A37D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M594 364h59m-61 9h58" stroke="#69745B" stroke-width="2" opacity=".7" />
+    <path d="m616 298 8 14 8-14" fill="#E4D9C1" />
+    <path d="m613 314 11 14 10-14" stroke="#CFBFA2" stroke-width="3" />
+    <circle cx="624" cy="347" r="2.6" fill="#8A7A61" /><circle cx="624" cy="368" r="2.6" fill="#8A7A61" /><circle cx="624" cy="389" r="2.6" fill="#8A7A61" />
+    <path d="M574 476h103l5 13c-31 12-80 13-113 0z" fill="#374034" />
+    <g id="chef-head">
+      <g transform="translate(628 310) scale(.76) translate(-628 -310)"><path d="M585 246c0-33 17-54 43-54 28 0 46 22 46 56v30c0 30-18 45-45 45-27 0-44-17-44-48z" fill="#C98865" />
+      <path d="M585 254c-7-37 3-63 28-75 28-14 63 3 69 32 4 15 2 31-1 43-7-10-14-18-25-22-20-7-40 1-71 22z" fill="#41332B" />
+      <path d="M658 256c7-7 16-8 21-3 4 6-1 16-8 20" fill="#B9795B" />
+      <path d="M629 257c7-6 16-5 20 1m-22 11c3 3 8 3 12 0" stroke="#49332C" stroke-width="3.5" stroke-linecap="round" />
+      <path d="M649 284c-6 4-13 4-19 1" stroke="#8D5545" stroke-width="2.7" stroke-linecap="round" />
+      <path d="M589 267c-6-2-10 2-9 9 1 7 5 11 11 11" fill="#B87C5F" />
+      <path d="M583 227c-6-11-5-24 3-31-3-12 7-23 19-23 7-15 29-17 39-5 13-5 27 6 25 20 9 9 8 25 1 38-13-6-29-8-46-7-16 0-31 2-41 8Z" fill="#F5EDDC" />
+      <path d="M586 224c14-8 55-9 77-2" stroke="#D4C6AB" stroke-width="4" stroke-linecap="round" />
+      <path d="M594 195c4-9 11-14 21-15m16-2c9 0 16 5 20 12m-47 34c14-5 42-6 59-2" stroke="#E3D7C1" stroke-width="2.5" stroke-linecap="round" opacity=".9" />
+      <path d="M624 308c-9 4-20 2-27-4" stroke="#8B5945" stroke-width="3" stroke-linecap="round" opacity=".7" />
+      <g id="chef-eyelids" opacity="0">
+        <path d="M628 259c7-5 15-4 20 1-5 4-13 5-20-1zm-1 0h21" fill="#744B3D" stroke="#744B3D" stroke-width="3" stroke-linecap="round" />
+      </g>
+    </g></g>
+
+    
+    <path d="M565 322c-21 7-35 23-40 46l-7 36c-2 12 5 20 16 19 8-1 12-7 14-17l12-43 25-22z" fill="url(#jacket)" />
+    <path d="m518 395 25 7-5 15-24-6z" fill="#D6C7A9" />
+    <path d="M520 411c-4 9-1 17 7 20 8 3 13-1 16-8l4-13-17-9z" fill="#B9795B" />
+    <path d="M528 416c5 1 9 3 12 7" stroke="#D89E7C" stroke-width="2.5" stroke-linecap="round" />
+
+  
+  
+  <g id="workbench"><path d="M415 490h640v127H415z" fill="#71503A" /><path d="M430 511h269v82H430zm291 0h317v82H721z" fill="#875F42" /><path d="M409 478h652v20H409z" fill="#C19A6D" /><path d="M426 465h615l20 13H409z" fill="#D8BA8F" /><path d="M425 617h20v42h-20zm595 0h21v42h-21z" fill="#584332" /><path d="M430 516h269m22 0h317M710 507v93" stroke="#B48A5F" stroke-width="3" /><path d="M536 526h51m267 0h51" stroke="#D1B477" stroke-width="5" stroke-linecap="round" /><path d="M439 481h575" stroke="#E7CDA6" stroke-width="2" /></g><g id="prep-bowl">
+    <path d="M570 415h123c-5 47-21 70-62 70-38 0-55-25-61-70Z" fill="url(#copper)" />
+    <ellipse cx="631.5" cy="416" rx="62" ry="12" fill="#DBA274" />
+    <ellipse cx="631.5" cy="417" rx="51" ry="6.5" fill="#43392E" />
+    <path d="M585 431c10 28 24 39 45 41" stroke="#F0C394" stroke-width="4" stroke-linecap="round" opacity=".65" />
+    <path d="M678 432c-4 19-13 32-25 38" stroke="#713F30" stroke-width="3" stroke-linecap="round" opacity=".8" />
+    <path d="M603 485h57" stroke="#694231" stroke-width="5" stroke-linecap="round" />
+  </g>
+
+    
+    <g id="chef-upper-arm">
+      <g transform="translate(656 323)"><path d="M0 0c18 0 34 12 37 29 2 13-4 24-18 34l-15 11-19-24 14-17-14-14z" fill="url(#jacket)" />
+      <path d="m-5 49 23 15-11 15-23-17z" fill="#D6C7A9" />
+      <path d="M-16 63c7-4 16-3 23 2" stroke="#BBAA8B" stroke-width="2" stroke-linecap="round" />
+    </g></g>
+    <g id="chef-forearm">
+      <g transform="translate(660 369)"><path d="M0 0c10 0 18 7 18 16l-11 31c-4 10-13 16-23 12-9-4-12-12-8-21l11-28C-10 4-6 0 0 0z" fill="url(#jacket)" />
+      <path d="m-22 40 26 10-6 14-26-10z" fill="#CFC0A3" />
+    </g></g>
+    <g id="chef-hand">
+      <g transform="translate(631 415) rotate(-18)"><path d="M4 8c-7-3-11-12-9-18l3-11c1-4 6-4 7 0l-1 9 4-16c1-4 7-3 7 1l-2 14 5-15c1-4 7-2 6 2l-4 16 7-12c2-4 7-1 5 3l-9 24c-3 9-11 13-19 9Z" fill="#C98765" />
+      <path d="M1-4c3 2 5 6 5 10m7-15 1 9m9-8-2 7" stroke="#E5B08E" stroke-width="2" stroke-linecap="round" />
+    </g></g>
+  </g>
+
+  
+  <g id="whisk">
+    <g transform="rotate(-16 640 395)"><path d="m638 383 2 49" stroke="#4E4031" stroke-width="6" stroke-linecap="round" />
+    <path d="M640 430c-8 9-12 18-9 27 3 8 14 10 19 3 5-8 1-18-7-30m-3 2c-4 11-4 20 0 27m4-27c4 10 6 19 2 27" stroke="#D6C8A9" stroke-width="3" stroke-linecap="round" />
+    <path d="m638 384 2 37" stroke="#B88657" stroke-width="1.5" stroke-linecap="round" />
+  </g></g>
+
+  
+  <g id="service-plate">
+    <ellipse cx="921" cy="481" rx="87" ry="24" fill="#CFC2A8" />
+    <ellipse cx="921" cy="477" rx="78" ry="17" fill="#F0E7D3" />
+    <ellipse cx="921" cy="475" rx="60" ry="11" fill="#D2BB90" />
+    <path d="M879 474c0-23 18-42 42-42s42 19 42 42c0 17-19 24-42 24s-42-7-42-24Z" fill="#B87546" />
+    <path d="M883 468c7-21 21-32 38-32 19 0 34 14 39 33-17-5-22-11-39-11-16 0-23 8-38 10Z" fill="#D6A35F" />
+    <path d="M891 468c8-17 18-24 30-24 13 0 24 8 31 24-12-4-21-6-31-6s-19 2-30 6Z" fill="#E8C983" />
+    <path d="M895 466c10 3 14 9 17 19m19-19c-2 7-1 13 3 19m7-22c7 2 12 6 16 12" stroke="#A45E3F" stroke-width="3" stroke-linecap="round" opacity=".8" />
+    <path d="M917 440c-3-6-1-11 4-15m2 16c5-5 10-6 15-4" stroke="#68764B" stroke-width="4" stroke-linecap="round" />
+    <path d="M850 482c38 16 104 18 142 0" stroke="#A89779" stroke-width="2" opacity=".65" />
+  </g>
+
+  
+  <g id="waste-bowl">
+    <g transform="translate(0 -40)"><path d="M738 482h91c-4 31-15 46-46 46-28 0-41-16-45-46Z" fill="url(#copper)" />
+    <ellipse cx="783.5" cy="482" rx="46" ry="9" fill="#D89B6C" />
+    <ellipse cx="783.5" cy="482" rx="37" ry="5" fill="#43392E" />
+    <path d="m765 475 9-9 7 5-8 9zm18 3 8-12 9 4-6 11zm-25-1 5-9 7 3-3 9z" fill="#C9AD68" />
+    <path d="M754 494c8 18 18 24 31 25" stroke="#F0C394" stroke-width="3" stroke-linecap="round" opacity=".6" />
+  </g></g>
+
+  
+  <g id="service-hand">
+    <g transform="translate(-100 15)"><g transform="translate(1090 390)"><path d="M110 25c-23-8-44-9-60-2l-46 20c-9 4-12 14-5 21 5 5 11 5 18 2l21-10-15 16c-6 7-2 16 7 17 5 0 9-3 13-7l14-14-8 18c-3 8 4 15 12 12 4-1 7-5 9-10l9-19-2 17c-1 8 8 12 14 8 4-2 6-7 6-13l2-25 13-6z" fill="#BC805F" />
+    <path d="M27 56 50 46m-6 33 18-15m5 22 13-15m8 14 8-18" stroke="#DCA284" stroke-width="3" stroke-linecap="round" />
+    <path d="M38 50c-3-9 1-17 9-21l17-7" stroke="#E4D5B8" stroke-width="3" stroke-linecap="round" />
+    <path d="M67 24c6-1 13-1 19 1" stroke="#8E5744" stroke-width="2" stroke-linecap="round" opacity=".7" />
+  </g></g></g>
+
+  
+  <g id="delivery-crate">
+    <g transform="translate(-45 -45)"><path d="M173 429h158l-7 94H180z" fill="url(#wood)" />
+    <path d="M177 438h150v16H178zm-1 30h147v15H177zm-1 30h145v14H176z" fill="#C08A5B" />
+    <path d="M189 438v79m36-79v80m39-80v81m38-80v78" stroke="#6E4833" stroke-width="5" opacity=".86" />
+    <path d="M173 429h158v10H173z" fill="#D0A06C" />
+    <path d="M186 429c11-8 21-13 31-11m74 11c-8-8-19-12-29-11" stroke="#8A5737" stroke-width="3" stroke-linecap="round" />
+    <path d="M181 524h141" stroke="#E0B47E" stroke-width="2" opacity=".6" />
+    <path d="m247 454 10 9-5 4-10-8z" fill="#6B7850" /><path d="m285 484 8 5-4 7-9-7z" fill="#D3B66D" />
+  </g></g>
+<g id="prep-pear">
+    <g transform="translate(510 475) scale(.8) translate(-510 -475)"><path d="M443 467h157l-11 18H452z" fill="#6E4934" />
+    <path d="M451 463c1-5 5-8 12-8h115c8 0 12 4 13 10l-7 7H456z" fill="#B7855C" />
+    <path d="M486 454c0-10 8-17 13-25 4-8 1-17 8-20 10-5 21 4 21 15 1 9 8 16 8 27 0 14-10 23-25 23s-25-7-25-20Z" fill="url(#pear)" />
+    <path d="M510 414c2-7 0-12 5-17" stroke="#5B4630" stroke-width="4" stroke-linecap="round" />
+    <path d="M519 404c8-8 17-6 20-1-4 8-10 10-19 9" fill="#73804F" />
+    <path d="M494 438c7 0 12 6 14 13" stroke="#E9D79D" stroke-width="3" stroke-linecap="round" opacity=".65" />
+    <path d="m464 466 11-7 7 6-11 6z" fill="#E5D8BF" /><path d="m551 464 10-7 8 5-10 7z" fill="#E5D8BF" />
+    <path d="M463 480h118" stroke="#D8B17D" stroke-width="2" opacity=".55" />
+  </g></g>
+
+  
+  <g id="closing-ledger">
+    <g transform="translate(994 480) scale(.85) translate(-994 -540)"><g transform="rotate(-5 994 490)"><path d="M909 432c30-9 57-7 83 5v111c-26-12-52-13-83-4z" fill="#D9CBAE" />
+    <path d="M992 437c27-12 53-14 83-7l3 113c-30-8-57-6-86 6z" fill="#EEE3CB" />
+    <path d="M992 437v115" stroke="#957C5B" stroke-width="3" />
+    <path d="m922 454 53-6m-52 15 52-6m-50 16 49-6m-43 18 42-4m36-14 49-7m-48 16 49-7m-48 16 47-7m-42 19 37-5" stroke="#87745D" stroke-width="2" stroke-linecap="round" opacity=".65" />
+    <path d="m936 521 11 9 20-27m44 24 11 8 20-26" stroke="#A65E43" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M977 430c5-4 10-4 15-1m4 0c6-4 12-5 19-3" stroke="#B86E4B" stroke-width="3" stroke-linecap="round" />
+  </g></g></g>
+
+  
+  </svg>
