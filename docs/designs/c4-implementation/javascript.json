@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "http://localhost:3000/_next/static/chunks/0l_1k8czxjnz2.js": 3598,
+    "http://localhost:3000/_next/static/chunks/2y9nif2p0brro.js": 8484,
+    "http://localhost:3000/_next/static/chunks/2z6wo54dtxfpa.js": 43015,
+    "http://localhost:3000/_next/static/chunks/turbopack-2hsq6ljw7lzge.js": 4304,
+    "http://localhost:3000/_next/static/chunks/1baxsfl0669w1.js": 71691,
+    "http://localhost:3000/_next/static/chunks/0p3gnmwsxws5z.js": 3690,
+    "http://localhost:3000/_next/static/chunks/1a8d7g4x_28zx.js": 4199,
+    "http://localhost:3000/_next/static/chunks/1_i4hkfwyz1x7.js": 902,
+    "http://localhost:3000/_next/static/chunks/1s1-zmb2goe2f.js": 576
+  },
+  "inlineBytes": 5273,
+  "totalBytes": 145732,
+  "errors": []
+}

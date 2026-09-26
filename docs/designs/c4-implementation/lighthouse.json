@@ -1,0 +1,57 @@
+[
+  {
+    "url": "https://localhost:3443/",
+    "runs": 3,
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "medianLCPms": 1954
+  },
+  {
+    "url": "https://localhost:3443/about",
+    "runs": 3,
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "medianLCPms": 1953
+  },
+  {
+    "url": "https://localhost:3443/contact",
+    "runs": 3,
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "medianLCPms": 1802
+  },
+  {
+    "url": "https://localhost:3443/culinaire-kitchen",
+    "runs": 3,
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "medianLCPms": 1803
+  },
+  {
+    "url": "https://localhost:3443/journal",
+    "runs": 3,
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "medianLCPms": 2179
+  }
+]

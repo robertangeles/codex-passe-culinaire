@@ -1,6 +1,6 @@
 # Passe Culinaire build plan
 
-Status: approved with defaults. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–7 are accepted for local implementation, with explicitly approved Phase 6 performance exceptions. Live deployment and production content inputs remain outstanding. The ten-link LLM index remains a production content gate. See the latest checkpoint below.
+Status: implementation scope approved with defaults; visual acceptance reopened on 26 September 2026 following the user’s rejection of the current presentation. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–7 are accepted for local implementation, with explicitly approved Phase 6 performance exceptions. Live deployment and production content inputs remain outstanding. The ten-link LLM index remains a production content gate. See the latest checkpoint below.
 
 ## 1. Approved defaults and remaining production inputs
 
@@ -917,24 +917,6 @@ Evidence retained locally in `.local/phase4-gate-final.log`, `.local/discovery-h
 
 Use Payload’s supported admin graphics, UI fields, named/unnamed tabs, live-preview configuration, built-in duplication hooks and the supported task queue. Keep existing content field paths stable, so moving fields into visual tabs does not rename database columns. Use the existing authenticated draft endpoint for the preview iframe and refresh only an authenticated preview after an allowed same-origin save message. Use explicit scheduling identity restoration and verify permissions at execution time. Installed Payload 3.90.2's native schedule drawer silently normalises DST wall times and shows a success toast for returned server errors. A small Publish-tab panel therefore validates the original wall-clock input before queuing the supported task, rejects missing/repeated Melbourne hours, offers explicit UTC and accurately displays failures. Native immediate Publish, drafts, versions and duplication remain in use. An authenticated worker path and documented systemd cadence must run without an open browser. Test both admins and retain existing editor/global/media restrictions. Parent owns all configuration, migration, access and route integration; executor tasks own individual admin components or bounded routes.
 
-## GSTACK REVIEW REPORT
-
-| Review | Trigger | Why | Runs | Status | Findings |
-|---|---|---|---:|---|---|
-| CEO Review | /plan-ceo-review | Scope and strategy | 1 documented | CLEAR; prior local history no longer returned by current lookup | Approved HOLD SCOPE; no unresolved policy choices |
-| Outside Review | Claude Code plan review | Independent challenge | 0 completed | UNAVAILABLE | Export rejected; no outside result |
-| Eng Review | /plan-eng-review | Architecture and tests | 1 | ISSUES OPEN (PLAN); logged and read back | 21 findings/gap groups mapped, 1 reopened decision, 0 unhandled silent policy gaps |
-| Design Review | /plan-design-review | Detailed UI/UX | 0 | NOT RUN | Approved office-hours sketch remains source |
-| DX Review | /plan-devex-review | Developer experience | 0 | NOT RUN | Not separately invoked |
-
-OUTSIDE COVERAGE: host Codex; provider Claude Code; phase plan-review; unavailable because automatic approval review rejected export of this plan payload. No cross-model agreement is claimed.
-
-VERDICT: CEO scope approved; engineering review completed with implementation/test/performance work open. Phases 1–5 are accepted for local implementation. Phase 6 has approved performance exceptions; Phase 7 is accepted locally. Live deployment remains outstanding. Shipping is not cleared. Production inputs and ten eligible curated destinations remain launch requirements.
-
-**UNRESOLVED DECISIONS:**
-- D6 / E-P1 resolved on 26 September 2026: retain the stack with the measured JavaScript and LCP exceptions, as recorded in Section 41.
-
-
 ## 39. Phase 5 acceptance: editorial workflow
 
 Accepted locally on 25 September 2026 after parent integration and fresh independent review. Added branded Payload admin, Content/SEO/Publish tabs, effective search preview and counters, authenticated save-triggered live preview, safe draft duplication, publication timestamps, and administrator-only scheduling with the supported Payload job queue. The small custom scheduling panel rejects ambiguous/missing Melbourne times, supports explicit UTC, reports server failures accurately, and lists/cancels pending jobs. Generic job permissions remain admin-only; execution rechecks the scheduling account, including demotion. The signed worker endpoint and operator command run two bounded batches to include dependent invalidation. Committed migration adds job enums without renaming content columns and refuses rollback while affected job history exists.
@@ -1002,3 +984,108 @@ Final Lighthouse medians: home 2,102 ms, about 2,478 ms, CulinAIre Kitchen 1,952
 Built: all seven implementation phases, committed CMS migrations/seed, public/editorial/discovery features, quality checks, health, backup/recovery tooling, native CI configuration and deployment runbook. Skipped because no target/credentials were supplied: live VPS installation/reboot, hosted GitHub Actions execution, DNS/public certificate issuance, live mail/S3 and off-host backup delivery. No automatic deployment was added. Assumptions: one Ubuntu 24.04 VPS, PostgreSQL 16, local media by default, one timer-driven worker, manual releases and brief maintenance windows.
 
 Production inputs still required: repository remote and approved deployment target/domain, private production configuration, final photographs and confirmed copy/capabilities, notification provider/recipient, off-host backup destination/retention, and a tenth genuinely published curated LLM destination. Initial offerings/posts remain drafts. The website is not claimed live or launch-content complete. Deployment procedures and the recovery evidence are in `docs/DEPLOY.md`.
+
+
+## 44. Reopened design review: culinary character and trust
+
+The user rejected the current visual result and specified French culinary elegance, professionalism, nostalgia and romanticism, bridging old and new. Technical phase acceptance does not establish visual acceptance. The home priority and truthful-content constraints stand.
+
+The full initial audit, seven-dimension findings, pending decisions, journey, image provenance, verification limits and implementation handoff are recorded in [the design review](designs/trust-review/REVIEW.md). Two responsive visual studies and desktop/mobile captures are stored alongside it. Initial design completeness: 3/10 against the revised brief. No post-fix score, approved mockup or completed design review is claimed.
+
+Historical checkpoint: the user rejected the limited basis of both initial studies and requested extensive audience and reference research. Neither A nor B is approved. They are superseded by the research checkpoint below. No production code or database content changed.
+
+## 45. Research before redesign
+
+The user explicitly redirected the review to extensive target-market, culinary-personality, reference-site and credibility research. That desk-research pass is now documented in [the research report](designs/research-20260926/RESEARCH.md), with 15 annotated reference sites in [the visual library](designs/research-20260926/index.html), browser screenshots, primary-source links, Melbourne agency case studies, audience hypotheses, evidence gaps and a revised creative brief. No customer interviews or conversion validation are claimed.
+
+The key recommendation is to derive the next composition from Alex and Rob’s specific culinary practice and present-day work, with an early company explanation, founder evidence and a concrete product path. Three structurally different approaches are specified for exploration: founders at work; documented history alongside present work; and an authored useful kitchen publication. These are pending proposals, not new implementation approvals. The first two colour/layout studies are superseded and should not be implemented.
+
+Existing exact brand tokens, truthful content, accessibility and performance contracts remain. The initial 3/10 design-completeness rating is unchanged. Research supplies the missing basis for the next visual round; it does not establish that the existing website is now trustworthy.
+
+## 46. Selected calligraphic identity direction
+
+On 26 September 2026 the user selected the **middle composition, study 02**, from the three calligraphic P/C studies responding to their Almost French Patisserie reference: “The middle, no doubt”. This authorises refinement of that diagonal monogram, preserving its sweeping descender and interlaced initials. The earlier six brandmark explorations are not the selected direction.
+
+The selection and first vector working proof are recorded in [the identity study](designs/monogram-refinement-20260926/selected-02/index.html). The proof preserves the chosen silhouette and adds positive/reversed assets, reinforced small-use variants and a header specimen. It is not final production lettering: control-point cleanup, crossing refinement and favicon simplification remain. Existing lowercase Fraunces lettering, exact colour tokens and accessibility requirements stand. The selected monogram may accompany the existing wordmark.
+
+This is approval of the monogram direction, not of a homepage composition, new copy, photography or a completed design review. D1–D4 remain open. Production source files are unchanged.
+
+## 47. Six homepage studies with the selected logo
+
+The user explicitly requested six homepage design studies, each using selected calligraphic monogram 02, in the same browser comparison workflow as the design review. Six responsive local previews and a gstack ratings/comments board are now available. The [study record](designs/homepage-studies-20260926/README.md) documents compositions, source imagery, checks, live URLs and feedback storage.
+
+A: formal culinary house; B: editorial journal; C: asymmetrical split; D: founders first; E: facing notebook pages; F: dark atelier. All use the selected logo and preserve factual founder content and the company-to-product path. Proposed copy and generated photography are labelled. No homepage selection, production-content approval or completed design-review score is inferred. Production application source is unchanged; D1–D4 remain pending.
+
+## 48. Homepage feedback: C with F’s palette
+
+The user submitted board feedback selecting **C**, rated 5/5, requesting F’s elegant dark palette and moving the hero image left so the chef and the work are visible. The original submission is saved in [feedback-round-1.json](designs/homepage-studies-20260926/feedback-round-1.json). Zero values for other studies are not treated as explicit rejection ratings.
+
+The [C2 prototype](designs/homepage-studies-20260926/c2.html) preserves C’s split layout with F’s charcoal/bone treatment. The image is in the left desktop column and its frame is shifted towards the right side of the source to show the hands and pastries. Mobile retains the introduction before the image. Both desktop and mobile rendering were inspected; menu navigation and image loading pass. A separate original/revision comparison board preserves the original six-study feedback.
+
+D1 now has an explicit selected direction: C with F’s palette and revised image placement. The exact C2 rendering is available for review. D2–D4, final copy, real imagery and production implementation review remain open; prototype text or image selection is not blanket public-content approval. Application code is unchanged.
+
+The user subsequently instructed: “Do not apply it yet I want to see it again in the browser comparison board”. Keep C2 as a preview only. Do not apply the proposed redesign to the application before the user explicitly authorises implementation after reviewing the comparison. The original/revision board was reopened in Grid mode.
+
+## 49. Remove the duplicate founder strip in the preview
+
+The user’s second board feedback favours Option B, the dark C2 refinement, and requests removal of the founder/credential row directly beneath the hero because it is redundant. Both submitted and pending messages agree; originals are preserved in `docs/designs/homepage-studies-20260926/feedback-round-2*.json`.
+
+The [C3 preview](designs/homepage-studies-20260926/c3.html) removes only that row. The dedicated founder biographies remain. A separate comparison presents C2 as A and C3 as B. The change is verified in desktop/mobile previews. The explicit instruction not to implement the redesign remains in force; application source is unchanged.
+
+## 50. Clearer monogram on the dark preview
+
+The user confirmed the latest Option B (C3) as the clear winner and asked for greater logo visibility because its fine strokes appeared blurry on dark. The saved submission is `docs/designs/homepage-studies-20260926/feedback-round-3.json`.
+
+The [C4 preview](designs/homepage-studies-20260926/c4.html) introduces reinforced SVG variants at slightly larger header/hero sizes, preserving the selected silhouette and bone colour. Desktop/mobile visual checks and image/overflow checks pass. The focused comparison is available for feedback. This remains preview-only; the explicit no-implementation instruction is unchanged.
+
+## 51. C4 visual direction selected
+
+The latest board submission chooses **B**, stating “Option B is the winner”. This is C4: C’s split composition with F’s charcoal/bone treatment, left-column photograph framed around the chef’s hands and tartlets, the duplicate credentials row removed, and the reinforced, slightly larger P/C monogram. The original feedback is preserved in [feedback-round-4.json](designs/homepage-studies-20260926/feedback-round-4.json). [approved-design.json](designs/homepage-studies-20260926/approved-design.json) records the exact selected assets and hashes.
+
+Approved visual reference: `/home/robangeles/Documents/My AI Projects/codex-passe-culinaire/docs/designs/homepage-studies-20260926/c4.html`, with `c4.css`, `c2.css`, `studies.css` and referenced local assets. Desktop screenshot: `docs/designs/homepage-studies-20260926/screens/c4-desktop.jpg`. Monogram working vectors remain trace-derived with optical reinforcement; no print/embroidery validation is claimed.
+
+The explicit instruction “Do not apply it yet” remains in force. This is visual selection, not an explicit implementation instruction. Application source is unchanged. Final copy, genuine work/founder photography, product evidence, remaining responsive/accessibility decisions and engineering verification remain open. Do not claim a completed design review or revise its score solely from this selection.
+
+## GSTACK REVIEW REPORT
+
+| Review | Trigger | Why | Runs | Status | Findings |
+|---|---|---|---:|---|---|
+| CEO Review | /plan-ceo-review | Scope and strategy | 1 documented | Scope approved | Existing company-to-product priority retained |
+| Outside Review | Claude Code plan review | Independent challenge | 0 completed | Unavailable | Historical plan export rejection; no outside result claimed |
+| Eng Review | /plan-eng-review | Architecture and tests | 2 logged | Historical plan findings; implementation accepted locally | Seven phases subsequently verified; performance exceptions explicitly approved |
+| Design Review | /plan-design-review | Culinary identity and trust | 1 in progress | C4 visual direction approved; implementation held | Initial 3/10; 15 references assessed; middle P/C selected; C structure plus F palette requested |
+| DX Review | /plan-devex-review | Developer experience | 0 | Not run | Not separately invoked |
+
+OUTSIDE COVERAGE: no external design review completed. Automatic approval review rejected external mockup generation containing founder/product details. Business-specific proposals were built locally; generic concept photography contains no company details.
+
+VERDICT: existing scope and local engineering acceptance retained. Visual acceptance reopened. Design review and redesign implementation are not cleared. Any implementation changes require the existing engineering verification and independent diff review gates. Live deployment and production content inputs remain outstanding.
+
+**UNRESOLVED DECISIONS:**
+- D1: C4 visual direction selected, including the clearer logo. Preview only; implementation awaits explicit authorisation.
+- D2: founder/product hierarchy and homepage treatment of unpublished collections.
+- D3: public photography treatment and proposed headline/example wording.
+- D4: responsive navigation and dark-theme composition for the selected direction.
+
+## 52. C4 implementation authorised and CEO scope review
+
+The user explicitly instructed “Let’s apply this visual update” and invoked plan-ceo-review. The earlier preview-only hold is superseded. HOLD SCOPE follows the previously approved defaults: implement C4 through the existing CMS without expanding the business/product scope. [The implementation review](designs/c4-implementation-plan.md) records architecture, failure paths, approval ledger, sequence and acceptance. Charcoal is the first-visit default; explicit light and system preferences remain available. Existing exact tokens and engineering/performance contracts remain. Final acceptance awaits actual checks.
+
+
+## 53. C4 implementation accepted locally
+
+The approved C4 treatment is applied to the local published homepage through the existing CMS, with a private pre-update backup. The shared header/footer carry the selected reinforced P/C mark. The first-visit theme is charcoal; explicit light/system choices persist. The product example, founder biographies and company scope remain editable, and the generated concept image is visibly disclosed. Existing sample services, events and posts remain drafts.
+
+Implementation and evidence: [C4 verification record](designs/c4-implementation/README.md). Lint and typecheck pass; 57 test files / 311 tests pass; production build passes; 26 browser tests pass. All five tested routes pass the existing three-run Lighthouse assertions: median performance 99–100 and other categories 100, median LCP 1.802–2.179s. Home JavaScript is 145,732 bytes gzip under the approved 160,000-byte limit. The selected mark is a cacheable SVG asset, and standard stylesheet delivery replaces experimental CSS inlining to keep the new layout within budget. No check or budget was relaxed.
+
+The local content-update command refuses remote database/media destinations, unexpected editorial changes and unpublished homepage edits. Repeated seed/application is non-destructive. Independent diff review initially requested the database guard; the fix and subsequent stylesheet adjustment received fresh READY reviews. The source and actual production-rendered page were inspected on desktop and mobile, including light mode. Local preview: http://localhost:3000. External deployment and authentic founder photography remain outside this update.
+
+## GSTACK REVIEW REPORT
+
+| Review | Trigger | Scope | Status | Evidence |
+| --- | --- | --- | --- | --- |
+| CEO review | Explicit plan-ceo-review invocation | HOLD SCOPE, apply selected C4 | DONE_WITH_CONCERNS | Existing default approvals and current implementation instruction; scoped plan persisted |
+| Outside plan challenge | Standard skill step | External Claude challenge | Unavailable | Automatic approval review rejected unauthorised plan export; prescribed native fallback unavailable |
+| Independent implementation review | AGENTS.md gate | Complete implementation and follow-up fixes | READY | Local target guard fixed, then independently re-reviewed; stylesheet configuration separately re-reviewed |
+| Design/browser verification | Approved C4 application | Actual desktop/mobile/light/dark site | Passed locally | Screenshots, 26 browser tests and five-route Lighthouse evidence |
+
+VERDICT: C4 implemented and verified locally under the user's explicit authorisation. D1–D4 for this implementation are resolved by the selected composition and tested responsive/theme behaviour. Outside-provider coverage remains unavailable; no clean external review is claimed. Production deployment, authentic photography and unconfirmed business facts are not assumed complete.
