@@ -1195,3 +1195,30 @@ Actual browser verification completed 80.013 seconds of uninterrupted playback w
 The temporary model-server restart condition was removed; its runtime drop-in list is empty and the service was verified active/running. Persistent service configuration is unchanged. The original application and CMS remain unchanged: this completes the corrected local film preview, with production integration and user aesthetic acceptance still separate.
 
 Final independent integration review returned PASS with no required fixes. Source hashes, timeline, final media, screenshots and browser-report bindings were verified; current guide links and normalised prompt/image provenance also pass. The completed local preview is ready for the user to view.
+
+
+## 65. Painted film rejected; photorealistic AI video selected
+
+After watching the section-64 film, the user rejected its appearance and perceived smoothness. That feedback supersedes the prior internal visual reviews: the film is not aesthetically accepted. Technical playback passes remain historical evidence only. Retiming approximately five-second sources to seven- and ten-second chapters also stretched the working pace; this approach must not carry into the new direction.
+
+The user explicitly chose photorealistic AI-generated video over real footage. The [new production treatment](designs/kitchen-animation/photoreal/TREATMENT.md) proposes a 75–90 second kitchen-day film, with 15 naturally paced shots, consistent fictional people and kitchen, forecast-first operations and controlled illustrative record inserts. No photorealistic footage has been generated yet. The session has no connected dedicated video generator or configured provider credentials; provider access and a spending limit remain unresolved. An access question is pending. No paid generation or production integration has occurred.
+
+The prior files are preserved as rejected historical studies. The local model server was restored after the completed earlier batch; no new local GPU batch is started for this reset.
+
+
+## 66. Remotion culinary film authorised
+
+The user asked to use Remotion, confirmed local rendering without a separate video-generation account, and explicitly instructed implementation. The active deliverable is a complete 80-second Remotion film built from original photographic kitchen scenes and frame-driven operational graphics. This replaces the cloud-generator dependency of section 65 for the current study. It is a motion editorial, not a claim of generated live-action human movement. The full forecast-first story remains: pantry draw, recipe/preparation and baking, service, usage/returns/waste, delivery inspection, roster/handover, sales upload and tomorrow's review.
+
+The new study lives in `docs/designs/kitchen-animation/remotion-film/`. Remotion and its CLI/bundler/renderer are pinned authoring-only development dependencies, needed to author, preview and export the requested film. No Remotion runtime is added to the production homepage. Reuse the native finite-video player behaviour, local brand fonts and selected P/C mark. Original generated photography is copied into the project with prompts and provenance. Local evaluation does not require a Remotion account; eligibility for eventual commercial use follows Remotion's current licence. No licence purchase or paid cloud generation is performed.
+
+Parent owns direction, integration, rendering and acceptance. Two bounded executor tasks own the film composition and the static preview page respectively; assets, render harness, plan and verification remain on the parent. Full application checks, native rendered-film review, responsive playback/accessibility checks and independent diff review are required before delivery. Artistic acceptance remains the user's. No production integration is authorised by this local preview.
+
+
+The completed study includes a 1920 × 1080 desktop edit and a separately composed 1080 × 1350 phone edit, both 80 seconds / 2,400 frames at 30 fps. Six original photographs, exact prompts and image hashes are retained. Figures consistently describe 24 pear tart portions, 21 sold and 3 unsold; unsold stock is not automatically waste. The sample stock ledger reconciles to 15.3 kg after a short delivery.
+
+Both exports completed full uninterrupted browser playback. The desktop run reported 3 dropped frames and the phone run 4, each from 2,411 reported frames including setup. Sixty viewport/chapter states passed overflow checks; desktop/mobile Axe and page errors were zero. Player controls, finite stop, reduced motion, offscreen pause and media/no-JavaScript fallbacks passed. Hidden-tab pause was tested through a synthetic visibility event. Parent inspected actual playback progression, desktop/phone pages and encoded transitions. The checks and source manifests bind the final export hashes in the study directory.
+
+Application lint, typecheck, 57 test files / 311 tests and production build passed; direct study-source ESLint also passed. The local kitchen-animation entry now opens the Remotion study. The production application and CMS remain unchanged, and user aesthetic acceptance remains outstanding.
+
+Independent final review returned PASS after replacing whole-scene dissolves with clean cuts to prevent ghosted titles and figures. Both corrected movies were re-exported and the complete browser verification repeated. Current source/output hashes, refreshed playback contacts and all desktop/phone cut sheets were verified. No required review fixes remain; the local study is ready for user viewing.

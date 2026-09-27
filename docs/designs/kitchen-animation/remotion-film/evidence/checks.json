@@ -1,0 +1,349 @@
+{
+  "errors": [],
+  "layouts": [
+    {
+      "width": 320,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 38,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 46,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 54,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 62,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 72,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 38,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 46,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 54,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 62,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 72,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 38,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 46,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 54,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 62,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 72,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 38,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 46,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 54,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 62,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 72,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 38,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 46,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 54,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 62,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 72,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 38,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 46,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 54,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 62,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 72,
+      "overflow": false
+    }
+  ],
+  "accessibility": [
+    {
+      "width": 390,
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "violations": []
+    }
+  ],
+  "playback": [
+    {
+      "label": "desktop",
+      "elapsedMs": 80028,
+      "time": 80,
+      "playing": false,
+      "totalFrames": 2411,
+      "droppedFrames": 3
+    },
+    {
+      "label": "mobile",
+      "elapsedMs": 80031,
+      "time": 80,
+      "playing": false,
+      "totalFrames": 2411,
+      "droppedFrames": 4
+    }
+  ],
+  "safeguards": {
+    "finite": true,
+    "replay": true,
+    "manualPause": true,
+    "offscreenPauseResume": true,
+    "reducedMotion": true,
+    "fullscreenControls": true,
+    "keyboardSeeking": true,
+    "hiddenTabPauseEvent": true,
+    "noJavaScript": true,
+    "mediaFailure": true
+  },
+  "films": {
+    "kitchen-day.mp4": "b0a13c835261e50c979f8f7f22720bffcf7f9fe871842c90c5e06f007cf1eb6b",
+    "kitchen-day-mobile.mp4": "9af152d5fc70751d93661abbdee4929a8d3e563fdadef633a95d3a96d8b5b022"
+  }
+}

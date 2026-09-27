@@ -1,0 +1,33 @@
+{
+  "renderedAt": "2026-09-27T08:20:40.624Z",
+  "engine": "Remotion 4.0.529",
+  "composition": "KitchenDay",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "frames": 2400,
+  "duration": 80,
+  "codec": "h264",
+  "crf": 18,
+  "concurrency": 2,
+  "bytes": 29338030,
+  "sha256": "b0a13c835261e50c979f8f7f22720bffcf7f9fe871842c90c5e06f007cf1eb6b",
+  "sources": {
+    "Film.tsx": "fcf34d2080f0cc2fe7449cabee9dafafb21bd92b9165995dbd128a4d3a48e8dd",
+    "MobileFilm.tsx": "3b2b243e459d622c66e606e1e974cb865eea3aaad33c74739685e9301f797497",
+    "index.ts": "2d5925e95988c9f1e229be4b1c338ac20b0baecdc3ac727a1804c9d25a5ff199",
+    "film.css": "0fd3a80ebd230ded9f121ad09026075e8ecf27bd507d75caf77d4363ba474c76",
+    "render.mjs": "f604971ff4831bd79b213df9662e7c8d9d3c647f492efd79b4374c4ee3ee4e07",
+    "public/opening.png": "58e84b2d1c127cf8b16b30c2eb18775f4e34fb1a1ee13986d03ac1ead243506c",
+    "public/pantry.png": "6f9b57eb05bb983fa27c3bcefc231cddaba67960bf22f2760c022a2c5a17a084",
+    "public/preparation.png": "762317411a411673c60044b8288b2292fab17d2c6d2828df4b7795774f7b125d",
+    "public/tart.png": "ec4723b39a852113a9c9ce5d0772625cd14d4fa0bd4b118d8b8cc59f96b52a38",
+    "public/receiving.png": "8a883f9814d59aeb7e7922fa19a1204ef3d6927a9c5d4d7469d6a402f1404b17",
+    "public/team.png": "2a7e3d7ecc74058673ec90a8e9a5ab91b17541d02a28417ff1d3d7f5186906a5",
+    "public/fraunces.woff2": "04787aad5ccd81f3fff66a4571d9ca5871aeeece4644e12741fc4c85a330ba30",
+    "public/inter.woff2": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+    "public/mono.woff2": "18be452724bfdc236c074ca94a249a7f41a86752c7d04ab258ce9ed5651f6a7e",
+    "public/monogram.svg": "24953bfce488633423ba997e7f6e97b64eacb9acd5e46bbb9d0643925d935470",
+    "../../../../pnpm-lock.yaml": "d339e837b2bc5de567aaa9c9271b99df8be001b30322914b3a31e4309d89ed90"
+  }
+}

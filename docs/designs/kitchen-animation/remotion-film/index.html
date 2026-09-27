@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#141412">
+  <meta name="description" content="An illustrative kitchen day, from the morning forecast to tomorrow's preparation.">
+  <title>A day in the kitchen · Passe Culinaire</title>
+  <link rel="stylesheet" href="preview.css">
+</head>
+<body>
+  <a class="skip-link" href="#film">Skip to the film</a>
+  <header class="masthead">
+    <div class="brand" aria-label="Passe Culinaire">
+      <img src="public/monogram.svg" width="45" height="45" alt="" aria-hidden="true">
+      <span class="wordmark">passe culinaire<span class="brand-note">THE CRAFT. THE WHOLE PICTURE.</span></span>
+    </div>
+    <p class="edition">CulinAIre Kitchen <span aria-hidden="true">/</span> FILM STUDY</p>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">AN ILLUSTRATIVE KITCHEN DAY</p>
+        <h1 id="page-title">A day in the kitchen.</h1>
+      </div>
+      <p class="standfirst">The ingredients.<br class="wide-break"> The people. The decisions.</p>
+    </section>
+
+    <section id="film" class="film" tabindex="-1" aria-label="Kitchen day film">
+      <div id="cinema" class="cinema">
+      <div id="stage" class="stage">
+        <picture><source media="(max-width: 760px)" srcset="poster-mobile.jpg"><img id="poster" src="poster.jpg" width="1920" height="1080" alt="A photographic view into a working restaurant kitchen at the start of the day." fetchpriority="high"></picture>
+        <video id="kitchen-film" muted playsinline preload="metadata" poster="poster.jpg" aria-label="Illustrative kitchen film, following forecast, preparation, service and the decisions for tomorrow."></video>
+        <p id="film-fallback" class="load-status" role="status" hidden>The film could not load. Read the kitchen story below.</p>
+      </div>
+
+      <div class="transport" aria-label="Film controls" hidden>
+        <button id="play" class="control-button primary" type="button" aria-label="Play the kitchen film">Play</button>
+        <label class="visually-hidden" for="seek">Film position</label>
+        <input id="seek" type="range" min="0" max="80" step="0.1" value="0" aria-valuetext="0 minutes 0 seconds of 1 minute 20 seconds">
+        <output id="time" for="seek">0:00 <span aria-hidden="true">/</span> 1:20</output>
+        <button id="fullscreen" class="control-button fullscreen" type="button" aria-label="View the film full screen">Full screen</button>
+      </div>
+
+      </div>
+      <p class="film-note">An illustrative kitchen day. Photographic scenes and animated records.</p>
+
+      <nav class="chapters" aria-label="Film chapters" hidden>
+        <button type="button" data-at="0" aria-current="step"><span class="chapter-time">00:00</span><span class="chapter-name">Opening</span></button>
+        <button type="button" data-at="6"><span class="chapter-time">00:06</span><span class="chapter-name">Forecast</span></button>
+        <button type="button" data-at="14"><span class="chapter-time">00:14</span><span class="chapter-name">Pantry</span></button>
+        <button type="button" data-at="22"><span class="chapter-time">00:22</span><span class="chapter-name">Preparation</span></button>
+        <button type="button" data-at="32"><span class="chapter-time">00:32</span><span class="chapter-name">Service</span></button>
+        <button type="button" data-at="38"><span class="chapter-time">00:38</span><span class="chapter-name">Stock &amp; waste</span></button>
+        <button type="button" data-at="46"><span class="chapter-time">00:46</span><span class="chapter-name">Receiving</span></button>
+        <button type="button" data-at="54"><span class="chapter-time">00:54</span><span class="chapter-name">The team</span></button>
+        <button type="button" data-at="62"><span class="chapter-time">01:02</span><span class="chapter-name">Sales</span></button>
+        <button type="button" data-at="72"><span class="chapter-time">01:12</span><span class="chapter-name">Tomorrow</span></button>
+      </nav>
+
+      <div class="chapter-reading" aria-live="polite" aria-atomic="true">
+        <p class="eyebrow">THE KITCHEN, CONNECTED</p>
+        <h2 id="chapter-title">Before the first knife.</h2>
+        <p id="chapter-body">The chef and owner look ahead to service. Expected covers and the preparation plan shape what the team will make.</p>
+      </div>
+    </section>
+
+    <noscript><p class="no-script no-script-visible">The full kitchen story is written below.</p></noscript>
+    <details class="transcript">
+      <summary>Read the full kitchen story</summary>
+      <ol>
+        <li><strong>Opening.</strong> In a quiet restaurant before service, the chef and owner look over the day ahead.</li>
+        <li><strong>Forecast.</strong> Expected covers, recipe yields and menu costs help shape a preparation plan.</li>
+        <li><strong>Pantry.</strong> The chef draws ingredients from the pantry and records the transfer to the pastry section.</li>
+        <li><strong>Preparation.</strong> Pears are weighed, prepared and set into a tart. The recipe connects the ingredients and the batch.</li>
+        <li><strong>Service.</strong> The team finishes the pastry and brings the preparation through to the pass.</li>
+        <li><strong>Stock and waste.</strong> Ingredients used, usable stock returned and preparation waste are recorded separately.</li>
+        <li><strong>Receiving.</strong> The chef inspects a delivery against the purchase order and notes any shortage.</li>
+        <li><strong>The team.</strong> The chef and owner review section responsibilities, the roster and the service handover.</li>
+        <li><strong>Sales.</strong> Sales data is uploaded and the day's service is compared with the forecast.</li>
+        <li><strong>Tomorrow.</strong> The day's records inform a fresh look at the next preparation plan.</li>
+      </ol>
+      <p class="illustrative-record">Illustrative figures: 80 forecast covers and 74 actual; 24 pear tart portions prepared, 21 sold and 3 remaining for review. Pear stock begins at 8 kg, with 3 kg drawn, 2.4 kg used in the recipe, 0.3 kg returned and 0.3 kg recorded as waste. A 10 kg delivery is accepted against 12 kg ordered. Closing stock is 15.3 kg.</p>
+      <p class="illustrative-record">This is an illustrative kitchen story, not a product screen or a claim of automatic product behaviour.</p>
+    </details>
+  </main>
+
+  <footer><span>PASSE CULINAIRE</span><span>Kitchen story · Local design preview</span></footer>
+  <script type="module" src="player.mjs"></script>
+</body>
+</html>
