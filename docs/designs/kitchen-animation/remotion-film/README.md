@@ -1,6 +1,6 @@
-# A day in the kitchen: Remotion film
+# The whole kitchen: expanded Remotion film
 
-A complete culinary motion editorial for Passe Culinaire and CulinAIre Kitchen, built with Remotion 4.0.529. Original photographic scenes are combined with frame-driven kitchen records. People retain their photographic poses; this is not live-action footage or generated human-action video.
+The expanded study covers all eleven areas the user named, plus forecasting, stock transfers, menu costing and team messaging. It runs for 128 seconds across fifteen chapters and uses eleven original photographic scenes. People remain photographic stills; motion comes from camera framing, records, transfers, charts and typography. This is an illustrative story, not actual product UI or a claim of automatic actions.
 
 Preview: http://127.0.0.1:4182/kitchen-animation/remotion-film/
 
@@ -8,59 +8,43 @@ Preview: http://127.0.0.1:4182/kitchen-animation/remotion-film/
 pnpm film:preview
 ```
 
-The film plays once when visible, muted, with pause/replay, keyboard seeking and fullscreen controls. It pauses offscreen and when the tab is hidden; reduced-motion users start paused. The static poster and full written story remain available without JavaScript or if media fails. Chapter buttons are optional. The browser chooses the portrait film on initial loads up to 760px wide and keeps that choice through playback to avoid interrupting a film on resize.
+The finite, muted film starts when visible. It supports pause/replay, keyboard seeking, fullscreen, offscreen/hidden-tab pause and an initially paused reduced-motion preference. Static posters and the full transcript remain available without JavaScript. The initial viewport selects the desktop or phone edit; resizing does not interrupt playback.
 
-## Film
+## Coverage
 
-Both versions last 80 seconds, with 2,400 frames at 30 fps:
-
-- Desktop: 1920 × 1080, `kitchen-day.mp4`.
-- Portrait: 1080 × 1350, `kitchen-day-mobile.mp4`, with recomposed headings and records for phone readability.
-
-The photos are generated 1672 × 941 originals. The film graphics and text are rendered at the stated output dimensions; the photography is scaled to fit, not claimed to be native 1080p footage. No model runs in the visitor's browser. Remotion is an authoring dependency, not a production homepage dependency.
-
-| Time | Kitchen story | Record or decision |
+| Time | Chapter | Kitchen workflow |
 | --- | --- | --- |
-| 0–6s | A day in the kitchen | The work behind service |
-| 6–14s | Before the first knife | 80 forecast covers; 24 pear tart portions planned |
-| 14–22s | From pantry to pastry | 3.0 kg drawn from 8.0 kg opening stock |
-| 22–32s | Weigh, prepare, bake | 2.4 kg recipe use; 24 portions; recipe and menu cost reviewed |
-| 32–38s | The craft reaches the pass | The finished pear and almond tart |
-| 38–46s | Account for the stock | 2.4 kg recipe use; 0.3 kg returned; 0.3 kg waste |
-| 46–54s | Inspect and receive | 12 kg ordered; 10 kg received; 2 kg short |
-| 54–62s | People and handover | Roster, section responsibilities and team message |
-| 62–72s | Sales and daily review | 74 covers; 21 portions sold; 3 unsold |
-| 72–80s | The whole kitchen | Connected records inform tomorrow; 15.3 kg closing pear stock |
+| 0–6s | Opening | A kitchen day connects the food, the people and the decisions behind service. |
+| 6–14s | Forecast | Review expected covers and decide what the team needs to prepare. |
+| 14–22s | Rostering | Review shifts and section coverage. Send the preparation plan to the team before work begins. |
+| 22–32s | Recipe Lab | Set ingredients, cuisine and portions. Develop and refine the recipe, then review the menu cost. |
+| 32–42s | Patisserie Lab | Develop the pastry by type and technique, with component planning and make-ahead notes. |
+| 42–52s | Cocktail Lab | Choose the spirit base, flavour and style. Develop a drink specification and a batch for service. |
+| 52–60s | Purchasing | Review stock against the target, prepare a purchase order and track what was ordered. |
+| 60–68s | Receiving | Inspect the delivery against the purchase order. Record accepted quantities and a short delivery. |
+| 68–76s | Inventory | Keep opening stock and the new delivery visible as separate batches. Draw from the older stock first. |
+| 76–84s | Mise en Place | Draw the ingredients, record the transfer and organise the preparation tasks for the pastry section. |
+| 84–94s | Production | Work through the preparation and baking stages, then record the completed yield for service. |
+| 94–100s | Service | The savoury kitchen, pastry section and bar bring their preparation to service. |
+| 100–110s | Waste Management | Separate recipe use, usable stock returned and preparation waste. Record the reason and review its cost. |
+| 110–120s | Sales | Upload the sales file and compare what was planned, prepared and sold. Review unsold portions separately from waste. |
+| 120–128s | The whole kitchen | CulinAIre Kitchen brings the eleven areas into view, from the three labs to the daily operation. |
 
-Figures illustrate one scenario. Unsold portions are not automatically classified as waste. The scenes, people and records are fictional illustrations, not customer evidence, actual product screens or claims of automatic product behaviour. The quantity is expressed as portions to match the full-size tart in the photography.
+The three labs are grounded in the sibling CulinAIre Kitchen repository's actual form, request and output schemas. The user calls the beverage area Cocktail Lab; its current product route is `/spirits`. [COVERAGE.md](COVERAGE.md) records source references and separates verified code support from illustrative content. No live product transaction or model-generated recipe was executed for the film.
 
-## Source and assets
+All example figures are fictional: 80 forecast covers and 74 served; 24 tart portions prepared, 21 sold and 3 unsold for review. Opening pear stock 8 kg plus 10 kg accepted delivery gives 18 kg. A 3 kg pastry draw leaves 15 kg; 2.4 kg enters the recipe, 0.3 kg returns and 0.3 kg is prep trim. Closing stock is 15.3 kg. At an illustrative $4/kg, the trim costs $1.20. The separate savoury dish's illustrative $3.20 portion cost against a $16 menu price is 20% food cost. No savings or margin improvements are claimed.
 
-- [Film.tsx](Film.tsx): desktop composition.
-- [MobileFilm.tsx](MobileFilm.tsx): portrait composition.
-- [index.ts](index.ts): both registered compositions.
-- [render.mjs](render.mjs): local export and representative-frame rendering.
-- [image-provenance.json](image-provenance.json): exact prompts, built-in image generator provenance and original image hashes. No paid video-generation service was used.
-- `public/`: six generated photographs, the selected P/C monogram and self-hosted fonts with their OFL licences.
+## Authoring
 
-Frames use deterministic Remotion timing. Photograph moves are restrained; the substantive animation is the transfer, allocation, delivery comparison, handover and sales review. The original failed painted films are preserved in their historical study folders.
-
-Open the editable timeline:
+Both edits use [ExpandedFilm.tsx](ExpandedFilm.tsx) and the fifteen-chapter [story.json](story.json). The desktop composition is 1920 × 1080; the recomposed phone version is 1080 × 1350. Both have 3,840 frames at 30 fps. The photographs are 1672 × 941 originals, scaled within the output; they are not native moving 1080p footage. Exact prompts and image hashes are in [image-provenance.json](image-provenance.json). Five new assets were made with the built-in image generator and saved in `public/`.
 
 ```sh
 pnpm film:studio
-```
-
-This serves Remotion Studio on port 4183. The ordinary film preview remains on port 4182.
-
-Render candidates with bounded resources on this Linux workstation:
-
-```sh
 systemd-run --user --scope -p MemoryMax=6G -p MemorySwapMax=512M pnpm film:render
 systemd-run --user --scope -p MemoryMax=6G -p MemorySwapMax=512M pnpm film:render:mobile
 ```
 
-Outputs go to ignored `.local/remotion-kitchen/candidate.mp4` and `candidate-mobile.mp4`, with matching manifests. The script does not overwrite preview movies. It uses concurrency 2, H.264/yuv420p, CRF 18 and the installed Playwright Chromium. Each manifest binds output bytes to source, image, font, mark and lockfile hashes, captured before rendering and checked again afterwards. Changing a bound source during rendering fails verification. Inspect candidates before copying to the preview filenames.
+Studio uses port 4183. Candidates and manifests go to ignored `.local/remotion-kitchen/`; render commands do not overwrite the preview films. Rendering uses the installed Playwright Chromium with concurrency 2, H.264/yuv420p and CRF 18. Each manifest captures source, timeline, asset, font and lockfile hashes before rendering and checks them again afterwards. Review and verify candidates before replacing the preview exports.
 
 ```sh
 node docs/designs/kitchen-animation/remotion-film/render.mjs --stills
@@ -70,18 +54,12 @@ node docs/designs/kitchen-animation/remotion-film/verify.mjs
 
 ## Scope and licence
 
-This is a local design study. Production homepage and CMS remain unchanged. Visual acceptance belongs to the user and is separate from playback and accessibility checks.
+This remains a local design study. Remotion is a development dependency; the production homepage and CMS do not load it. No new package or paid video service was added for the expansion. The earlier 80-second version is retained in Git commit `16a79ab`.
 
-Remotion permits free evaluation and free commercial use for eligible individuals and organisations of up to three people. Larger commercial organisations need the appropriate company licence. No licence purchase was made. See the [current official licence FAQ](https://www.remotion.dev/docs/license/faq).
+Remotion permits free evaluation and free commercial use for eligible individuals and organisations of up to three people. Larger commercial organisations require the appropriate licence. No licence purchase was made. See the [official licence FAQ](https://www.remotion.dev/docs/license/faq).
 
 ## Verification
 
-Both complete exports played to their 80-second finite stop in Chromium. The instrumented desktop run recorded 3 dropped frames and the phone run 4, each out of 2,411 reported video frames (including setup playback), with no page errors. These are local workstation measurements, not guarantees for every device.
+Both final exports completed uninterrupted 128-second browser playback. Desktop reported 1 dropped frame from 3,850 reported frames; phone reported 3 from 3,851, including setup. All 90 chapter/viewport states passed without overflow. Axe reported zero violations at 390 px and 1440 px, and page errors were zero. Pause/replay, finite stop, keyboard seeking, fullscreen, manual-pause persistence, offscreen pause/resume, reduced-motion start, no-JavaScript and media-failure fallbacks passed. Hidden-tab pause was checked with a synthetic visibility event, not an operating-system tab switch.
 
-All 60 chapter/viewport combinations (320–1440px) passed overflow checks. Desktop and phone Axe checks reported zero violations. Pause/replay, manual-pause persistence, offscreen pause/resume, reduced-motion changes, fullscreen controls, keyboard seeking, no-JavaScript poster/transcript and failed-media fallback passed. Hidden-tab handling was exercised with a synthetic visibility-change event. Parent inspected actual desktop/phone screenshots, full-run progression captures and encoded transition frames. Independent review caught overlapping text during the original dissolves. Both exports now use clean chapter cuts, with one scene visible at a time; people remain still photographic subjects.
-
-[evidence/checks.json](evidence/checks.json) binds these results to the two served MP4 hashes. [Desktop progression](evidence/desktop-playback-contact.jpg) and [phone progression](evidence/mobile-playback-contact.jpg) come from the actual uninterrupted playback runs. Render manifests separately bind export bytes to source and assets.
-
-Application lint, typecheck, all 57 test files / 311 tests and production build passed. The study source also passed a direct ESLint check because it is outside the application's usual lint paths. Production performance budgets were not remeasured because this study is not integrated into the homepage.
-
-[Final independent review](evidence/review.md) passed after the transition correction and fresh export/playback checks.
+Parent and independent review inspected the final encoded chapter progression and all fourteen cuts in both formats. Parent also inspected desktop and phone browser pages. Source and media hashes match the render manifests and `evidence/checks.json`. Application lint, typecheck, 57 test files / 311 tests and production build passed; direct study-source ESLint passed. The exports are approximately 50 MB and 46 MB local study masters; production delivery and homepage performance remain separate work. User aesthetic acceptance remains separate.

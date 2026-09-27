@@ -1,6 +1,6 @@
 # A day in the kitchen: corrected 80-second film
 
-> **Current status, 27 September 2026: rejected by the user for appearance and motion quality.** Prior review passes below are historical technical/internal evidence, not aesthetic acceptance. The user selected [photorealistic AI-generated video](../photoreal/TREATMENT.md) for the replacement. The current replacement is the [80-second Remotion film study](../remotion-film/README.md), using original photographic scenes and animated kitchen records.
+> **Current status, 27 September 2026: rejected by the user for appearance and motion quality.** Prior review passes below are historical technical/internal evidence, not aesthetic acceptance. The user selected [photorealistic AI-generated video](../photoreal/TREATMENT.md) for the replacement. The current replacement is the [expanded Remotion film study](../remotion-film/README.md), using original photographic scenes and animated kitchen records.
 
 The complete local preview now uses nine reviewed continuous-motion scenes. This replaces the version the user liked visually but rejected for glitchy movement and hands passing through props. Parent and independent contact review passed, followed by full-film and browser verification. User aesthetic acceptance remains separate.
 

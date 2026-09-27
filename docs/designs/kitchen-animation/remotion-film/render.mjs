@@ -1,7 +1,7 @@
 import {bundle} from '@remotion/bundler'
 import {openBrowser, renderMedia, renderStill, selectComposition} from '@remotion/renderer'
 import {chromium} from '@playwright/test'
-import {mkdir, readFile, writeFile} from 'node:fs/promises'
+import {mkdir, readFile, writeFile, readdir} from 'node:fs/promises'
 import {createHash} from 'node:crypto'
 import {fileURLToPath} from 'node:url'
 import {resolve} from 'node:path'
@@ -15,8 +15,11 @@ const suffix=mobile?'-mobile':''
 const stills=process.argv.includes('--stills')
 await mkdir(work,{recursive:true})
 await mkdir(resolve(directory,'evidence'),{recursive:true})
+const story=JSON.parse(await readFile(resolve(directory,'story.json'),'utf8'))
+const frames=story.duration*30
 const sources={}
-for(const filename of ['Film.tsx','MobileFilm.tsx','index.ts','film.css','render.mjs','public/opening.png','public/pantry.png','public/preparation.png','public/tart.png','public/receiving.png','public/team.png','public/fraunces.woff2','public/inter.woff2','public/mono.woff2','public/monogram.svg','../../../../pnpm-lock.yaml']){
+const publicFiles=(await readdir(resolve(directory,'public'))).sort().map(file=>'public/'+file)
+for(const filename of ['ExpandedFilm.tsx','story.json','index.ts','film.css','render.mjs',...publicFiles,'../../../../pnpm-lock.yaml']){
  sources[filename]=createHash('sha256').update(await readFile(resolve(directory,filename))).digest('hex')
 }
 const serveUrl=await bundle({entryPoint:resolve(directory,'index.ts'),publicDir:resolve(directory,'public'),outDir:resolve(work,'bundle'+suffix)})
@@ -24,14 +27,14 @@ const browser=await openBrowser('chrome',{browserExecutable:chromium.executableP
 try {
   const options={serveUrl,puppeteerInstance:browser,timeoutInMilliseconds:60000}
   const composition=await selectComposition({...options,id:compositionId})
-  assert.equal(composition.durationInFrames,2400)
+  assert.equal(composition.durationInFrames,frames)
   assert.equal(composition.fps,30)
   assert.equal(composition.width,mobile?1080:1920)
   assert.equal(composition.height,mobile?1350:1080)
   if(stills){
-    for(const frame of [0,90,300,540,810,1050,1350,1590,1830,2130,2300,2399]){
+    for(const frame of [0,...story.chapters.flatMap(chapter=>[chapter.at*30+45,(chapter.end-1)*30]),frames-1]){
       await renderStill({...options,composition,frame,imageFormat:'jpeg',jpegQuality:92,output:resolve(directory,`evidence/frame${suffix}-${String(frame).padStart(4,'0')}.jpg`)})
-      console.log(`Reviewed-frame candidate ${frame}/2399 rendered`)
+      console.log(`Reviewed-frame candidate ${frame}/${frames-1} rendered`)
     }
   }else{
     const outputLocation=resolve(work,'candidate'+suffix+'.mp4')
@@ -45,7 +48,7 @@ try {
     for(const [filename,hash] of Object.entries(sources)){
       assert.equal(createHash('sha256').update(await readFile(resolve(directory,filename))).digest('hex'),hash,`Source changed during render: ${filename}`)
     }
-    await writeFile(resolve(work,'render-manifest'+suffix+'.json'),JSON.stringify({renderedAt:new Date().toISOString(),engine:'Remotion 4.0.529',composition:compositionId,width:composition.width,height:composition.height,fps:30,frames:2400,duration:80,codec:'h264',crf:18,concurrency:2,bytes:output.length,sha256:digest,sources},null,2)+'\n')
+    await writeFile(resolve(work,'render-manifest'+suffix+'.json'),JSON.stringify({renderedAt:new Date().toISOString(),engine:'Remotion 4.0.529',composition:compositionId,width:composition.width,height:composition.height,fps:30,frames,duration:story.duration,codec:'h264',crf:18,concurrency:2,bytes:output.length,sha256:digest,sources},null,2)+'\n')
     console.log(JSON.stringify({outputLocation,bytes:output.length,sha256:digest}))
   }
 }finally{

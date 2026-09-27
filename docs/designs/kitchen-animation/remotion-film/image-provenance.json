@@ -1,7 +1,7 @@
 {
   "generator": "built-in image_gen",
   "generatedOn": "2026-09-27",
-  "note": "Original fictional photographic scenes; human poses are not animated. Reference-path call failed before generation, so final images used independent matching written briefs.",
+  "note": "Original fictional photographic scenes. Human poses remain still. Five additional scenes broaden the expanded film across kitchen, bar, inventory, production and waste.",
   "images": [
     {
       "id": "opening",
@@ -50,6 +50,51 @@
       "method": "built-in image_gen",
       "file": "public/team.png",
       "sha256": "2a7e3d7ecc74058673ec90a8e9a5ab91b17541d02a28417ff1d3d7f5186906a5"
+    },
+    {
+      "id": "recipe-lab",
+      "prompt": "Use case: photorealistic-natural. One original landscape16:9 photographic cinema frame for an elegant French-influenced Melbourne restaurant film, high detail. Real editorial photography, not CGI or illustration. Ivory tile, brushed stainless worktops, dark walnut, muted olive textiles, warm directional window light, deep natural shadows, restrained film grain. No text, logos, watermarks or collage. Authentic professional kitchen, beautifully understated and tactile. Scene: savoury recipe development. An exquisite shallow ivory bowl of roasted slender carrots on dark French lentils with a small amount of fresh herb dressing, placed centre-right on the stainless working bench. Nearby restrained mise en place bowls of lentils and fresh herbs, one open plain recipe notebook with faint unrecognisable marks, a chef's ivory sleeve cropped at far right with NO visible hands or face. Low three-quarter camera, carrots and lentils unmistakable, modest restaurant portion, no pears or pastries. Left third richly shadowed breathing room for later graphic overlays. Wide cinematic still, refined food photograph.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-2e763cd3-6a07-4fed-8b47-89d6a668e79c.png",
+      "method": "built-in image_gen",
+      "generatedOn": "2026-09-28",
+      "file": "public/recipe-lab.png",
+      "sha256": "ab73d8ff5ff2e341d07fafc3140e0acf6d0a597ff2dd90ae07184ece023bb9da"
+    },
+    {
+      "id": "cocktail-lab",
+      "prompt": "Use case: photorealistic-natural. One original landscape16:9 photographic cinema frame for an elegant French-influenced Melbourne restaurant film, high detail. Real editorial photography, not CGI or illustration. Ivory tile, brushed stainless worktops, dark walnut, muted olive textiles, warm directional window light, deep natural shadows, restrained film grain. No text, logos, watermarks or collage. Authentic professional kitchen, beautifully understated and tactile. Scene: the restaurant cocktail bar. Close cinematic view of a single elegant chilled pale-gold pear and thyme cocktail in a stemmed coupe, crystal clear glass with natural fine condensation, a slender pear slice and tiny thyme sprig neatly garnishing its rim. Beside it a stainless jigger, mixing glass, citrus peel and two small unlabelled ingredient vessels arranged in an orderly working bartender station. No people or hands. Dark walnut counter, softly blurred amber bar shelves, warm reflected practical light, quiet romantic French dining ambience. Drink and working tools on right two thirds, left third dark and uncluttered for text. Natural correct glass geometry, no giant garnish, no flashy neon.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-d2d00db9-58f8-4a02-9bf0-aee39f193baa.png",
+      "method": "built-in image_gen",
+      "generatedOn": "2026-09-28",
+      "file": "public/cocktail-lab.png",
+      "sha256": "f76b91f3d9732d50e79039f2a1d7a6bc76dc20e99f49a12714126fd1e101ff86"
+    },
+    {
+      "id": "inventory",
+      "prompt": "Use case: photorealistic-natural. One original landscape16:9 photographic cinema frame for an elegant French-influenced Melbourne restaurant film, high detail. Real editorial photography, not CGI or illustration. Ivory tile, brushed stainless worktops, dark walnut, muted olive textiles, warm directional window light, deep natural shadows, restrained film grain. No text, logos, watermarks or collage. Authentic professional kitchen, beautifully understated and tactile. Scene: organised working restaurant produce store. An eye-level medium view of two perforated food-grade crates of imperfect green pears sitting neatly on a stainless shelf, one older shallow crate in front left and a fuller new crate behind right, small blank paper batch tags clipped safely to crates. Surrounding shelves softly out of focus with neatly closed food-safe containers, nothing on floor. Credible small commercial stockroom, no people, no hand action, no decorative supermarket signs. Crates in central-right frame, muted shadow on left, natural side light, precise texture of pears and steel, practical not luxurious retail display.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-90007d89-c3d7-4722-acc5-f1ba696f89df.png",
+      "method": "built-in image_gen",
+      "generatedOn": "2026-09-28",
+      "file": "public/inventory.png",
+      "sha256": "884396765b46fc3b0b07b184ed7c4f70c6a83769e90ef6195ca42c3a8d7d6a9d"
+    },
+    {
+      "id": "production",
+      "prompt": "Use case: photorealistic-natural. One original landscape16:9 photographic cinema frame for an elegant French-influenced Melbourne restaurant film, high detail. Real editorial photography, not CGI or illustration. Ivory tile, brushed stainless worktops, dark walnut, muted olive textiles, warm directional window light, deep natural shadows, restrained film grain. No text, logos, watermarks or collage. Authentic professional kitchen, beautifully understated and tactile. Scene: the baking stage in a real professional patisserie kitchen. Three full-sized golden pear and almond tarts, each in a separate shallow metal tart ring, on three spaced commercial sheet pans on a sturdy stainless cooling rack immediately beside a CLOSED commercial convection oven. Racks and oven straight and physically plausible. Warm oven practical light and soft window daylight, clearly baked pastry crusts, fanned pear and almond filling. No people or hands, no open dangerous oven, no flames or smoke. Low three-quarter view, rack and tarts centre-right, darker uncluttered left third, honest working bakery details rather than decorative home kitchen.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-02bdde37-257a-4b4f-af38-c0c14eb1f8a7.png",
+      "method": "built-in image_gen",
+      "generatedOn": "2026-09-28",
+      "file": "public/production.png",
+      "sha256": "eb03c78a03775988013f5c1a39db72f7cf4bb748653cbb2ad6c3ab7fc737e50a"
+    },
+    {
+      "id": "waste",
+      "prompt": "Use case: photorealistic-natural. One original landscape16:9 photographic cinema frame for an elegant French-influenced Melbourne restaurant film, high detail. Real editorial photography, not CGI or illustration. Ivory tile, brushed stainless worktops, dark walnut, muted olive textiles, warm directional window light, deep natural shadows, restrained film grain. No text, logos, watermarks or collage. Authentic professional kitchen, beautifully understated and tactile. Scene: honest preparation waste recording in a restaurant kitchen, beautifully restrained overhead-oblique editorial photograph. On a clean brushed steel workbench centre-right, a compact commercial scale supports a small stainless bowl containing only a modest handful of pear peel ribbons and a few pear cores. Alongside it, a SEPARATE clean bowl holds usable pale pear wedges for return to prep; a small folded plain record sheet rests nearby, with no readable letters or digits. A whole green pear at back. No rubbish bin, no dirty food, no mess, no people, no hands, no cooked dish. Distinct containers make usable ingredients and unavoidable trim visibly different. Natural warm side light, reflective steel controlled, left third darker breathing room. Scale display turned away so no false numeric readout.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-9281a6d7-45c2-40a2-8030-2146078d3bb8.png",
+      "method": "built-in image_gen",
+      "generatedOn": "2026-09-28",
+      "file": "public/waste.png",
+      "sha256": "582b1e1b010a3957f67bb72de7b12ab24a7013fb4ae464dc1d768c828b004a06"
     }
   ]
 }

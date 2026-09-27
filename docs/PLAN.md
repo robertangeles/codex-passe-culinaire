@@ -1206,9 +1206,9 @@ The user explicitly chose photorealistic AI-generated video over real footage. T
 The prior files are preserved as rejected historical studies. The local model server was restored after the completed earlier batch; no new local GPU batch is started for this reset.
 
 
-## 66. Remotion culinary film authorised
+## 66. Initial Remotion culinary film checkpoint, superseded by section 67
 
-The user asked to use Remotion, confirmed local rendering without a separate video-generation account, and explicitly instructed implementation. The active deliverable is a complete 80-second Remotion film built from original photographic kitchen scenes and frame-driven operational graphics. This replaces the cloud-generator dependency of section 65 for the current study. It is a motion editorial, not a claim of generated live-action human movement. The full forecast-first story remains: pantry draw, recipe/preparation and baking, service, usage/returns/waste, delivery inspection, roster/handover, sales upload and tomorrow's review.
+The user asked to use Remotion, confirmed local rendering without a separate video-generation account, and explicitly instructed implementation. The initial deliverable was a complete 80-second Remotion film built from original photographic kitchen scenes and frame-driven operational graphics. This replaces the cloud-generator dependency of section 65 for the current study. It is a motion editorial, not a claim of generated live-action human movement. The full forecast-first story remains: pantry draw, recipe/preparation and baking, service, usage/returns/waste, delivery inspection, roster/handover, sales upload and tomorrow's review.
 
 The new study lives in `docs/designs/kitchen-animation/remotion-film/`. Remotion and its CLI/bundler/renderer are pinned authoring-only development dependencies, needed to author, preview and export the requested film. No Remotion runtime is added to the production homepage. Reuse the native finite-video player behaviour, local brand fonts and selected P/C mark. Original generated photography is copied into the project with prompts and provenance. Local evaluation does not require a Remotion account; eligibility for eventual commercial use follows Remotion's current licence. No licence purchase or paid cloud generation is performed.
 
@@ -1222,3 +1222,19 @@ Both exports completed full uninterrupted browser playback. The desktop run repo
 Application lint, typecheck, 57 test files / 311 tests and production build passed; direct study-source ESLint also passed. The local kitchen-animation entry now opens the Remotion study. The production application and CMS remain unchanged, and user aesthetic acceptance remains outstanding.
 
 Independent final review returned PASS after replacing whole-scene dissolves with clean cuts to prevent ghosted titles and figures. Both corrected movies were re-exported and the complete browser verification repeated. Current source/output hashes, refreshed playback contacts and all desktop/phone cut sheets were verified. No required review fixes remain; the local study is ready for user viewing.
+
+
+The 80-second scope and verification above are a historical checkpoint retained in Git commit `16a79ab`. Section 67 defines the current deliverable and acceptance evidence.
+
+## 67. Expand the Remotion film across the full requested operation
+
+On 28 September 2026 the user requested continuation after identifying missing coverage: Waste Management, Rostering, Inventory, Purchasing, Receiving, Mise en Place, Production, Sales, Recipe Lab, Patisserie Lab and Cocktail Lab. The revised local study runs 128 seconds over fifteen chapters, retaining forecasting, stock transfers, menu costing and team messaging. Parent inspected the sibling CulinAIre Kitchen product source to ground the three lab workflows; details and limits are in the film's COVERAGE.md. Five additional original photographic assets broaden the story to savoury work, bar, stockroom, production and waste. Human poses remain photographic stills.
+
+One shared Remotion composition recomposes records for landscape and portrait. Chapters cut cleanly, with animated records inside each scene. The existing finite native video player remains, and the chapter buttons/transcript match the new timeline. No cloud video service, local diffusion batch, new package, product data access, or production homepage integration is part of this expansion. Full rendered-frame and browser checks plus independent review are required before delivery.
+
+
+The expanded desktop and portrait exports are complete: 128 seconds, 3,840 frames at 30 fps. Both completed uninterrupted browser playback, with 1 dropped desktop frame of 3,850 reported and 3 dropped phone frames of 3,851, including setup. Ninety chapter/viewport states passed without overflow; desktop/phone Axe and page errors were zero. Controls, finite stop, reduced motion, offscreen pause and media/no-JavaScript fallbacks passed. Hidden-tab pause used a synthetic visibility event. Final source/output hashes are bound in the render manifests and browser checks.
+
+Parent and independent review inspected all fourteen encoded transitions and final chapter contact sheets in both formats; parent also inspected the actual desktop and phone preview pages. Application lint, typecheck, 57 test files / 311 tests and production build passed after integration, alongside direct study-source ESLint. No new dependency was added. The roughly 50 MB landscape and 46 MB portrait files are local study masters, not accepted production homepage assets. Aesthetic acceptance and production integration remain separate.
+
+Final independent review returned PASS. The current plan, README, review evidence, manifests and playback checks agree. No required fixes remain from that review.

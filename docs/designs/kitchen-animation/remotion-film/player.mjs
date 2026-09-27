@@ -1,17 +1,11 @@
-const chapters = [
-  { at: 0, title: 'Before the first knife.', description: 'The chef and owner look ahead to service. Expected covers and the preparation plan shape what the team will make.' },
-  { at: 6, title: 'Begin with the day ahead.', description: 'Forecast covers, recipe yields and menu costs help the chef decide what to prepare.' },
-  { at: 14, title: 'From pantry to section.', description: 'Ingredients are drawn from the pantry for mise en place, with a record of what moves to the section.' },
-  { at: 22, title: 'The work behind the plate.', description: 'Pears are weighed and prepared for a batch. Recipe quantities connect the ingredients to the dishes.' },
-  { at: 32, title: 'Preparation becomes service.', description: 'The team finishes the tart and brings its preparation through to the pass.' },
-  { at: 38, title: 'Account for what was used.', description: 'Record what went into the recipe, what usable stock returned and what preparation waste remained.' },
-  { at: 46, title: 'Receive what actually arrives.', description: 'Inspect the delivery against the purchase order and record any shortage.' },
-  { at: 54, title: 'A team with the same picture.', description: 'Review the roster, section responsibilities and the handover for service.' },
-  { at: 62, title: 'Close the day with the facts.', description: 'Upload sales data and compare the service with the preparation plan.' },
-  { at: 72, title: 'One kitchen. The whole picture.', description: 'Review purchasing, stock, preparation, waste, people and sales before planning tomorrow.' }
-]
-const duration = 80
 const video = document.querySelector('#kitchen-film')
+const chapterButtons = [...document.querySelectorAll('.chapters [data-at]')]
+const chapters = chapterButtons.map(button => ({
+  at: Number(button.dataset.at),
+  title: button.dataset.title,
+  description: button.dataset.description
+}))
+const duration = Number(video.dataset.duration)
 const poster = document.querySelector('#poster')
 const stage = document.querySelector('#stage')
 const playButton = document.querySelector('#play')
@@ -19,6 +13,7 @@ const seek = document.querySelector('#seek')
 const cinema = document.querySelector('#cinema')
 const fullscreenButton = document.querySelector('#fullscreen')
 const controls = document.querySelector('.transport')
+const durationText = `${Math.floor(duration / 60)} minute${Math.floor(duration / 60) === 1 ? '' : 's'} ${duration % 60} seconds`
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 const autoplayAllowed = !new URLSearchParams(location.search).has('paused')
 let activeChapter = -1
@@ -53,8 +48,8 @@ function update(time) {
     })
   }
   seek.value = String(current)
-  seek.setAttribute('aria-valuetext', `${formatTime(current)} of 1 minute 20 seconds`)
-  document.querySelector('#time').innerHTML = `${formatTime(current)} <span aria-hidden="true">/</span> 1:20`
+  seek.setAttribute('aria-valuetext', `${formatTime(current)} of ${durationText}`)
+  document.querySelector('#time').innerHTML = `${formatTime(current)} <span aria-hidden="true">/</span> ${formatTime(duration)}`
 }
 
 function updatePlayControl() {

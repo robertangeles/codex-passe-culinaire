@@ -1,6 +1,6 @@
 # Reviewed native kitchen motion
 
-> **Current status, 27 September 2026: rejected by the user for appearance and motion quality.** Prior review passes below are historical technical/internal evidence, not aesthetic acceptance. The user selected [photorealistic AI-generated video](../../photoreal/TREATMENT.md) for the replacement. The current replacement is the [80-second Remotion film study](../../remotion-film/README.md), using original photographic scenes and animated kitchen records.
+> **Current status, 27 September 2026: rejected by the user for appearance and motion quality.** Prior review passes below are historical technical/internal evidence, not aesthetic acceptance. The user selected [photorealistic AI-generated video](../../photoreal/TREATMENT.md) for the replacement. The current replacement is the [expanded Remotion film study](../../remotion-film/README.md), using original photographic scenes and animated kitchen records.
 
 Nine coherent video sources replace the earlier interpolation between separately drawn poses. Each source starts from one painted reference and contains 121 generated frames at 768 × 512 / 24 fps. Parent and independent dense visual review passed all nine sources. Final assembled-film and browser results are recorded in the [film README](../README.md).
 

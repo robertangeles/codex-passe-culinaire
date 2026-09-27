@@ -1,11 +1,11 @@
-# Final independent review
+# Expanded film verification and independent review
 
-27 September 2026. Reviewer: `/root/remotion_review`. Verdict: PASS.
+28 September 2026. Reviewer: `/root/expanded_review`. Final verdict: PASS.
 
-The initial whole-scene dissolves were rejected because titles and figures visibly overlapped. Both compositions now use mutually exclusive chapter intervals and clean cuts. The reviewer inspected all six current encoded cut sheets, refreshed desktop/phone full-playback contacts and page screenshots. No title/record ghosting remains at sampled boundaries.
+The reviewer found no fix-first source or rendered-media issues after the menu-costing and team-message coverage corrections. Both final exports match their manifests. All fourteen encoded boundaries were inspected in both formats, with no visible title overlap, clipping or black frames. The chapter records, roster alignment and phone sales spacing passed visual review.
 
-The reviewer verified source hashes against render manifests and both MP4 hashes against manifests and `checks.json`. Full playback, 60 layouts, accessibility and player checks passed. Reported dropped frames are 3 desktop and 4 phone, each out of 2,411 reported frames including setup. README and PLAN agree with the evidence.
+Both 128-second full browser playthroughs completed: desktop reported 1 dropped frame from 3,850 reported frames; phone reported 3 from 3,851, including setup. All 90 viewport/chapter states passed without overflow, both Axe checks reported zero violations, and page errors were zero. Player and fallback checks passed. Hidden-tab pause was tested through a synthetic visibility event.
 
-Parent reran application lint, typecheck, all 57 test files / 311 tests and production build after the cut correction; all passed. Direct study ESLint passed. A focused browser check also verified screenshot paths containing spaces and the current-study redirect.
+Parent inspected actual desktop and phone preview pages and full-playback contact sheets. Current source/media hashes are recorded in the manifests and checks.json. Application lint, typecheck, 57 test files / 311 tests and production build passed, as did direct study-source ESLint.
 
-No required fixes remain from this review. Aesthetic acceptance belongs to the user; this remains a local film study with photographic stills and animated records.
+Final documentation re-review returned PASS after replacing the stale in-progress paragraph and explicitly marking the prior 80-second plan section as historical. No fix-first findings remain. Aesthetic acceptance belongs to the user. This remains a local study using photographic stills and animated records.
