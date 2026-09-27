@@ -1173,3 +1173,25 @@ On 27 September, pantry, forecast and preparation joined sales in passing parent
 Cooking is explicitly rejected. Around frame 78 its small white cloth changes into a large black fabric. A revised prompt keeps both grips on the tray throughout a restrained inspection of the pastry batch. Do not substitute a short trim for a completed cooking action.
 
 The seven-scene batch completed forecast, preparation and cooking, then failed safely during waste model loading because a separate image-generation job occupied about 19 GB of GPU memory. The RAM/swap/GPU limits stayed unchanged. The model-server start request was restored and subsequently reported active. A scheduling question asks the user to reserve the GPU before another batch. Existing source clips remain intact; four sources still need rendering plus the rejected cooking replacement. CPU-only retiming checks then completed for forecast (9 seconds), pantry and preparation (10 seconds each). Parent and independent dense reviews passed, with exact decoded frame counts and hashes recorded. Sales had already passed its eight-second retiming check. Full assembly and browser review remain pending. No corrected full film or production integration is claimed.
+
+
+## 63. GPU reserved; six native scenes accepted
+
+The user replied “GPU Ready”, authorising the remaining render window. Waste completed and passed dense parent/independent review after resolving an initial false positive: a peeling beside the bowl follows a down-left path into it and is occluded by the near rim. Receiving also passed, with the pear continuously supported between both hands. Both scenes subsequently passed parent review at their final eight- and ten-second lengths. Six accepted sources and their original provenance now live in `atelier/native/clips/`.
+
+The local model server restarted automatically between waste and receiving. A temporary runtime service condition now prevents restarts during the reserved batch; a test start confirmed it stays inactive. The ineffective runtime mask was removed. `ExecStopPost` and the shell fallback both call the scoped cleanup that verifies/removes the exact temporary condition, reloads systemd and starts the service. Its persistent service file is unchanged. Restoration must be verified after rendering. The existing 14 GiB RAM / 1 GiB swap and GPU ceilings remain unchanged.
+
+Roster, tomorrow and cooking replacement are still rendering. Complete-film assembly, browser playback and final acceptance remain outstanding. Production application and CMS remain unchanged.
+
+
+## 64. Corrected continuous-motion film completed and verified
+
+All nine 121-frame native sources passed parent and independent dense contact review. The replacement preserves the painted visual direction and the full 80-second story, with linear retiming and clean cuts instead of interpolation between separately drawn poses. The corrected oven scene keeps both hands on the tray during pastry inspection; its caption matches that action. Approved clips, prompt/model provenance and individual reviews are retained in `atelier/native/`.
+
+The new local preview is 960 × 640, 24 fps, 1,920 frames and 15,723,622 bytes, SHA-256 `ddbb6f430ccb1e91972ff0eb94d7b07da585dbbdd63882b8a3226b2cc2397176`. Parent reviewed full progression, contact transitions and every cut; independent final review passed dense cooking/sales frames and all 13 frames around every chapter boundary. No required motion fixes remain from those reviews. This is not a claim of user aesthetic acceptance.
+
+Actual browser verification completed 80.013 seconds of uninterrupted playback with zero dropped frames. All nine chapters fit nine widths (81 states); desktop/mobile Axe and page errors are zero. Pause, seeking, replay, finite stop, offscreen pause/resume, reduced-motion start, no-JavaScript and failed-media fallbacks pass. Parent inspected actual desktop/mobile screenshots and the oven scene in the gstack browser. `atelier/evidence/verification.json` binds the served MP4 hash, browser report and screenshots. Application lint, typecheck, 57 test files / 311 tests and production build passed.
+
+The temporary model-server restart condition was removed; its runtime drop-in list is empty and the service was verified active/running. Persistent service configuration is unchanged. The original application and CMS remain unchanged: this completes the corrected local film preview, with production integration and user aesthetic acceptance still separate.
+
+Final independent integration review returned PASS with no required fixes. Source hashes, timeline, final media, screenshots and browser-report bindings were verified; current guide links and normalised prompt/image provenance also pass. The completed local preview is ready for the user to view.

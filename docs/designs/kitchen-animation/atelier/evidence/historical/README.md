@@ -1,0 +1,1 @@
+These contact sheets show the earlier pose-interpolated film whose motion the user rejected. They are retained as historical evidence, not the current film. Current full-film inspection is in the parent evidence directory.
