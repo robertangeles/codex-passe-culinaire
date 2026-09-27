@@ -1,0 +1,29 @@
+[
+  {
+    "scene": "forecast",
+    "decoded_frames": 216,
+    "duration_seconds": 9.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "fa82583a7d867a49d633fd34eb8ed8c6acb5448f0c03ac761c0468df4e1eb7d3"
+  },
+  {
+    "scene": "pantry",
+    "decoded_frames": 240,
+    "duration_seconds": 10.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "7f8a3057cf9e566fa5e2fa67693675579031e3e41158679c62e0021470b95673"
+  },
+  {
+    "scene": "preparation",
+    "decoded_frames": 240,
+    "duration_seconds": 10.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "d401d085a90651c8a1f6d5d502724fe9eeb3c32ade67f2aad896f2da9303a7cd"
+  }
+]

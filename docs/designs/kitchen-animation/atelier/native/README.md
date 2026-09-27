@@ -1,5 +1,7 @@
 # Contact-motion correction, in progress
 
+**Current status, 27 September:** Four 121-frame native sources have passed parent and independent visual review: sales, pantry, forecast and preparation. Cooking failed because the small oven cloth becomes a large black fabric; its source is rejected and a constrained inspection prompt is ready. Waste, receiving, team and tomorrow remain unrendered. The batch stopped safely during waste model loading when a separate image-generation process occupied about 19 GB of GPU memory. The finished clips are intact. The existing preview remains the rejected earlier film. The records below are chronological; earlier unverified status statements describe earlier checkpoints.
+
 The user liked the illustrated style of the 80-second film but rejected its glitchy movement and hands passing through objects. The existing `../kitchen-day.mp4` is not motion-approved. Zero dropped playback frames did not establish physically coherent character animation.
 
 ## Confirmed defects in the existing film
