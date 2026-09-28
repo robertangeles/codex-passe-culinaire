@@ -1,0 +1,64 @@
+import Image from 'next/image'
+import story from '../../docs/designs/kitchen-animation/remotion-film/story.json'
+import { KitchenFilmPlayer } from './KitchenFilmPlayer'
+import styles from './KitchenFilm.module.css'
+
+const assets = '/films/kitchen-day'
+const time = (seconds: number) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`
+
+export function KitchenFilm() {
+  return (
+    <section className={styles.film} id="kitchen-story" aria-label="A day in the kitchen">
+      <div className={styles.intro}>
+        <div>
+          <p className={styles.eyebrow}>An illustrative kitchen day</p>
+          <h3>A day in the kitchen.</h3>
+        </div>
+        <p className={styles.standfirst}>The ingredients.<br /> The people. The decisions.</p>
+      </div>
+      <KitchenFilmPlayer>
+        <div className={styles.cinema} data-film-cinema>
+          <div className={styles.stage} data-film-stage>
+            <picture data-film-poster>
+              <source media="(max-width: 760px)" srcSet={`${assets}/poster-portrait-v1.webp`} />
+              <Image src={`${assets}/poster-landscape-v1.webp`} alt="A pear tart on the kitchen bench, with a chef reviewing the day ahead." width={1920} height={1080} unoptimized loading="lazy" />
+            </picture>
+            <video data-kitchen-video muted playsInline preload="none" width={1920} height={1080}
+              data-desktop-src={`${assets}/landscape-v1.mp4`} data-mobile-src={`${assets}/portrait-v1.mp4`}
+              data-desktop-poster={`${assets}/poster-landscape-v1.webp`} data-mobile-poster={`${assets}/poster-portrait-v1.webp`}
+              aria-label="A day in the kitchen, a silent two minute eight second film. A full written story follows." />
+            <p className={styles.error} data-film-error role="status" hidden>The film could not load. Read the kitchen story below.</p>
+          </div>
+          <div className={styles.controls} data-film-controls hidden role="group" aria-label="Film controls">
+            <button type="button" data-film-play aria-label="Play the kitchen film">Play</button>
+            <input data-film-seek type="range" min="0" max={story.duration} step="0.1" defaultValue="0" aria-label="Film position" aria-valuetext="0:00 of 2:08" />
+            <span className={styles.time} data-film-time>0:00 / 2:08</span>
+            <button type="button" data-film-fullscreen aria-label="View the film full screen">Full screen</button>
+          </div>
+        </div>
+        <p className={styles.note}>An illustrative kitchen day. Photographic scenes and animated records.</p>
+        <nav className={styles.chapters} data-film-chapters aria-label="Film chapters" hidden>
+          {story.chapters.map(chapter => (
+            <button key={chapter.id} type="button" data-film-at={chapter.at} data-film-title={chapter.title} data-film-description={chapter.description}>
+              <span>{time(chapter.at)}</span>{chapter.label}
+            </button>
+          ))}
+        </nav>
+        <div className={styles.reading}>
+          <p className={styles.eyebrow}>The kitchen, connected</p>
+          <div>
+            <h4 data-film-title>{story.chapters[0].title}</h4>
+            <p data-film-description>{story.chapters[0].description}</p>
+          </div>
+        </div>
+      </KitchenFilmPlayer>
+      <details className={styles.transcript}>
+        <summary>Read the full kitchen story</summary>
+        <ol>{story.chapters.map(chapter => <li key={chapter.id}><strong>{chapter.label}.</strong> {chapter.description}</li>)}</ol>
+        <p>Illustrative figures: 80 forecast covers and 74 served; 24 pear tart portions prepared, 21 sold and 3 remaining for review. Pear stock begins at 8 kg. A 10 kg delivery is accepted against 12 kg ordered, bringing stock to 18 kg. Then 3 kg is drawn, with 2.4 kg used in the recipe, 0.3 kg returned and 0.3 kg recorded as waste. At an illustrative $4 per kg, that waste is $1.20. Closing stock is 15.3 kg. The separate savoury recipe example uses a $3.20 portion cost and $16 menu price, or 20% food cost.</p>
+        <p>This is an illustrative kitchen story, not a product screen or a claim of automatic product behaviour.</p>
+        <p><a href={`${assets}/landscape-v1.mp4`}>Open the landscape film</a> · <a href={`${assets}/portrait-v1.mp4`}>Open the portrait film</a></p>
+      </details>
+    </section>
+  )
+}

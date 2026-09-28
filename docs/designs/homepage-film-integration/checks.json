@@ -1,0 +1,67 @@
+{
+  "home-javascript": [
+    {
+      "budgetBytes": 160000,
+      "originalTargetBytes": 120000,
+      "totalBytes": 155284,
+      "inlineBytes": 7819,
+      "scripts": {
+        "http://localhost:3100/_next/static/chunks/0a3f9_t6il8ux.js": 3639,
+        "http://localhost:3100/_next/static/chunks/2y9nif2p0brro.js": 8484,
+        "http://localhost:3100/_next/static/chunks/3-uefp8qu9qy1.js": 71633,
+        "http://localhost:3100/_next/static/chunks/2z6wo54dtxfpa.js": 43015,
+        "http://localhost:3100/_next/static/chunks/turbopack-0aqbuljw8oafr.js": 4303,
+        "http://localhost:3100/_next/static/chunks/0p3gnmwsxws5z.js": 3690,
+        "http://localhost:3100/_next/static/chunks/3jgm1cm1aog69.js": 4198,
+        "http://localhost:3100/_next/static/chunks/2kgoz_4mcsltq.js": 7927,
+        "http://localhost:3100/_next/static/chunks/1s1-zmb2goe2f.js": 576
+      }
+    },
+    {
+      "budgetBytes": 160000,
+      "originalTargetBytes": 120000,
+      "totalBytes": 155289,
+      "inlineBytes": 7824,
+      "scripts": {
+        "http://localhost:3100/_next/static/chunks/0a3f9_t6il8ux.js": 3639,
+        "http://localhost:3100/_next/static/chunks/2y9nif2p0brro.js": 8484,
+        "http://localhost:3100/_next/static/chunks/3-uefp8qu9qy1.js": 71633,
+        "http://localhost:3100/_next/static/chunks/2z6wo54dtxfpa.js": 43015,
+        "http://localhost:3100/_next/static/chunks/turbopack-0aqbuljw8oafr.js": 4303,
+        "http://localhost:3100/_next/static/chunks/0p3gnmwsxws5z.js": 3690,
+        "http://localhost:3100/_next/static/chunks/3jgm1cm1aog69.js": 4198,
+        "http://localhost:3100/_next/static/chunks/2kgoz_4mcsltq.js": 7927,
+        "http://localhost:3100/_next/static/chunks/1s1-zmb2goe2f.js": 576
+      }
+    }
+  ],
+  "kitchen-film-playback": [
+    {
+      "time": 128,
+      "duration": 128,
+      "source": "http://localhost:3100/films/kitchen-day/landscape-v1.mp4",
+      "totalFrames": 3892,
+      "droppedFrames": 0
+    },
+    {
+      "time": 128,
+      "duration": 128,
+      "source": "http://localhost:3100/films/kitchen-day/portrait-v1.mp4",
+      "totalFrames": 3892,
+      "droppedFrames": 0
+    }
+  ],
+  "browserTests": {
+    "passed": 32,
+    "failed": 0,
+    "durationMinutes": 4.8
+  },
+  "applicationChecks": {
+    "lint": "pass",
+    "typecheck": "pass",
+    "testFiles": 57,
+    "tests": 311,
+    "build": "pass"
+  },
+  "mediaManifestSha256": "3470b5d525b8a8bfb89f6e53a9fd8855912340aa9c6c63758eac860613c38d30"
+}

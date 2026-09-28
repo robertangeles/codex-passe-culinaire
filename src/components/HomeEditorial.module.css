@@ -4,12 +4,10 @@
 .heading { margin: 0 0 24px; max-width: 10ch; font-family: var(--loaded-fraunces), var(--font-display), serif; font-size: clamp(36px, 4vw, 56px); font-weight: 300; line-height: 1.05; letter-spacing: -.03em; }
 .copy > div, .scope p { max-width: 40ch; font-size: 16px; line-height: 1.7; }
 .link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 16px; font-size: 13px; text-decoration-thickness: 1px; text-underline-offset: 7px; }
-.prep { padding: 40px; background: var(--surface-panel); }
-.prep h3 { margin: 0 0 32px; font-family: var(--loaded-fraunces), var(--font-display), serif; font-size: 36px; font-weight: 300; line-height: 1.08; }
-.prep dl { margin: 0 0 24px; font-size: 13px; }
-.prep dl > div { display: flex; justify-content: space-between; gap: 24px; padding-block: 16px; border-bottom: var(--rule); }
-.prep dd { margin: 0; text-align: right; }
-.caption { margin: 0; max-width: 55ch; font-size: 11px; line-height: 1.6; }
+.filmProduct > .copy { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; column-gap: 8vw; }
+.filmProduct .eyebrow { grid-column: 1 / -1; }
+.filmProduct .heading { grid-column: 1; grid-row: 2 / 4; }
+.filmProduct .copy > div, .filmProduct .link { grid-column: 2; }
 .founders { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 48px; }
 .founders article { min-width: 0; border-left: var(--rule); padding-left: 32px; }
 .founders article h3 { margin: 0 0 12px; font-family: var(--loaded-fraunces), var(--font-display), serif; font-size: 28px; font-weight: 300; line-height: 1.15; }
@@ -28,8 +26,6 @@
   .section { width: calc(100% - 48px); padding-block: 56px; }
   .product, .scope, .founders { grid-template-columns: 1fr; gap: 40px; }
   .heading { font-size: 38px; }
-  .prep { padding: 24px; }
-  .prep h3 { font-size: 32px; }
-  .prep dl > div { gap: 16px; }
+  .filmProduct > .copy { display: block; }
   .founders article { border-left: 0; border-top: var(--rule); padding: 24px 0 0; }
 }

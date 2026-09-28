@@ -2,6 +2,7 @@ import type { Cta, FounderCard, ProductSpotlight } from '../payload-types'
 import { safePublicHref } from '../lib/urls'
 import { ResponsiveMedia } from './ResponsiveMedia'
 import { RichText } from './RichText'
+import { KitchenFilm } from './KitchenFilm'
 import styles from './HomeEditorial.module.css'
 
 export function HomeProduct({ block, externalEmbedsEnabled }: { block: ProductSpotlight; externalEmbedsEnabled: boolean }) {
@@ -9,7 +10,7 @@ export function HomeProduct({ block, externalEmbedsEnabled }: { block: ProductSp
   const appStoreUrl = safePublicHref(block.appStoreUrl)
   const image = typeof block.image === 'object' && !block.image?.placeholder ? block.image : null
   return (
-    <section className={`${styles.section} ${styles.product}`}>
+    <section className={`${styles.section} ${styles.product} ${!image ? styles.filmProduct : ''}`}>
       <div className={styles.copy}>
         <p className={styles.eyebrow}>Our first offer</p>
         <h2 className={styles.heading}>{block.heading}</h2>
@@ -17,18 +18,8 @@ export function HomeProduct({ block, externalEmbedsEnabled }: { block: ProductSp
         {webUrl && <a className={styles.link} href={webUrl}>Explore CulinAIre Kitchen</a>}
         {appStoreUrl && <a className={styles.link} href={appStoreUrl}>View on the App Store</a>}
       </div>
-      {image ? <ResponsiveMedia media={image} sizes="(min-width: 741px) 44vw, 100vw" /> : (
-        <div className={styles.prep}>
-          <p className={styles.eyebrow}>An illustrative kitchen example</p>
-          <h3>Two dishes.<br />One component.</h3>
-          <dl>
-            <div><dt>Lemon tart</dt><dd>Pâte sucrée</dd></div>
-            <div><dt>Fruit tart</dt><dd>Pâte sucrée</dd></div>
-            <div><dt>Shared preparation</dt><dd>One component to identify</dd></div>
-          </dl>
-          <p className={styles.caption}>A use-case explanation, not a product screen or a claim of time saved.</p>
-        </div>
-      )}
+      {image && <ResponsiveMedia media={image} sizes="(min-width: 741px) 44vw, 100vw" />}
+      <KitchenFilm />
     </section>
   )
 }

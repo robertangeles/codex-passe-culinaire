@@ -30,3 +30,10 @@ Manual browser inspection covered mobile light and desktop dark layouts with the
 
 
 Final local verification on 26 September 2026: lint/typecheck/build passed, 306 tests in 56 files passed, and all 22 desktop/mobile browser checks passed. After the final Caddy readiness gate, all 15 Lighthouse runs passed the approved assertions. Route LCP medians were 2,102 ms home, 2,478 ms about, 1,952 ms product, 2,330 ms journal and 2,327 ms contact. Every run scored >=97 Performance and 100 in the other three categories. Independent review passed after the operational fixes. Results are in `.local/phase7-readiness-gate.log`, `.local/phase7-e2e.log` and `.local/phase7-lighthouse-final-summary.json`.
+
+
+## Homepage film integration, 28 September 2026
+
+The approved kitchen film is integrated into the homepage with deferred video transfer and compressed landscape/portrait files. Lint, typecheck, 57 test files / 311 tests and build passed. All 32 browser checks passed, including both complete 128-second film playthroughs with zero dropped frames. Home JavaScript measured 155,284 bytes desktop and 155,289 bytes phone, below the approved 160,000-byte ceiling. All fifteen Lighthouse runs across five core routes passed the existing category/LCP assertions. Home median LCP was 2,104 ms, Performance 99, Accessibility/Best Practices/SEO 100. The other route medians and raw measurements are in `designs/homepage-film-integration/lighthouse.json`; no budget was relaxed.
+
+Keep fixture-resetting unit and quality commands sequential. If a run was accidentally interrupted during fixture reset, discard its result and move the generated `.next-quality/cache/fetch-cache` aside before a fresh quality run. The application database must remain separate. Browser evidence and delivery-media hashes are in `designs/homepage-film-integration/`. This verifies the local production build, not a remote deployment.
