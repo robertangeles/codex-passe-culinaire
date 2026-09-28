@@ -56,7 +56,7 @@ const alex = (await payload.find({ collection: 'users', overrideAccess: true, wh
 if (!(await payload.findGlobal({ slug: 'site-settings', overrideAccess: true })).name) await payload.updateGlobal({ slug: 'site-settings', overrideAccess: true, data: {
   name: 'Passe Culinaire', tagline: 'Chefs working with chefs',
   description: 'Passe Culinaire is a Melbourne company founded by two chefs. CulinAIre Kitchen is its first product.',
-  organisation: { city: 'Melbourne', region: 'Victoria', country: 'Australia', founders: [alex.id, rob.id], knowsAbout: [
+  organisation: { legalName: 'PASSE CULINAIRE PTY LTD', city: 'Melbourne', region: 'Victoria', country: 'Australia', founders: [alex.id, rob.id], knowsAbout: [
     { topic: 'culinary AI' }, { topic: 'restaurant operations' }, { topic: 'pastry' }, { topic: 'recipe costing' }, { topic: 'kitchen training' },
   ] }, analyticsEnabled: false, robotsTxtExtra: '', defaultSitemap: { priority: '0.5', changeFrequency: 'monthly' },
 } })
@@ -67,7 +67,7 @@ if (!(await payload.findGlobal({ slug: 'header', overrideAccess: true })).create
 if (!(await payload.findGlobal({ slug: 'footer', overrideAccess: true })).createdAt) await payload.updateGlobal({ slug: 'footer', overrideAccess: true, data: {
   columns: [{ heading: 'Explore', links: [{ label: 'Services', url: '/services' }, { label: 'Training', url: '/training' }, { label: 'Journal', url: '/journal' }] },
     { heading: 'Company', links: [{ label: 'About', url: '/about' }, { label: 'Contact', url: '/contact' }] }],
-  legalText: 'Melbourne, Australia.', abn: '[TO CONFIRM]',
+  legalText: 'PASSE CULINAIRE PTY LTD\nPostal address: Unit 27, 29 Little Collins St\nMelbourne VIC 3000, Australia.', abn: '23 700 551 800',
 } })
 if (!(await exists('forms', 'key', 'contact'))) await payload.create({ collection: 'forms', overrideAccess: true,
   data: { key: 'contact', title: 'Contact', enabled: true, description: 'Send a note to the team.' } })
