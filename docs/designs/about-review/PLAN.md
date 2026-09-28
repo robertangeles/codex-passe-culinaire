@@ -2,7 +2,7 @@
 
 Date: 28 September 2026. Branch/base: main (no remote configured).
 Target: `/about`. User requested plan-design-review and selected **full page review**.
-Status: browser studies ready; awaiting design feedback. No application code or CMS content changed.
+Status: browser studies updated with labelled founder portrait spaces at the user’s request; awaiting design feedback. No application code or CMS content changed.
 
 ## Existing contract and evidence
 
@@ -25,13 +25,13 @@ Board: http://127.0.0.1:43947/boards/b-20260928-100545-6hmi4o/
 - B, **The house folio**, recommended: charcoal opening with the approved monogram; a bone founder spread with offset names/credentials; charcoal company-to-product continuation. http://127.0.0.1:4187/b.html
 - C, **The partnership**: the names become the visual anchor, linked by an ampersand, above a contrasting product continuation. http://127.0.0.1:4187/c.html
 
-All three use the supplied facts, remove placeholder imagery from the proposal and offer product/contact links. Their new headlines, connective copy and composition are proposals, not accepted changes. Browser studies use a representative shell; production must retain the actual PublicShell and theme control. No arbitrary founder portrait has been generated or substituted.
+All three use supplied facts and offer product/contact links. The first iteration omitted images; the user explicitly requested portrait placeholders to judge the full composition. The current iteration includes labelled photo spaces for both founders: A uses wide 5:4 frames on desktop, B and C use upright 4:5 frames; all use upright frames on mobile. B alternates portrait/biography sides on desktop and keeps photo before biography on mobile. Their new headlines, connective copy and composition are proposals, not accepted changes. Browser studies use a representative shell; production must retain the actual PublicShell and theme control. No arbitrary founder portrait has been generated or substituted.
 
 The gstack-generated exploratory raster was rejected as authoritative content: it invented biographical claims and did not faithfully reproduce the brand. It is not included in the chooser. The hand-authored HTML studies use exact local fonts/monogram and constrained copy instead.
 
-Local verification: all variants checked at 320, 390, 768, 1440 and 1920px; one h1, no horizontal overflow or browser errors. Axe WCAG A/AA checks passed on each desktop and phone study. Parent inspected all six desktop/phone screenshots and corrected mobile section spacing and founder-name wrapping. These are prototype checks, not application acceptance or production performance measurements.
+Local verification repeated after adding the portrait spaces: all variants checked at 320, 390, 768, 1440 and 1920px; one h1, no horizontal overflow or browser errors. Axe WCAG A/AA checks passed on each desktop and phone study. Parent inspected all six desktop/phone screenshots and corrected mobile section spacing and founder-name wrapping. These are prototype checks, not application acceptance or production performance measurements.
 
-External image checker: A and B returned pass. Automatic approval review blocked C's external image-check invocation because a local screenshot with founder/business information might be sent to an external AI service. It was not retried or routed around. C received local browser/visual checks only. No full outside design-voice review has run.
+External image checker, prior text-only iteration: A and B returned pass. These results do not cover the portrait revision. Automatic approval review blocked C's external image-check invocation because a local screenshot with founder/business information might be sent to an external AI service. It was not retried or routed around. C received local browser/visual checks only. No full outside design-voice review has run. The portrait revision was checked locally only, with no external screenshot transfer.
 
 ## Review sequence after feedback
 
@@ -47,7 +47,7 @@ All seven passes are in scope. Selection of full review authorises that scope, n
 
 ## Not in scope
 
-Homepage/contact redesign, logo replacement, invented founder evidence, new public offerings, product capability claims, a new backend or CMS, deployment and unsolicited third-party integrations. No new dependency is expected. The user has not supplied authentic founder portraits in this review; the proposals are intentionally complete without them.
+Homepage/contact redesign, logo replacement, invented founder evidence, new public offerings, product capability claims, a new backend or CMS, deployment and unsolicited third-party integrations. No new dependency is expected. Authentic portraits have not been supplied. Labelled placeholders are explicitly authorised for the comparison studies. Whether those placeholders appear on the production site has not been approved; genuine photos and no-photo behaviour remain part of implementation planning.
 
 ## Implementation tasks
 
