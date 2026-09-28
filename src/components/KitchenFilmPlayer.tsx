@@ -43,7 +43,7 @@ export function KitchenFilmPlayer({ children, chapters }: { children: ReactNode;
     const timeText = root.querySelector<HTMLSpanElement>('span[data-film-time]')
     const fullscreenButton = root.querySelector<HTMLButtonElement>('button[data-film-fullscreen]')
     const cinema = root.querySelector<HTMLElement>('[data-film-cinema]')
-    const chapterTitle = root.querySelector<HTMLElement>('h4[data-film-title]')
+    const chapterTitle = root.querySelector<HTMLElement>('h3[data-film-title]')
     const chapterDescription = root.querySelector<HTMLElement>('p[data-film-description]')
     const errorMessage = root.querySelector<HTMLElement>('[data-film-error]')
 

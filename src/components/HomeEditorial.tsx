@@ -1,24 +1,13 @@
-import type { Cta, FounderCard, ProductSpotlight } from '../payload-types'
+import type { Cta, FounderCard } from '../payload-types'
 import { safePublicHref } from '../lib/urls'
 import { ResponsiveMedia } from './ResponsiveMedia'
 import { RichText } from './RichText'
 import { KitchenFilm } from './KitchenFilm'
 import styles from './HomeEditorial.module.css'
 
-export function HomeProduct({ block, externalEmbedsEnabled }: { block: ProductSpotlight; externalEmbedsEnabled: boolean }) {
-  const webUrl = safePublicHref(block.webUrl)
-  const appStoreUrl = safePublicHref(block.appStoreUrl)
-  const image = typeof block.image === 'object' && !block.image?.placeholder ? block.image : null
+export function HomeProduct() {
   return (
-    <section className={`${styles.section} ${styles.product} ${!image ? styles.filmProduct : ''}`}>
-      <div className={styles.copy}>
-        <p className={styles.eyebrow}>Our first offer</p>
-        <h2 className={styles.heading}>{block.heading}</h2>
-        {block.body && <RichText data={block.body} externalEmbedsEnabled={externalEmbedsEnabled} />}
-        {webUrl && <a className={styles.link} href={webUrl}>Explore CulinAIre Kitchen</a>}
-        {appStoreUrl && <a className={styles.link} href={appStoreUrl}>View on the App Store</a>}
-      </div>
-      {image && <ResponsiveMedia media={image} sizes="(min-width: 741px) 44vw, 100vw" />}
+    <section className={`${styles.section} ${styles.product}`}>
       <KitchenFilm />
     </section>
   )

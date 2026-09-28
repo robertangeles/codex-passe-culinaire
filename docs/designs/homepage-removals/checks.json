@@ -1,0 +1,23 @@
+{
+  "viewports": [
+    {
+      "width": 390,
+      "removedRequestedElements": true,
+      "playback": true,
+      "seek": true,
+      "accessibleTranscriptItems": 15,
+      "axeViolations": 0,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "removedRequestedElements": true,
+      "playback": true,
+      "seek": true,
+      "accessibleTranscriptItems": 15,
+      "axeViolations": 0,
+      "errors": []
+    }
+  ],
+  "noJavaScriptFilmLink": true
+}

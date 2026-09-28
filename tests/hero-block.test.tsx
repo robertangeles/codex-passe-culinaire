@@ -94,7 +94,7 @@ describe('HeroBlock', () => {
     expect(heroImageForDate(block, new Date('2026-03-01T00:00:00.000Z'))).toBe(ordinaryImage)
   })
 
-  it('renders a large image separately from readable text and lets the shared component own its caption', () => {
+  it('omits the homepage image caption while retaining it on other pages', () => {
     const imageBlock = {
       ...homeBlock,
       style: 'image',
@@ -105,7 +105,9 @@ describe('HeroBlock', () => {
 
     expect(html).toContain('<picture>')
     expect(html).toContain('src="/media/winter.avif"')
-    expect(html).toContain('Concept photograph, not the founders or their premises.')
+    expect(html).not.toContain('Concept photograph, not the founders or their premises.')
+    const interiorHtml = renderToStaticMarkup(<HeroBlock block={imageBlock} />)
+    expect(interiorHtml).toContain('Concept photograph, not the founders or their premises.')
     expect(html).toContain('object-position:50% 50%')
     expect(html).toContain('loading="eager"')
     expect(html).toContain('Explore CulinAIre Kitchen')

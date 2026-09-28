@@ -12,7 +12,7 @@ export function KitchenFilm() {
       <div className={styles.intro}>
         <div>
           <p className={styles.eyebrow}>An illustrative kitchen day</p>
-          <h3>A day in the kitchen.</h3>
+          <h2>A day in the kitchen.</h2>
         </div>
         <p className={styles.standfirst}>The ingredients.<br /> The people. The decisions.</p>
       </div>
@@ -26,8 +26,8 @@ export function KitchenFilm() {
             <video data-kitchen-video muted playsInline preload="none" width={1920} height={1080}
               data-desktop-src={`${assets}/landscape-v1.mp4`} data-mobile-src={`${assets}/portrait-v1.mp4`}
               data-desktop-poster={`${assets}/poster-landscape-v1.webp`} data-mobile-poster={`${assets}/poster-portrait-v1.webp`}
-              aria-label="A day in the kitchen, a silent two minute eight second film. A full written story follows." />
-            <p className={styles.error} data-film-error role="status" hidden>The film could not load. Read the kitchen story below.</p>
+              aria-label="A day in the kitchen, a silent two minute eight second film." aria-describedby="kitchen-film-transcript" />
+            <p className={styles.error} data-film-error role="status" hidden>The film could not be loaded.</p>
           </div>
           <div className={styles.controls} data-film-controls hidden role="group" aria-label="Film controls">
             <button type="button" data-film-play aria-label="Play the kitchen film">Play</button>
@@ -39,18 +39,19 @@ export function KitchenFilm() {
         <div className={styles.reading}>
           <p className={styles.eyebrow}>The kitchen, connected</p>
           <div>
-            <h4 data-film-title>{story.chapters[0].title}</h4>
+            <h3 data-film-title>{story.chapters[0].title}</h3>
             <p data-film-description>{story.chapters[0].description}</p>
           </div>
         </div>
       </KitchenFilmPlayer>
-      <details className={styles.transcript}>
-        <summary>Read the full kitchen story</summary>
+      <div id="kitchen-film-transcript" className={styles.transcript}>
         <ol>{story.chapters.map(chapter => <li key={chapter.id}><strong>{chapter.label}.</strong> {chapter.description}</li>)}</ol>
         <p>Illustrative figures: 80 forecast covers and 74 served; 24 pear tart portions prepared, 21 sold and 3 remaining for review. Pear stock begins at 8 kg. A 10 kg delivery is accepted against 12 kg ordered, bringing stock to 18 kg. Then 3 kg is drawn, with 2.4 kg used in the recipe, 0.3 kg returned and 0.3 kg recorded as waste. At an illustrative $4 per kg, that waste is $1.20. Closing stock is 15.3 kg. The separate savoury recipe example uses a $3.20 portion cost and $16 menu price, or 20% food cost.</p>
         <p>This is an illustrative kitchen story, not a product screen or a claim of automatic product behaviour.</p>
-        <p><a href={`${assets}/landscape-v1.mp4`}>Open the landscape film</a> · <a href={`${assets}/portrait-v1.mp4`}>Open the portrait film</a></p>
-      </details>
+      </div>
+      <noscript>
+        <p className={styles.noscript}>Open the <a href={`${assets}/landscape-v1.mp4`}>landscape film</a> or <a href={`${assets}/portrait-v1.mp4`}>portrait film</a>.</p>
+      </noscript>
     </section>
   )
 }

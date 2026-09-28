@@ -14,7 +14,11 @@ describe('C4 homepage', () => {
     expect(html).toContain('From craft')
     expect(html).toContain('A day in the kitchen.')
     expect(html).not.toContain('Two dishes.')
-    expect(html).toContain('Read the full kitchen story')
+    expect(html).not.toContain('Our first offer')
+    expect(html.match(/Explore CulinAIre Kitchen/g)).toHaveLength(1)
+    expect(html).not.toContain('Read the full kitchen story')
+    expect(html).toContain('id="kitchen-film-transcript"')
+    expect(html.match(/<li>/g)).toHaveLength(15)
     expect(html).toContain('Waste Management')
     expect(html).toContain('Cocktail Lab')
     expect(html).toContain('preload="none"')
@@ -23,7 +27,7 @@ describe('C4 homepage', () => {
     expect(html).toContain('Rob Angeles')
     expect(html).toContain('href="/contact"')
     expect(html).not.toContain('PLACEHOLDER')
-    expect(html.indexOf('CulinAIre Kitchen')).toBeLessThan(html.indexOf('Alex Charasse'))
+    expect(html.indexOf('A day in the kitchen.')).toBeLessThan(html.indexOf('Alex Charasse'))
   })
 
   it('keeps noncontiguous founder groups and following blocks in their CMS order', () => {

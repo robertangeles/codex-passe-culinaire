@@ -54,7 +54,7 @@ function renderBlock(
     case 'founderCard':
       return <FounderCardBlock key={key} block={block} priority={index < 3} externalEmbedsEnabled={props.externalEmbedsEnabled} />
     case 'productSpotlight':
-      if (props.home) return <HomeProduct key={key} block={block} externalEmbedsEnabled={props.externalEmbedsEnabled === true} />
+      if (props.home) return <HomeProduct key={key} />
       return <ProductSpotlightBlock key={key} block={block} externalEmbedsEnabled={props.externalEmbedsEnabled} />
     case 'journalFeed':
       return <JournalFeedBlock key={key} block={block} posts={props.content.posts} />

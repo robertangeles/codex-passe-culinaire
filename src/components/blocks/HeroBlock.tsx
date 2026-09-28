@@ -63,7 +63,7 @@ export function HeroBlock({ block, headingLevel = 2, home = false }: HeroBlockPr
     <section className={className} aria-label={block.eyebrow || undefined}>
       {hasPopulatedImage && (
         <div className={styles.media}>
-          <ResponsiveMedia media={image} priority={home || headingLevel === 1} sizes={home ? '(min-width: 741px) 52vw, 100vw' : '(min-width: 960px) 58vw, 100vw'} />
+          <ResponsiveMedia media={image} priority={home || headingLevel === 1} sizes={home ? '(min-width: 741px) 52vw, 100vw' : '(min-width: 960px) 58vw, 100vw'} caption={home ? '' : undefined} />
         </div>
       )}
       <div className={styles.content}>
