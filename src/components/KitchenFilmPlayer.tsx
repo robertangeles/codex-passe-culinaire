@@ -13,12 +13,11 @@ type NavigatorWithConnection = Navigator & {
   connection?: SaveDataConnection
 }
 
-type Chapter = {
+type Chapter = Readonly<{
   at: number
   title: string
   description: string
-  button: HTMLButtonElement
-}
+}>
 
 function formatTime(seconds: number): string {
   const safeSeconds = Number.isFinite(seconds)
@@ -28,7 +27,7 @@ function formatTime(seconds: number): string {
   return `${Math.floor(safeSeconds / 60)}:${String(Math.floor(safeSeconds % 60)).padStart(2, '0')}`
 }
 
-export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
+export function KitchenFilmPlayer({ children, chapters }: { children: ReactNode; chapters: readonly Chapter[] }) {
   const rootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -44,27 +43,14 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
     const timeText = root.querySelector<HTMLSpanElement>('span[data-film-time]')
     const fullscreenButton = root.querySelector<HTMLButtonElement>('button[data-film-fullscreen]')
     const cinema = root.querySelector<HTMLElement>('[data-film-cinema]')
-    const chapterList = root.querySelector<HTMLElement>('[data-film-chapters]')
     const chapterTitle = root.querySelector<HTMLElement>('h4[data-film-title]')
     const chapterDescription = root.querySelector<HTMLElement>('p[data-film-description]')
     const errorMessage = root.querySelector<HTMLElement>('[data-film-error]')
 
     if (
       !video || !stage || !poster || !controls || !playButton || !seek || !timeText ||
-      !fullscreenButton || !cinema || !chapterList || !chapterTitle || !chapterDescription || !errorMessage
+      !fullscreenButton || !cinema || !chapterTitle || !chapterDescription || !errorMessage
     ) return
-
-    const chapters: Chapter[] = Array.from(
-      chapterList.querySelectorAll<HTMLButtonElement>('button[data-film-at]'),
-    )
-      .map((button) => ({
-        at: Number(button.dataset.filmAt),
-        title: button.dataset.filmTitle ?? '',
-        description: button.dataset.filmDescription ?? '',
-        button,
-      }))
-      .filter((chapter) => Number.isFinite(chapter.at))
-      .sort((first, second) => first.at - second.at)
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     const connection = (navigator as NavigatorWithConnection).connection
@@ -81,7 +67,6 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
     seek.max = String(FILM_DURATION)
     seek.step = '0.1'
     controls.hidden = false
-    chapterList.hidden = false
     errorMessage.hidden = true
 
     let visible = false
@@ -112,10 +97,6 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
       chapterTitle.textContent = chapter.title
       chapterDescription.textContent = chapter.description
 
-      chapters.forEach((item, index) => {
-        if (index === nextIndex) item.button.setAttribute('aria-current', 'step')
-        else item.button.removeAttribute('aria-current')
-      })
     }
 
     const updateTime = (seconds: number) => {
@@ -267,7 +248,6 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
       video.hidden = false
       video.classList.add('is-ready')
       controls.hidden = false
-      chapterList.hidden = false
     }
 
     const handleMediaError: EventListener = () => {
@@ -278,7 +258,6 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
       playButton.disabled = true
       seek.disabled = true
       fullscreenButton.disabled = true
-      chapters.forEach(({ button }) => { button.disabled = true })
     }
 
     listen(playButton, 'click', handlePlayClick)
@@ -310,11 +289,6 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
       }
     })
 
-    chapters.forEach(({ at, button }) => {
-      // The opening frame of each chapter has transparent titles during its reveal.
-      listen(button, 'click', () => setTime(at + 1))
-    })
-
     const observer = new IntersectionObserver((entries) => {
       const entry = entries.find((item) => item.target === stage)
       if (!entry) return
@@ -337,7 +311,7 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
       listeners.forEach((removeListener) => removeListener())
       video.pause()
     }
-  }, [])
+  }, [chapters])
 
   return <div ref={rootRef}>{children}</div>
 }

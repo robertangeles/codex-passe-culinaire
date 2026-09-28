@@ -24,3 +24,10 @@ Browser inspection covered the actual homepage in desktop and phone layouts, dar
 The first browser run was discarded after a concurrent isolated-fixture reset. The resulting stale empty-content cache was moved aside, and the complete browser suite was rerun sequentially from freshly seeded fixtures. No application data was reset. The accepted evidence is `checks.json` and `browser-extra.json`.
 
 The homepage's three Lighthouse runs scored 99 Performance and 100 in Accessibility, Best Practices and SEO, with median LCP 2,104 ms on the documented throttled mobile profile. All fifteen Lighthouse runs across the five core routes passed the existing assertions. The full results are in `lighthouse.json`. Final independent source and evidence review returned PASS, including delivery hashes and the superseded authoring-study notes. No thresholds were weakened. This change updates the application; it does not claim a remote deployment.
+
+
+## Film section refinement
+
+The user subsequently requested removing the caption under the player and the chapter-navigation grid. Both are removed from homepage markup. The playback controls, current-scene text and full written story remain. The earlier screenshots and full-playthrough measurements above document the initial integration. Verification of this small interface refinement is recorded separately; no video files have changed.
+
+Refinement checks passed: lint, typecheck, 57 test files / 311 tests, production build and independent review. `cleanup-checks.json` records targeted Chromium checks on the production homepage at 390 and 1440 pixels, including removal, playback controls, seeking, current-scene text, finite ending, replay and all fifteen transcript entries. Axe violations, page errors and overflow were zero. Parent visually inspected `cleanup-mobile.jpg` and `cleanup-desktop.jpg`. No new full-length playback or Lighthouse measurement is claimed for this refinement.

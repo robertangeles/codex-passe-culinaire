@@ -4,7 +4,7 @@ import { KitchenFilmPlayer } from './KitchenFilmPlayer'
 import styles from './KitchenFilm.module.css'
 
 const assets = '/films/kitchen-day'
-const time = (seconds: number) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`
+const chapters = story.chapters.map(({ at, title, description }) => ({ at, title, description }))
 
 export function KitchenFilm() {
   return (
@@ -16,7 +16,7 @@ export function KitchenFilm() {
         </div>
         <p className={styles.standfirst}>The ingredients.<br /> The people. The decisions.</p>
       </div>
-      <KitchenFilmPlayer>
+      <KitchenFilmPlayer chapters={chapters}>
         <div className={styles.cinema} data-film-cinema>
           <div className={styles.stage} data-film-stage>
             <picture data-film-poster>
@@ -36,14 +36,6 @@ export function KitchenFilm() {
             <button type="button" data-film-fullscreen aria-label="View the film full screen">Full screen</button>
           </div>
         </div>
-        <p className={styles.note}>An illustrative kitchen day. Photographic scenes and animated records.</p>
-        <nav className={styles.chapters} data-film-chapters aria-label="Film chapters" hidden>
-          {story.chapters.map(chapter => (
-            <button key={chapter.id} type="button" data-film-at={chapter.at} data-film-title={chapter.title} data-film-description={chapter.description}>
-              <span>{time(chapter.at)}</span>{chapter.label}
-            </button>
-          ))}
-        </nav>
         <div className={styles.reading}>
           <p className={styles.eyebrow}>The kitchen, connected</p>
           <div>

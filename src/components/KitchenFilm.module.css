@@ -10,19 +10,13 @@
 .stage [hidden] { display: none; }
 .stage .error { position: absolute; z-index: 2; inset: auto 16px 16px; padding: 16px; margin: 0; font-size: 14px; background: var(--color-charcoal); }
 .controls { display: flex; align-items: center; gap: 16px; padding: 12px 16px; background: #23251f; }
-.controls[hidden], .chapters[hidden] { display: none; }
+.controls[hidden] { display: none; }
 .controls button { min-width: 88px; min-height: 44px; padding: 8px 16px; border: 1px solid #8a8a82; background: transparent; color: inherit; font: inherit; font-size: 12px; cursor: pointer; }
 .controls button:first-child { border-color: #cbb889; }
 .controls input { flex: 1; min-width: 32px; height: 44px; accent-color: #cbb889; cursor: pointer; }
 .time { font-family: var(--loaded-jetbrains), var(--font-mono), monospace; font-size: 11px; white-space: nowrap; }
-.controls :focus-visible, .chapters button:focus-visible, .transcript summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.controls :focus-visible, .transcript summary:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 .controls button:disabled { opacity: .6; cursor: default; }
-.note { margin: 12px 0 24px; font-size: 11px; line-height: 1.6; }
-.chapters { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.chapters button { padding: 16px 12px; min-height: 64px; text-align: left; background: transparent; color: inherit; font: inherit; font-size: 12px; border: 0; border-bottom: var(--rule); border-right: var(--rule); cursor: pointer; }
-.chapters button:nth-child(5n) { border-right: 0; }
-.chapters button span { display: block; margin-bottom: 4px; font-family: var(--font-mono), monospace; font-size: 10px; }
-.chapters button[aria-current], .chapters button:hover { background: var(--surface-panel); }
 .reading { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; padding-block: 40px; }
 .reading .eyebrow { margin: 8px 0; }
 .reading h4 { font-family: var(--loaded-fraunces), var(--font-display), serif; font-size: clamp(28px, 3vw, 40px); font-weight: 300; line-height: 1.1; margin: 0 0 12px; }
@@ -43,9 +37,6 @@
   .controls button { min-width: 52px; padding: 8px; font-size: 11px; }
   .controls button:last-child { max-width: 64px; }
   .time { font-size: 9px; }
-  .chapters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .chapters button:nth-child(5n) { border-right: var(--rule); }
-  .chapters button:nth-child(2n) { border-right: 0; }
   .reading { grid-template-columns: 1fr; gap: 16px; padding-block: 32px; }
 }
 .stage[data-format="landscape"] { aspect-ratio: 16 / 9; }
