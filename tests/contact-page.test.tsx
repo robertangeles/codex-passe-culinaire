@@ -23,7 +23,10 @@ import ContactPage, { dynamic, generateMetadata } from '../src/app/(public)/cont
 const contactModel = {
   page: {
     title: 'Contact Passe Culinaire',
-    layout: [{ blockType: 'plainStatement' as const, statement: 'Talk with us about your kitchen.' }],
+    layout: [
+      { blockType: 'plainStatement' as const, statement: 'Talk with us about your kitchen.' },
+      { blockType: 'plainStatement' as const, statement: 'Keep this additional CMS introduction copy.' },
+    ],
     seo: { metaTitle: 'Contact the team', metaDescription: 'Send a message to Passe Culinaire.', noIndex: false, noFollow: false },
   },
   content: { posts: [], services: [], events: [] },
@@ -45,7 +48,11 @@ describe('contact page route', () => {
     expect(html).toContain('<h1')
     expect(html.match(/<h1\b/g)).toHaveLength(1)
     expect(html).toContain('Talk with us about your kitchen.')
-    expect(html).toContain('<h2>Send a message</h2>')
+    expect(html).toContain('Keep this additional CMS introduction copy.')
+    expect(html).toContain('<h2 id="contact-enquiry-heading">Your enquiry</h2>')
+    expect(html).toContain('Required unless marked optional.')
+    expect(html).toContain('Passe Culinaire · Melbourne')
+    expect(html).toContain('href="/about">Meet the founders</a>')
     expect(html).toContain('aria-label="Contact form"')
     expect(html).not.toMatch(/mailto:|@[^\s<]+\.[^\s<]+/u)
   })

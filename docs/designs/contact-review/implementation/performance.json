@@ -1,0 +1,35 @@
+{
+  "fixture": "Isolated seeded contact page with production code; documented mobile 4G profile, three runs.",
+  "runs": [
+    {
+      "url": "https://localhost:3443/contact",
+      "categories": {
+        "performance": 0.98,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "lcp": 2253.284
+    },
+    {
+      "url": "https://localhost:3443/contact",
+      "categories": {
+        "performance": 1,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "lcp": 1803.464
+    },
+    {
+      "url": "https://localhost:3443/contact",
+      "categories": {
+        "performance": 0.99,
+        "accessibility": 1,
+        "best-practices": 1,
+        "seo": 1
+      },
+      "lcp": 2254.313
+    }
+  ]
+}

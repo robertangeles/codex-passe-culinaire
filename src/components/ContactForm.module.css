@@ -1,33 +1,42 @@
 .form {
   display: grid;
-  gap: var(--space-6);
-  max-width: 62ch;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 20px;
+  width: 100%;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
 }
 
 .field {
   display: grid;
   gap: var(--space-2);
+  min-width: 0;
 }
 
 .field label {
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .field input,
 .field select,
 .field textarea {
   width: 100%;
+  min-width: 0;
   min-height: 48px;
   padding: var(--space-3) var(--space-4);
   border: 1px solid color-mix(in srgb, var(--foreground) 60%, var(--surface));
   border-radius: var(--input-radius);
-  background: var(--surface);
+  background: var(--surface-muted);
   color: var(--foreground);
   font: inherit;
+  font-size: 16px;
 }
 
 .field textarea {
-  min-height: 12rem;
+  min-height: 150px;
   resize: vertical;
 }
 
@@ -55,6 +64,7 @@
 }
 
 .summary {
+  width: 100%;
   padding: var(--space-4);
   border-inline-start: 3px solid currentColor;
   background: color-mix(in srgb, var(--foreground) 6%, var(--surface));
@@ -72,14 +82,15 @@
 .submit {
   justify-self: start;
   min-width: 10rem;
-  min-height: 48px;
-  padding: var(--space-3) var(--space-6);
+  min-height: 50px;
+  padding: 12px 30px;
   border: 1px solid var(--foreground);
   border-radius: 0;
   background: var(--foreground);
   color: var(--surface);
   font: inherit;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
   cursor: pointer;
 }
 
@@ -92,7 +103,7 @@
   display: grid;
   justify-items: start;
   gap: var(--space-4);
-  max-width: 62ch;
+  width: 100%;
   color: var(--foreground);
 }
 
@@ -113,16 +124,27 @@
 }
 
 .link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 0;
   border: 0;
   border-radius: 0;
   background: transparent;
+  color: var(--link);
   font: inherit;
   cursor: pointer;
   text-decoration: underline;
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--link);
   text-underline-offset: 0.2em;
+}
+
+@media (max-width: 800px) {
+  .form {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .submit {
+    width: 100%;
+  }
 }

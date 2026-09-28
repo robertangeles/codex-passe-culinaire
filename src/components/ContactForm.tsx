@@ -57,7 +57,7 @@ export default function ContactForm({ initialState, action }: ContactFormProps) 
 
       {hasAlert ? (
         <div
-          className={styles.summary}
+          className={`${styles.summary} ${styles.fullWidth}`}
           id="contact-form-summary"
           ref={summaryRef}
           role="alert"
@@ -109,7 +109,7 @@ export default function ContactForm({ initialState, action }: ContactFormProps) 
         {state.errors.role ? <p className={styles.error} id={fieldErrorId('role')}>{state.errors.role}</p> : null}
       </div>
 
-      <div className={styles.field}>
+      <div className={`${styles.field} ${styles.fullWidth}`}>
         <label htmlFor="contact-need">What can we help with?</label>
         <select
           defaultValue={state.values.need}
@@ -130,7 +130,7 @@ export default function ContactForm({ initialState, action }: ContactFormProps) 
         {state.errors.need ? <p className={styles.error} id={fieldErrorId('need')}>{state.errors.need}</p> : null}
       </div>
 
-      <div className={styles.field}>
+      <div className={`${styles.field} ${styles.fullWidth}`}>
         <label htmlFor="contact-message">Message</label>
         <textarea
           defaultValue={state.values.message}
@@ -138,14 +138,14 @@ export default function ContactForm({ initialState, action }: ContactFormProps) 
           maxLength={5000}
           name="message"
           required
-          rows={7}
+          rows={4}
           aria-invalid={state.errors.message ? true : undefined}
           aria-describedby={state.errors.message ? fieldErrorId('message') : undefined}
         />
         {state.errors.message ? <p className={styles.error} id={fieldErrorId('message')}>{state.errors.message}</p> : null}
       </div>
 
-      <button className={styles.submit} disabled={pending} type="submit">
+      <button className={`${styles.submit} ${styles.fullWidth}`} disabled={pending} type="submit">
         {pending ? 'Sending…' : 'Send message'}
       </button>
     </form>

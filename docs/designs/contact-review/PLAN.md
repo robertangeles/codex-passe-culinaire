@@ -137,12 +137,12 @@ Backend delivery changes, removing required fields, new contact methods, respons
 
 ## Implementation tasks
 
-- [ ] T1 (P1, human ~2h / agent ~20min): apply B's scoped contact-page composition and CMS introduction mapping. Files: contact/page.tsx, a colocated CSS module and only necessary public presentation code. Verify one h1, exact public shell, editable text and no omitted custom blocks.
-- [ ] T2 (P1, human ~1h / agent ~15min): style the existing form with the approved desktop pairs, full-width topic/message and mobile stack. Files: ContactForm.tsx and ContactForm.module.css. Preserve action, native fields, validation, focus and truthful server-result rendering. Do not add preview controls to production.
-- [ ] T3 (P1, human ~1h / agent ~15min): apply the approved copy locally with backup and source/draft guards. Files: a scoped update script and focused content-guard tests if needed. Reuse existing local-target/publication protections; no migration or broad seed rewrite.
-- [ ] T4 (P1, human ~2h / agent ~25min): run lint/typecheck/test/build, independent source review, real desktop/phone visual checks and existing contact-flow tests against isolated test fixtures. Verify dark/light, keyboard/error recovery, no-JavaScript, receipt truthfulness, CMS preview and no viewport overflow. Recheck relevant route performance under existing budgets. Never send test mail to real recipients.
+- [x] T1 (P1, human ~2h / agent ~20min): apply B's scoped contact-page composition and CMS introduction mapping. Files: contact/page.tsx, a colocated CSS module and only necessary public presentation code. Verify one h1, exact public shell, editable text and no omitted custom blocks.
+- [x] T2 (P1, human ~1h / agent ~15min): style the existing form with the approved desktop pairs, full-width topic/message and mobile stack. Files: ContactForm.tsx and ContactForm.module.css. Preserve action, native fields, validation, focus and truthful server-result rendering. Do not add preview controls to production.
+- [x] T3 (P1, human ~1h / agent ~15min): apply the approved copy locally with backup and source/draft guards. Files: a scoped update script and focused content-guard tests if needed. Reuse existing local-target/publication protections; no migration or broad seed rewrite.
+- [x] T4 (P1, human ~2h / agent ~25min): run lint/typecheck/test/build, independent source review, real desktop/phone visual checks and existing contact-flow tests against isolated test fixtures. Verify dark/light, keyboard/error recovery, no-JavaScript, receipt truthfulness, CMS preview and no viewport overflow. Recheck relevant route performance under existing budgets. Never send test mail to real recipients.
 
-Parent owns plan, integration and acceptance. Assign bounded executor tasks with disjoint files, then inspect their diffs and run project gates. Any fix-first verdict requires another review. This review produces the plan; implementation is the next phase.
+Parent owns plan, integration and acceptance. Assign bounded executor tasks with disjoint files, then inspect their diffs and run project gates. Any fix-first verdict requires another review. The user authorised implementation with “yes, let’s go”. Implementation and local acceptance are complete.
 
 ## Review summary
 
@@ -159,14 +159,30 @@ Parent owns plan, integration and acceptance. Assign bounded executor tasks with
 
 The final score rates the approved design specification, not completed application code. One decision was accepted, none deferred. Outside design voices were not run; the automated raster checker did not establish cross-model design acceptance. Historical whole-site reviews are not represented as fresh contact-page implementation reviews.
 
+## Implementation acceptance
+
+The user approved applying B. The actual `/contact` route now uses the approved two-column charcoal composition, paired fields, native controls and mobile stack. Shared navigation, footer, theme control and form delivery logic are retained. The CMS renders every introduction block; the approved headline and invitation were applied only to the known local seeded layout, after backup and draft/source checks. A repeat invocation made no change and exited successfully. No deployment was performed.
+
+Parent integration corrected shared hero selector specificity after inspecting the desktop screenshot. Final rendered screenshots were inspected on desktop and phone, including light appearance. Evidence is in `implementation/`.
+
+Actual verification:
+
+- `pnpm lint && pnpm typecheck && pnpm test && pnpm build`: passed. Vitest reported 57 files and 311 tests passed. Production build compiled successfully and generated all eight static pages. The contact route remains dynamically server-rendered.
+- Scoped isolated Playwright contact suite: six passed across desktop and phone, including saved receipt without an email-delivery claim, accessible server HTML and no-JavaScript server validation with retained values. No test mail was sent to real recipients.
+- Final local production page: 320, 390, 768, 1440 and 1920 CSS pixels, each in dark/light/system with reduced motion. All 15 checks had one h1, zero horizontal overflow, no browser errors and zero Axe WCAG A/AA violations. Keyboard tab order passed. Additional 720 CSS pixel reflow, equivalent to a 1440px window at 200% zoom, passed; native role selection and required-field focus were checked.
+- Contact-only Lighthouse on isolated seeded content with the final production presentation code, three runs on the documented mobile 4G profile: median Performance 99, Accessibility 100, Best Practices 100, SEO 100; median LCP 2253ms. All configured budgets passed. These measurements describe the seeded performance fixture; screenshots and layout checks describe the approved local content.
+- Independent source review: PASS. Follow-up review of explicit updater shutdown: PASS. Focused lint and actual no-op updater invocation passed after that script-only change.
+
+No package was added. CMS preview behaviour and arbitrary introduction retention remain covered by route tests; no new authenticated browser preview claim is made. The local production server serves the accepted build at `http://127.0.0.1:3000/contact`.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
 | --- | --- | --- | --- | --- | --- |
 | Contact design | /plan-design-review | Layout, states and brand alignment | 1 | Design complete | B approved; one decision; design specification 3/10 → 9/10 |
-| Contact engineering | Implementation phase | Validate scoped changes and CMS handling | 0 | Required before acceptance | No application diff exists yet |
+| Contact engineering | Implementation phase | Validate scoped changes and CMS handling | 2 | PASS | Independent review and updater shutdown follow-up; no required fixes |
 | Outside design voice | Optional review phase | Additional design challenge | 0 | Not run | No external completeness review claimed |
 
-VERDICT: Contact design specification complete. Engineering and implementation verification remain required before the updated page is accepted.
+VERDICT: Approved design B implemented and accepted locally. Engineering, browser, form and performance checks passed.
 
 NO UNRESOLVED DECISIONS

@@ -10,10 +10,10 @@ import { notFound } from 'next/navigation'
 
 import ContactForm from '../../../components/ContactForm'
 import { BlockRenderer } from '../../../components/BlockRenderer'
-import { EditorialSection } from '../../../components/EditorialSection'
 import { getPageViewModel } from '../../../lib/page-view-model'
 import type { ContactFormValues } from '../../../lib/contact-form-state'
 import { sendContactMessage } from './actions'
+import styles from './page.module.css'
 
 export const dynamic = 'force-dynamic'
 
@@ -56,16 +56,28 @@ export default async function ContactPage() {
           <Link href="/api/preview?exit=1" prefetch={false}>Exit preview</Link>
         </aside>
       )}
-      <BlockRenderer
-        blocks={page.layout}
-        title={page.title}
-        content={content}
-        externalEmbedsEnabled={externalEmbedsEnabled}
-      />
-      <EditorialSection>
-        <h2>Send a message</h2>
-        <ContactForm initialState={initialState} action={sendContactMessage} />
-      </EditorialSection>
+      <div className={styles.layout}>
+        <div className={styles.intro}>
+          <BlockRenderer
+            blocks={page.layout}
+            title={page.title}
+            content={content}
+            externalEmbedsEnabled={externalEmbedsEnabled}
+          />
+          <aside className={styles.founders} aria-label="About the founders">
+            <p className={styles.location}>Passe Culinaire · Melbourne</p>
+            <p className={styles.names}>Alex Charasse<br />Rob Angeles</p>
+            <Link href="/about">Meet the founders</Link>
+          </aside>
+        </div>
+        <section className={styles.formRegion} aria-labelledby="contact-enquiry-heading">
+          <header className={styles.formHeader}>
+            <h2 id="contact-enquiry-heading">Your enquiry</h2>
+            <p>Required unless marked optional.</p>
+          </header>
+          <ContactForm initialState={initialState} action={sendContactMessage} />
+        </section>
+      </div>
     </main>
   )
 }
