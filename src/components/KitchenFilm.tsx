@@ -4,7 +4,6 @@ import { KitchenFilmPlayer } from './KitchenFilmPlayer'
 import styles from './KitchenFilm.module.css'
 
 const assets = '/films/kitchen-day'
-const chapters = story.chapters.map(({ at, title, description }) => ({ at, title, description }))
 
 export function KitchenFilm() {
   return (
@@ -16,7 +15,7 @@ export function KitchenFilm() {
         </div>
         <p className={styles.standfirst}>The ingredients.<br /> The people. The decisions.</p>
       </div>
-      <KitchenFilmPlayer chapters={chapters}>
+      <KitchenFilmPlayer>
         <div className={styles.cinema} data-film-cinema>
           <div className={styles.stage} data-film-stage>
             <picture data-film-poster>
@@ -34,13 +33,6 @@ export function KitchenFilm() {
             <input data-film-seek type="range" min="0" max={story.duration} step="0.1" defaultValue="0" aria-label="Film position" aria-valuetext="0:00 of 2:08" />
             <span className={styles.time} data-film-time>0:00 / 2:08</span>
             <button type="button" data-film-fullscreen aria-label="View the film full screen">Full screen</button>
-          </div>
-        </div>
-        <div className={styles.reading}>
-          <p className={styles.eyebrow}>The kitchen, connected</p>
-          <div>
-            <h3 data-film-title>{story.chapters[0].title}</h3>
-            <p data-film-description>{story.chapters[0].description}</p>
           </div>
         </div>
       </KitchenFilmPlayer>

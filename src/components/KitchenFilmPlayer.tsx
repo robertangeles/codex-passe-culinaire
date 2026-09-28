@@ -13,12 +13,6 @@ type NavigatorWithConnection = Navigator & {
   connection?: SaveDataConnection
 }
 
-type Chapter = Readonly<{
-  at: number
-  title: string
-  description: string
-}>
-
 function formatTime(seconds: number): string {
   const safeSeconds = Number.isFinite(seconds)
     ? Math.max(0, Math.min(FILM_DURATION, seconds))
@@ -27,7 +21,7 @@ function formatTime(seconds: number): string {
   return `${Math.floor(safeSeconds / 60)}:${String(Math.floor(safeSeconds % 60)).padStart(2, '0')}`
 }
 
-export function KitchenFilmPlayer({ children, chapters }: { children: ReactNode; chapters: readonly Chapter[] }) {
+export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -43,13 +37,11 @@ export function KitchenFilmPlayer({ children, chapters }: { children: ReactNode;
     const timeText = root.querySelector<HTMLSpanElement>('span[data-film-time]')
     const fullscreenButton = root.querySelector<HTMLButtonElement>('button[data-film-fullscreen]')
     const cinema = root.querySelector<HTMLElement>('[data-film-cinema]')
-    const chapterTitle = root.querySelector<HTMLElement>('h3[data-film-title]')
-    const chapterDescription = root.querySelector<HTMLElement>('p[data-film-description]')
     const errorMessage = root.querySelector<HTMLElement>('[data-film-error]')
 
     if (
       !video || !stage || !poster || !controls || !playButton || !seek || !timeText ||
-      !fullscreenButton || !cinema || !chapterTitle || !chapterDescription || !errorMessage
+      !fullscreenButton || !cinema || !errorMessage
     ) return
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -76,27 +68,10 @@ export function KitchenFilmPlayer({ children, chapters }: { children: ReactNode;
     let resumeWhenVisible = false
     let automaticStartAttempted = false
     let pendingSeek: number | null = null
-    let activeChapterIndex = -1
-
     const listeners: Array<() => void> = []
     const listen = (target: EventTarget, type: string, handler: EventListener) => {
       target.addEventListener(type, handler)
       listeners.push(() => target.removeEventListener(type, handler))
-    }
-
-    const updateChapter = (seconds: number) => {
-      let nextIndex = -1
-      for (let index = 0; index < chapters.length; index += 1) {
-        if (seconds >= chapters[index].at) nextIndex = index
-        else break
-      }
-
-      if (nextIndex < 0 || nextIndex === activeChapterIndex) return
-      activeChapterIndex = nextIndex
-      const chapter = chapters[nextIndex]
-      chapterTitle.textContent = chapter.title
-      chapterDescription.textContent = chapter.description
-
     }
 
     const updateTime = (seconds: number) => {
@@ -106,7 +81,6 @@ export function KitchenFilmPlayer({ children, chapters }: { children: ReactNode;
       seek.value = String(safeSeconds)
       seek.setAttribute('aria-valuetext', `${formatTime(safeSeconds)} of ${formatTime(FILM_DURATION)}`)
       timeText.textContent = `${formatTime(safeSeconds)} / ${formatTime(FILM_DURATION)}`
-      updateChapter(safeSeconds)
     }
 
     const updatePlayButton = () => {
@@ -311,7 +285,7 @@ export function KitchenFilmPlayer({ children, chapters }: { children: ReactNode;
       listeners.forEach((removeListener) => removeListener())
       video.pause()
     }
-  }, [chapters])
+  }, [])
 
   return <div ref={rootRef}>{children}</div>
 }

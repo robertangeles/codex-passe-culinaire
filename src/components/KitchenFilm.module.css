@@ -17,10 +17,6 @@
 .time { font-family: var(--loaded-jetbrains), var(--font-mono), monospace; font-size: 11px; white-space: nowrap; }
 .controls :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 .controls button:disabled { opacity: .6; cursor: default; }
-.reading { display: grid; grid-template-columns: 1fr 2fr; gap: 32px; padding-block: 40px; }
-.reading .eyebrow { margin: 8px 0; }
-.reading h3 { font-family: var(--loaded-fraunces), var(--font-display), serif; font-size: clamp(28px, 3vw, 40px); font-weight: 300; line-height: 1.1; margin: 0 0 12px; }
-.reading div > p { max-width: 62ch; margin: 0; font-size: 14px; line-height: 1.7; }
 .transcript { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; clip-path: inset(50%); }
 .noscript { margin-block: 16px; font-size: 14px; line-height: 1.7; }
 .cinema:fullscreen { display: flex; flex-direction: column; justify-content: center; }
@@ -35,7 +31,6 @@
   .controls button { min-width: 52px; padding: 8px; font-size: 11px; }
   .controls button:last-child { max-width: 64px; }
   .time { font-size: 9px; }
-  .reading { grid-template-columns: 1fr; gap: 16px; padding-block: 32px; }
 }
 .stage[data-format="landscape"] { aspect-ratio: 16 / 9; }
 .stage[data-format="portrait"] { aspect-ratio: 4 / 5; }
