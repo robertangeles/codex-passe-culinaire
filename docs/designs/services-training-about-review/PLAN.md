@@ -1,6 +1,6 @@
 # Services, Training and About: full-page design review
 
-2 October 2026, Australia/Melbourne. Target: `/services`, `/training`, `/about`. Branch/base: main; no remote configured. Status: initial audit and browser studies prepared; Services/Training direction feedback pending. No application changes.
+2 October 2026, Australia/Melbourne. Target: `/services`, `/training`, `/about`. Branch/base: main; no remote configured. Status: initial audit and browser studies prepared; About A explicitly reconfirmed; Services/Training direction feedback pending. No application changes.
 
 ## Scope and standing decisions
 
@@ -8,7 +8,7 @@ The user requested plan-design-review for all three pages and asked whether the 
 
 The existing AGENTS.md already contains Codex skill routing. The skill-start's generic CLAUDE.md onboarding suggestion does not require creating a second host configuration as part of this design review. Brain cache lookup returned unavailable; local approved records supply the relevant context. Root DESIGN.md is absent; AGENTS.md and approved page plans are the actual design contract.
 
-About B was approved on 28 September but remains unimplemented. Its approval stands. This review's About **A** is that approved B reference, with review controls added. About **B** is an optional refinement, not an automatic replacement or a request to reapprove the old choice. The original approved artifact is untouched.
+About B was approved on 28 September but remains unimplemented. Its approval stands. This review's About **A** is that approved B reference, with review controls added. The user has now submitted About feedback: “Option A is the winner.” About **B** was an optional refinement and is not selected. The original approved artifact is untouched.
 
 Approved navigation A is also unimplemented. These studies use the existing application navigation order so a body-design choice does not silently approve an additional global navigation change.
 
@@ -59,7 +59,7 @@ Hub: http://127.0.0.1:4190/
 | --- | --- | --- | --- |
 | Services | The working kitchen: close working photograph, clear conversation CTA, useful enquiry prompts and concise founder evidence | The practice folio: more typographic weight, narrower photograph and compact ledger-like structure | A, for its stronger kitchen context and distinct first action |
 | Training | At the bench: intimate craft photograph beside heading and enquiry action | The training prospectus: broad craft photograph followed by clearly separated availability/programme | B, for its photographic composition and useful transition into session listings |
-| About | The previously approved B: signature mark, alternating upright portrait spaces and supplied biographies | A closer introduction: shorter opening, larger square desktop portrait spaces and reduced repetition | Retain A unless the user explicitly prefers the refinement |
+| About | The previously approved B: signature mark, alternating upright portrait spaces and supplied biographies | A closer introduction: shorter opening, larger square desktop portrait spaces and reduced repetition | A explicitly selected: “Option A is the winner” |
 
 Each folder contains `a.html`, `b.html`, full desktop/phone screenshots and `board.html`. Services and Training also contain `a-populated.html` and `b-populated.html`, plus a clearly labelled specimen destination. Existing/About-approved artifacts are separate from the new optional proposal.
 
@@ -73,9 +73,17 @@ Services: company identity → kitchen enquiry hero → availability/catalogue �
 
 Training: company identity → culinary craft introduction → availability or upcoming sessions → past/cancelled sessions when present → founders' backgrounds. Empty enquiries do not promise a course launch or waitlist.
 
-About A: retain the prior accepted hierarchy and 4:5 portraits. About B's shorter opening, larger desktop portrait spaces and adjusted copy remain an optional new choice.
+About A is explicitly reconfirmed: retain the prior accepted hierarchy and 4:5 portraits. About B is not selected. Normalising only the local asset paths confirms the selected main HTML exactly matches the previously approved About B main HTML (SHA-256 c71e51b75a07d55c188c329e7b781b0212f29aa494f45a676f3e9ab8562c355d).
 
 No application implementation task adopts these new remedies until selection. The detailed seven-pass review and remedy decisions follow the board feedback; this document records the audit and choices, not a completed review of an approved new design.
+
+## About feedback and review reconciliation
+
+The About board saved `preferred: A` and “Option A is the winner.” The zero star values are untouched defaults, not negative ratings. Neither Services nor Training has a `feedback.json` or `feedback-pending.json`; do not infer their choices from this submission.
+
+The exact prior About decisions and all seven recorded passes in `../about-review/PLAN.md` remain valid. Current checks confirm the approved body is unchanged, both portrait spaces remain present, and the preview works across six widths with dark/light scans. Information architecture 9, interaction states 8, journey 9, generic-design risk 8, token alignment 9 and responsive/accessibility specification 9 remain the prior **specification** scores, not claims about an implemented page. Overall specification minimum: 8/10. No new About remedy or unresolved About choice is introduced.
+
+`about/approved.json`, `about/approved-a.html` and the corresponding desktop/phone/light screenshot copies record this explicit reconfirmation. The application remains unchanged. Services and Training review completion awaits their own feedback.
 
 ## Prototype verification
 
@@ -97,7 +105,7 @@ New Services/Training tasks below are proposals, blocked on their individual des
 
 - [ ] T1, P1: Services presentation and integration after selection. Reuse the published listing contract; handle empty, one, many and no-media states. Likely files: Services index route, a dedicated editorial component/CSS and relevant route tests. Human ~3h / agent ~30min. Acceptance: selected current/populated compositions, correct pagination and safe public content, shared gutters and themes.
 - [ ] T2, P1: Training presentation and integration after selection. Likely files: Training index route/component/CSS and relevant tests. Human ~3h / agent ~30min. Acceptance: selected current/populated compositions, dates/timezones/statuses and archives retained; no false booking action; correct pagination.
-- [ ] T3, P1: Apply previously approved About B unless explicitly revised by new feedback. Existing tasks, portrait states, CMS/custom-block preservation and guarded local content-update requirements remain in the About plan. Human ~5h / agent ~45min.
+- [ ] T3, P1: Apply reconfirmed About A, identical in content to previously approved About B. Existing tasks, portrait states, CMS/custom-block preservation and guarded local content-update requirements remain in the About plan. Human ~5h / agent ~45min.
 - [ ] T4, P1: Application acceptance after implementation. Parent owns integration/verification and reads full diffs; rerun `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, independent reviewer, real browser testing and relevant performance checks. Human ~2h / agent ~30min. Do not treat prototype evidence as application acceptance.
 
 ## GSTACK REVIEW REPORT
@@ -105,7 +113,7 @@ New Services/Training tasks below are proposals, blocked on their individual des
 | Review | Trigger | Why | Runs | Status | Findings |
 | --- | --- | --- | --- | --- | --- |
 | Initial page audit | User-named Services/Training/About | Inspect current credibility and composition | 1 | Complete | Services 2/10, Training 2/10, current About 3/10; prior About B unimplemented |
-| Prior About design | Earlier explicit B selection | Retain exact accepted direction | 1 prior | Approval retained | New About A is previous B; optional refinement remains unapproved |
+| Prior About design | Earlier explicit B selection | Retain exact accepted direction | 1 prior | Explicitly reconfirmed | User chose new About A; prior B body verified unchanged; optional refinement not selected |
 | Browser studies | Current plan-design-review | Make new choices concrete | 1 set | Awaiting feedback | Two directions per page, real empty states and labelled populated examples |
 | Anonymous raster checks | Designer tool | Exploratory composition screening | 2 | Passed, limited evidence | Parent rejected generated content details; not final HTML verification |
 | Engineering | Future application changes | CMS/query/media correctness | 0 for these changes | Not started | No application changes |
