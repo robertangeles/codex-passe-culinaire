@@ -1,6 +1,6 @@
 # Journal page design review
 
-29 September 2026. Status: A selected with the requested newest-post hero and four-post masonry revision. Preview updated; application unchanged.
+29 September 2026: A selected with the requested newest-post hero and four-post masonry revision. **1 October 2026: implemented and verified in the local website.** See [implementation and acceptance evidence](IMPLEMENTATION.md).
 
 ## Scope and existing approvals
 
@@ -99,7 +99,7 @@ Two columns above 740px, single-column reading at 740px and below. The masonry e
 
 ### 7. Decisions
 
-A selected; four secondary posts requested; newest post expressly confirmed as the hero source. Two new decisions (direction and four-post revision), with automatic latest-first ordering confirmed from the existing contract. No deferred design decisions or new TODO proposals. Specimen content remains private design material. Application implementation and engineering verification are outstanding tasks, not implied completed work.
+A selected; four secondary posts requested; newest post expressly confirmed as the hero source. Two new decisions (direction and four-post revision), with automatic latest-first ordering confirmed from the existing contract. No deferred design decisions or new TODO proposals. Specimen content remains private design material. Application implementation and engineering verification were recorded as follow-up tasks; both are now completed with evidence in IMPLEMENTATION.md.
 
 ## Verification and evidence
 
@@ -115,7 +115,7 @@ Artifacts: `/home/robangeles/.gstack/projects/codex-passe-culinaire/designs/jour
 - Designer checks cover first viewports only; all three returned pass. They do not constitute a complete accessibility or independent engineering review.
 - Parent inspected all three full desktop compositions, empty states and mobile first views; corrected image sizing and a narrow-footer style collision before finalising.
 - Revised A: `checks-a-revised.json` records 12 combinations (six widths with/without JavaScript), exactly one hero and four secondary entries, no overlaps/overflow/runtime errors, and zero Axe findings at 390/1440. Revised desktop and mobile screenshots were inspected.
-- No application lint/build/test pass is claimed. This task creates design artifacts and a plan, not application changes. Full project gates and independent diff review remain required when implementing.
+- The original design review made no application test claims. The subsequent 1 October implementation passed lint/typecheck, 318 tests, production build, 36 browser tests, extended Journal acceptance and independent review; see IMPLEMENTATION.md.
 
 ## Browser review
 
@@ -127,7 +127,7 @@ Use “No entries yet” at the top of each preview to inspect what the page wou
 
 ## Not in scope
 
-Publishing sample entries or drafting an editorial calendar; redesigning article-detail pages; changing approved navigation/About; footer redesign; adding search, mailing lists or subscriptions; application integration or deployment. These are excluded rather than hidden unfinished work.
+Publishing sample entries or drafting an editorial calendar; redesigning article-detail pages; changing approved navigation/About; footer redesign; adding search, mailing lists or subscriptions; deployment. Application integration was subsequently authorised and completed on 1 October 2026; the other exclusions remain.
 
 ## Approved references
 
@@ -137,12 +137,12 @@ Root: `/home/robangeles/.gstack/projects/codex-passe-culinaire/designs/journal-2
 
 ## Implementation Tasks
 
-- [ ] **T1 (P1, human: ~4h / Codex: ~30min)** — Journal index — Implement the selected editorial layout and newest-plus-four distribution.
+- [x] **T1 (P1, human: ~4h / Codex: ~30min)** — Journal index — Implement the selected editorial layout and newest-plus-four distribution.
   - Surfaced by: passes 1/2 and the submitted four-post revision.
   - Files: `src/components/JournalListing.tsx`, a dedicated Journal editorial component/CSS if needed, `tests/journal-index.test.tsx`; bounded masonry enhancement only if needed.
   - Acceptance: one newest hero; next four unique entries; older results accessible; keep 12-entry listing contract, publication filtering, metadata, safe public author data, noIndex and cache rules. Handle 0/1/partial/no-media states without specimen content. Scope the redesign to the Journal index; do not silently redesign shared taxonomy/author feeds or other JournalFeedBlock instances.
   - Verify: meaningful 0/1/5/12-entry, ordering, no-duplicate and missing-media tests; `pnpm lint && pnpm typecheck && pnpm test && pnpm build`. Read installed Next guidance first. Parent reviews full diff and reruns gates; independent reviewer follows.
-- [ ] **T2 (P1, human: ~2h / Codex: ~20min)** — Journal browser acceptance — Verify real content, responsive masonry and fallback behaviour.
+- [x] **T2 (P1, human: ~2h / Codex: ~20min)** — Journal browser acceptance — Verify real content, responsive masonry and fallback behaviour.
   - Surfaced by: pass 6 and variable-height four-post layout.
   - Files: one Journal Playwright spec under `tests/e2e/`, review evidence under `docs/designs/journal-review/`.
   - Acceptance: 320–1920px, zoom, light/dark/system, long titles, absent images/metadata, JS disabled, keyboard order, real entry links and older-page access. Inspect screenshots and reject collisions or unreadable crops. Preserve performance budgets and existing shared-shell behaviour.
@@ -150,7 +150,7 @@ Root: `/home/robangeles/.gstack/projects/codex-passe-culinaire/designs/journal-2
 
 ## Completion summary
 
-Initial impression 3/10. Six rated passes: 3→8, 5→8, 4→8, 4→8, 6→9, 7→8. Overall minimum 3→8/10. A selected and revised from explicit feedback. Two new decisions, zero deferred, no new TODO proposals. Review is design-complete; application work has not begun.
+Initial impression 3/10. Six rated passes: 3→8, 5→8, 4→8, 4→8, 6→9, 7→8. Overall minimum 3→8/10. A selected and revised from explicit feedback. Two new decisions, zero deferred, no new TODO proposals. Design and application implementation are complete. Local application acceptance and limits are recorded in IMPLEMENTATION.md.
 
 ## GSTACK REVIEW REPORT
 
@@ -158,12 +158,12 @@ Initial impression 3/10. Six rated passes: 3→8, 5→8, 4→8, 4→8, 6→9, 7�
 |---|---|---|---|---|---|
 | CEO Review | Existing approvals | Preserve publishing scope | 0 new | Existing scope retained | No business change |
 | Outside Review | Initial designer checks | First-viewport visual sanity | 3 | Passed initial studies | Revised masonry inspected locally; no external recheck claimed |
-| Eng Review | Required for implementation | Data distribution and masonry behaviour | 0 for this change | Pending | Application not changed |
+| Eng Review | Required for implementation | Data distribution and masonry behaviour | 3 | Passed | Independent implementation review, extended-test review and spacing-fix re-review |
 | Design Review | plan-design-review and board feedback | Full index and revision | 1 | Complete | A, newest hero, four following posts; minimum 8/10 |
 | DX Review | Not applicable | Public editorial page | 0 | Not applicable | None |
 
-**OUTSIDE COVERAGE:** Initial designer checks completed; no independent Claude Code/native design voice or engineering review claimed. Revised A has local visual and accessibility evidence.
+**OUTSIDE COVERAGE:** Initial designer checks completed; no independent Claude Code/native design voice is claimed. Revised A has local visual and accessibility evidence. The implementation subsequently received independent read-only engineering review and passed all required checks.
 
-**VERDICT:** Design plan complete for revised A; eng review required for application acceptance.
+**VERDICT:** Revised A implemented and accepted locally; independent engineering review passed. No remote deployment performed.
 
 NO UNRESOLVED DECISIONS

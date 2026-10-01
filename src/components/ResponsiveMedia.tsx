@@ -29,6 +29,13 @@ function mediaUrl(filename: string): string {
   return `/media/${encodeURIComponent(filename)}`
 }
 
+export function isRenderableMedia(media: Media | number | null | undefined): media is Media & { filename: string; width: number; height: number; alt: string } {
+  return typeof media === 'object' && media !== null
+    && typeof media.filename === 'string' && isSafeFilename(media.filename)
+    && isPositiveDimension(media.width) && isPositiveDimension(media.height)
+    && typeof media.alt === 'string'
+}
+
 export function ResponsiveMedia({
   media,
   priority = false,
@@ -36,16 +43,9 @@ export function ResponsiveMedia({
   caption,
   className,
 }: ResponsiveMediaProps) {
-  if (!media || typeof media !== 'object') return null
+  if (!isRenderableMedia(media)) return null
 
   const { filename, width, height, alt, sizes: variants } = media
-  if (
-    typeof filename !== 'string'
-    || !isSafeFilename(filename)
-    || !isPositiveDimension(width)
-    || !isPositiveDimension(height)
-    || typeof alt !== 'string'
-  ) return null
 
   const avif = variantWidths.flatMap((variantWidth) => {
     const variant = variants?.[`avif${variantWidth}`]

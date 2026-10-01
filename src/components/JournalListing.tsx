@@ -3,6 +3,7 @@ import { buildPersonSchema } from '../lib/seo/organisation'
 import { siteOrigin } from '../lib/seo/core'
 import type { JournalFeed } from '../payload-types'
 import type { getJournalListing } from '../lib/journal-listing'
+import { JournalEditorial } from './JournalEditorial'
 import { EditorialSection } from './EditorialSection'
 import { HeroBlock } from './blocks/HeroBlock'
 import { JournalFeedBlock } from './blocks/JournalFeedBlock'
@@ -34,6 +35,20 @@ export function JournalListing({ model }: JournalListingProps) {
 
   const person = model.author ? buildPersonSchema(model.author, siteOrigin()) : null
   const path = page > 1 ? `${model.basePath}/page/${page}` : model.basePath
+  if (model.basePath === '/journal' && page === 1) {
+    return (
+      <>
+        <RouteSchema path={path} title={model.title} />
+        <JournalEditorial posts={model.listing.docs} title={model.title} description={model.description} />
+        {model.listing.totalPages > 1 && (
+          <EditorialSection>
+            <Pagination basePath={model.basePath} page={page} totalPages={model.listing.totalPages} />
+          </EditorialSection>
+        )}
+      </>
+    )
+  }
+
   return (
     <>
       <RouteSchema path={path} title={page > 1 ? `${model.title} · Page ${page}` : model.title}

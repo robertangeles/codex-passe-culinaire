@@ -20,7 +20,7 @@ const publicRoutes = [
   {
     path: '/journal',
     heading: 'Journal',
-    htmlText: 'Journal entries',
+    htmlText: 'Notes from our work in kitchens.',
   },
   {
     path: '/contact',
