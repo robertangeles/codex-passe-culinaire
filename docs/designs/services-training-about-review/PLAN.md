@@ -1,6 +1,6 @@
 # Services, Training and About: full-page design review
 
-2 October 2026, Australia/Melbourne. Target: `/services`, `/training`, `/about`. Branch/base: main; no remote configured. Status: initial audit and browser studies prepared; About A explicitly reconfirmed; Services/Training direction feedback pending. No application changes.
+2 October 2026, Australia/Melbourne. Target: `/services`, `/training`, `/about`. Branch/base: main; no remote configured. Status: design-complete. Services A and Training A selected; About A explicitly reconfirmed. No application changes.
 
 ## Scope and standing decisions
 
@@ -36,7 +36,7 @@ Refreshed primary sources during this review:
 - [École Ducasse professional masterclasses](https://www.ecoleducasse.com/en/professional-masterclasses): identifies its professional audience, describes programme formats and provides an information request. Application: distinguish the learning proposition from actual availability; do not borrow modules, locations or teaching claims.
 - Le Cordon Bleu Australia's short-course URL was inaccessible through the web tool; no observations about that page are claimed.
 
-## Existing application contracts to retain
+## What already exists: application contracts to retain
 
 - Services: server-rendered published-only query, title/id ordering, 12 entries per page, safe detail URLs, invalid-page handling, metadata and breadcrumbs. Existing service fields include title, oneLiner and whoItIsFor.
 - Training: distinct upcoming and past/cancelled collections, sold-out/cancelled/past labels, event timezone formatting and safe title links. Preserve existing pagination and missing-date treatment.
@@ -55,10 +55,10 @@ Hub: http://127.0.0.1:4190/
 - Training board: http://127.0.0.1:38643/boards/b-20261001-225241-v6ro0r/
 - About board: http://127.0.0.1:38643/boards/b-20261001-225244-j9qudk/
 
-| Page | A | B | Current recommendation |
+| Page | A | B | Final selection |
 | --- | --- | --- | --- |
-| Services | The working kitchen: close working photograph, clear conversation CTA, useful enquiry prompts and concise founder evidence | The practice folio: more typographic weight, narrower photograph and compact ledger-like structure | A, for its stronger kitchen context and distinct first action |
-| Training | At the bench: intimate craft photograph beside heading and enquiry action | The training prospectus: broad craft photograph followed by clearly separated availability/programme | B, for its photographic composition and useful transition into session listings |
+| Services | The working kitchen: close working photograph, clear conversation CTA, useful enquiry prompts and concise founder evidence | The practice folio: more typographic weight, narrower photograph and compact ledger-like structure | A explicitly selected |
+| Training | At the bench: intimate craft photograph beside heading and enquiry action | The training prospectus: broad craft photograph followed by clearly separated availability/programme | A explicitly selected; supersedes the initial B recommendation |
 | About | The previously approved B: signature mark, alternating upright portrait spaces and supplied biographies | A closer introduction: shorter opening, larger square desktop portrait spaces and reduced repetition | A explicitly selected: “Option A is the winner” |
 
 Each folder contains `a.html`, `b.html`, full desktop/phone screenshots and `board.html`. Services and Training also contain `a-populated.html` and `b-populated.html`, plus a clearly labelled specimen destination. Existing/About-approved artifacts are separate from the new optional proposal.
@@ -67,23 +67,133 @@ Services/Training specimen names and descriptions are explicitly marked as examp
 
 Concept imagery reuses approved kitchen-film imagery. No fictional portrait is generated. Both founder photo spaces appear in both About treatments. Prototype notes identify the illustrative photographs and are outside the proposed application body.
 
-## Proposed page structures, awaiting feedback
+## Approved selections and reconciliation
 
-Services: company identity → kitchen enquiry hero → availability/catalogue → practical enquiry prompts when empty → supplied founder experience → CulinAIre Kitchen continuation.
+All three feedback files contain `preferred: A` and “Option A is the winner.” The zero star values are untouched defaults. The board's `publishedAt` is its publication timestamp, not the time the user submitted feedback. Exact evidence is saved beside this plan in `services-feedback.json`, `training-feedback.json` and `about-feedback.json`.
 
-Training: company identity → culinary craft introduction → availability or upcoming sessions → past/cancelled sessions when present → founders' backgrounds. Empty enquiries do not promise a course launch or waitlist.
+Two new decisions are recorded: Services A and Training A. About A reconfirms the earlier approved About B; it is not counted as a new design decision. Training A supersedes the initial recommendation of B. No new remedy is inferred from a next-step choice, a generic approval, or a score.
 
-About A is explicitly reconfirmed: retain the prior accepted hierarchy and 4:5 portraits. About B is not selected. Normalising only the local asset paths confirms the selected main HTML exactly matches the previously approved About B main HTML (SHA-256 c71e51b75a07d55c188c329e7b781b0212f29aa494f45a676f3e9ab8562c355d).
+### Services A: The working kitchen
 
-No application implementation task adopts these new remedies until selection. The detailed seven-pass review and remedy decisions follow the board feedback; this document records the audit and choices, not a completed review of an approved new design.
+Retain the approved split opening: heading and enquiry on the left, close working photograph on the right. Eyebrow “Passe Culinaire · Services”; h1 “Start with the kitchen.”; supporting sentence “Tell us about your kitchen, your team and the work you want to do.” Primary action “Discuss your kitchen” links to `/contact`; secondary “Meet the founders” links to `/about`.
 
-## About feedback and review reconciliation
+Follow with “A place to begin.” When no services are published, show “Service details are being prepared.” and the approved invitation to describe the kitchen. Your kitchen / Your team / Your priorities are enquiry prompts, not fabricated offerings. Published services replace this empty treatment with editorial catalogue rows using their real titles, summaries and detail links. Follow with supplied founder experience, then the restrained CulinAIre Kitchen continuation. Preserve the company’s wider scope.
 
-The About board saved `preferred: A` and “Option A is the winner.” The zero star values are untouched defaults, not negative ratings. Neither Services nor Training has a `feedback.json` or `feedback-pending.json`; do not infer their choices from this submission.
+### Training A: At the bench
 
-The exact prior About decisions and all seven recorded passes in `../about-review/PLAN.md` remain valid. Current checks confirm the approved body is unchanged, both portrait spaces remain present, and the preview works across six widths with dark/light scans. Information architecture 9, interaction states 8, journey 9, generic-design risk 8, token alignment 9 and responsive/accessibility specification 9 remain the prior **specification** scores, not claims about an implemented page. Overall specification minimum: 8/10. No new About remedy or unresolved About choice is introduced.
+Retain the intimate preparation photograph on the left and introduction on the right at desktop widths. Eyebrow “Passe Culinaire · Training”; h1 “Make room for the craft.”; supporting sentence “A place for culinary learning, grounded in the work of the kitchen.” Primary “Ask about training” links to `/contact`; secondary “Training enquiries” reaches the programme section in the empty state.
 
-`about/approved.json`, `about/approved-a.html` and the corresponding desktop/phone/light screenshot copies record this explicit reconfirmation. The application remains unchanged. Services and Training review completion awaits their own feedback.
+The empty programme reads “Tell us what you want to learn.” and “There are no upcoming training dates.” Its enquiry invitation names learning interests and who the training would be for. With published sessions, show actual upcoming rows and any archive, dates, timezone and statuses. Preserve existing detail routes and pagination. Founder backgrounds establish experience without promising either founder will teach a particular session. On phones, place the introduction and action before the photograph.
+
+### About A: the previously approved B
+
+Retain the exact prior accepted hierarchy and 4:5 portrait spaces from `../about-review/PLAN.md`: “From the kitchen, looking forward.” → “Two founders. Complementary experience.” → Alex portrait/biography → Rob portrait/biography → “Experience, put to work.” Normalising only local asset paths confirms that the selected main HTML matches the previous approved About B main HTML (SHA-256 c71e51b75a07d55c188c329e7b781b0212f29aa494f45a676f3e9ab8562c355d).
+
+Use supplied Alex Charasse and Rob Angeles facts only. Keep the clearly labelled portrait spaces until genuine photographs exist. The earlier approved states, content mapping, custom-block preservation and guarded CMS update requirements stand. About B from this new board is not selected.
+
+## Approved mockups
+
+Common absolute root: `/home/robangeles/.gstack/projects/codex-passe-culinaire/designs/services-training-about-20261002/`. Approved HTML depends on adjacent `styles.css` and `assets/`; keep the folder together. Each manifest records file hashes, feedback and recording time. The earlier About manifest accurately records the time of that individual reconfirmation; it is not the final cross-page status.
+
+| Page | Approved reference | Direction and constraint |
+| --- | --- | --- |
+| Services | `/home/robangeles/.gstack/projects/codex-passe-culinaire/designs/services-training-about-20261002/services/approved-a.html` | Working kitchen; `approved-a-1440.png` and `approved-a-390.png`, light companions; `approved-a-populated.html` is layout-only specimen |
+| Training | `/home/robangeles/.gstack/projects/codex-passe-culinaire/designs/services-training-about-20261002/training/approved-a.html` | At the bench; `approved-a-1440.png` and `approved-a-390.png`, light companions; `approved-a-populated.html` is layout-only specimen |
+| About | `/home/robangeles/.gstack/projects/codex-passe-culinaire/designs/services-training-about-20261002/about/approved-a.html` | Prior approved B; `approved-a-1440.png` and `approved-a-390.png`, light companions; real portrait spaces remain |
+
+## Pass 1: Information architecture, 3/10 → 9/10
+
+Finding: the current index pages repeat generic headings while offering little context for an enquiry. The user's exact A selections resolve the hierarchy and visual remedy. About retains its earlier approved structure. First-screen budget: company identity, the page's purpose, one clear primary action. Existing secondary links support that action. No new issues requiring a choice.
+
+```text
+Shared company header
+  Services: kitchen enquiry + working photograph
+    → published catalogue OR truthful enquiry prompts
+    → founder experience → first offer → shared footer
+  Training: craft introduction + preparation photograph
+    → upcoming sessions OR training enquiry
+    → archive if present → founder background → shared footer
+  About: company introduction + signature mark
+    → complementary founders → Alex → Rob
+    → wider company work + first offer → shared footer
+Navigation: Services/Training → Contact; all pages → About/product as shown
+```
+
+A 10 needs confirmed service and programme content, not another decorative section. This is a content limitation, not permission to invent it.
+
+## Pass 2: Interaction states, 4/10 → 8/10
+
+Finding: the old sparse empty listings undersell the company. Approved empty and populated studies resolve this; preserve the application's existing error, navigation and CMS contracts. The table records those existing/selected outcomes, without adding booking, forms or filters.
+
+| Feature | Loading | Empty | Error | Success | Partial |
+| --- | --- | --- | --- | --- | --- |
+| Services catalogue | Server-rendered text; no new skeleton | Approved “Service details are being prepared” and enquiry prompts | Existing “This page is unavailable”, Try again and Return home | Real published rows and detail links; 12/page | One row retains natural space; absent summary omitted; no dummy media |
+| Training programme | Server-rendered text; no new skeleton | Approved no-upcoming-dates message and enquiry | Same existing public error boundary | Upcoming rows and archive when present, existing pagination | Date to confirm for missing/invalid date; timezone/status text retained; sold out/cancelled not misrepresented as available |
+| About founders | Text and reserved 4:5 image space arrive together | Approved labelled portrait spaces | Public error boundary for route failure | Genuine portrait and supplied biography | One portrait may be absent independently; longer biography grows without clipping |
+| Editorial photograph | Reserved aspect ratio; text/action already visible | Keep composition readable without image content | No repeated network retry UI or blocked enquiry | Approved concept image crop | Missing image must not expose broken-image icon or collapse readable text |
+| Links/menu/theme | Existing server HTML and functional links | No added empty-menu mode | Existing destination error state | Native links, current theme control and menu | Long labels wrap; mobile menu closes with Escape; links remain keyboard reachable |
+
+All image failure, server error and CMS partial-content states must be verified in the actual implementation. Score is capped at 8 because the prototypes do not exercise application failure boundaries or real publication transitions. No new unresolved design choice.
+
+## Pass 3: Journey and emotional arc, 2/10 → 9/10
+
+Finding: visitors previously reached a dead-looking listing before seeing a reason to trust its authors. The selected compositions connect purpose, evidence and action. Expected emotions below are design hypotheses, not measured user-research results.
+
+| Step | Visitor does | Intended feeling | Accepted support |
+| --- | --- | --- | --- |
+| 1 | Arrives from navigation or search | Oriented within five seconds | Exact identity, clear page heading, culinary image or signature mark |
+| 2 | Scans current availability | Respected rather than misled | Truthful empty/programme states, no invented dates or services |
+| 3 | Assesses relevant experience | Informed confidence | Named founders, precise supplied backgrounds, real portrait spaces |
+| 4 | Explores or enquires | Knows a useful next action | Actual detail links when available; contact and About paths otherwise |
+| 5 | Returns after content grows | Familiarity over time | CMS-driven rows, preserved URLs, stable hierarchy and themes |
+
+Five seconds: see the company and purpose. Five minutes: inspect offerings, people and enquiry fit. Five years: preserve identity while real content and portraits replace incomplete states. A 10 requires observed chef/owner use and real evidence beyond a prototype. No new issues requiring a choice.
+
+## Pass 4: Generic-design risk, 3/10 → 8/10
+
+Classifier: PERSUADE for introductions and founder evidence; READ for catalogue/biography sections. The user's chosen editorial brand takes precedence over generic skill defaults for full-bleed heroes, texture, motion or replacement of Inter. No decorative motion is added.
+
+Hard-rejection audit of selected designs: no SaaS card-grid first impression; identity remains visible next to imagery; primary action is explicit; text is not over busy photographs; sections each perform a different job; no carousel; no stacked app-card layout. Three Services enquiry prompts are plain contextual text, with no icon circles or false capability grid. No unresolved hard-rejection hit.
+
+| Litmus | Answer | Evidence |
+| --- | --- | --- |
+| Brand unmistakable in first screen? | YES | Exact P/C mark, Passe Culinaire identity and Fraunces display |
+| One strong visual anchor? | YES | Working kitchen / preparation photograph, or About signature mark |
+| Understandable from headings? | YES | Purpose, availability, experience and continuation remain distinct |
+| One job per section? | YES | Introduction, catalogue/status, evidence and onward path |
+| Cards necessary? | NO | Selected designs use rules and natural rows |
+| Motion improves hierarchy here? | NO | No interaction needs it; all content is immediately visible |
+| Premium without shadows? | YES | No decorative shadows are part of the approved composition |
+
+Residual limitation: the still-life photographs are illustrative, not documentary evidence of these founders or premises. About lacks genuine portraits. Keep this distinction in accessible image descriptions and avoid captions implying ownership. A 10 requires original photographic evidence; it does not justify reopening the selected composition. No new issues requiring a choice.
+
+## Pass 5: Design-system alignment, 5/10 → 9/10
+
+No root DESIGN.md exists; AGENTS.md and the approved About plan supply the actual explicit design contract. Another brand consultation would repeat already-settled choices. Reuse exact charcoal #141412, bone #F4F1EA, ink #1A1A18, linen #E8E4DA, moss #4A5A3F, clay #B8674B and ash #8A8A82 values through their existing semantic aliases. Preserve Fraunces display, Inter body and JetBrains Mono only where existing captions/data require it; local fonts only. Zero decorative radius, 1px muted rules, visible focus, maximum prose measure 62ch, no gradients or shadows.
+
+Services/Training prototypes define a 1312px maximum container, 64px desktop gutters, 32px intermediate and 24px phone gutters. Split hero gap 80px desktop/40px intermediate, then stacked. Heading hierarchy and spacing follow the saved reference; normal body is at least 16px, display stays below 6rem. About uses the exact previously approved styles. Shared browser focus, selection, visited-link treatment and theme controls remain application responsibilities; do not replace them with prototype review controls.
+
+New page-specific editorial components fit the existing vocabulary and avoid altering shared HeroBlock or collection-list styling everywhere. Score stops at 9 until computed application styles and all theme states match the references. No new issues requiring a choice.
+
+## Pass 6: Responsive and accessibility, 6/10 → 9/10
+
+Finding: desktop-only visual approval would leave cropping and reading order underspecified. The selected responsive studies, existing WCAG contract and verified phone crop resolve the specification. At <=800px stack the hero, let actions wrap, and place Training copy/action before the image. Services keeps copy before image. Keep the phone photograph near 4:3 with explicit height auto. At <=1100px use intermediate gutters/gaps; at desktop keep balanced columns without fixed text heights. About portraits remain 4:5, with both founders using photo-before-biography DOM order; CSS alternates the second founder at desktop only. At 1920px centre the capped reading/layout container.
+
+Use one h1, logical headings, shared header/main/footer landmarks and existing skip link. Catalogue rows use ordinary descriptive links, never whole-row nested links. Preserve visible focus and dark/light contrast, 44px interaction targets, Escape dismissal and focus handling from the shared mobile navigation. Supplied biographies remain selectable HTML. Portrait placeholders must announce whose photograph is pending; real images use meaningful supplied descriptions. Concept photographs must not claim a real founder or workplace. No new motion; reduced-motion users receive the same content. Text must remain readable at browser zoom and when enlarged.
+
+Prototype evidence covers six widths and dark/light automated accessibility scans; actual application keyboard traversal, screen reader reading order, 200% zoom, slow-image rendering, theme persistence and reduced-motion checks remain explicit T4 acceptance work. A 10 needs that implementation evidence. No new design choice is introduced.
+
+## Pass 7: Decision register, unscored
+
+| Finding/choice | Decision evidence | Disposition |
+| --- | --- | --- |
+| Services composition and visible copy | Services board preferred A and explicit winner comment | Apply exact A; new decision 1 |
+| Training composition and visible copy | Training board preferred A and explicit winner comment | Apply exact A; new decision 2 |
+| About composition/portrait spaces | About board preferred A; earlier approved B body match | Reconfirmed; zero new decisions |
+| Existing brand, accessibility and public-content rules | User approvals and AGENTS.md | Carry unchanged |
+| Populated specimens | Labelled review states and existing no-fiction rule | Layout evidence only; never publish specimen records |
+
+No unresolved design decisions. No deferred TODO proposals. Unavailable real portraits and unpublished content have explicit approved treatments. Implementation mechanics and verification are tasks, not new visual decisions. The passes introduce no significant change to the selected studies, so regeneration is unnecessary.
 
 ## Prototype verification
 
@@ -97,31 +207,54 @@ No founder/company screenshot was sent for a fresh external review. No independe
 
 ## Not in scope
 
-Application implementation, CMS edits or publishing; service prices/scopes or teaching commitments; generated founder likenesses; homepage/Journal/contact redesign; global navigation implementation; booking/subscription/filter systems; remote deployment.
+- Application implementation or CMS publishing in this review: these are the next execution phase.
+- New service scopes, prices, dates or teaching commitments: require real business content.
+- Invented founder portraits, testimonials or awards: cannot supply credibility with fiction.
+- Homepage, Journal, contact or global navigation redesign: separate accepted work, not this page-body selection.
+- Booking, subscription and filter systems: no approved need in this scope.
+- Deployment: local design approval does not deploy the application.
 
 ## Implementation tasks
 
-New Services/Training tasks below are proposals, blocked on their individual design selections. About tasks already authorised by the earlier design are preserved in `../about-review/PLAN.md`; this review does not cancel them.
+Synthesised from the accepted findings. Parent owns architecture, integration, the full diff read, verification and acceptance. Use one bounded executor task per route, with non-overlapping file ownership; do not delegate plan edits. Confirm installed Next.js documentation before code changes. No new package is needed by this design.
 
-- [ ] T1, P1: Services presentation and integration after selection. Reuse the published listing contract; handle empty, one, many and no-media states. Likely files: Services index route, a dedicated editorial component/CSS and relevant route tests. Human ~3h / agent ~30min. Acceptance: selected current/populated compositions, correct pagination and safe public content, shared gutters and themes.
-- [ ] T2, P1: Training presentation and integration after selection. Likely files: Training index route/component/CSS and relevant tests. Human ~3h / agent ~30min. Acceptance: selected current/populated compositions, dates/timezones/statuses and archives retained; no false booking action; correct pagination.
-- [ ] T3, P1: Apply reconfirmed About A, identical in content to previously approved About B. Existing tasks, portrait states, CMS/custom-block preservation and guarded local content-update requirements remain in the About plan. Human ~5h / agent ~45min.
-- [ ] T4, P1: Application acceptance after implementation. Parent owns integration/verification and reads full diffs; rerun `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, independent reviewer, real browser testing and relevant performance checks. Human ~2h / agent ~30min. Do not treat prototype evidence as application acceptance.
+- [ ] **T1 (P1, human ~3h / agent ~30min): Apply Services A.** Source: Passes 1–3, missing kitchen context and useful empty-state enquiry. Files: `src/app/(public)/services/[[...page]]/page.tsx`, `src/components/ServicesEditorial.tsx`, `src/components/ServicesEditorial.module.css`, `tests/services-index.test.tsx`. Preserve published query, title/id order, 12/page, safe URLs, canonical page-one redirect and invalid/out-of-range 404s. Reproduce approved empty/populated compositions using actual CMS data. Verify targeted Services tests and empty/one/many/long-title/absent-summary states.
+- [ ] **T2 (P1, human ~3h / agent ~30min): Apply Training A.** Source: Passes 1–3, empty programme lacks craft context and an enquiry invitation. Files: `src/app/(public)/training/[[...page]]/page.tsx`, its `page.module.css` if superseded, `src/components/TrainingEditorial.tsx`, `src/components/TrainingEditorial.module.css`, `tests/training-index.test.tsx`. Retain upcoming/archive selection, pagination, date/timezone fallback and sold-out/cancelled/past labels. Reproduce A and its responsive text-before-image order. Verify targeted Training tests plus missing dates, archive-only, one/many and long titles.
+- [ ] **T3 (P1, human ~5h / agent ~45min): Apply reconfirmed About A.** Source: current audit and prior approved About review, unimplemented portrait/biography hierarchy. Files: `src/components/AboutEditorial.tsx`, `src/components/AboutEditorial.module.css`, `src/components/BlockRenderer.tsx`, `src/app/(public)/[slug]/page.tsx`, relevant existing block/public-page tests. Follow `../about-review/PLAN.md` for exact founder mapping, portrait fallbacks, arbitrary-block preservation and guarded local content update. Never blindly reseed or overwrite unrelated CMS work. Verify both/one/no portraits, long biographies, draft/public boundaries and unchanged custom blocks.
+- [ ] **T4 (P1, human ~2h / agent ~30min): Verify integrated pages and obtain independent review.** Source: Passes 2, 5 and 6, prototype evidence cannot accept application integration. Files: `tests/e2e/` and this review's evidence folder. After each executor returns, parent reads full diff and reruns `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, then invokes reviewer; fix-first requires re-review. Browser-check all three selected layouts at 390/768/1440px, both themes, keyboard/zoom/reduced-motion, error/image fallbacks, empty/populated/long-content states and meaningful links. Verify CMS freshness within 60 seconds and preview isolation when affected. Run relevant performance checks against existing budgets. Save actual outputs and screenshots. Never count this review as application acceptance.
+
+Task export: `tasks.jsonl` beside this plan and the timestamped `tasks-design-review-*.jsonl` in the project gstack directory. No additional tasks arise from the unchanged brand or decision register. No TODOS.md changes are needed.
+
+## Completion summary
+
+| Dimension | Before | Approved specification | Evidence/limit |
+| --- | --- | --- | --- |
+| System audit | No DESIGN.md | Existing AGENTS.md and accepted plans | Explicit brand contract retained |
+| Initial page impression | Services 2; Training 2; About 3 | Separate from pass score | Current application is still unchanged |
+| Pass 1: information architecture | 3 | 9 | Exact A hierarchy and paths |
+| Pass 2: states | 4 | 8 | Truthful empty/populated/partial/error specification; app verification pending |
+| Pass 3: journey | 2 | 9 | Accepted journey documented; no measured conversion claim |
+| Pass 4: generic-design risk | 3 | 8 | Culinary specificity; genuine photography remains a limit |
+| Pass 5: design system | 5 | 9 | Exact brand and saved compositions |
+| Pass 6: responsive/accessibility | 6 | 9 | 60 prototype cases; implementation manual checks pending |
+| Pass 7: decisions | Unscored | 2 new, 1 reconfirmed, 0 deferred | Actual per-page feedback |
+| Overall, minimum of six passes | 2 | 8 | Design-complete, not implemented |
+
+Six main browser studies, three selected references, four populated companion studies. Scope exclusions and existing contracts recorded. Zero deferred TODO proposals. About retains its prior independently recorded specification scores (9/8/9/8/9/9); current review does not supersede that exact approved body.
 
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
 | --- | --- | --- | --- | --- | --- |
-| Initial page audit | User-named Services/Training/About | Inspect current credibility and composition | 1 | Complete | Services 2/10, Training 2/10, current About 3/10; prior About B unimplemented |
-| Prior About design | Earlier explicit B selection | Retain exact accepted direction | 1 prior | Explicitly reconfirmed | User chose new About A; prior B body verified unchanged; optional refinement not selected |
-| Browser studies | Current plan-design-review | Make new choices concrete | 1 set | Awaiting feedback | Two directions per page, real empty states and labelled populated examples |
-| Anonymous raster checks | Designer tool | Exploratory composition screening | 2 | Passed, limited evidence | Parent rejected generated content details; not final HTML verification |
-| Engineering | Future application changes | CMS/query/media correctness | 0 for these changes | Not started | No application changes |
+| CEO Review | Earlier company/visual implementation review | Scope and strategy | 1 historical | Recorded complete_with_concerns; not rerun here | Source codex; historical external voice unavailable; standing company scope retained |
+| Eng Review | Historical plan-eng-review | Architecture and tests | 2 historical; 0 for these page changes | NOT CLEARED for this implementation | September 25 records are older than seven days; subsequent budget approval is recorded in AGENTS.md; fresh page-specific engineering review required |
+| Design Review | Current plan-design-review | Full-page Services/Training/About | 3 saved checkpoints for this scope; 7 total design records including this one | CLEAN (FULL), design-complete | Minimum score 2/10 → 8/10; 2 new decisions, About reconfirmed; 0 unresolved |
+| Outside Review | Historical codex-plan-review | Independent plan challenge | 0 completed for this scope | Unavailable historically; not run for this final HTML | Host codex, provider claude-code unavailable in historical plan-review; no fresh independent design assessment claimed |
+| Prototype QA | Local Chromium/Playwright and Axe | Responsive layout and accessibility checks | 1 final suite | 60 cases passed | Dark/light scans have zero violations; not application acceptance |
+| DX Review | Not triggered | No developer-facing product change | 0 | Not applicable | No new tooling/API interface introduced |
 
-OUTSIDE COVERAGE: Automated checks of anonymous exploratory images only. No outside final-HTML design review or independent application review claimed.
+OUTSIDE COVERAGE: No outside final-HTML design review for this scope. Anonymous automated exploratory-image checks are limited evidence only; they do not establish independent application or final-design approval. Historical external-provider failures are not a current blocker to recording these user selections.
 
-VERDICT: Audit and comparison boards ready. Services/Training choices pending; previously approved About B remains accepted. Detailed review and eng review required before new application acceptance.
+VERDICT: DESIGN CLEAR. The approved plan is design-complete; eng review required before application acceptance. Implement exact Services A, Training A and reconfirmed About A, then perform visual QA. No website or CMS changes have been made by this review.
 
-**UNRESOLVED DECISIONS:**
-- Services direction and visible proposed copy: A or B, with user feedback.
-- Training direction and visible proposed copy: A or B, with user feedback.
+NO UNRESOLVED DECISIONS
