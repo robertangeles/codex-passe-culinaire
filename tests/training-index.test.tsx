@@ -70,7 +70,8 @@ describe('training index route', () => {
     mocks.list.mockImplementation((_collection: string, options: { where: { and?: unknown[] } }) =>
       Promise.resolve(result(options.where.and ? [] : [past, cancelled])))
     const html = renderToStaticMarkup(await TrainingIndexPage({ params: Promise.resolve({}) }))
-    expect(html.indexOf('Upcoming training')).toBeLessThan(html.indexOf('Past and cancelled training'))
+    expect(html).toContain('Tell us what<br/>you want to learn.')
+    expect(html.indexOf('Tell us what')).toBeLessThan(html.indexOf('Past and cancelled training'))
     expect(html).toContain('There are no upcoming training dates.')
     expect(html).toContain('href="/contact"')
     expect(html).toContain('A completed session')
@@ -83,6 +84,62 @@ describe('training index route', () => {
     const missingDateHtml = renderToStaticMarkup(await TrainingIndexPage({ params: Promise.resolve({}) }))
     expect(missingDateHtml).toContain('Date to confirm.')
     expect(missingDateHtml).not.toContain('<time')
+  })
+
+  it('renders one or many published upcoming sessions without an empty-state prompt', async () => {
+    const longTitle = 'A very long practical session title for pastry cooks learning to prepare for an especially busy kitchen service without rushing'.repeat(2)
+    const sessions = [
+      { ...event, id: 11, title: 'A single session' },
+      { ...event, id: 12, title: longTitle, slug: 'long-session' },
+      { ...event, id: 13, title: 'Draft session', _status: 'draft' },
+    ]
+    mocks.list.mockImplementation((_collection: string, options: { where: { and?: unknown[] } }) =>
+      Promise.resolve(result(options.where.and ? sessions.slice(0, 1) : [])))
+    const oneSessionHtml = renderToStaticMarkup(await TrainingIndexPage({ params: Promise.resolve({}) }))
+    expect(oneSessionHtml).toContain('A single session')
+    expect(oneSessionHtml).not.toContain('There are no upcoming training dates.')
+
+    mocks.list.mockImplementation((_collection: string, options: { where: { and?: unknown[] } }) =>
+      Promise.resolve(result(options.where.and ? sessions : [])))
+    const html = renderToStaticMarkup(await TrainingIndexPage({ params: Promise.resolve({}) }))
+    expect(html).toContain('Make room<br/>for the craft.')
+    expect(html).toContain('Illustrative photograph of pastry preparation at a kitchen bench')
+    expect(html.indexOf('Make room<br/>for the craft.')).toBeLessThan(html.indexOf('alt="Illustrative photograph'))
+    expect(html).toContain('Upcoming sessions')
+    expect(html).toContain('A single session')
+    expect(html).toContain(longTitle)
+    expect(html).not.toContain('There are no upcoming training dates.')
+    expect(html).not.toContain('Draft session')
+  })
+
+  it('preserves sold-out, past and cancelled labels and falls back for invalid dates and timezones', async () => {
+    const soldOut = { ...event, id: 21, title: 'Sold out session', eventStatus: 'sold-out', timezone: 'Invalid/Timezone' }
+    const invalidDate = { ...event, id: 22, title: 'Undated session', startDate: 'not-a-date', endDate: null }
+    const past = { ...event, id: 23, title: 'Past session', eventStatus: 'past', startDate: 'not-a-date' }
+    const cancelled = { ...event, id: 24, title: 'Cancelled session', eventStatus: 'cancelled', startDate: null, endDate: null }
+    mocks.list.mockImplementation((_collection: string, options: { where: { and?: unknown[] } }) =>
+      Promise.resolve(result(options.where.and ? [soldOut, invalidDate] : [past, cancelled])))
+
+    const html = renderToStaticMarkup(await TrainingIndexPage({ params: Promise.resolve({}) }))
+    expect(html).toContain('Sold out')
+    expect(html).toContain('Past')
+    expect(html).toContain('Cancelled')
+    expect(html).toContain('Date to confirm.')
+    expect(html).toContain('13 August 2030 at 9:00 am AEST')
+    expect(html).not.toContain('Invalid/Timezone')
+  })
+
+  it('shows archive-only later pages without the first-page empty-state prompt', async () => {
+    const past = { ...event, id: 30, title: 'Archived session', eventStatus: 'past', startDate: '2020-08-12T23:00:00.000Z' }
+    mocks.list.mockImplementation((_collection: string, options: { where: { and?: unknown[] } }) =>
+      Promise.resolve(options.where.and ? result([], 2) : result([past], 2)))
+
+    const html = renderToStaticMarkup(await TrainingIndexPage({ params: Promise.resolve({ page: ['page', '2'] }) }))
+    expect(html).toContain('Archived session')
+    expect(html).toContain('Past and cancelled training')
+    expect(html).not.toContain('There are no upcoming training dates.')
+    expect(html).not.toContain('href="#programme"')
+    expect(html).toContain('Page 2 of 2')
   })
 
   it('validates optional catch-all pagination and permanently redirects page one', async () => {

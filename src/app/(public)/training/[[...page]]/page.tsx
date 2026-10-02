@@ -7,8 +7,7 @@ import { cache } from 'react'
 import type { Where } from 'payload'
 import { notFound, permanentRedirect } from 'next/navigation'
 
-import { EditorialSection } from '../../../../components/EditorialSection'
-import { HeroBlock } from '../../../../components/blocks/HeroBlock'
+import { TrainingEditorial } from '../../../../components/TrainingEditorial'
 import { Pagination } from '../../../../components/Pagination'
 import type { Event } from '../../../../payload-types'
 import { listPublicContent, getPublicShell } from '../../../../lib/public-content'
@@ -141,34 +140,20 @@ export default async function TrainingIndexPage({ params }: PageProps) {
   const { page, model } = await getRouteListing(params)
   const upcoming = model.upcoming.docs.filter(isPublishedEvent)
   const archive = model.archive.docs.filter(isPublishedEvent)
+  const showEmptyState = page === 1 && upcoming.length === 0
   return (
     <main id="main-content" tabIndex={-1}>
       <RouteSchema path={page > 1 ? `/training/page/${page}` : '/training'} title={page > 1 ? `Training · Page ${page}` : 'Training'}
         parents={page > 1 ? [{ name: 'Training', path: '/training' }] : []} />
-      <HeroBlock headingLevel={1} block={{ blockType: 'hero', heading: 'Training', style: 'quiet' }} />
-      {(upcoming.length > 0 || page === 1) && (
-        <EditorialSection wide>
-          <div className={styles.sectionContent}>
-            <h2>Upcoming training</h2>
-            {upcoming.length > 0
-              ? <EventList events={upcoming} />
-              : <div className={styles.empty}><p>There are no upcoming training dates.</p><Link href={safePublicHref('/contact') ?? '/contact'} prefetch={false}>Ask about training</Link></div>}
-          </div>
-        </EditorialSection>
-      )}
-      {archive.length > 0 && (
-        <EditorialSection wide className={styles.archive}>
-          <div className={styles.sectionContent}>
-            <h2>Past and cancelled training</h2>
-            <EventList events={archive} />
-          </div>
-        </EditorialSection>
-      )}
-      {model.totalPages > 1 && (
-        <EditorialSection wide>
-          <Pagination basePath="/training" page={page} totalPages={model.totalPages} />
-        </EditorialSection>
-      )}
+      <TrainingEditorial
+        upcoming={<EventList events={upcoming} />}
+        hasUpcoming={upcoming.length > 0}
+        archive={<EventList events={archive} />}
+        hasArchive={archive.length > 0}
+        showEmptyState={showEmptyState}
+        showProgrammeLink={page === 1}
+        pagination={model.totalPages > 1 ? <Pagination basePath="/training" page={page} totalPages={model.totalPages} /> : undefined}
+      />
     </main>
   )
 }
