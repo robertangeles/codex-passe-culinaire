@@ -1,6 +1,6 @@
 # Services, Training and About: full-page design review
 
-2 October 2026, Australia/Melbourne. Target: `/services`, `/training`, `/about`. Branch/base: main; no remote configured. Status: design-complete. Services A and Training A selected; About A explicitly reconfirmed. No application changes.
+2 October 2026, Australia/Melbourne. Target: `/services`, `/training`, `/about`. Branch/base: main; no remote configured. Status: design and local engineering reviews complete. Services A and Training A selected; About A explicitly reconfirmed. No application changes.
 
 ## Scope and standing decisions
 
@@ -242,19 +242,208 @@ Task export: `tasks.jsonl` beside this plan and the timestamped `tasks-design-re
 
 Six main browser studies, three selected references, four populated companion studies. Scope exclusions and existing contracts recorded. Zero deferred TODO proposals. About retains its prior independently recorded specification scores (9/8/9/8/9/9); current review does not supersede that exact approved body.
 
+## Engineering review, 2 October 2026
+
+Target and report: this Services/Training/About plan. The user's “Let's go” follows the offered engineering review. All three A selections, the prior About copy/CMS requirements and AGENTS.md remain binding. This review changes the implementation specification only. No application files or CMS records were changed.
+
+### Scope challenge and evidence
+
+Scope accepted as-is. This is a presentation change, not a new content system. Retain three page-specific server components with CSS modules, the existing routes and the About BlockRenderer integration. There are 15 named core source/test files, plus bounded content-update, browser-test and static-image support. No new classes, backend services, endpoint, dependency, schema or migration is needed. Future files have no history and are not treated as existing implementations.
+
+A smaller arrangement could put all page markup into the three routes and one shared stylesheet, but would make About preservation and independent ownership harder. Retain the original page-specific arrangement; this is a routine implementation choice within the approved work, not a feature cut or new approval gate. Sequence implementation to simplify integration and comply with the parent-owned verification requirements. No user-visible scope is removed.
+
+Existing route history includes initial editorial routes, public loading improvements and the C4 identity; no revert of these paths was found. No TODOS.md exists. The installed Next.js 16.3.6 server/client and previous-cache-model guides were read. Existing project primitives already solve the work [Layer 1]; no new architecture/concurrency pattern requires web research. Aside is absent; host web tools remain available if a new external dependency question arises. Brain cache is unavailable; local plans and project-scoped learnings supplied context. AGENTS.md already provides Codex routing, so the generic skill onboarding does not justify an unrelated CLAUDE.md change.
+
+Prior learnings retained: `payload-hooks-before-commit` (9/10, 25 September) and `c4-rsc-css-budget` (10/10, 26 September). Reuse request-bound publication jobs and external stylesheets. Do not turn a page-level design into a client-rendered application or inline all CSS.
+
+### Architecture review
+
+No new unresolved architecture issue. The design already requires preservation of public queries, CMS blocks, editable biographies, preview and guarded copy updates. The following specifies those accepted requirements against actual source, rather than proposing new business behaviour.
+
+1. **Services:** `getRouteModel` and `getServicesListing` remain route-owned. Retain limit 12, title/id sorting, React request memoisation, safe paging and RouteSchema/metadata. Pass typed published data into ServicesEditorial. Preserve the filtering and safe URL behaviour currently in ServiceListBlock without modifying that shared block globally. Display title, oneLiner and whoItIsFor when supplied; the layout sample's shorter row does not authorise dropping CMS audience content.
+2. **Training:** retain the two bounded queries, one shared date bound, maximum totalPages, end-date handling and status interpretation. Keep `formatDate`, `isPublishedEvent` and safe link rules intact when moving the event presentation. A lightweight React-node slot from the route into TrainingEditorial can retain EventList and its existing stylesheet in place; no general-purpose listing abstraction is needed. The enquiry and archive blocks remain server-rendered.
+3. **About:** add an optional `about` presentation flag to BlockRenderer, passed only for slug `about`; keep `home` behaviour unchanged. Specialise the leading hero and contiguous founder groups through AboutEditorial. Use the same ordered loop as today; never filter/reassemble the entire layout into “hero, founders, everything else”, which would reorder custom blocks. Every unconsumed block goes through the existing exhaustive switch. Fallback h1 and later-hero h2 behaviour remain intact. If editors remove a hero or all founders, retain their edited content instead of inventing replacement biographies.
+4. **About content:** existing hero eyebrow/heading/summary, founder name/title/bio/links, prose and product/CTA blocks suffice. Bind visible text to those fields. Keep role and credential emphasis in editable text/rich text rather than parsing names or hardcoding founder-specific branches. Reuse RichText for biography formatting and safe links. A scoped About continuation may restyle the existing product/CTA block data; retain every populated field and real destination.
+5. **Portraits:** use `isRenderableMedia` from ResponsiveMedia plus the existing `Media.placeholder` flag. The current seeded portrait is structurally valid media, so validity alone would still show PLACEHOLDER 10. Render the approved named 4:5 space when media is absent, unresolved, invalid or explicitly marked placeholder. Do not suppress a genuine photograph by matching a filename substring. Real media retains focal coordinates, variants, captions/credits and alt text. A failed network image must preserve the frame and readable name/alt; do not claim a server validator can detect an HTTP failure in the browser.
+6. **About local update:** adapt the existing contact updater's local-target guard, draft/published comparison, full backup with exclusive creation and final reread. Build an exact old-to-approved content transform; update only the seeded About layout or recognise an already-applied no-op. Any custom layout or unpublished work makes the script refuse, leaving presentation changes safe and current content intact. Keep unknown block fields, IDs, real portraits and unrelated page fields. Never use `pnpm seed` to overwrite the page. Rechecking is not an atomic compare-and-swap: run this local one-off update with editorial writes quiescent, retain the backup and verify afterward. Do not market this mechanism as safe for concurrent production publishing. Deployment/data migration is outside this review.
+
+```text
+/services[/page/N]
+  params -> validation -> redirect page 1 / 404 invalid
+  -> getServicesListing -> listPublicContent (published/access checked)
+  -> ServicesEditorial(empty | catalogue) + Pagination + RouteSchema
+/training[/page/N]
+  params -> validation -> redirect / 404
+  -> shared now -> [upcoming query || archive query]
+  -> published filter -> date/status/safe-link formatting
+  -> TrainingEditorial(programme | enquiry, archive?, pagination?)
+/about
+  slug -> getPageViewModel -> getRequestDocument
+    public -> access-checked published cache
+    authenticated preview -> uncached staff draft query
+  -> getBlockContent (only requested feeds; bounded)
+  -> BlockRenderer(about=true, original editorial order)
+    first hero -> About opening
+    founder run -> About founders (portrait | labelled space)
+    all other blocks -> existing switch, themed only when appropriate
+  -> existing metadata / public JSON-LD / preview notice
+All required read failures -> existing public error boundary, not an empty catalogue
+```
+
+Distribution: components/CSS compile through the current Next.js build and Node deployment. Copy the two approved compressed stills into a tracked public asset directory so the application never depends on a user's home directory or port 4190. Fonts and mark already ship locally. No external font/script host is introduced. No install channel or new service is needed.
+
+### Code quality review
+
+No new unresolved code-quality issue. Reuse `safePublicHref`, `isRenderableMedia`, ResponsiveMedia, RichText, Pagination, RouteSchema, existing public projections and the local-target/content comparison helpers. Do not duplicate the media validator from FounderCardBlock in new code. Proposed About and current FounderCardBlock have related rendering but different placeholder/hierarchy contracts; keep their presentation separate. Services and Training have different date/archive/query contracts, so visual similarity is insufficient reason to invent a generic “EditorialListing” with mode flags. No speculative extraction or savings claim.
+
+The primary regression risks are already covered by approved T1–T4: losing custom About blocks, showing draft records, dropping service audience text, changing training availability rules, and overriding real portraits during the local update. Tests must protect each in the same implementation change. Avoid touching shared global tokens, homepage rendering or the navigation selection. No stale inline architectural diagram was found in the inspected entry points; the flow above is the relevant design record.
+
+### Test review
+
+Detected framework: Vitest 5, Node environment, React server-markup assertions; Playwright with desktop/phone projects and Axe; isolated quality database runner. Existing targeted baseline actually run:
+
+`pnpm exec vitest run tests/services-index.test.tsx tests/training-index.test.tsx tests/block-renderer.test.tsx tests/cms-page.test.tsx tests/responsive-media.test.tsx tests/page-view-model.test.ts tests/request-content.test.ts tests/public-content.test.ts tests/pagination.test.tsx`
+
+Result: **9 files passed, 43 tests passed**, 441ms. This is current-behaviour evidence only. Proposed components and updater are not built and cannot have passed tests yet. No full build, new acceptance suite or performance benchmark was run during this review.
+
+Legend: ★★★ = behaviour with edge/error coverage; ★★ = happy-path behaviour; GAP = future proof already required by the approved plan; →E2E = browser/integration path. Groups below are an audit map, not instrumentation-derived coverage percentages.
+
+```text
+CODE PATHS                                    USER FLOWS
+Services route                               Visitor opens Services
+  ★★★ params/redirect/range                    ★★ server heading + empty enquiry
+      tests/services-index.test.tsx                tests/services-index.test.tsx
+  ★★ published rows + detail URL               GAP →E2E approved A, contact, detail,
+  ★★ paging + metadata                             pagination, phone/light/dark
+  GAP mixed draft/malformed/blank/              GAP long title/one/12 entries and
+      optional-audience rows in new view            image failure in browser
+Training route                               Visitor opens Training
+  ★★★ query bounds/status/date partitions      ★★ empty + archive + contact
+      tests/training-index.test.tsx                tests/training-index.test.tsx
+  ★★★ pagination/redirect/range                 GAP →E2E text before image on phone,
+  ★★ missing date / cancelled / past                real detail links and pagination
+  GAP invalid timezone/date, sold-out,          GAP archive-only page without a
+      no safe slug, draft exclusion in view         false programme claim
+CMS About                                    Visitor assesses founders
+  ★★★ slug/missing page/preview metadata        ★★ current CMS text in HTML
+      tests/cms-page.test.tsx                       tests/cms-page.test.tsx
+  ★★★ first/later/no hero and every block       GAP →E2E exact A layout, both portrait
+      tests/block-renderer.test.tsx                spaces, real/one/missing/broken photos
+  GAP about-specific grouping keeps all        GAP →E2E keyboard/zoom/themes and
+      custom blocks in original order              product/contact destinations
+  GAP two independent founder runs, zero/one/
+      many founders, rich text, safe links
+Media                                        Slow or broken photo
+  ★★★ variants, dimensions, alt, unsafe        GAP →E2E geometry/alt/name remain
+      names, priority; responsive-media.test       readable after failed image request
+  GAP About placeholder flag + actual photo
+Public reads                                 Staff edits and previews About
+  ★★★ published access and private preview     GAP →E2E approved copy commit -> worker
+      public-content / request-content tests       -> fresh public HTML within 60 sec
+  ★★★ feed batching/failure propagation        GAP →E2E anonymous visitor never sees draft
+      page-view-model.test.ts
+Local About updater                          Maintainer applies local copy once
+  GAP baseline -> backup -> reread -> update    GAP isolated integration proves actual
+  GAP already applied -> zero writes               update + no-op + normal job/invalidation
+  GAP custom layout/draft/change -> refuse          (no production DB use)
+  GAP backup failure -> no write; cleanup
+```
+
+The planned proof falls into six groups: Services presentation/row boundaries; Training formatting/status boundaries; About mapping/custom blocks; About portrait states; local updater safety; integrated visual/publication flows. All are necessary proof of already-approved contracts, not a new request for optional test scope. Existing tests must keep their behavioural assertions; update wording assertions only for intentionally changed selected copy.
+
+Use `tests/services-index.test.tsx` and `tests/training-index.test.tsx` for route conditions and HTML; `tests/block-renderer.test.tsx` and `tests/cms-page.test.tsx` for About dispatch/order/preview; add `tests/about-editorial.test.tsx` for portrait and heading contracts and `tests/about-content.test.ts` for the pure content transform and updater guard/no-op cases. A separate `tests/e2e/company-pages.spec.ts` covers all three real page compositions and link journeys using isolated published fixtures. Keep the existing seed-route core suite valid: the approved About copy must be set up explicitly in the new suite, not assumed to appear merely because CSS changed. Restore test fixtures and never publish specimen services/events in the user's database.
+
+No form submission or application mutation exists on these page bodies. Rapid clicks and back navigation use native links; no new debounce, cancellation or multi-tab state machine is required. Slow DB reads use existing server response/error handling. LLM/eval scope is not applicable: no prompt, model call or tool definition changes.
+
+### Performance review
+
+No new unresolved performance issue. Keep all presentation server-rendered with no page-wide `use client`, new runtime package or additional biography query. Services remains one bounded listing read; Training remains two concurrent bounded reads; About reuses one page model and existing needed feeds. Preserve React memoisation between metadata and route rendering and existing public-cache tags. The route's 600-second revalidate is not the freshness guarantee: the existing after-commit invalidation supplies the <=60-second publication contract.
+
+Use external scoped stylesheets. Reserve 4:3 phone stills and 4:5 portraits to prevent layout movement. Do not load all full-resolution film frames for these two static images; serve responsive compressed variants where useful, lazy-load below-fold portraits, and use high priority only for the first visible hero image. Keep the film unchanged. Run existing quality budgets after integration; retaining server components reduces risk but does not prove the <160kB home JavaScript and <=2.6s LCP ceilings. No claimed measurement for the future pages.
+
+### Failure modes and required acceptance
+
+| Path | Realistic failure | User outcome and required proof |
+| --- | --- | --- |
+| Services | Listing read fails | Public error boundary with retry/home; never falsely claims no services |
+| Training | Invalid date/timezone or archive-only later page | Date to confirm / Melbourne fallback; existing archive/pagination remains usable |
+| About mapping | Custom block inserted between founders | Block remains in place; no silent discard or reordering; server-markup regression |
+| About media | ID unresolved, placeholder flag, invalid metadata, HTTP failure | Named portrait space or reserved frame/readable alt; browser failure check |
+| Local updater | Draft/custom layout or change observed before update | Refuse and preserve data; backup failure forbids mutation; isolated guard tests |
+| Publication | Job does not run after update | Acceptance fails on stale public HTML; inspect existing job worker, do not lower 60s target |
+| Shared CSS/shell | Styles bleed into homepage or another route | Scope styles; existing home/contact/Journal tests and budget checks remain gates |
+
+Zero unhandled silent critical gaps remain in the plan: each risk has a named handler/fallback and required verification. Actual implementation failures remain possible until tested.
+
+### Decision ledger and approval readiness
+
+- E1, page architecture: exact Services A and Training A feedback plus accepted plan T1/T2; retain page-specific server presentation and current route contracts. No feature cut. File organisation resolved as a routine implementation detail under the standing authorisation.
+- E2, About content and arbitrary blocks: earlier About B approval, current About A reconfirmation and `../about-review/PLAN.md` content constraints; use existing CMS schema, selective ordered rendering and guarded local content update. No hardcoded biographies or automatic overwrite of custom content.
+- E3, verification: AGENTS.md plus approved design T4 require regression checks, all four commands, independent diff review and browser acceptance. This review specifies the necessary assertions; it does not reopen whether they are needed.
+- E4, images and performance: accepted brand/media/budget contracts; tracked compressed stills, explicit placeholder flag, standard media validation and scoped external CSS. No new external service or package.
+
+Approval readiness: PASS for E1–E4; actual references are the saved per-page feedback, prior About approval and standing AGENTS.md contracts. No unresolved user-facing tradeoff, cut, guarantee increase or new business policy was introduced. No new TODO proposal. Lake score: N/A, zero new answered coverage-choice questions.
+
+### Implementation sequence and task refinements
+
+Retain design tasks T1–T4; the implementation source references below supplement their file lists and acceptance criteria.
+
+| Step | Modules touched | Depends on |
+| --- | --- | --- |
+| T1 Services A | Services route, its dedicated presentation/CSS, Services tests, Services still asset | Approved reference |
+| T2 Training A | Training route, its presentation/CSS, Training tests, Training still asset | Approved reference; execute after T1 acceptance |
+| T3 About A | Generic CMS route, BlockRenderer, About presentation, guarded content-update scripts/tests | T2 acceptance; sequential due shared-renderer regression risk |
+| T4 integration acceptance | Browser tests, isolated fixtures, performance and evidence | All three implementations |
+
+Use sequential executor tasks with explicit file ownership, acceptance criteria and test commands. A reviewer remains independent after each return; parent owns the full diff read, integration and acceptance. Although Services/Training could run in separate lanes, sequential work avoids shared verification/build contention for this small three-page update. No new worktree infrastructure is required. Do not let a worker change this plan, AGENTS.md or another worker's files.
+
+T3 adds `scripts/about-content.ts`, `scripts/apply-about-design.ts`, `tests/about-content.test.ts` and `tests/about-editorial.test.tsx` as bounded support for the already-approved update. The parent must inspect current local draft/published content and prove the updater's guard before running it. Content incompatibility blocks that data update only, not the independent Services/Training implementation. Add `public/images/company-pages/` assets for the two approved stills. T4 adds `tests/e2e/company-pages.spec.ts` with isolated fixtures. No global seed rewrite is authorised.
+
+Estimates remain approximately 3h human/30min agent each for T1/T2, 5h/45min for T3, and 2h/30min for integration; verification and review turnaround can extend elapsed time. These are planning estimates, not a time promise.
+
+### Suppressed findings and limits
+
+No speculative source bug is promoted. A guarded read/reread updater has a concurrent-write window; the plan explicitly restricts it to a quiescent local application and refuses observed independent edits. It is not a production migration. Real-media HTTP failure and future component correctness are acceptance work, not observed failures. No test pass is claimed for new code, DB content, full application build or future performance.
+
+### Outside voice and approval-review result
+
+Claude Code was available and the skill's outside-review switch was enabled. The requested read-only command would have supplied a bounded technical plan/source prompt with `--access none` and a five-minute timeout. Automatic approval review rejected the command before it ran: exporting internal engineering plans and source excerpts to a destination not established as trusted was not specifically authorised. No outside process or payload transmission occurred. No bypass or provider substitution was attempted.
+
+The prescribed native fallback requires declared Plan/TaskOutput/TaskStop capabilities; those are not available in this host. A generic agent is not substituted for that unavailable fallback. Outside coverage is therefore unavailable, not a pass. The user has been offered an explicit optional export choice; no answer is inferred. Local engineering review and implementation planning can finish without it, because this skill says missing outside coverage is non-blocking.
+
+### Engineering completion summary
+
+| Item | Result |
+| --- | --- |
+| Scope challenge | Accepted as-is; routine page-specific file arrangement retained |
+| Architecture | 0 new unresolved issues; existing contract mapped to server/CMS/media paths |
+| Code quality | 0 new issues; existing primitives reused, no generic-listing framework |
+| Tests | Branch/user-flow diagram produced; six future proof groups carried from approved T1–T4; 43 existing tests passed |
+| Performance | 0 new issues; current query/cache/asset budgets retained, future measurements required |
+| Failure modes | 0 unhandled silent critical gaps in the plan |
+| Scope/existing systems | Recorded in design and engineering sections |
+| TODO proposals | 0 |
+| Execution | Three sequential page tasks, then integrated acceptance; parent owns all review and verification |
+| Outside reviewer | Claude Code unavailable after automatic approval rejection; no native fallback available |
+| Unresolved implementation decisions | 0; optional external-export answer does not change accepted implementation contracts |
+| Lake score | N/A; zero new answered coverage-choice questions |
+
+The existing 43-test run covers the current application. No code, content update, new test suite or benchmark was built in this review. The local engineering plan is ready to implement; independent diff review and actual application acceptance remain required. Test plan: `TEST-PLAN.md`, also exported to the gstack project directory for QA discovery. Task export: `engineering-tasks.jsonl` and the timestamped gstack copy.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
 | --- | --- | --- | --- | --- | --- |
-| CEO Review | Earlier company/visual implementation review | Scope and strategy | 1 historical | Recorded complete_with_concerns; not rerun here | Source codex; historical external voice unavailable; standing company scope retained |
-| Eng Review | Historical plan-eng-review | Architecture and tests | 2 historical; 0 for these page changes | NOT CLEARED for this implementation | September 25 records are older than seven days; subsequent budget approval is recorded in AGENTS.md; fresh page-specific engineering review required |
-| Design Review | Current plan-design-review | Full-page Services/Training/About | 3 saved checkpoints for this scope; 7 total design records including this one | CLEAN (FULL), design-complete | Minimum score 2/10 → 8/10; 2 new decisions, About reconfirmed; 0 unresolved |
-| Outside Review | Historical codex-plan-review | Independent plan challenge | 0 completed for this scope | Unavailable historically; not run for this final HTML | Host codex, provider claude-code unavailable in historical plan-review; no fresh independent design assessment claimed |
-| Prototype QA | Local Chromium/Playwright and Axe | Responsive layout and accessibility checks | 1 final suite | 60 cases passed | Dark/light scans have zero violations; not application acceptance |
-| DX Review | Not triggered | No developer-facing product change | 0 | Not applicable | No new tooling/API interface introduced |
+| CEO Review | Earlier company/visual review | Company scope | 1 historical | Recorded complete_with_concerns; not rerun | Standing scope retained; no product expansion |
+| Design Review | plan-design-review | Three complete page designs | 3 scope checkpoints, 7 total records | CLEAR (FULL), accepted content retained | All A; minimum score 8/10; 2 new selections and About reconfirmed |
+| Eng Review | User “Let's go” after engineering next step | Implementation plan, CMS and regressions | 1 for this scope, 3 total | CLEAR (PLAN), local review | 0 new plan issues, 0 unresolved implementation decisions, 0 silent critical gaps; six required proof groups specified |
+| Outside Voice | Engineering skill standard step | Independent technical challenge | 1 rejected command, 0 completed | UNAVAILABLE | Host codex; intended provider claude-code; automatic approval review rejected repository export; no native fallback capabilities |
+| Current-behaviour tests | Bounded review evidence | Existing route/render/media/publication interfaces | 1 | 43 tests passed in 9 files | Future implementation is not tested by this run |
+| Prototype QA | Design review | Approved responsive references | 1 final suite | 60 cases passed | Prototype evidence only |
+| DX Review | Not triggered | No developer-facing interface change | 0 | Not applicable | No tooling/API product scope |
 
-OUTSIDE COVERAGE: No outside final-HTML design review for this scope. Anonymous automated exploratory-image checks are limited evidence only; they do not establish independent application or final-design approval. Historical external-provider failures are not a current blocker to recording these user selections.
+OUTSIDE COVERAGE: No independent outside engineering review completed. Automatic approval review rejected the optional plan/source export to Claude Code; no payload was sent. The separate optional export question remains unanswered and is not treated as permission. This does not block the local plan review or remove the implementation's required diff review.
 
-VERDICT: DESIGN CLEAR. The approved plan is design-complete; eng review required before application acceptance. Implement exact Services A, Training A and reconfirmed About A, then perform visual QA. No website or CMS changes have been made by this review.
+VERDICT: DESIGN + LOCAL ENG CLEARED for implementation planning. Build the three approved page designs, preserve the recorded contracts, then complete actual application checks and independent diff review. No website update or deployment was performed in this review.
 
 NO UNRESOLVED DECISIONS
