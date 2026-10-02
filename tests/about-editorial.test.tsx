@@ -70,16 +70,26 @@ describe('About editorial rendering', () => {
     expect(html.match(/<h1\b/g)).toHaveLength(1)
   })
 
-  it('keeps valid media alt, focal crop, caption, credit, and a reserved lazy portrait frame', () => {
+  it('keeps media metadata and prioritises the first visible portrait', () => {
     const html = render([{ blockType: 'hero', heading: 'About' }, founder('Alex Charasse', realMedia({ focalX: 72, focalY: 24 }))] as Page['layout'])
     expect(html).toContain('src="/media/alex.jpg"')
     expect(html).toContain('alt="Alex at a pastry bench"')
     expect(html).toContain('Finishing pastry')
     expect(html).toContain('Credit: Photographer')
     expect(html).toContain('object-position:72% 24%')
-    expect(html).toContain('loading="lazy"')
+    expect(html).toContain('loading="eager"')
+    expect(html).toContain('fetchPriority="high"')
     expect(html).toContain('width="800"')
     expect(html).toContain('height="1000"')
+  })
+
+  it('keeps subsequent and later founder portraits lazy', () => {
+    const pair = render([{ blockType: 'hero', heading: 'About' }, founder('Alex', realMedia()), founder('Rob', realMedia())] as Page['layout'])
+    expect(pair.match(/loading="eager"/gu)).toHaveLength(1)
+    expect(pair.match(/loading="lazy"/gu)).toHaveLength(1)
+    const later = render([{ blockType: 'hero', heading: 'About' }, { blockType: 'spacer' }, { blockType: 'spacer' }, founder('Rob', realMedia())] as Page['layout'])
+    expect(later).toContain('loading="lazy"')
+    expect(later).not.toContain('fetchPriority="high"')
   })
 
   it('shows named photo spaces for placeholders, unresolved IDs, and invalid media', () => {

@@ -8,7 +8,7 @@ import { FeatureBlock } from './blocks/FeatureBlock'
 import styles from './AboutEditorial.module.css'
 
 type AboutHeroProps = { block: Hero; headingLevel: 1 | 2 }
-type AboutBlocksProps = { blocks: FounderCard[]; externalEmbedsEnabled?: boolean }
+type AboutBlocksProps = { blocks: FounderCard[]; priority?: boolean; externalEmbedsEnabled?: boolean }
 
 export function AboutHero({ block, headingLevel }: AboutHeroProps) {
   if (block.style === 'image') return <HeroBlock block={block} headingLevel={headingLevel} />
@@ -34,12 +34,12 @@ export function AboutProse({ block, externalEmbedsEnabled = false }: { block: Pr
   )
 }
 
-function FounderPortrait({ founder }: { founder: FounderCard }) {
+function FounderPortrait({ founder, priority }: { founder: FounderCard; priority: boolean }) {
   const media = founder.portrait
   const realPortrait = isRenderableMedia(media) && media.placeholder !== true
 
   if (realPortrait) {
-    return <ResponsiveMedia media={media} sizes="(min-width: 960px) 29vw, 100vw" className={styles.portrait} />
+    return <ResponsiveMedia media={media} priority={priority} sizes="(min-width: 960px) 29vw, 100vw" className={styles.portrait} />
   }
 
   return (
@@ -54,13 +54,13 @@ function FounderPortrait({ founder }: { founder: FounderCard }) {
   )
 }
 
-export function AboutFounders({ blocks, externalEmbedsEnabled = false }: AboutBlocksProps) {
+export function AboutFounders({ blocks, priority = false, externalEmbedsEnabled = false }: AboutBlocksProps) {
   return (
     <section className={styles.founders} aria-label="Founder biographies">
       <div className={styles.foundersInner}>
         {blocks.map((founder, index) => (
           <article className={styles.founder} key={founder.id ?? `${founder.name}-${index}`}>
-            <FounderPortrait founder={founder} />
+            <FounderPortrait founder={founder} priority={priority && index === 0} />
             <div className={styles.founderCopy}>
               <h3 className={styles.name}>{founder.name}</h3>
               {founder.title?.trim() && <p className={styles.role}>{founder.title.trim()}</p>}

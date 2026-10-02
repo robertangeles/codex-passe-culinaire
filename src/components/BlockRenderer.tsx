@@ -97,6 +97,7 @@ export function BlockRenderer({
   for (let index = 0; index < pageBlocks.length; index += 1) {
     const block = pageBlocks[index]
     if ((home || about) && block.blockType === 'founderCard') {
+      const priority = index < 3
       const founders = [block]
       while (pageBlocks[index + 1]?.blockType === 'founderCard') {
         const next = pageBlocks[++index]
@@ -104,7 +105,7 @@ export function BlockRenderer({
       }
       rendered.push(home
         ? <HomeFounders key={block.id ?? `founders-${index}`} blocks={founders} externalEmbedsEnabled={externalEmbedsEnabled} />
-        : <AboutFounders key={block.id ?? `founders-${index}`} blocks={founders} externalEmbedsEnabled={externalEmbedsEnabled} />)
+        : <AboutFounders key={block.id ?? `founders-${index}`} blocks={founders} priority={priority} externalEmbedsEnabled={externalEmbedsEnabled} />)
     } else {
       rendered.push(renderBlock(block, index, { content, externalEmbedsEnabled, home, about }))
     }
