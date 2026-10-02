@@ -1,6 +1,6 @@
 # CulinAIre Kitchen: full-page design review
 
-2 October 2026. Target: `/culinaire-kitchen`. Branch/base: main; no remote configured. Status: B selected; design passes completed with one content preference pending. No application or CMS changes.
+2 October 2026. Target: `/culinaire-kitchen`. Branch/base: main; no remote configured. Status: B implemented and applied locally. User authorised the selected direction and example retention. Source, browser, visual, publication and performance acceptance passed.
 
 ## Scope and existing decisions
 
@@ -73,13 +73,13 @@ Company header
     Prepare: mise en place, production, menu and costing
     Review: waste and sales
   Three labs: recipe, patisserie, cocktail
-  Shared-component example [retention pending]
+  Shared-component example [retained by follow-up authorisation]
   Existing kitchen film, explicitly played
   Supplied founder experience → About
   Product website / Contact → shared footer
 ```
 
-Keep page text readable without JavaScript. The product CTA goes to the existing external product site; contact remains a company route. Scope stays on this one company product-introduction page. No new information-architecture issue beyond the pending example treatment.
+Keep page text readable without JavaScript. The product CTA goes to the existing external product site; contact remains a company route. Scope stays on this one company product-introduction page. The example treatment was resolved by the follow-up implementation authorisation.
 
 ## Pass 2: Interaction state coverage, 5/10 → 8/10
 
@@ -109,7 +109,7 @@ These are design intentions, not measured visitor emotions.
 | Assesses | Reads founder background | I understand who is behind it | Supplied culinary/technical facts and About link |
 | Acts | Visits product or contacts company | I know where to go next | Clear external product CTA and contact alternative |
 
-At five seconds, product and kitchen context are clear; over several minutes, operations and evidence can be inspected; long-term credibility depends on accurate product content and actual experience, not decorative promises. The optional shared-component example remains one user-facing content question because it was previously removed from the homepage. No new customer claims or compulsory viewing flow is introduced.
+At five seconds, product and kitchen context are clear; over several minutes, operations and evidence can be inspected; long-term credibility depends on accurate product content and actual experience, not decorative promises. The shared-component example was explicitly raised because it was removed from the homepage; the user’s subsequent “Let’s go” accepts the recommendation to retain it on this product page. No new customer claims or compulsory viewing flow is introduced.
 
 ## Pass 4: Intentional design / AI-slop risk, 3/10 → 9/10
 
@@ -122,7 +122,7 @@ Hard-rejection audit: no SaaS card grid as first impression; brand and product p
 | Brand/product unmistakable | YES: P/C company header and explicit CulinAIre Kitchen label |
 | One visual anchor | YES: close pastry preparation photograph |
 | Headline scan understandable | YES: introduction, operation, three labs, film, people and next action |
-| One job per section | YES; example retention is separately pending |
+| One job per section | YES; example retention resolved by follow-up authorisation |
 | Cards necessary | NO; B correctly uses editorial rows instead |
 | Motion useful | Restrained optional entrance; film is deliberate content, not looping decoration |
 | Premium without shadows | YES; none are required |
@@ -154,27 +154,27 @@ Prototype axe results are evidence of the checked states, not WCAG certification
 | B composition and later optional film | Accepted | Explicit board selection: “Option B is the winner” |
 | Feature scope and Patisserie Lab terminology | Existing user instruction retained | Eleven named areas plus forecast, transfers, menu/costing and messaging |
 | Brand, accessibility and media behaviour | Standing contracts retained | AGENTS.md and existing film/site behaviour; product-page film explicitly played |
-| Shared-component example on product page | Awaiting answer | User removed it from homepage earlier; ask specifically whether to retain it here |
+| Shared-component example on product page | Accepted | User’s “Let’s go” follows the recommendation to keep it here |
 
 No additional tradeoff, package, global redesign or deferred TODO is proposed. A selected composition does not certify every feature's release availability or every public marketing claim.
 
 ## Independent design review
 
-Native reviewer initially raised two issues. Parent supplied previously omitted claim evidence: the established approved seed copy and the public product site's explicit cross-usage/one-preparation description. The reviewer withdrew the unsupported-invention finding; no signed-in verification is falsely claimed. The preview theme accessible label was corrected and rechecked. Final independent verdict: PASS, with the example-retention preference still pending.
+Native reviewer initially raised two issues. Parent supplied previously omitted claim evidence: the established approved seed copy and the public product site's explicit cross-usage/one-preparation description. The reviewer withdrew the unsupported-invention finding; no signed-in verification is falsely claimed. The preview theme accessible label was corrected and rechecked. Final independent verdict: PASS, with the example-retention preference subsequently resolved by the user.
 
 The optional external Claude export was rejected by automatic approval review in the preceding workflow. No new export was attempted or provider substituted; external coverage remains unavailable. Native completion is recorded separately and is not presented as cross-model agreement.
 
 ## Selected visual reference
 
-`/home/robangeles/.gstack/projects/codex-passe-culinaire/designs/culinaire-kitchen-20261002/selected-b.html` preserves exactly what was selected. Current `b.html` adds only the preview theme accessibility correction. Adjacent `base.css`, `styles.css` and `assets/` are required. `selected.json` records the submitted feedback and SHA-256. The existing board URL remains valid. Example removal, if requested, will produce a separately recorded updated reference.
+`/home/robangeles/.gstack/projects/codex-passe-culinaire/designs/culinaire-kitchen-20261002/selected-b.html` preserves exactly what was selected. Current `b.html` adds only the preview theme accessibility correction. Adjacent `base.css`, `styles.css` and `assets/` are required. `selected.json` records the submitted feedback and SHA-256. The existing board URL remains valid. The example is retained by the follow-up authorisation.
 
 ## Implementation tasks
 
-Only accepted design work is listed. Application work has not started, and engineering review must settle the rendering/content mapping before delegation.
+Only accepted design work is listed. Local engineering review settled the rendering/content mapping; delegated implementation and parent acceptance are in progress.
 
-- [ ] **T1 (P1, human ~4h / agent ~40min): Apply selected B presentation to this product page.** Source: Passes 1, 3 and 4. Candidate files: generic public page route, BlockRenderer, new route-specific editorial component/styles, compressed approved assets, guarded product-page content transform/updater. Preserve arbitrary CMS blocks, editable approved copy, public/draft boundaries and existing shell. The practical-example inclusion is blocked on the pending user answer. No schema change assumed.
-- [ ] **T2 (P1, human ~2h / agent ~25min): Integrate the existing film with explicit play.** Source: Passes 2 and 6. Candidate files: existing film/player or a minimal reuse path, route-specific presentation and meaningful media tests. Retain no transfer until play, no loop, offscreen/tab pause, reduced-motion/data-saving state, keyboard controls, failure/noscript and text equivalent. Do not change homepage playback behaviour.
-- [ ] **T3 (P1, human ~2h / agent ~30min): Verify the product page and regressions.** Source: Passes 2, 5 and 6. Candidate files: route/content/render tests, browser coverage, evidence here. Parent reads each executor diff, runs lint/typecheck/test/build, then obtains independent review. Browser-check actual desktop/phone/themes, real zoom, no-JS/error/media states, publication freshness, preview isolation and the existing performance budgets. No skipped check counts as acceptance.
+- [x] **T1 (P1, human ~4h / agent ~40min): Apply selected B presentation to this product page.** Source: Passes 1, 3 and 4. Candidate files: generic public page route, BlockRenderer, new route-specific editorial component/styles, compressed approved assets, guarded product-page content transform/updater. Preserve arbitrary CMS blocks, editable approved copy, public/draft boundaries and existing shell. The practical example remains, following the user’s acceptance of that recommendation. No schema change assumed.
+- [x] **T2 (P1, human ~2h / agent ~25min): Integrate the existing film with explicit play.** Source: Passes 2 and 6. Candidate files: existing film/player or a minimal reuse path, route-specific presentation and meaningful media tests. Retain no transfer until play, no loop, offscreen/tab pause, reduced-motion/data-saving state, keyboard controls, failure/noscript and text equivalent. Do not change homepage playback behaviour.
+- [x] **T3 (P1, human ~2h / agent ~30min): Verify the product page and regressions.** Source: Passes 2, 5 and 6. Candidate files: route/content/render tests, browser coverage, evidence here. Parent reads each executor diff, runs lint/typecheck/test/build, then obtains independent review. Browser-check actual desktop/phone/themes, real zoom, no-JS/error/media states, publication freshness, preview isolation and the existing performance budgets. No skipped check counts as acceptance.
 
 ## Completion summary
 
@@ -187,27 +187,62 @@ Only accepted design work is listed. Application work has not started, and engin
 | Intentional design | 3/10 | 9/10 |
 | Design system | 7/10 | 9/10 |
 | Responsive/accessibility | 6/10 | 8/10 |
-| Overall, minimum of six passes | 2/10 | 8/10; one content choice remains open |
+| Overall, minimum of six passes | 2/10 | 8/10; content choice now resolved |
 
-One new visual decision accepted; standing scope/brand contracts retained; one content question pending. Scores assess design specification, not application completion. No production deployment or content mutation occurred.
+One new visual decision and one example-retention decision accepted; standing scope/brand contracts retained; no content question pending. Scores assess design specification, not application completion. No remote deployment occurred. Local content application is recorded in the implementation acceptance below.
 
 ## Not in scope
 
 Changing homepage/global navigation/footer; changing the separate product application; generating a new film; publishing prices, testimonials or performance promises; deployment. No production source or CMS records were edited in this review stage.
 
+## Local engineering review and authorised execution
+
+The user's “Let's go” follows the recommendation to keep the product-page example. Retain it and implement B. This resolves the remaining content preference; no further approval is required for the local implementation. No deployment is authorised by this step.
+
+Parent traced the generic CMS route, BlockRenderer, existing About content updater, existing film player, RichText and ResponsiveMedia. Installed Next.js server/client boundary and image guides were read. Simplest viable approach: route-scoped presentation of existing named CMS blocks, plus a small opt-out from the existing film player's automatic start. No schema, migration, new dependency or seed rewrite.
+
+Architecture: keep `getPageViewModel`, metadata and publication caching unchanged. Pass a product-page flag only for the `culinaire-kitchen` slug. Recognise exact block names for approved hero and feature sections; render all other blocks normally and in their original order. Store headings, summaries, operation/lab/example/founder copy in existing hero/feature/RichText fields. Use fixed compressed approved illustrative stills as defaults while respecting supplied valid CMS media. Build only anchors whose target section remains present.
+
+Film: reuse KitchenFilm and KitchenFilmPlayer. Introduce explicit `autoStart=false` on this product route only; default remains true for home. Guard both visibility-triggered transfer and automatic play/resume in manual mode. User play/seek may attach the source. Keep pause/replay/seek/fullscreen, transcript, noscript and failures. Hide the shared film intro when the product feature supplies its own heading. Existing home output/behaviour remains default.
+
+Data update: local-only guarded updater checks published/latest match, accepts only exact original seed or exact approved no-op, writes a private 0600 backup before mutation and rechecks snapshot afterward. It updates only this page through existing Payload hooks; custom blocks/drafts cause refusal, never replacement. Existing runtime renderer still preserves arbitrary blocks after the update. Parent applies the update only after full checks and independent review; jobs and warmed public HTML prove freshness within 60 seconds. Confirm repeat invocation is a no-op. No production concurrency guarantee is claimed for this local updater.
+
+Risk/verification map: custom block/order → unit tests; misleading image or unsafe link → existing media/link validation plus regression tests; shared player regression → existing homepage film browser tests; unwanted transfer/resume → new product browser assertions; mutable CMS/draft/private response → isolated browser fixtures; changed SEO → preserve existing metadata contract; cache leak between fixture runs → existing quality cache reset; slow hero → explicit first-image priority and final Lighthouse measurement.
+
+Execution: one bounded executor owns this product route, its content helper/updater, media reuse adjustment and unit tests. Parent owns plan, independent CMS inspection, browser integration coverage and acceptance. On executor return, parent reads the full diff, runs lint/typecheck/test/build, then requests independent review. A fix-first result requires fixes and re-review. No task is delegated with overlapping file ownership.
+
+Local engineering verdict: clear to implement the existing approved scope. No new unresolved design or architecture tradeoff. Independent diff review and actual browser/performance gates remain required.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
 | --- | --- | --- | --- | --- | --- |
-| Design Review | User plan-design-review | Full product page | 1 current scope | ISSUES OPEN | B selected; six scores minimum 8/10; example preference pending |
+| Design Review | User plan-design-review | Full product page | 1 current scope | CLEAR | B selected; six scores minimum 8/10; example retained |
 | Prototype QA | Review preparation | Responsive/interaction behaviour | 12 layout + 4 interaction + narrow/reflow checks | PASS with recorded zoom limitation | Actual application zoom remains required |
 | Native independent design review | Skill design challenge | Completeness and hierarchy | Initial + re-review | PASS | Theme preview label fixed; supplied evidence resolves claim concern |
 | External design voice | Skill optional external phase | Additional independent challenge | 0 new export attempts | UNAVAILABLE | Prior automatic approval rejection retained; no bypass |
-| Eng Review | Required before implementation | CMS/rendering/media contracts | 0 for this scope | NOT RUN | Earlier company-page review does not clear this design |
+| Eng Review | Required before implementation | CMS/rendering/media contracts | 1 local review | CLEAR (PLAN) | Route-scoped existing blocks/player reuse; independent diff review remains required |
 
 OUTSIDE COVERAGE: Native design review completed. External Claude review unavailable; no new export attempted after the preceding automatic approval rejection.
 
-VERDICT: B visual direction accepted. Design remains open for the example-retention answer; engineering review is required before implementation.
+VERDICT (design stage): B and the retained example were authorised. Implementation acceptance follows below.
 
-**UNRESOLVED DECISIONS:**
-- Keep the shared-component example on this product page, or remove it as on the homepage.
+NO UNRESOLVED DECISIONS
+
+## Implementation acceptance
+
+The authorised B layout is applied at http://localhost:3000/culinaire-kitchen. All eleven user-supplied areas are included, along with forecasting, messaging, stock transfers and menu/costing. Company identity and its training/advisory/publishing scope remain separate. The shared-component example is retained on this product page.
+
+Parent read the executor diff and ran the full required gate twice: lint, typecheck, 62 test files / 354 tests, and build all passed. The final spacing-only adjustment passed an additional production build. Native independent source review returned PASS and rechecked the browser-discovered fixes and final spacing delta with PASS. No schema or dependency was added.
+
+The full browser run passed 40 existing cases, including complete homepage film playback on both viewport projects. Two new product cases initially failed on a Markdown-escaped text assertion; after correction both passed in a targeted rerun. The final product checks include CMS/order/media edits, publication/export freshness, draft isolation/private preview, manual transfer/playback, offscreen/tab pause, seek/end/replay, network failure and no-JavaScript access. Added geometry assertions verify the actual desktop workflow and founder columns.
+
+The actual application passed eight dark/light × 320/390/768/1440 combinations with one h1, no overflow, broken images, runtime errors, unsolicited MP4 requests or axe A/AA violations. Parent visually inspected the desktop and phone compositions and light-theme layout. A Chromium extension set actual browser zoom to 200%; the 1440px window produced a 720 CSS-pixel viewport and devicePixelRatio 2 with no overflow. This closes the earlier prototype zoom limitation.
+
+The guarded local update saved a private backup and published through existing hooks. A warmed public page reflected the update in 2159ms after one successful job, without rebuilding. The updater initially did not recognise the CMS default imageSide on repeat invocation; explicit default fields fixed this, and a repeat invocation was verified as a no-op. No metadata was overwritten.
+
+Detailed evidence and actual-site screenshot derivatives: [implementation/README.md](implementation/README.md). No public deployment was performed.
+
+Final performance gate: `pnpm test:performance` passed all assertions for seven routes and 21 runs. Product medians: Performance 99, Accessibility 100, Best Practices 100, SEO 100; LCP 1952ms. Existing category, LCP and home JavaScript ceilings were unchanged. Implementation commit: `eca853d`. All T1–T3 acceptance items complete; no unresolved decision or skipped required check.
+
+VERDICT: PASS. Selected B is implemented, verified and applied locally. Deployment was not requested or performed.
