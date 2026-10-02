@@ -5,9 +5,7 @@ import { cache } from 'react'
 import type { Metadata } from 'next'
 import { notFound, permanentRedirect } from 'next/navigation'
 
-import { HeroBlock } from '../../../../components/blocks/HeroBlock'
-import { ServiceListBlock } from '../../../../components/blocks/ServiceListBlock'
-import { EditorialSection } from '../../../../components/EditorialSection'
+import { ServicesEditorial } from '../../../../components/ServicesEditorial'
 import { Pagination } from '../../../../components/Pagination'
 import { listPublicContent, getPublicShell } from '../../../../lib/public-content'
 
@@ -64,22 +62,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ServicesIndexPage({ params }: PageProps) {
   const { listing, page } = await getRouteModel(params)
-  const serviceList = {
-    blockType: 'serviceList',
-    heading: 'Our services',
-  } as const
-
   return (
     <main id="main-content" tabIndex={-1}>
       <RouteSchema path={page > 1 ? `/services/page/${page}` : '/services'} title={page > 1 ? `Services · Page ${page}` : 'Services'}
         parents={page > 1 ? [{ name: 'Services', path: '/services' }] : []} />
-      <HeroBlock block={{ blockType: 'hero', heading: 'Services', style: 'quiet' }} headingLevel={1} />
-      <ServiceListBlock block={serviceList} services={listing.docs} />
-      {listing.totalPages > 1 && (
-        <EditorialSection>
-          <Pagination basePath="/services" page={page} totalPages={listing.totalPages} />
-        </EditorialSection>
-      )}
+      <ServicesEditorial
+        services={listing.docs}
+        pagination={listing.totalPages > 1
+          ? <Pagination basePath="/services" page={page} totalPages={listing.totalPages} />
+          : undefined}
+      />
     </main>
   )
 }
