@@ -3,7 +3,7 @@ module.exports = {
     collect: {
       startServerCommand: 'node scripts/start-performance-server.mjs',
       startServerReadyPattern: 'QUALITY_SERVER_READY',
-      url: ['/', '/about', '/culinaire-kitchen', '/journal', '/contact'].map(path => `https://localhost:3443${path}`),
+      url: ['/', '/services', '/training', '/about', '/culinaire-kitchen', '/journal', '/contact'].map(path => `https://localhost:3443${path}`),
       numberOfRuns: 3,
       settings: {
         chromeFlags: '--headless --no-sandbox --disable-dev-shm-usage --ignore-certificate-errors',

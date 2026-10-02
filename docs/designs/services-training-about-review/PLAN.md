@@ -447,3 +447,17 @@ OUTSIDE COVERAGE: No independent outside engineering review completed. Automatic
 VERDICT: DESIGN + LOCAL ENG CLEARED for implementation planning. Build the three approved page designs, preserve the recorded contracts, then complete actual application checks and independent diff review. No website update or deployment was performed in this review.
 
 NO UNRESOLVED DECISIONS
+
+## Implementation acceptance, 2 October 2026
+
+The user authorised implementation after the local engineering review. All three pages are now implemented, each with parent diff inspection, full checks and an independent native reviewer. Optional external plan export remains separate and was not retried.
+
+| Page | Commit | Parent verification | Independent review |
+| --- | --- | --- | --- |
+| Services A | `c229e29` | Lint, typecheck, 321 tests and production build passed; desktop and phone inspected | PASS after correcting full-width populated catalogue, empty-only enquiry prompts and pagination position |
+| Training A | `ce6f91d` | Lint, typecheck, 324 tests and production build passed; desktop and phone inspected | PASS |
+| About A | `3ac3067` | Lint, typecheck, 340 tests and production build passed; local CMS backup/update/no-op verified | PASS, including follow-up integration corrections |
+
+The local server now serves all three approved layouts. The About content update became visible after 2.238 seconds through the existing publication job path, without a rebuild. A private backup precedes that update; a repeat invocation returns a no-op. Eighteen actual-page viewport/theme cases passed with zero axe violations, runtime errors, broken images or horizontal overflow. Parent visually inspected desktop, phone and light-theme evidence, plus populated catalogues and a real-media fixture. Final acceptance passed: lint, typecheck, 341 tests and production build; all 40 unique browser cases passed across the full and targeted runs. The final 21-run performance suite passed every unchanged assertion across seven routes, with median performance scores of 98–99 and accessibility, best-practices and SEO scores of 100. Services/Training/About median LCP is 2.369s/1.952s/2.251s. Home JavaScript remains below the approved 160,000-byte gzip ceiling. No remote deployment is claimed.
+
+Follow-up commit `fd70c94` prioritises the first visible real About portrait while preserving lazy loading for other portraits. This and the isolated quality-cache correction received a fresh independent PASS review and full verification. Detailed screenshots, responsive checks and final performance medians are in `implementation/README.md`. T1–T4 are accepted and complete.

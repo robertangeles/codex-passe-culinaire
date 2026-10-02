@@ -1,6 +1,6 @@
 import { spawnSync } from 'node:child_process'
 import { randomBytes } from 'node:crypto'
-import { existsSync } from 'node:fs'
+import { existsSync, rmSync } from 'node:fs'
 import path from 'node:path'
 import { chromium } from '@playwright/test'
 import { validateTestDatabase } from './test-database.mjs'
@@ -29,7 +29,12 @@ function run(args) {
   if (result.error) throw result.error
   if (result.status !== 0) process.exit(result.status || 1)
 }
+// A fresh database must not reuse cached public records from an earlier fixture run.
+rmSync(path.resolve('.next-quality/cache'), { recursive: true, force: true })
 run(['exec', 'tsx', 'scripts/prepare-test-db.ts'])
 env.DATABASE_URI = testURI
+// Measure the approved About composition in the isolated quality database.
+// Browser tests still set up and restore this content explicitly.
+if (mode === 'performance') run(['exec', 'tsx', 'scripts/apply-about-design.ts'])
 run(['build'])
-run(mode === 'e2e' ? ['exec', 'playwright', 'test'] : ['exec', 'lhci', 'autorun'])
+run(mode === 'e2e' ? ['exec', 'playwright', 'test', ...process.argv.slice(3)] : ['exec', 'lhci', 'autorun'])
