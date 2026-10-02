@@ -8,6 +8,7 @@ vi.mock('../src/lib/page-view-model', () => ({ getPageViewModel: mocks.page }))
 vi.mock('next/navigation', () => ({ notFound: mocks.notFound }))
 
 import CMSPage, { generateMetadata, generateStaticParams } from '../src/app/(public)/[slug]/page'
+import { approvedAboutLayout, seededAboutLayout } from '../scripts/about-content'
 
 const companyModel = {
   page: {
@@ -35,6 +36,21 @@ describe('generic CMS page route', () => {
     expect(html).toContain('About Passe Culinaire')
     expect(html).toContain('We work with kitchens through training and publishing.')
     expect(html).not.toContain('Explore CulinAIre Kitchen')
+  })
+
+  it('renders the approved About content through its slug-scoped server route', async () => {
+    mocks.page.mockResolvedValue({
+      ...companyModel,
+      page: { ...companyModel.page, id: 6, slug: 'about', layout: approvedAboutLayout(seededAboutLayout()) },
+    })
+
+    const element = await CMSPage({ params: Promise.resolve({ slug: 'about' }) })
+    const html = renderToStaticMarkup(element)
+    expect(html).toMatch(/<h1\b[^>]*>From the kitchen,/u)
+    expect(html).toContain('Experience,')
+    expect(html).toContain('href="/culinaire-kitchen"')
+    expect(html).toContain('href="/contact"')
+    expect(html.match(/<h1\b/g)).toHaveLength(1)
   })
 
   it('returns no static slugs for on-demand generation', async () => {

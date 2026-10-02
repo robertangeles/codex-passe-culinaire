@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { HomeFounders, HomeProduct, HomeScope } from './HomeEditorial'
+import { AboutFeature, AboutFounders, AboutHero, AboutProse } from './AboutEditorial'
 import type { Page } from '../payload-types'
 import type { BlockContent } from '../lib/page-view-model'
 import { CTABlock } from './blocks/CTABlock'
@@ -25,6 +26,7 @@ type BlockRendererProps = {
   content: BlockContent
   externalEmbedsEnabled?: boolean
   home?: boolean
+  about?: boolean
   title: string
 }
 
@@ -35,17 +37,20 @@ function assertNever(block: never): never {
 function renderBlock(
   block: PageBlock,
   index: number,
-  props: Pick<BlockRendererProps, 'content' | 'externalEmbedsEnabled' | 'home'>,
+  props: Pick<BlockRendererProps, 'content' | 'externalEmbedsEnabled' | 'home' | 'about'>,
 ) {
   const key = block.id ?? `${block.blockType}-${index}`
   const lead = index === 0
 
   switch (block.blockType) {
     case 'hero':
+      if (props.about && lead) return <AboutHero key={key} block={block} headingLevel={1} />
       return <HeroBlock key={key} block={block} headingLevel={lead ? 1 : 2} home={props.home === true && lead} />
     case 'prose':
+      if (props.about && block.blockName === 'About founders') return <AboutProse key={key} block={block} externalEmbedsEnabled={props.externalEmbedsEnabled} />
       return <ProseBlock key={key} block={block} externalEmbedsEnabled={props.externalEmbedsEnabled} />
     case 'feature':
+      if (props.about && block.blockName === 'About continuation') return <AboutFeature key={key} block={block} externalEmbedsEnabled={props.externalEmbedsEnabled} />
       return <FeatureBlock key={key} block={block} externalEmbedsEnabled={props.externalEmbedsEnabled} />
     case 'gallery':
       return <GalleryBlock key={key} block={block} />
@@ -83,6 +88,7 @@ export function BlockRenderer({
   content,
   externalEmbedsEnabled = false,
   home = false,
+  about = false,
   title,
 }: BlockRendererProps) {
   const pageBlocks = blocks ?? []
@@ -90,15 +96,17 @@ export function BlockRenderer({
   const rendered: ReactNode[] = []
   for (let index = 0; index < pageBlocks.length; index += 1) {
     const block = pageBlocks[index]
-    if (home && block.blockType === 'founderCard') {
+    if ((home || about) && block.blockType === 'founderCard') {
       const founders = [block]
       while (pageBlocks[index + 1]?.blockType === 'founderCard') {
         const next = pageBlocks[++index]
         if (next.blockType === 'founderCard') founders.push(next)
       }
-      rendered.push(<HomeFounders key={block.id ?? `founders-${index}`} blocks={founders} externalEmbedsEnabled={externalEmbedsEnabled} />)
+      rendered.push(home
+        ? <HomeFounders key={block.id ?? `founders-${index}`} blocks={founders} externalEmbedsEnabled={externalEmbedsEnabled} />
+        : <AboutFounders key={block.id ?? `founders-${index}`} blocks={founders} externalEmbedsEnabled={externalEmbedsEnabled} />)
     } else {
-      rendered.push(renderBlock(block, index, { content, externalEmbedsEnabled, home }))
+      rendered.push(renderBlock(block, index, { content, externalEmbedsEnabled, home, about }))
     }
   }
 

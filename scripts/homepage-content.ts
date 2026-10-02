@@ -2,7 +2,7 @@ import { isDeepStrictEqual } from 'node:util'
 import { readFile } from 'node:fs/promises'
 import type { Payload } from 'payload'
 import type { Media, Page, Post } from '../src/payload-types'
-import originalLayout from './assets/home-before-c4.json'
+import originalLayout from './assets/home-before-c4.json' with { type: 'json' }
 
 const rich = (text: string): NonNullable<Post['body']> => ({
   root: { type: 'root', version: 1, direction: 'ltr', format: '', indent: 0,

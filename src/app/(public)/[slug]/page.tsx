@@ -59,6 +59,7 @@ export default async function CMSPage({ params }: PageProps) {
         title={page.title}
         content={content}
         home={false}
+        about={page.slug === 'about'}
         externalEmbedsEnabled={externalEmbedsEnabled}
       />
     </main>
