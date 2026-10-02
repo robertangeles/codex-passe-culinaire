@@ -1,0 +1,122 @@
+[
+  {
+    "study": "a",
+    "width": 390,
+    "theme": "dark",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "a",
+    "width": 390,
+    "theme": "light",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "a",
+    "width": 768,
+    "theme": "dark",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "a",
+    "width": 768,
+    "theme": "light",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "a",
+    "width": 1440,
+    "theme": "dark",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "a",
+    "width": 1440,
+    "theme": "light",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "b",
+    "width": 390,
+    "theme": "dark",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "b",
+    "width": 390,
+    "theme": "light",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "b",
+    "width": 768,
+    "theme": "dark",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "b",
+    "width": 768,
+    "theme": "light",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "b",
+    "width": 1440,
+    "theme": "dark",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  },
+  {
+    "study": "b",
+    "width": 1440,
+    "theme": "light",
+    "h1": 1,
+    "overflow": false,
+    "brokenImages": 0,
+    "videoRequested": false,
+    "violations": []
+  }
+]

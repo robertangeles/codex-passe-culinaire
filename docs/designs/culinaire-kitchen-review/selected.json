@@ -1,0 +1,23 @@
+{
+  "selected_variant": "B",
+  "selected_title": "Behind every service",
+  "feedback": {
+    "preferred": "B",
+    "ratings": {
+      "A": 0,
+      "B": 0
+    },
+    "comments": {
+      "B": "Option B is the winner"
+    },
+    "overall": null,
+    "regenerated": false,
+    "boardId": "b-20261002-085427-umw5ej",
+    "publishedAt": "2026-10-02T08:54:27.270Z"
+  },
+  "recorded_at": "2026-10-02T08:59:49.358324+00:00",
+  "screen": "culinaire-kitchen",
+  "branch": "main",
+  "status": "visual direction selected; practical-example decision pending",
+  "sha256": "fb42e1752118b96466043451b2756b22c6296cfc8b9159cd49e287b0fd1497d2"
+}
