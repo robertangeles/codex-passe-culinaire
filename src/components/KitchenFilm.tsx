@@ -1,21 +1,38 @@
 import Image from 'next/image'
+import type { ReactNode } from 'react'
 import story from '../../docs/designs/kitchen-animation/remotion-film/story.json'
 import { KitchenFilmPlayer } from './KitchenFilmPlayer'
 import styles from './KitchenFilm.module.css'
 
 const assets = '/films/kitchen-day'
 
-export function KitchenFilm() {
+export function KitchenFilm({
+  autoStart = true,
+  className,
+  id = 'kitchen-story',
+  playerClassName,
+  intro,
+  showIntro = true,
+}: {
+  autoStart?: boolean
+  className?: string
+  id?: string
+  playerClassName?: string
+  intro?: ReactNode
+  showIntro?: boolean
+}) {
   return (
-    <section className={styles.film} id="kitchen-story" aria-label="A day in the kitchen">
-      <div className={styles.intro}>
-        <div>
-          <p className={styles.eyebrow}>An illustrative kitchen day</p>
-          <h2>A day in the kitchen.</h2>
+    <section className={className ?? styles.film} id={id} aria-label="A day in the kitchen">
+      {intro ?? (showIntro && (
+        <div className={styles.intro}>
+          <div>
+            <p className={styles.eyebrow}>An illustrative kitchen day</p>
+            <h2>A day in the kitchen.</h2>
+          </div>
+          <p className={styles.standfirst}>The ingredients.<br /> The people. The decisions.</p>
         </div>
-        <p className={styles.standfirst}>The ingredients.<br /> The people. The decisions.</p>
-      </div>
-      <KitchenFilmPlayer>
+      ))}
+      <KitchenFilmPlayer autoStart={autoStart} className={playerClassName}>
         <div className={styles.cinema} data-film-cinema>
           <div className={styles.stage} data-film-stage>
             <picture data-film-poster>
@@ -26,7 +43,7 @@ export function KitchenFilm() {
               data-desktop-src={`${assets}/landscape-v1.mp4`} data-mobile-src={`${assets}/portrait-v1.mp4`}
               data-desktop-poster={`${assets}/poster-landscape-v1.webp`} data-mobile-poster={`${assets}/poster-portrait-v1.webp`}
               aria-label="A day in the kitchen, a silent two minute eight second film." aria-describedby="kitchen-film-transcript" />
-            <p className={styles.error} data-film-error role="status" hidden>The film could not be loaded.</p>
+            <p className={styles.error} data-film-error role="status" hidden>The film could not be loaded. <a href={`${assets}/landscape-v1.mp4`}>Open the film directly</a>.</p>
           </div>
           <div className={styles.controls} data-film-controls hidden role="group" aria-label="Film controls">
             <button type="button" data-film-play aria-label="Play the kitchen film">Play</button>

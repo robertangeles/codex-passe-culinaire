@@ -33,8 +33,11 @@ function run(args) {
 rmSync(path.resolve('.next-quality/cache'), { recursive: true, force: true })
 run(['exec', 'tsx', 'scripts/prepare-test-db.ts'])
 env.DATABASE_URI = testURI
-// Measure the approved About composition in the isolated quality database.
+// Measure the approved company and product compositions in the isolated quality database.
 // Browser tests still set up and restore this content explicitly.
-if (mode === 'performance') run(['exec', 'tsx', 'scripts/apply-about-design.ts'])
+if (mode === 'performance') {
+  run(['exec', 'tsx', 'scripts/apply-about-design.ts'])
+  run(['exec', 'tsx', 'scripts/apply-culinaire-kitchen-design.ts'])
+}
 run(['build'])
 run(mode === 'e2e' ? ['exec', 'playwright', 'test', ...process.argv.slice(3)] : ['exec', 'lhci', 'autorun'])

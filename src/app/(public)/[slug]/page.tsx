@@ -60,6 +60,7 @@ export default async function CMSPage({ params }: PageProps) {
         content={content}
         home={false}
         about={page.slug === 'about'}
+        culinaireKitchen={page.slug === 'culinaire-kitchen'}
         externalEmbedsEnabled={externalEmbedsEnabled}
       />
     </main>

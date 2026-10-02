@@ -21,7 +21,7 @@ function formatTime(seconds: number): string {
   return `${Math.floor(safeSeconds / 60)}:${String(Math.floor(safeSeconds % 60)).padStart(2, '0')}`
 }
 
-export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
+export function KitchenFilmPlayer({ children, autoStart = true, className }: { children: ReactNode; autoStart?: boolean; className?: string }) {
   const rootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -150,7 +150,7 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
 
     const tryAutomaticStart = () => {
       if (
-        !visible || manuallyPaused || mediaFailed || document.hidden ||
+        !autoStart || !visible || manuallyPaused || mediaFailed || document.hidden ||
         reducedMotion.matches || saveData || automaticStartAttempted
       ) return
 
@@ -159,7 +159,7 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
     }
 
     const resumeIfAllowed = () => {
-      if (!visible || document.hidden || reducedMotion.matches || mediaFailed || manuallyPaused) return
+      if (!autoStart || !visible || document.hidden || reducedMotion.matches || mediaFailed || manuallyPaused) return
       if (resumeWhenVisible) {
         resumeWhenVisible = false
         void play(false)
@@ -169,7 +169,7 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
     }
 
     const pauseForVisibility = () => {
-      if (!video.paused && !video.ended && !manuallyPaused) resumeWhenVisible = true
+      if (autoStart && !video.paused && !video.ended && !manuallyPaused) resumeWhenVisible = true
       video.pause()
     }
 
@@ -268,7 +268,7 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
       if (!entry) return
       visible = entry.intersectionRatio >= 0.5
       if (visible) {
-        if (!sourceAttached && !reducedMotion.matches && !saveData) attachSource(false)
+        if (autoStart && !sourceAttached && !reducedMotion.matches && !saveData) attachSource(false)
         resumeIfAllowed()
       } else {
         pauseForVisibility()
@@ -285,7 +285,7 @@ export function KitchenFilmPlayer({ children }: { children: ReactNode }) {
       listeners.forEach((removeListener) => removeListener())
       video.pause()
     }
-  }, [])
+  }, [autoStart])
 
-  return <div ref={rootRef}>{children}</div>
+  return <div ref={rootRef} className={className}>{children}</div>
 }

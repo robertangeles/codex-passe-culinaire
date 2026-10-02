@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { HomeFounders, HomeProduct, HomeScope } from './HomeEditorial'
 import { AboutFeature, AboutFounders, AboutHero, AboutProse } from './AboutEditorial'
+import { CulinaireKitchenEditorial } from './CulinaireKitchenEditorial'
 import type { Page } from '../payload-types'
 import type { BlockContent } from '../lib/page-view-model'
 import { CTABlock } from './blocks/CTABlock'
@@ -27,6 +28,7 @@ type BlockRendererProps = {
   externalEmbedsEnabled?: boolean
   home?: boolean
   about?: boolean
+  culinaireKitchen?: boolean
   title: string
 }
 
@@ -89,34 +91,45 @@ export function BlockRenderer({
   externalEmbedsEnabled = false,
   home = false,
   about = false,
+  culinaireKitchen = false,
   title,
 }: BlockRendererProps) {
   const pageBlocks = blocks ?? []
   const startsWithHero = pageBlocks[0]?.blockType === 'hero'
   const rendered: ReactNode[] = []
-  for (let index = 0; index < pageBlocks.length; index += 1) {
-    const block = pageBlocks[index]
-    if ((home || about) && block.blockType === 'founderCard') {
-      const priority = index < 3
-      const founders = [block]
-      while (pageBlocks[index + 1]?.blockType === 'founderCard') {
-        const next = pageBlocks[++index]
-        if (next.blockType === 'founderCard') founders.push(next)
+  if (!culinaireKitchen) {
+    for (let index = 0; index < pageBlocks.length; index += 1) {
+      const block = pageBlocks[index]
+      if ((home || about) && block.blockType === 'founderCard') {
+        const priority = index < 3
+        const founders = [block]
+        while (pageBlocks[index + 1]?.blockType === 'founderCard') {
+          const next = pageBlocks[++index]
+          if (next.blockType === 'founderCard') founders.push(next)
+        }
+        rendered.push(home
+          ? <HomeFounders key={block.id ?? `founders-${index}`} blocks={founders} externalEmbedsEnabled={externalEmbedsEnabled} />
+          : <AboutFounders key={block.id ?? `founders-${index}`} blocks={founders} priority={priority} externalEmbedsEnabled={externalEmbedsEnabled} />)
+      } else {
+        rendered.push(renderBlock(block, index, { content, externalEmbedsEnabled, home, about }))
       }
-      rendered.push(home
-        ? <HomeFounders key={block.id ?? `founders-${index}`} blocks={founders} externalEmbedsEnabled={externalEmbedsEnabled} />
-        : <AboutFounders key={block.id ?? `founders-${index}`} blocks={founders} priority={priority} externalEmbedsEnabled={externalEmbedsEnabled} />)
-    } else {
-      rendered.push(renderBlock(block, index, { content, externalEmbedsEnabled, home, about }))
     }
   }
+
+  const pageContent = culinaireKitchen
+    ? <CulinaireKitchenEditorial
+        blocks={pageBlocks}
+        externalEmbedsEnabled={externalEmbedsEnabled}
+        renderStandardBlock={(block, index) => renderBlock(block, index, { content, externalEmbedsEnabled, home, about })}
+      />
+    : rendered
 
   return (
     <>
       {!startsWithHero && (
         <HeroBlock block={{ blockType: 'hero', heading: title, style: 'quiet' }} headingLevel={1} home={home} />
       )}
-      {rendered}
+      {pageContent}
     </>
   )
 }
