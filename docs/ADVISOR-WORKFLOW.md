@@ -5,6 +5,7 @@ Configured 4 October 2026 at the user's request.
 | Role | Model | Responsibility |
 | --- | --- | --- |
 | Main session | `gpt-6-sol`, high | Own the workflow, tools, implementation, checks and acceptance |
+| Decision tool | `jev-1.13.0` | Narrow yes/no classifications via `scripts/jev-decision.mjs` |
 | `advisor` | `gpt-6-astra`, high | Reason about a supplied decision brief only when escalation is warranted |
 | `executor` | `gpt-6-luna`, high | Optional bounded implementation work |
 | `reviewer` | `gpt-6-sol`, high | Independent routine diff review |
@@ -31,3 +32,7 @@ Codex discovers project roles from `.codex/agents/*.toml`. Older `.codex/builder
 No website source, database content, application test budgets, permissions, plugin settings or credentials are changed by this setup. Existing full implementation verification and independent review requirements remain in AGENTS.md. No full website build is needed for this configuration-only change.
 
 Reference: [Official Codex subagent configuration](https://learn.chatgpt.com/docs/agent-configuration/subagents).
+
+## Yes/no decisions
+
+The Jev tool was added on 4 October 2026 after this workflow setup. Sol can call it for narrow semantic classifications, with uncertain or unavailable results returning to Sol. Deterministic checks stay in code and consequential reasoning remains with Sol/Astra. [Configuration, policy and live verification](JEV-DECISIONS.md).

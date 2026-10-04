@@ -2,6 +2,8 @@
 
 The main session is the executor, configured as `gpt-6-sol` with high reasoning. It owns the plan, architecture decisions, tool loop, implementation, integration, verification and acceptance. It carries routine work through to completion itself. Model routing is configured in `.codex/config.toml` and the canonical roles in `.codex/agents/`.
 
+For narrow yes/no semantic decisions, use the Jev decision tool: `node scripts/jev-decision.mjs`, with JSON supplied on stdin as documented in `docs/JEV-DECISIONS.md`. Prefer deterministic code for exact checks. Batch related questions about the same state when useful. Send only the minimal relevant, non-sensitive evidence to TypeSafe; never send credentials, private customer records or the whole conversation. The tool returns yes/no/review plus the probability of yes. Review results and errors return to the Sol executor, not automatically to Astra. Do not use Jev to grant permission, override safety/access controls, approve deployments or replace required tests and independent reviews. It is a classification tool, not a replacement agent model.
+
 Use `advisor` (`gpt-6-astra`, high reasoning) only when:
 
 - A consequential architecture, product/design or security/data-integrity decision remains ambiguous after inspecting the relevant evidence.
