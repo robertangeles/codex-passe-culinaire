@@ -1,18 +1,26 @@
-The parent session is the advisor. It owns the plan, architecture, integration review, verification and acceptance. It does not delegate those.
- 
-Two implementation subagents:
-- `builder` (Sol): multi-step foundation work. Scaffolding, collection and global schemas, migrations, database and storage adapters, auth and access control, hooks that cross collections. Phases 1 and 2.
-- `executor` (Luna): bounded, fully specified work. One block component, one route, one JSON-LD builder with tests, one feed or sitemap generator, one Playwright test. Phases 3 to 7.
-One task per subagent per spawn. Every task carries acceptance criteria, a file list, and the commands to run.
- 
-Keep on the parent: AGENTS.md changes, .codex changes, plan changes, any task whose file list overlaps a running subagent.
- 
-After each subagent returns: read the full diff yourself, rerun `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, then spawn `reviewer` on the diff. Any fix-first verdict requires a new review after the fix.
- 
-If the parent is running on Sol rather than Astra, do Phase 1 and 2 work on the parent thread instead of spawning builder, and delegate only to executor.
- 
-Never run two subagents on files that overlap. Never let a subagent change the plan.
- 
+## Executor-led workflow with an on-demand advisor
+
+The main session is the executor, configured as `gpt-6-sol` with high reasoning. It owns the plan, architecture decisions, tool loop, implementation, integration, verification and acceptance. It carries routine work through to completion itself. Model routing is configured in `.codex/config.toml` and the canonical roles in `.codex/agents/`.
+
+Use `advisor` (`gpt-6-astra`, high reasoning) only when:
+
+- A consequential architecture, product/design or security/data-integrity decision remains ambiguous after inspecting the relevant evidence.
+- Two materially different, evidence-based attempts have failed to resolve the same problem.
+- The user explicitly requests frontier-model advice.
+
+These instructions authorise on-demand delegation to the advisor without another permission question. Do not consult it for routine edits, status updates, every tool result or every diff. Give it a compact decision brief: question, constraints, relevant excerpts, options and failed attempts/results. It returns reasoning and verification steps only, with no tool calls or edits. The executor collects missing evidence, applies the recommendation when justified, and continues the task. Reuse an existing advisor for the same unresolved decision; call again only with materially new evidence. If unavailable, report that limitation and continue safe independent work without silently changing models or claiming advice occurred.
+
+Implementation subagents remain available for independent, bounded work when delegation is useful:
+
+- `executor` (Luna): one specified component, route or test, with acceptance criteria, an explicit file list and commands to run. The Sol parent normally implements multi-step foundation work itself.
+- `builder` (Sol): retained for an explicitly delegated foundation task; do not routinely spawn another Sol for work the Sol parent can complete.
+- `reviewer` (Sol): independent read-only diff review. Astra is not the routine reviewer.
+
+Keep on the parent: AGENTS.md changes, .codex changes, plan changes and any task whose file list overlaps a running subagent. Never run two agents on overlapping files. Tell implementation agents they share the workspace and must preserve others' changes. No subagent changes the plan.
+
+After an implementation subagent returns, the parent reads the full diff, runs `pnpm lint && pnpm typecheck && pnpm test && pnpm build`, then requests the independent Sol reviewer. A fix-first verdict requires correction and re-review. A short advisor consultation is not an implementation handoff and does not itself trigger another full test suite. Existing phase acceptance and browser/performance gates remain in force; do not weaken checks to reduce cost.
+
+This project configuration applies to newly started sessions unless a UI/profile/CLI model override takes precedence. It does not change the model of an already-running conversation. See `docs/ADVISOR-WORKFLOW.md` for activation and verification.
 
 ## Installed project tools
 

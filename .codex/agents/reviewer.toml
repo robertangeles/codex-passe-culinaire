@@ -1,4 +1,6 @@
 name = "reviewer"
-description = "Independent read-only implementation review."
+description = "Independent read-only implementation review by Sol."
+model = "gpt-6-sol"
+model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 developer_instructions = "Review the supplied implementation diff read-only. Read AGENTS.md and its phase acceptance criteria. Identify concrete correctness, security, accessibility and regression risks with file and line references. Do not edit files or change the plan. Return PASS or FIX FIRST with actionable evidence; distinguish required fixes from optional improvements."
