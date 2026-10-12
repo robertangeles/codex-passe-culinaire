@@ -150,7 +150,7 @@ test('About keeps editable founder content, portrait spaces, real media and orde
     await page.getByRole('main').getByRole('link', { name: 'Explore CulinAIre Kitchen', exact: true }).click()
     await expect(page).toHaveURL(/\/culinaire-kitchen$/u)
     await page.goBack()
-    await page.getByRole('main').getByRole('link', { name: 'Start a conversation', exact: true }).click()
+    await page.getByRole('main').getByRole('link', { name: 'Tell us about your kitchen', exact: true }).click()
     await expect(page).toHaveURL(/\/contact$/u)
 
     const mediaResponse = await admin.get('/api/media?where[placeholder][equals]=false&limit=1&depth=0', { headers })
