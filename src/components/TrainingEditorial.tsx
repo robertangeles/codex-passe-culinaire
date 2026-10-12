@@ -16,7 +16,6 @@ type TrainingEditorialProps = {
 }
 
 const contactHref = safePublicHref('/contact') ?? '/contact'
-const aboutHref = safePublicHref('/about') ?? '/about'
 const programmeHref = safePublicHref('#programme') ?? '#programme'
 
 export function TrainingEditorial({
@@ -99,25 +98,6 @@ export function TrainingEditorial({
         </div>
       )}
 
-      <section className={`${styles.container} ${styles.section} ${styles.people}`} aria-labelledby="training-people-title">
-        <div>
-          <p className={styles.kicker}>Culinary foundations</p>
-          <h2 id="training-people-title">Know the people<br />behind the company.</h2>
-        </div>
-        <div>
-          <div className={styles.founders}>
-            <div>
-              <p className={styles.personName}>Alex Charasse</p>
-              <p>Maître Pâtissier.<br />Maître Chocolatier.</p>
-            </div>
-            <div>
-              <p className={styles.personName}>Rob Angeles</p>
-              <p>Chef trained in pastry and hot kitchen. Data Architect.</p>
-            </div>
-          </div>
-          <Link className={styles.textLink} href={aboutHref} prefetch={false}>Read the founders’ backgrounds <span aria-hidden="true">↗</span></Link>
-        </div>
-      </section>
     </div>
   )
 }

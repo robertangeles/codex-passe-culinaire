@@ -20,12 +20,19 @@ const linkedText = (label: string, url: string) => ({
   children: [{ type: 'link' as const, version: 1 as const, fields: { linkType: 'custom' as const, url, newTab: false as const }, children: [text(label)] }, text('  ')],
 })
 
-export function seededCulinaireKitchenLayout(): KitchenLayout {
+function legacySeededCulinaireKitchenLayout(): KitchenLayout {
   return [
     { blockType: 'hero', heading: 'CulinAIre Kitchen', style: 'quiet' },
     { blockType: 'prose', body: rich([paragraph(text("CulinAIre Kitchen uses AI to help organise a prep list from today's menu, including components used in more than one dish."))]) },
     { blockType: 'cta', statement: 'Explore the product', label: 'Visit CulinAIre Kitchen', url: 'https://www.culinaire.kitchen' },
   ]
+}
+
+export function seededCulinaireKitchenLayout(): KitchenLayout {
+  const layout = legacySeededCulinaireKitchenLayout()
+  return layout?.map((block) => block.blockType === 'prose'
+    ? { ...block, body: rich([paragraph(text('CulinAIre Kitchen shows ingredients shared by selected dishes in a prep session.'))]) }
+    : block)
 }
 
 export function approvedCulinaireKitchenLayout(layout: KitchenLayout = seededCulinaireKitchenLayout()): KitchenLayout {
@@ -36,7 +43,7 @@ export function approvedCulinaireKitchenLayout(layout: KitchenLayout = seededCul
   }
 
   return [
-    { ...hero, blockName: 'Kitchen introduction', heading: 'Behind every service.', eyebrow: 'CulinAIre Kitchen · By Passe Culinaire', style: 'image', summary: 'The recipes, stock, preparation and people. A connected view of the kitchen, from the first plan to the final sales record.' },
+    { ...hero, blockName: 'Kitchen introduction', heading: 'Behind every service.', eyebrow: 'CulinAIre Kitchen · By Passe Culinaire', style: 'image', summary: 'The recipes, stock, preparation and people. A connected view of the kitchen, from the first plan to the final sales record. AI helps with recipe development and culinary questions.' },
     { blockType: 'feature', imageSide: 'left', blockName: 'Kitchen operation introduction', heading: 'A kitchen day,\nconsidered.', body: rich([paragraph(text('For chefs running service and owners keeping the whole business in view.'))]) },
     { blockType: 'feature', imageSide: 'left', blockName: 'Kitchen operation 1', heading: 'Plan the day.', body: rich([
       paragraph(text('Begin with the service ahead: what to prepare, who is working and what the team needs to know.')),
@@ -64,17 +71,13 @@ export function approvedCulinaireKitchenLayout(layout: KitchenLayout = seededCul
       heading('Patisserie Lab'), paragraph(text('Work through pastry components, methods and make-ahead preparation.')),
       heading('Cocktail Lab'), paragraph(text('Explore spirit, flavour and style. Build a drink specification and a batch for service.')),
     ]) },
-    { blockType: 'feature', imageSide: 'left', blockName: 'Kitchen example', heading: 'Two dishes.\nOne preparation.', body: rich([
-      paragraph(text('Lemon tart and fruit tart share pâte sucrée. CulinAIre Kitchen uses AI to help organise the prep list around components used in more than one dish.')),
-      paragraph(text('Lemon tart', 1), text(' · Pâte sucrée')),
-      paragraph(text('Fruit tart', 1), text(' · Pâte sucrée')),
-      paragraph(text('The chef reviews the quantities and the preparation plan.')),
+    { blockType: 'feature', imageSide: 'left', blockName: 'Kitchen example', heading: 'Two tarts.\nShared ingredients.', body: rich([
+      paragraph(text('Lemon tart and fruit tart both use flour and butter. CulinAIre Kitchen shows ingredients shared by selected dishes, with their combined quantities in the prep session.')),
+      paragraph(text('Lemon tart', 1), text(' · Flour and butter')),
+      paragraph(text('Fruit tart', 1), text(' · Flour and butter')),
+      paragraph(text('The chef reviews the quantities and decides what to prepare.')),
     ]) },
     { blockType: 'feature', imageSide: 'left', blockName: 'Kitchen film', heading: 'Watch the day\ncome together.', body: rich([paragraph(text('From forecast and preparation to service, waste and sales.'))]) },
-    { blockType: 'feature', imageSide: 'left', blockName: 'Kitchen founders', heading: 'Culinary practice.\nA technical perspective.', body: rich([
-      heading('Alex Charasse'), paragraph(text('Maître Pâtissier and Maître Chocolatier. Founder of Almost French Patisserie.')),
-      heading('Rob Angeles'), paragraph(text('Trained in pastry and hot kitchen. Data Architect.')),
-    ]) },
     { blockType: 'feature', imageSide: 'left', blockName: 'Kitchen continuation', heading: 'See where it fits\nin your kitchen.', body: rich([
       paragraph(text('Explore CulinAIre Kitchen, or talk with us about the way your team works.')),
       linkedText('Visit CulinAIre Kitchen', 'https://www.culinaire.kitchen'),
@@ -104,7 +107,7 @@ export async function runGuardedCulinaireKitchenUpdate(options: {
 
   const approved = approvedCulinaireKitchenLayout()
   if (layoutsMatch(published.layout, approved)) return { changed: false }
-  if (!layoutsMatch(published.layout, seededCulinaireKitchenLayout())) {
+  if (!layoutsMatch(published.layout, seededCulinaireKitchenLayout()) && !layoutsMatch(published.layout, legacySeededCulinaireKitchenLayout())) {
     throw new Error('The CulinAIre Kitchen page differs from its original seeded layout. Aborting to preserve editorial changes.')
   }
 

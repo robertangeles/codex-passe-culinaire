@@ -43,26 +43,6 @@
   color-scheme: dark;
 }
 
-:root[data-theme="light"] {
-  --surface: var(--color-bone);
-  --surface-muted: var(--color-linen);
-  --surface-panel: var(--color-linen);
-  --foreground: var(--color-ink);
-  --link: var(--color-moss);
-  color-scheme: light;
-}
-
-@media (prefers-color-scheme: light) {
-  :root[data-theme="system"] {
-    --surface: var(--color-bone);
-    --surface-muted: var(--color-linen);
-    --surface-panel: var(--color-linen);
-    --foreground: var(--color-ink);
-    --link: var(--color-moss);
-    color-scheme: light;
-  }
-}
-
 html { scroll-behavior: smooth; }
 body {
   margin: 0;

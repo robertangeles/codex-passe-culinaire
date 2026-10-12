@@ -122,13 +122,13 @@
 }
 
 .footerInner {
-  padding-block: var(--space-8);
+  padding-block: var(--space-6);
 }
 
 .footerColumns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-6) var(--space-4);
+  gap: var(--space-4) var(--space-8);
   padding-block-end: 0;
 }
 
@@ -138,9 +138,9 @@
 }
 
 .footerHeading {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-1);
   font-family: var(--loaded-fraunces), var(--font-display), serif;
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   font-weight: 400;
   line-height: var(--display-leading);
 }
@@ -152,7 +152,8 @@
 }
 
 .footerLink {
-  padding-inline: 0;
+  min-height: 32px;
+  padding: var(--space-1) 0;
   overflow-wrap: anywhere;
 }
 
@@ -162,14 +163,15 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4) var(--space-6);
-  padding-block-start: var(--space-6);
+  padding-block-start: var(--space-4);
   border-top: var(--rule);
 }
 
 .legal {
   max-width: 62ch;
   color: var(--foreground);
-  font-size: var(--step--1);
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .legal p {
@@ -188,8 +190,9 @@
 
 
 .headerMark { width: 64px; height: 68px; flex-shrink: 0; }
-.footerMark { width: 54px; height: 58px; flex-shrink: 0; }
-.footerTop { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; padding-block: 16px 48px; }
+.footerMark { width: 42px; height: 46px; flex-shrink: 0; }
+.footerWordmark { font-size: 24px; }
+.footerTop { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); align-items: start; padding-block-end: var(--space-6); }
 .mobileMenu { display: none; }
 @media (max-width: 1100px) {
   .headerInner, .footerInner { width: calc(100% - 64px); }
@@ -211,7 +214,8 @@
   .headerInner { min-height: 94px; gap: 12px; }
   .headerMark { width: 46px; height: 50px; }
   .wordmark { font-size: 22px; gap: 12px; }
-  .footerTop { grid-template-columns: 1fr; gap: 32px; }
+  .footerTop { grid-template-columns: 1fr; gap: var(--space-6); }
+  .footerColumns { gap: var(--space-4); }
   .footerBottom { align-items: flex-start; flex-direction: column; }
   .socialNavigation { margin-inline-start: 0; }
 }

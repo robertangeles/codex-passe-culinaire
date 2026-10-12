@@ -56,7 +56,7 @@ async function getRouteModel(params: PageProps['params']) {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { page } = await getRouteModel(params)
-  return buildPageMetadata({ title: page > 1 ? `Services · Page ${page}` : 'Services', description: 'Explore services from Passe Culinaire.',
+  return buildPageMetadata({ title: page > 1 ? `Services · Page ${page}` : 'Services', description: 'Bring a real kitchen problem to Passe Culinaire. Explore CulinAIre Kitchen and the work connecting menus, prep, stock and teams.',
     path: page > 1 ? `/services/page/${page}` : '/services', settings: (await getPublicShell()).siteSettings }, siteOrigin())
 }
 

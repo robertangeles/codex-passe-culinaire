@@ -44,16 +44,6 @@ function publishedServices(services: Service[]): PublishedService[] {
   })
 }
 
-function EmptyServices() {
-  return (
-    <div className={styles.emptyState}>
-      <h3>Service details are being prepared.</h3>
-      <p>You can still tell us what you are working on. Start with a conversation about your kitchen.</p>
-      <Link className={styles.inlineLink} href="/contact" prefetch={false}>Discuss your kitchen <span aria-hidden="true">↗</span></Link>
-    </div>
-  )
-}
-
 function ServiceCatalogue({ services }: { services: PublishedService[] }) {
   return (
     <ul className={styles.catalogue} aria-label="Published services">
@@ -80,12 +70,15 @@ export function ServicesEditorial({ services, pagination }: ServicesEditorialPro
     <div className={styles.page}>
       <section className={`${styles.container} ${styles.hero}`} aria-labelledby="services-title">
         <div className={styles.heroCopy}>
-          <p className={styles.kicker}>Passe Culinaire · Services</p>
-          <h1 id="services-title">Start with<br />the kitchen.</h1>
-          <p className={styles.intro}>Tell us about your kitchen, your team and the work you want to do.</p>
+          <p className={styles.kicker}>Work with Passe Culinaire</p>
+          <h1 id="services-title">The work behind service deserves better tools.</h1>
+          <div className={styles.intro}>
+            <p>A menu change reaches further than the menu. It changes the prep, the stock and what the team needs to know. Yet those connections often live in separate apps, scattered notes or one chef’s head.</p>
+            <p>Passe Culinaire brings kitchen experience and technology together to work on that whole picture. CulinAIre Kitchen is our first offer. We are also developing training, advisory and publishing around the work chefs and owners do every day.</p>
+          </div>
           <div className={styles.actions}>
-            <Link className={styles.primaryAction} href="/contact" prefetch={false}>Discuss your kitchen <span aria-hidden="true">↗</span></Link>
-            <Link className={styles.textLink} href="/about" prefetch={false}>Meet the founders</Link>
+            <Link className={styles.primaryAction} href="/contact" prefetch={false}>Tell us about your kitchen <span aria-hidden="true">↗</span></Link>
+            <Link className={styles.textLink} href="/culinaire-kitchen" prefetch={false}>Explore CulinAIre Kitchen <span aria-hidden="true">↗</span></Link>
           </div>
         </div>
         <figure className={styles.heroFigure}>
@@ -104,57 +97,34 @@ export function ServicesEditorial({ services, pagination }: ServicesEditorialPro
       <section className={`${styles.container} ${styles.section}`} aria-labelledby="services-section-title">
         <div className={styles.sectionHeading}>
           <div>
-            <p className={styles.kicker}>Services</p>
-            <h2 id="services-section-title">{entries.length === 0 ? 'A place to begin.' : 'The work we can discuss.'}</h2>
+            <p className={styles.kicker}>Where to begin</p>
+            <h2 id="services-section-title">Where does the work get held up?</h2>
           </div>
-          {entries.length === 0 ? (
-            <EmptyServices />
-          ) : (
-            <div className={styles.catalogueIntro}>
-              <h3>Explore the services</h3>
-              <p>Read about each service and who it is for.</p>
-            </div>
-          )}
+          <p className={styles.sectionIntro}>Bring us a real example. A menu, a prep day or a handover tells us more than a polished brief.</p>
         </div>
-        {entries.length > 0 ? (
-          <>
-            <ServiceCatalogue services={entries} />
-            {pagination && <div className={styles.pagination}>{pagination}</div>}
-          </>
-        ) : (
-          <ul className={styles.prompts} aria-label="Topics to bring to a conversation">
-            <li><h3>Your kitchen</h3><p>Tell us about the operation and the kind of service you run.</p></li>
-            <li><h3>Your team</h3><p>Share who is involved and where experience or support is needed.</p></li>
-            <li><h3>Your priorities</h3><p>Describe what you want to work on, and any timing you have in mind.</p></li>
-          </ul>
-        )}
+        <ul className={styles.prompts} aria-label="Topics to bring to a conversation">
+          <li><h3>From menu to prep</h3><p>When a recipe or quantity changes, how does that reach everyone preparing it?</p></li>
+          <li><h3>From stock to service</h3><p>How does the team know what is on hand, what needs ordering and what needs making?</p></li>
+          <li><h3>From chef to team</h3><p>Which instructions still depend on someone remembering to pass them on?</p></li>
+        </ul>
       </section>
 
-      <section className={`${styles.container} ${styles.section} ${styles.people}`} aria-labelledby="services-people-title">
-        <div>
-          <p className={styles.kicker}>The people behind the work</p>
-          <h2 id="services-people-title">Culinary experience.<br />A shared perspective.</h2>
-        </div>
-        <div>
-          <div className={styles.founders}>
-            <div>
-              <p className={styles.personName}>Alex Charasse</p>
-              <p>Maître Pâtissier.<br />Maître Chocolatier.</p>
-            </div>
-            <div>
-              <p className={styles.personName}>Rob Angeles</p>
-              <p>Chef trained in pastry and hot kitchen. Data Architect.</p>
-            </div>
-          </div>
-          <Link className={styles.textLink} href="/about" prefetch={false}>About Passe Culinaire <span aria-hidden="true">↗</span></Link>
-        </div>
-      </section>
+      {entries.length > 0 && (
+        <section className={`${styles.container} ${styles.section}`} aria-labelledby="services-catalogue-title">
+          <h2 id="services-catalogue-title">Ways to work with us.</h2>
+          <ServiceCatalogue services={entries} />
+          {pagination && <div className={styles.pagination}>{pagination}</div>}
+        </section>
+      )}
 
       <section className={styles.continuation} aria-labelledby="services-continuation-title">
         <div className={`${styles.container} ${styles.continuationInner}`}>
-          <h2 id="services-continuation-title">Our first offer.<br />CulinAIre Kitchen.</h2>
           <div>
-            <p>Alongside the company’s training, advisory and publishing scope, explore the kitchen tool we are building.</p>
+            <p className={styles.kicker}>Our first offer</p>
+            <h2 id="services-continuation-title">Meet CulinAIre Kitchen.</h2>
+          </div>
+          <div>
+            <p>A connected view of recipes, stock, preparation and people, from the first plan to what went out. See the kitchen tool we are building.</p>
             <Link className={styles.textLink} href="/culinaire-kitchen" prefetch={false}>Explore CulinAIre Kitchen <span aria-hidden="true">↗</span></Link>
           </div>
         </div>

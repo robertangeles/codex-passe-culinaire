@@ -125,8 +125,7 @@
 }
 
 .programmeIntro h2,
-.programmeHeading h2,
-.people h2 {
+.programmeHeading h2 {
   max-width: 19ch;
   font-size: clamp(2.125rem, 3.1vw, 3rem);
 }
@@ -172,47 +171,13 @@
   padding-top: var(--space-8);
 }
 
-.people {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: start;
-  gap: 80px;
-}
-
-.founders {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--space-8);
-  padding-top: 30px;
-}
-
-.founders p:not(.personName) {
-  max-width: 28ch;
-  margin: 0;
-  color: var(--foreground);
-  font-size: var(--step--1);
-  line-height: var(--body-leading);
-}
-
-.personName {
-  margin: 0 0 var(--space-2);
-  font-family: var(--loaded-fraunces), var(--font-display), serif;
-  font-size: var(--step-1);
-  font-weight: 300;
-}
-
-.people > div + div > .textLink {
-  margin-top: var(--space-6);
-}
-
 @media (max-width: 1100px) {
   .container {
     width: calc(100% - 64px);
   }
 
   .hero,
-  .programmeIntro,
-  .people {
+  .programmeIntro {
     gap: 40px;
   }
 }
@@ -267,19 +232,16 @@
     padding-block: var(--space-12);
   }
 
-  .programmeIntro,
-  .people {
+  .programmeIntro {
     display: block;
   }
 
-  .programmeIntro > div + div,
-  .people > div + div {
+  .programmeIntro > div + div {
     margin-top: var(--space-8);
   }
 
   .programmeIntro h2,
-  .programmeHeading h2,
-  .people h2 {
+  .programmeHeading h2 {
     font-size: clamp(2.125rem, 8vw, 2.625rem);
   }
 
@@ -291,14 +253,4 @@
     margin-bottom: var(--space-6);
   }
 
-  .founders {
-    gap: var(--space-6);
-    padding-top: 0;
-  }
-}
-
-@media (max-width: 420px) {
-  .founders {
-    grid-template-columns: 1fr;
-  }
 }

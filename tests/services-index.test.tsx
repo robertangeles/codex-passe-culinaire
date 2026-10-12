@@ -50,24 +50,25 @@ describe('services index route', () => {
     mocks.list.mockResolvedValue(createListing())
   })
 
-  it('renders the truthful draft-only empty state and reads published services', async () => {
+  it('renders the kitchen conversation without unpublished services', async () => {
     const html = renderToStaticMarkup(await ServicesIndexPage({ params: Promise.resolve({}) }))
 
     expect(revalidate).toBe(600)
     expect(await generateStaticParams()).toEqual([])
     expect(html).toContain('<main id="main-content"')
     expect(html).toContain('<h1')
-    expect(html).toContain('Start with')
-    expect(html).toContain('the kitchen.')
-    expect(html).toContain('Tell us about your kitchen, your team and the work you want to do.')
-    expect(html).toContain('A place to begin.')
-    expect(html).toContain('Service details are being prepared.')
-    expect(html).toContain('Your kitchen')
-    expect(html).toContain('Your team')
-    expect(html).toContain('Your priorities')
-    expect(html).toContain('Alex Charasse')
-    expect(html).toContain('Rob Angeles')
-    expect(html).toContain('Our first offer.')
+    expect(html).toContain('The work behind service deserves better tools.')
+    expect(html).toContain('A menu change reaches further than the menu.')
+    expect(html).toContain('We are also developing training, advisory and publishing')
+    expect(html).toContain('Where does the work get held up?')
+    expect(html).toContain('From menu to prep')
+    expect(html).toContain('From stock to service')
+    expect(html).toContain('From chef to team')
+    expect(html).not.toContain('Service details are being prepared.')
+    expect(html).not.toContain('Ways to work with us.')
+    expect(html).not.toContain('Alex Charasse')
+    expect(html).not.toContain('Rob Angeles')
+    expect(html).toContain('Meet CulinAIre Kitchen.')
     expect(html).toContain('href="/culinaire-kitchen"')
     expect(html).toContain('href="/contact"')
     expect(mocks.list).toHaveBeenCalledWith('services', {
@@ -85,10 +86,9 @@ describe('services index route', () => {
     expect(html).toContain('Build a menu around the kitchen and its service.')
     expect(html).toContain('For independent kitchens.')
     expect(html).toContain('href="/services/menu-development"')
-    expect(html).toContain('The work we can discuss.')
-    expect(html).toContain('Explore the services')
+    expect(html).toContain('Ways to work with us.')
+    expect(html).toContain('From menu to prep')
     expect(html).not.toContain('specimen')
-    expect(html).not.toContain('Your kitchen')
     expect(html).not.toContain('Service details are being prepared.')
   })
 
@@ -112,7 +112,7 @@ describe('services index route', () => {
     expect(html).toContain('A longer service description remains readable in the catalogue.')
     expect(html).toContain('For established restaurant teams.')
     expect(html).toContain('href="/services/kitchen-operations-and-menu-development"')
-    expect(html).not.toContain('Your priorities')
+    expect(html).toContain('From chef to team')
   })
 
   it('omits drafts, blank titles, and unsafe slugs while retaining published audience details', async () => {
@@ -155,10 +155,10 @@ describe('services index route', () => {
 
     expect(html).toContain('href="/services"')
     expect(html).toContain('href="/services/page/3"')
-    expect(html.indexOf('href="/services/page/3"')).toBeLessThan(html.indexOf('Alex Charasse'))
+    expect(html.indexOf('href="/services/page/3"')).toBeLessThan(html.indexOf('Meet CulinAIre Kitchen.'))
     await expect(generateMetadata({ params: Promise.resolve({ page: ['page', '2'] }) })).resolves.toMatchObject({
       title: 'Services · Page 2',
-      description: 'Explore services from Passe Culinaire.',
+      description: 'Bring a real kitchen problem to Passe Culinaire. Explore CulinAIre Kitchen and the work connecting menus, prep, stock and teams.',
     })
   })
 

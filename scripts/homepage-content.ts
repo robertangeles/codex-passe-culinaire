@@ -12,11 +12,11 @@ const rich = (text: string): NonNullable<Post['body']> => ({
 
 export function homepageLayout(image: Media | number): Page['layout'] {
   return [
-    { blockType: 'hero', heading: 'From craft\nto what\ncomes next.', eyebrow: 'A culinary company · Melbourne', style: 'image', image,
-      summary: 'Kitchen experience, carried into the tools and knowledge of today. CulinAIre Kitchen is our first place to begin.' },
-    { blockType: 'productSpotlight', heading: 'CulinAIre Kitchen', body: rich('A practical place to begin: the daily prep list. CulinAIre Kitchen uses AI to help organise prep from a menu, including components shared between dishes.'), webUrl: '/culinaire-kitchen' },
+    { blockType: 'hero', heading: 'For chefs\nand owners\nrunning kitchens.', eyebrow: 'A culinary company · Melbourne', style: 'image', image,
+      summary: 'Passe Culinaire was founded by chefs Alex Charasse and Rob Angeles. Our first offer, CulinAIre Kitchen, brings recipes, stock, prep, rosters, waste and sales into one view. AI helps chefs develop recipes and work through culinary questions.' },
+    { blockType: 'productSpotlight', heading: 'CulinAIre Kitchen', body: rich('CulinAIre Kitchen has tools for recipes, stock, prep, rosters, waste and sales. Its AI assistant supports recipe development and culinary questions.'), webUrl: '/culinaire-kitchen' },
     { blockType: 'founderCard', name: 'Alex Charasse', title: 'Maître Pâtissier · Maître Chocolatier', bio: rich('Founder of Almost French Patisserie in Richmond and Almost French Epicure on Little Collins Street, Melbourne.') },
-    { blockType: 'founderCard', name: 'Rob Angeles', title: 'Chef · Data Architect', bio: rich('Trained in pastry and hot kitchen. A Data Architect bringing a kitchen perspective to contemporary tools.') },
+    { blockType: 'founderCard', name: 'Rob Angeles', title: 'Chef · Pâtissier · Data Architect', bio: rich('The chef and data architect building the technology behind Passe Culinaire and CulinAIre Kitchen.') },
     { blockType: 'cta', statement: 'CulinAIre Kitchen is the first offer from Passe Culinaire. The company brings together culinary practice, teaching and contemporary tools.', label: 'Start a conversation', url: '/contact' },
   ]
 }

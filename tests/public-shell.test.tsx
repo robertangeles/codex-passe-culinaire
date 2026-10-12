@@ -44,7 +44,7 @@ describe('PublicShell', () => {
     })
   })
 
-  it('renders CMS navigation, footer content, theme control, and supplied main content in server HTML', async () => {
+  it('renders CMS navigation, footer content, and supplied main content in server HTML', async () => {
     const html = renderToStaticMarkup(await PublicShell({ children: <main id="main-content"><h1>Company</h1></main> }))
 
     expect(html).toContain('aria-label="Main navigation"')
@@ -54,7 +54,7 @@ describe('PublicShell', () => {
     expect(html).toContain('Melbourne, Australia')
     expect(html).toContain('ABN: [TO CONFIRM]')
     expect(html).toContain('aria-label="Social media"')
-    expect(html).toContain('Colour theme')
+    expect(html).not.toContain('Colour theme')
     expect(html.match(/<main\b/g)).toHaveLength(1)
   })
 })

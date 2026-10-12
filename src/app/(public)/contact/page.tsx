@@ -64,11 +64,6 @@ export default async function ContactPage() {
             content={content}
             externalEmbedsEnabled={externalEmbedsEnabled}
           />
-          <aside className={styles.founders} aria-label="About the founders">
-            <p className={styles.location}>Passe Culinaire · Melbourne</p>
-            <p className={styles.names}>Alex Charasse<br />Rob Angeles</p>
-            <Link href="/about">Meet the founders</Link>
-          </aside>
         </div>
         <section className={styles.formRegion} aria-labelledby="contact-enquiry-heading">
           <header className={styles.formHeader}>

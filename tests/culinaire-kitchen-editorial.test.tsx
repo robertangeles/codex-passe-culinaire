@@ -28,8 +28,10 @@ describe('CulinAIre Kitchen editorial rendering', () => {
       'Behind every service.', 'Forecasting &amp; rostering', 'Team messaging', 'Purchasing &amp; receiving',
       'Inventory &amp; stock transfers', 'Mise en Place &amp; production', 'Menu &amp; costing', 'Waste Management',
       'Sales', 'Recipe Lab', 'Patisserie Lab', 'Cocktail Lab', 'Forecasting', 'Lemon tart', 'Fruit tart',
-      'CulinAIre Kitchen uses AI to help organise the prep list', 'Alex Charasse', 'Rob Angeles', 'Talk to us',
+      'CulinAIre Kitchen shows ingredients shared by selected dishes', 'Talk to us',
     ]) expect(html).toContain(phrase)
+    expect(html).not.toContain('Alex Charasse')
+    expect(html).not.toContain('Rob Angeles')
     expect(html.match(/<h1\b/g)).toHaveLength(1)
     for (const id of ['operation', 'labs', 'example', 'film']) expect(html).toContain(`id="${id}"`)
     expect(html).toContain('href="#film">Watch the kitchen film</a>')

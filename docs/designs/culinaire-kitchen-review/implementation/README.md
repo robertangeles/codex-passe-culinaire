@@ -1,5 +1,8 @@
 # CulinAIre Kitchen B implementation
 
+Editorial update, 4 October 2026: The repeated founder panel was removed from the live product page after the user chose to rely on the main-navigation About page. The original implementation evidence below records the earlier version.
+
+
 2 October 2026. Selected direction: Behind every service. User authorised implementation and retaining the shared-component example. Applied to the local company site at `/culinaire-kitchen`; no remote deployment.
 
 ## Built

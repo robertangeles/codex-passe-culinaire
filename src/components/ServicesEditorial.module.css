@@ -40,15 +40,23 @@
 }
 
 .hero h1 {
-  max-width: 16ch;
+  max-width: 13ch;
   font-size: clamp(3rem, 5.4vw, 4.875rem);
 }
 
 .intro {
   max-width: 45ch;
-  margin: var(--space-8) 0 0;
+  margin-top: var(--space-8);
   font-size: var(--step-0);
   line-height: 1.65;
+}
+
+.intro p {
+  margin: 0;
+}
+
+.intro p + p {
+  margin-top: var(--space-4);
 }
 
 .actions {
@@ -78,7 +86,6 @@
 }
 
 .textLink,
-.inlineLink,
 .rowLink {
   display: inline-flex;
   min-height: 44px;
@@ -124,48 +131,9 @@
   font-size: clamp(2.125rem, 3.1vw, 3rem);
 }
 
-.catalogueIntro {
-  padding: var(--space-8);
-  border-top: var(--rule);
-  background: var(--surface-muted);
-}
-
-.catalogueIntro h3 {
-  margin: 0 0 var(--space-4);
-  font-family: var(--loaded-fraunces), var(--font-display), serif;
-  font-size: clamp(1.5rem, 2vw, 1.875rem);
-  font-weight: 300;
-  line-height: 1.15;
-}
-
-.catalogueIntro p {
-  max-width: 48ch;
-  margin: 0;
-  line-height: var(--body-leading);
-}
-
-.emptyState {
-  padding: var(--space-8);
-  border-top: var(--rule);
-  background: var(--surface-muted);
-}
-
-.emptyState h3 {
-  margin: 0 0 var(--space-4);
-  font-family: var(--loaded-fraunces), var(--font-display), serif;
-  font-size: clamp(1.5rem, 2vw, 1.875rem);
-  font-weight: 300;
-  line-height: 1.15;
-}
-
-.emptyState p {
-  max-width: 48ch;
-  margin: 0;
-  line-height: var(--body-leading);
-}
-
-.emptyState .inlineLink {
-  margin-top: var(--space-4);
+.sectionIntro {
+  max-width: 45ch;
+  margin: 40px 0 0;
 }
 
 .catalogue {
@@ -227,55 +195,24 @@
 
 .prompts li {
   display: grid;
-  grid-template-columns: 160px minmax(0, 1fr);
-  gap: var(--space-8);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 80px;
   padding-block: var(--space-6);
   border-top: var(--rule);
 }
 
 .prompts h3 {
   margin: 0;
-  font-size: var(--step-0);
-  font-weight: 500;
-  line-height: var(--body-leading);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-size: clamp(1.5rem, 2vw, 1.875rem);
+  font-weight: 300;
+  line-height: 1.2;
 }
 
 .prompts p {
   max-width: 48ch;
   margin: 0;
   color: var(--foreground);
-}
-
-.people {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: start;
-  gap: 80px;
-}
-
-.founders {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--space-8);
-  padding-top: 30px;
-}
-
-.personName {
-  margin: 0 0 var(--space-2);
-  font-family: var(--loaded-fraunces), var(--font-display), serif;
-  font-size: 1.75rem;
-  font-weight: 300;
-}
-
-.founders div p:not(.personName) {
-  max-width: 28ch;
-  margin: 0;
-  color: var(--foreground);
-  font-size: var(--step--1);
-}
-
-.people .textLink {
-  margin-top: var(--space-6);
 }
 
 .continuation {
@@ -306,14 +243,12 @@
 
   .hero,
   .sectionHeading,
-  .people,
   .continuationInner {
     gap: 40px;
   }
 
   .prompts li {
-    grid-template-columns: 130px minmax(0, 1fr);
-    gap: var(--space-6);
+    gap: 40px;
   }
 }
 
@@ -324,7 +259,6 @@
 
   .hero,
   .sectionHeading,
-  .people,
   .continuationInner {
     display: block;
   }
@@ -366,13 +300,8 @@
     padding-block: var(--space-12);
   }
 
-  .sectionHeading > :nth-child(2) {
+  .sectionIntro {
     margin-top: 28px;
-  }
-
-  .emptyState,
-  .catalogueIntro {
-    padding: var(--space-6);
   }
 
   .prompts {
@@ -401,33 +330,16 @@
     margin-top: var(--space-3);
   }
 
-  .people > div + div {
-    margin-top: 28px;
-  }
-
-  .founders {
-    gap: var(--space-6);
-  }
-
-  .personName {
-    font-size: 1.625rem;
-  }
 
   .continuationInner {
     padding-block: 38px;
   }
 
-  .continuationInner > div {
+  .continuationInner > div:last-child {
     margin-top: 24px;
   }
 
   .continuation h2 {
     font-size: 2.375rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .founders {
-    grid-template-columns: minmax(0, 1fr);
   }
 }

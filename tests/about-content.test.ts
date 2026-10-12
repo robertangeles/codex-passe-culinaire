@@ -29,12 +29,19 @@ describe('approved About content', () => {
 
     expect(approved?.[0]).toMatchObject({
       id: 'block-0', eyebrow: 'About Passe Culinaire', heading: 'From the kitchen,\nlooking forward.',
-      summary: 'Passe Culinaire is a Melbourne company founded by two chefs, bringing culinary practice and data architecture together.',
+      summary: 'Kitchens run on knowledge passed from one chef to another. They also run on daily decisions: what to prep, what to order, who is on, and what is selling. Too often, those answers sit in separate tools. Passe Culinaire is building one place to bring the work together, with chefs’ knowledge at its centre. We want to be the technology partner chefs and restaurant owners can turn to across the whole operation.',
     })
     expect(approved?.[1]).toMatchObject({ id: 'block-1', blockType: 'prose' })
-    expect(approved?.[2]).toMatchObject({ id: 'block-2', portrait: 10, title: 'Co-founder · CEO' })
+    expect(approved?.[2]).toMatchObject({ id: 'block-2', portrait: 10, title: 'Co-founder · CEO', links: [] })
     expect(approved?.[3]).toMatchObject({ id: 'block-3', portrait: 10, title: 'Co-founder · CTO' })
-    expect(approved?.at(-1)).toMatchObject({ blockType: 'feature', heading: 'Experience,\nput to work.' })
+    const rob = approved?.[3]
+    expect(rob?.blockType).toBe('founderCard')
+    if (rob?.blockType === 'founderCard') {
+      expect(JSON.stringify(rob.bio)).toContain('graduated in 2026')
+      expect(JSON.stringify(rob.bio)).toContain('builds the technology behind Passe Culinaire and CulinAIre Kitchen')
+      expect(rob.links).toEqual([])
+    }
+    expect(approved?.at(-1)).toMatchObject({ blockType: 'feature', heading: 'Beyond\nthe recipe.' })
     expect(approvedAboutLayout(approved)).toEqual(approved)
   })
 

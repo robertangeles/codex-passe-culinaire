@@ -55,43 +55,6 @@
   line-height: 1.65;
 }
 
-.founders {
-  max-width: 390px;
-  margin-top: 88px;
-  border-top: 1px solid color-mix(in srgb, var(--color-ash) 30%, transparent);
-  padding-top: 24px;
-}
-
-.location,
-.names {
-  margin: 0;
-}
-
-.location {
-  margin-bottom: 12px;
-  font-size: 13px;
-}
-
-.names {
-  margin-bottom: 16px;
-  font-family: var(--loaded-fraunces), var(--font-display), serif;
-  font-size: 27px;
-  line-height: 1.35;
-}
-
-.founders a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  font-size: 14px;
-  text-underline-offset: 0.25em;
-}
-
-.founders a:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 3px;
-}
-
 .formRegion {
   padding-top: 8px;
 }
@@ -152,10 +115,6 @@
     max-width: 36ch;
     margin-top: 20px;
     font-size: 16px;
-  }
-
-  .founders {
-    display: none;
   }
 
   .formRegion {

@@ -11,10 +11,12 @@ describe('C4 homepage', () => {
   it('renders the CMS product path, biographies and company scope without placeholder portraits', () => {
     const html = renderToStaticMarkup(<BlockRenderer blocks={homepageLayout(1)} title="Passe Culinaire" home content={content} />)
     expect(html.match(/<h1\b/g)).toHaveLength(1)
-    expect(html).toContain('From craft')
+    expect(html).toContain('For chefs')
+    expect(html).toContain('recipes, stock, prep, rosters, waste and sales into one view')
+    expect(html).toContain('AI helps chefs develop recipes and work through culinary questions.')
     expect(html).toContain('A day in the kitchen.')
     expect(html).not.toContain('Two dishes.')
-    expect(html).not.toContain('Our first offer')
+    expect(html).not.toContain('A practical place to begin: the daily prep list.')
     expect(html.match(/Explore CulinAIre Kitchen/g)).toHaveLength(1)
     expect(html).not.toContain('Read the full kitchen story')
     expect(html).toContain('id="kitchen-film-transcript"')
@@ -27,7 +29,7 @@ describe('C4 homepage', () => {
     expect(html).toContain('Rob Angeles')
     expect(html).toContain('href="/contact"')
     expect(html).not.toContain('PLACEHOLDER')
-    expect(html.indexOf('A day in the kitchen.')).toBeLessThan(html.indexOf('Alex Charasse'))
+    expect(html.indexOf('A day in the kitchen.')).toBeLessThan(html.indexOf('The people behind the work'))
   })
 
   it('keeps noncontiguous founder groups and following blocks in their CMS order', () => {

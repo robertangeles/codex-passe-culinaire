@@ -4,7 +4,6 @@ import Link from 'next/link'
 import type { Footer, Header, SiteSetting } from '../payload-types'
 import { getPublicShell } from '../lib/public-content'
 import { safePublicHref } from '../lib/urls'
-import ThemeControl from './ThemeControl'
 import { BrandMonogram } from './BrandMonogram'
 import { JsonLd } from './JsonLd'
 import { buildOrganisationGraph } from '../lib/seo/organisation'
@@ -126,7 +125,7 @@ export default async function PublicShell({ children }: { children: ReactNode })
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
           <div className={styles.footerTop}>
-            <Link className={styles.wordmark} href="/" aria-label={companyName} prefetch={false}>
+            <Link className={`${styles.wordmark} ${styles.footerWordmark}`} href="/" aria-label={companyName} prefetch={false}>
               <BrandMonogram className={styles.footerMark} /><span>{companyName}</span>
             </Link>
             <FooterColumns columns={footer.columns} />
@@ -137,7 +136,6 @@ export default async function PublicShell({ children }: { children: ReactNode })
               <p>ABN: {footer.abn?.trim() || '[TO CONFIRM]'}</p>
             </div>
             <SocialLinks links={siteSettings.socialLinks} />
-            <ThemeControl />
           </div>
         </div>
       </footer>

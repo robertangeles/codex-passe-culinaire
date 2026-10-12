@@ -24,10 +24,11 @@ test('company catalogues retain real entries, statuses and pagination in their e
   const serviceSlugs = titles.map((_, i) => `service-${marker}-${i}`)
   const eventSlugs = titles.map((_, i) => `training-${marker}-${i}`)
   try {
-    // The quality seed contains drafts only. The public empty states remain honest.
+    // The quality seed contains drafts only. The Services conversation remains useful without published entries.
     await page.goto('/services')
-    await expect(page.getByRole('heading', { name: 'Service details are being prepared.' })).toBeVisible()
-    await page.getByRole('main').getByRole('link', { name: /Discuss your kitchen/u }).first().click()
+    await expect(page.getByRole('heading', { name: 'Where does the work get held up?' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Ways to work with us.' })).toHaveCount(0)
+    await page.getByRole('main').getByRole('link', { name: /Tell us about your kitchen/u }).click()
     await expect(page).toHaveURL(/\/contact$/u)
     await page.goBack()
     await expect(page).toHaveURL(/\/services$/u)
@@ -74,11 +75,8 @@ test('company catalogues retain real entries, statuses and pagination in their e
       if (testInfo.project.name === 'desktop') {
         for (const width of [390, 768, 1440]) {
           await page.setViewportSize({ width, height: 1000 })
-          for (const theme of ['light', 'dark']) {
-            await page.getByRole('combobox', { name: 'Colour theme' }).selectOption(theme)
-            await assertLayout(page)
-            await page.screenshot({ path: testInfo.outputPath(`${route}-${width}-${theme}.png`), fullPage: true })
-          }
+          await assertLayout(page)
+          await page.screenshot({ path: testInfo.outputPath(`${route}-${width}.png`), fullPage: true })
         }
         await page.evaluate(() => { document.documentElement.style.zoom = '2' })
         expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false)

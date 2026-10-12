@@ -81,16 +81,17 @@ export async function submitContact(payload: Payload, rawInput: unknown, peerIp:
     }
   }
   const configured = process.env.MAIL_PROVIDER === 'resend' ? Boolean(process.env.RESEND_API_KEY) : Boolean(process.env.SMTP_HOST)
-  const recipient = process.env.CONTACT_TO_ADDRESS
+  const recipients = (process.env.CONTACT_TO_ADDRESS ?? '').split(',').map((address) => address.trim())
+  const validRecipients = recipients.length <= 2 && recipients.every((address) => /^[^\s,@]+@[^\s,@]+\.[^\s,@]+$/.test(address))
   const attemptedAt = new Date().toISOString()
-  if (!configured || !recipient) {
+  if (!configured || !validRecipients) {
     const recorded = await recordStatus({ deliveryAttemptedAt: attemptedAt, deliveryStatus: 'failed', deliveryError: 'Email delivery is not configured.' })
     return { id: saved.id, deliveryStatus: recorded ? 'failed' : 'saved' }
   }
   if (!(await recordStatus({ deliveryAttemptedAt: attemptedAt }))) return { id: saved.id, deliveryStatus: 'saved' }
   let sent = false
   try {
-    await payload.sendEmail({ to: recipient, replyTo: input.email,
+    await payload.sendEmail({ to: recipients, replyTo: input.email,
       subject: 'New Passe Culinaire contact message',
       text: `Name: ${input.name}\nEmail: ${input.email}\nVenue: ${input.venue}\nRole: ${input.role}\nTopic: ${input.need}\n\n${input.message}`,
     })

@@ -14,13 +14,15 @@ describe('approved CulinAIre Kitchen content update', () => {
   it('starts from the three seeded blocks and produces editable approved feature blocks', () => {
     expect(seed).toHaveLength(3)
     const layout = approvedCulinaireKitchenLayout()
-    expect(layout).toHaveLength(11)
+    expect(layout).toHaveLength(10)
     expect(layout?.[0]).toMatchObject({ blockType: 'hero', blockName: 'Kitchen introduction', eyebrow: 'CulinAIre Kitchen · By Passe Culinaire' })
-    expect(layout?.filter((block) => block.blockType === 'feature')).toHaveLength(10)
+    expect(layout?.filter((block) => block.blockType === 'feature')).toHaveLength(9)
     expect(JSON.stringify(layout)).toContain('Forecasting')
     expect(JSON.stringify(layout)).toContain('Inventory & stock transfers')
     expect(JSON.stringify(layout)).toContain('Patisserie Lab')
-    expect(JSON.stringify(layout)).toContain('uses AI to help organise the prep list')
+    expect(JSON.stringify(layout)).toContain('shows ingredients shared by selected dishes')
+    expect(JSON.stringify(layout)).toContain('AI helps with recipe development and culinary questions.')
+    expect(JSON.stringify(layout)).not.toContain('pâte sucrée')
   })
 
   it('backs up and updates only the exact published seed, and treats the approved layout as a no-op', async () => {

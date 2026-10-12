@@ -74,30 +74,22 @@ test('Journal keeps the newest hero, four following entries and older pages acce
     expect(accessibility.violations).toEqual([])
     await page.screenshot({ path: testInfo.outputPath('journal-populated.png'), fullPage: true })
 
-    // Desktop also exercises resizing across the breakpoint, themes and keyboard order.
+    // Desktop also exercises resizing across the breakpoint and keyboard order.
     if (testInfo.project.name === 'desktop') {
       const originalViewport = page.viewportSize()
       for (const width of [320, 390, 768, 1024, 1440, 1920]) {
         await page.setViewportSize({ width, height: 1000 })
-        for (const theme of ['light', 'dark']) {
-          await page.getByRole('combobox', { name: 'Colour theme' }).selectOption(theme)
-          await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false)
-          await expect.poll(() => further.locator('li').evaluateAll(nodes => {
-            const boxes = nodes.map(node => node.getBoundingClientRect())
-            return boxes.some((a, i) => boxes.slice(i + 1).some(b =>
-              a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1))
-          })).toBe(false)
-          if ([390, 1440].includes(width)) {
-            const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()
-            expect(scan.violations).toEqual([])
-            await page.screenshot({ path: testInfo.outputPath(`journal-${width}-${theme}.png`), fullPage: true })
-          }
+        await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false)
+        await expect.poll(() => further.locator('li').evaluateAll(nodes => {
+          const boxes = nodes.map(node => node.getBoundingClientRect())
+          return boxes.some((a, i) => boxes.slice(i + 1).some(b =>
+            a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1))
+        })).toBe(false)
+        if ([390, 1440].includes(width)) {
+          const scan = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()
+          expect(scan.violations).toEqual([])
+          await page.screenshot({ path: testInfo.outputPath(`journal-${width}.png`), fullPage: true })
         }
-      }
-      await page.getByRole('combobox', { name: 'Colour theme' }).selectOption('system')
-      for (const colorScheme of ['light', 'dark'] as const) {
-        await page.emulateMedia({ colorScheme })
-        expect((await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()).violations).toEqual([])
       }
       // CSS zoom exercises enlarged text and images without relying on browser shortcuts.
       await page.setViewportSize({ width: 1440, height: 1000 })
@@ -113,7 +105,6 @@ test('Journal keeps the newest hero, four following entries and older pages acce
         await expect(links.nth(i)).toBeFocused()
         await page.keyboard.press('Tab')
       }
-      await page.getByRole('combobox', { name: 'Colour theme' }).selectOption('dark')
     }
 
     await page.getByRole('navigation', { name: 'Pagination' }).getByRole('link', { name: 'Next' }).click()

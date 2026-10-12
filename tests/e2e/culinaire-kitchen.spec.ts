@@ -51,10 +51,6 @@ test('the product page preserves editable content and plays its film only on req
       expect(paragraphs).toHaveLength(3)
       expect(paragraphs[1].x).toBeGreaterThan(paragraphs[0].x + 100)
       expect(paragraphs[2].x).toBe(paragraphs[1].x)
-      const alex = await page.getByRole('heading', { name: 'Alex Charasse', exact: true }).boundingBox()
-      const rob = await page.getByRole('heading', { name: 'Rob Angeles', exact: true }).boundingBox()
-      expect(rob?.x).toBeGreaterThan((alex?.x ?? 0) + 100)
-      expect(rob?.y).toBe(alex?.y)
     }
     await page.screenshot({ path: testInfo.outputPath('culinaire-kitchen-approved.png'), fullPage: true })
 

@@ -17,8 +17,8 @@ const payloadConfig = withPayload(nextConfig)
 const config = {
   ...payloadConfig,
   async headers() {
-    // Payload needs colour-scheme hints in its editor. Public themes use CSS and
-    // a local preference script, so they must not restart navigation for a hint.
+    // Payload needs colour-scheme hints in its editor. Keep that hint off
+    // public routes to avoid restarting navigation.
     return (await payloadConfig.headers()).map(rule =>
       rule.source === '/:path*' && rule.headers.some(header => header.key.toLowerCase() === 'critical-ch')
         ? { ...rule, source: '/admin/:path*' }

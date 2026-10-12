@@ -8,7 +8,6 @@
 .labs,
 .example,
 .film,
-.founders,
 .continuation {
   box-sizing: border-box;
   width: min(calc(100% - var(--space-16) - var(--space-16)), 1312px);
@@ -376,45 +375,6 @@
   font-size: var(--step--1);
 }
 
-.founders {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  align-items: start;
-  gap: var(--space-16);
-  padding-block: var(--space-16);
-  border-top: var(--rule);
-}
-
-.founders :global(h2) {
-  max-width: 18ch;
-  font-size: clamp(2rem, 1.4rem + 2.5vw, 3rem);
-}
-
-.foundersDetails > div {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 var(--space-8);
-  max-width: none;
-}
-
-.foundersDetails :global(h3:nth-of-type(1)) { grid-column: 1; grid-row: 1; }
-.foundersDetails :global(p:nth-of-type(1)) { grid-column: 1; grid-row: 2; }
-.foundersDetails :global(h3:nth-of-type(2)) { grid-column: 2; grid-row: 1; }
-.foundersDetails :global(p:nth-of-type(2)) { grid-column: 2; grid-row: 2; }
-
-.founders :global(h3) {
-  margin: var(--space-6) 0 var(--space-2);
-  font-family: var(--loaded-fraunces), var(--font-display), serif;
-  font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
-  font-weight: 300;
-}
-
-.founders :global(p) {
-  max-width: 38ch;
-  margin: 0 0 var(--space-4);
-  font-size: var(--step--1);
-}
-
 .continuation {
   width: 100%;
   max-width: none;
@@ -470,7 +430,6 @@
   .labs,
   .example,
   .film,
-  .founders,
   .continuation > div {
     gap: var(--space-12);
   }
@@ -479,8 +438,7 @@
   .operationIntro,
   .operationRow,
   .example,
-  .film,
-  .founders {
+  .film {
     width: calc(100% - var(--space-16));
   }
 
@@ -501,7 +459,6 @@
   .labs,
   .example,
   .film,
-  .founders,
   .continuation > div {
     display: block;
   }
@@ -510,8 +467,7 @@
   .operationIntro,
   .operationRow,
   .example,
-  .film,
-  .founders {
+  .film {
     width: calc(100% - var(--space-12));
   }
 
@@ -619,28 +575,6 @@
 
   .filmPlayer {
     margin-top: var(--space-8);
-  }
-
-  .founders {
-    padding-block: var(--space-12);
-  }
-
-  .foundersDetails {
-    margin-top: var(--space-8);
-  }
-
-  .foundersDetails > div {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .foundersDetails :global(h3),
-  .foundersDetails :global(p) {
-    grid-column: 1;
-    grid-row: auto;
-  }
-
-  .founders :global(h3) {
-    margin-top: var(--space-6);
   }
 
   .continuation {

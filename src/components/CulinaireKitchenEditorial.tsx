@@ -36,7 +36,7 @@ function isProductFeature(block: PageBlock): block is Feature {
   return block.blockType === 'feature' && (
     operationNames.some((name) => name === named(block))
     || anchors.some(({ names }) => names.includes(named(block)))
-    || ['Kitchen founders', 'Kitchen continuation'].includes(named(block))
+    || named(block) === 'Kitchen continuation'
   )
 }
 
@@ -131,10 +131,6 @@ function EditorialFeature({ block, blocks, externalEmbedsEnabled }: { block: Fea
     const intro = <div className={styles.filmCopy}><p className={styles.kicker}>The kitchen on film</p><Text block={block} externalEmbedsEnabled={externalEmbedsEnabled} /></div>
     return <KitchenFilm id="film" className={styles.film} playerClassName={styles.filmPlayer} autoStart={false} showIntro={false} intro={intro} />
   }
-  if (blockName === 'Kitchen founders') {
-    const aboutHref = safePublicHref('/about')
-    return <section className={styles.founders}><div className={styles.foundersIntro}><p className={styles.kicker}>From Passe Culinaire</p>{block.heading?.trim() && <h2 className={styles.sectionHeading}>{block.heading.trim()}</h2>}</div><div className={styles.foundersDetails}>{block.body && <RichText data={block.body} externalEmbedsEnabled={externalEmbedsEnabled} />}{aboutHref && <a className={styles.textLink} href={aboutHref}>Meet the founders <span aria-hidden="true">↗</span></a>}</div></section>
-  }
   if (blockName === 'Kitchen continuation') {
     return <section className={styles.continuation}><div><Text block={block} externalEmbedsEnabled={externalEmbedsEnabled} /></div></section>
   }
@@ -143,6 +139,7 @@ function EditorialFeature({ block, blocks, externalEmbedsEnabled }: { block: Fea
 
 export function CulinaireKitchenEditorial({ blocks, externalEmbedsEnabled, renderStandardBlock }: Props) {
   return <div className={styles.page}>{blocks.map((block, index) => {
+    if (block.blockType === 'feature' && named(block) === 'Kitchen founders') return null
     const hero = index === 0 ? asHero(block) : undefined
     if (hero) return <ProductHero block={hero} blocks={blocks} headingLevel={index === 0 ? 1 : 2} key={block.id ?? `kitchen-hero-${index}`} />
     const feature = isProductFeature(block) && !blocks.slice(0, index).some((previous) => previous.blockType === 'feature' && named(previous) === named(block)) ? block : undefined

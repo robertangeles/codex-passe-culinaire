@@ -81,9 +81,9 @@ const pages = [
     { blockType: 'founderCard', name: 'Alex Charasse', title: 'CEO', portrait: image(10), bio: rich('Alex Charasse founded Almost French Patisserie in Richmond and Almost French Epicure on Little Collins Street in Melbourne. He is a Maître Pâtissier and Maître Chocolatier.') },
     { blockType: 'founderCard', name: 'Rob Angeles', title: 'CTO', portrait: image(10), bio: rich('Rob Angeles trained in pastry and hot kitchen. He is a Data Architect.') },
   ] },
-  { slug: 'culinaire-kitchen', title: 'CulinAIre Kitchen', description: 'CulinAIre Kitchen helps kitchen teams organise prep lists from the daily menu.', layout: [
+  { slug: 'culinaire-kitchen', title: 'CulinAIre Kitchen', description: 'CulinAIre Kitchen helps kitchen teams keep recipes, stock, prep and sales in view.', layout: [
     { blockType: 'hero', heading: 'CulinAIre Kitchen', style: 'quiet' },
-    { blockType: 'prose', body: rich("CulinAIre Kitchen uses AI to help organise a prep list from today's menu, including components used in more than one dish.") },
+    { blockType: 'prose', body: rich("CulinAIre Kitchen shows ingredients shared by selected dishes in a prep session.") },
     { blockType: 'cta', statement: 'Explore the product', label: 'Visit CulinAIre Kitchen', url: 'https://www.culinaire.kitchen' },
   ] },
   { slug: 'contact', title: 'Contact', description: 'Send a note to Passe Culinaire about kitchens, training, advisory or CulinAIre Kitchen.', layout: [

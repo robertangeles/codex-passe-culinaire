@@ -150,7 +150,7 @@ describe('Phase 2 PostgreSQL integration', () => {
   it('returns one saved receipt and one send for concurrent duplicate contact requests', async () => {
     const oldRecipient = process.env.CONTACT_TO_ADDRESS
     const oldHost = process.env.SMTP_HOST
-    process.env.CONTACT_TO_ADDRESS = 'inbox@example.test'
+    process.env.CONTACT_TO_ADDRESS = 'rob@example.test, alex@example.test'
     process.env.SMTP_HOST = 'mock.example.test'
     const send = vi.spyOn(payload, 'sendEmail').mockResolvedValue(undefined)
     const input = { requestId: randomUUID(), name: 'Concurrent Test', email: 'cook@example.test', role: 'chef' as const, need: 'training' as const, message: 'A private test enquiry.' }
@@ -159,8 +159,31 @@ describe('Phase 2 PostgreSQL integration', () => {
       expect(one.id).toBe(two.id)
       expect((await payload.count({ collection: 'form-submissions', overrideAccess: true, where: { requestId: { equals: input.requestId } } })).totalDocs).toBe(1)
       expect(send).toHaveBeenCalledTimes(1)
+      expect(send).toHaveBeenCalledWith(expect.objectContaining({
+        to: ['rob@example.test', 'alex@example.test'],
+        replyTo: 'cook@example.test',
+      }))
       expect(one.deliveryStatus).toBe('emailed')
       expect((await payload.findByID({ collection: 'form-submissions', id: one.id, overrideAccess: true })).deliveryStatus).toBe('emailed')
+    } finally {
+      send.mockRestore()
+      process.env.CONTACT_TO_ADDRESS = oldRecipient
+      process.env.SMTP_HOST = oldHost
+    }
+  })
+
+  it('saves the enquiry without sending to a partial or malformed recipient list', async () => {
+    const oldRecipient = process.env.CONTACT_TO_ADDRESS
+    const oldHost = process.env.SMTP_HOST
+    process.env.CONTACT_TO_ADDRESS = 'rob@example.test, '
+    process.env.SMTP_HOST = 'mock.example.test'
+    const send = vi.spyOn(payload, 'sendEmail').mockResolvedValue(undefined)
+    try {
+      const input = { requestId: randomUUID(), name: 'Config Test', email: 'cook@example.test', role: 'chef' as const, need: 'training' as const, message: 'Please keep this enquiry.' }
+      const receipt = await submitContact(payload, input, '203.0.113.105')
+      expect(receipt.deliveryStatus).toBe('failed')
+      expect(send).not.toHaveBeenCalled()
+      expect((await payload.findByID({ collection: 'form-submissions', id: receipt.id, overrideAccess: true })).message).toBe(input.message)
     } finally {
       send.mockRestore()
       process.env.CONTACT_TO_ADDRESS = oldRecipient

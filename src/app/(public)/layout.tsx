@@ -4,7 +4,6 @@ import type { ReactNode } from 'react'
 
 import PublicShell from '../../components/PublicShell'
 import '../../styles/globals.css'
-import { themeInitScript } from '../../lib/theme-script'
 
 const fraunces = localFont({
   src: '../../fonts/fraunces-latin-variable.woff2',
@@ -36,11 +35,7 @@ export default function PublicLayout({ children }: { children: ReactNode }) {
     <html
       lang="en-AU"
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}
-      suppressHydrationWarning
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-      </head>
       <body>
         <a className="skip-link" href="#main-content">Skip to content</a>
         <PublicShell>{children}</PublicShell>

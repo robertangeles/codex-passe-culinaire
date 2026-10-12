@@ -53,8 +53,8 @@
 
 .closing { background: var(--surface-muted); }
 .closingInner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding-block: 64px; }
-.closingHeading { max-width: 13ch; font-size: 44px; }
-.closingContent { max-width: 43ch; }
+.closingHeading { max-width: 15ch; font-size: clamp(44px, 3.8vw, 56px); }
+.closingContent { max-width: 55ch; }
 .closingContent > div { max-width: none; }
 .closingContent > div > p:has(> a) { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 28px; }
 .closingContent > div a { display: inline-flex; min-height: 44px; align-items: center; }

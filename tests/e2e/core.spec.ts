@@ -4,8 +4,8 @@ import { expect, test } from '@playwright/test'
 const publicRoutes = [
   {
     path: '/',
-    heading: 'From craft to what comes next.',
-    htmlText: 'Kitchen experience, carried into the tools and knowledge of today.',
+    heading: 'For chefs and owners running kitchens.',
+    htmlText: 'Our first offer, CulinAIre Kitchen, brings recipes, stock, prep, rosters, waste and sales into one view',
   },
   {
     path: '/about',
@@ -15,7 +15,7 @@ const publicRoutes = [
   {
     path: '/culinaire-kitchen',
     heading: 'CulinAIre Kitchen',
-    htmlText: "CulinAIre Kitchen uses AI to help organise a prep list from today's menu",
+    htmlText: 'CulinAIre Kitchen shows ingredients shared by selected dishes in a prep session',
   },
   {
     path: '/journal',
@@ -82,20 +82,14 @@ test('skip link moves keyboard focus to the main content', async ({ page }) => {
   await expect(page.locator('#main-content')).toBeFocused()
 })
 
-test('theme control exposes choices and persists the selected theme', async ({ page }) => {
+test('footer keeps the legal details and has no colour selector', async ({ page }) => {
   await page.goto('/')
-
-  const themeControl = page.getByRole('combobox', { name: 'Colour theme' })
-  await expect(themeControl).toHaveValue('dark')
-  await expect(themeControl.locator('option')).toHaveText(['System', 'Light', 'Dark'])
-
-  await themeControl.selectOption('dark')
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
-  await expect.poll(() => page.evaluate(() => localStorage.getItem('passe-theme'))).toBe('dark')
-
-  await page.reload()
-  await expect(page.getByRole('combobox', { name: 'Colour theme' })).toHaveValue('dark')
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
+  const footer = page.getByRole('contentinfo')
+  await expect(footer).toContainText('PASSE CULINAIRE PTY LTD')
+  await expect(footer).toContainText('ABN: 23 700 551 800')
+  await expect(footer.getByRole('link', { name: 'About' })).toBeVisible()
+  await expect(footer.getByRole('combobox', { name: 'Colour theme' })).toHaveCount(0)
+  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(20, 20, 18)')
 })
 
 test('mobile navigation links can be reached and followed by keyboard', async ({ page }) => {
@@ -123,36 +117,4 @@ test('mobile navigation links can be reached and followed by keyboard', async ({
 
   await expect(page).toHaveURL(/\/about$/u)
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('About')
-})
-
-
-test('light and system themes persist and the monogram stays readable', async ({ page }) => {
-  await page.emulateMedia({ colorScheme: 'light' })
-  await page.goto('/')
-  const theme = page.getByRole('combobox', { name: 'Colour theme' })
-  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(20, 20, 18)')
-  await theme.selectOption('light')
-  await page.reload()
-  await expect(theme).toHaveValue('light')
-  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(244, 241, 234)')
-  await expect(page.locator('header svg')).toHaveCSS('color', 'rgb(26, 26, 24)')
-  await theme.selectOption('system')
-  await page.reload()
-  await expect(theme).toHaveValue('system')
-  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(244, 241, 234)')
-  await page.emulateMedia({ colorScheme: 'dark' })
-  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(20, 20, 18)')
-})
-
-test('theme control works when browser storage is blocked', async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.defineProperty(window, 'localStorage', { get: () => { throw new Error('Storage blocked') } })
-  })
-  await page.goto('/')
-  const theme = page.getByRole('combobox', { name: 'Colour theme' })
-  await theme.selectOption('light')
-  await expect(theme).toHaveValue('light')
-  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(244, 241, 234)')
-  await theme.selectOption('dark')
-  await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(20, 20, 18)')
 })

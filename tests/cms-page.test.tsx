@@ -48,7 +48,7 @@ describe('generic CMS page route', () => {
     const element = await CMSPage({ params: Promise.resolve({ slug: 'about' }) })
     const html = renderToStaticMarkup(element)
     expect(html).toMatch(/<h1\b[^>]*>From the kitchen,/u)
-    expect(html).toContain('Experience,')
+    expect(html).toContain('Beyond')
     expect(html).toContain('href="/culinaire-kitchen"')
     expect(html).toContain('href="/contact"')
     expect(html.match(/<h1\b/g)).toHaveLength(1)
@@ -63,7 +63,7 @@ describe('generic CMS page route', () => {
     const productHtml = renderToStaticMarkup(product)
     expect(productHtml).toContain('Behind every service.')
     expect(productHtml).toContain('id="operation"')
-    expect(productHtml).toContain('CulinAIre Kitchen uses AI to help organise the prep list')
+    expect(productHtml).toContain('CulinAIre Kitchen shows ingredients shared by selected dishes')
     expect(productHtml.match(/<h1\b/g)).toHaveLength(1)
 
     mocks.page.mockResolvedValue({

@@ -100,16 +100,17 @@ Preserve these exact brand values in this file and globals.css. Use accessible s
 - Editorial 12-column grid, generous whitespace, full-bleed or quiet text hero; no shadow cards, gradient buttons, parallax, autoplay video or looping motion.
 - Kitchen-story exception: on 28 September 2026 the user approved the 128-second Remotion film and instructed homepage integration. The homepage may use this one finite, muted film that starts when visible, with pause/replay, offscreen and hidden-tab pause, and an initially paused reduced-motion or data-saving state. Defer video transfer until visible or explicitly played. No looping. This authorises application integration; deployment still follows the deployment workflow.
 - Reveal motion: 200–300 ms opacity/transform, respecting prefers-reduced-motion.
-- C4 charcoal default (approved 26 September 2026); explicit light and system preferences plus manual localStorage control.
+- C4 charcoal public theme (approved 26 September 2026); the user removed the colour theme selector on 4 October 2026.
 - Approved signature details: the selected reinforced P/C monogram, lowercase light-weight Fraunces wordmark and Southern Hemisphere seasonal hero. No weather readout.
-- Keep ash/clay off small light-theme text and moss off dark-theme text/focus where contrast fails. WCAG 2.2 AA, semantic landmarks, one h1, skip link and visible focus are required.
+- Keep moss off dark-theme text/focus where contrast fails. WCAG 2.2 AA, semantic landmarks, one h1, skip link and visible focus are required.
 - Mobile targets: Lighthouse Performance, Accessibility, Best Practices and SEO >=95; LCP <2.0s on the documented throttled 4G profile; home JavaScript <120kB gzipped. On 26 September 2026 the user approved retaining the stack with exceptions for the measured 158kB home JavaScript and up-to-2.48s median LCP. Regression ceilings are <160kB and <=2.6s (small measurement tolerance); category scores remain >=95. QUALITY_STRICT_BUDGETS=true restores the original targets.
 
 ## Content and public behaviour
 
 - Australian English. Chef to chef, kitchen nouns before technology nouns. The home priority is chefs and owners understanding Passe Culinaire and exploring CulinAIre Kitchen.
 - CulinAIre Kitchen is the first offer, not the entire company. Retain company identity, training, advisory and publishing scope.
-- Use supplied founder facts only. Unknown facts stay [TO CONFIRM] until confirmed; no invented claims in public structured data. Real testimonials only; seed none.
+- Keep the substantial founder story on Home and About. About is in the main navigation; do not repeat founder biography panels on Training, Services, CulinAIre Kitchen or Contact.
+- Use founder facts supplied by the user or verified in directly attributable first-party sources. Record source URLs for new public biographical claims. Unknown facts stay [TO CONFIRM] until confirmed; no invented claims in public structured data. Real testimonials only; seed none.
 - Banned public copy: leverage, unlock, revolutionise, seamless, cutting-edge, powered by AI, AI-driven, smart, intelligent, next-generation, transform your business. No em dashes, exclamation marks or emoji in public copy.
 - Explain AI with a concrete, verified kitchen example; never invent product capability or savings claims.
 - Admin labels use Journal, Training and Publish. Empty states/errors are short and calm.
