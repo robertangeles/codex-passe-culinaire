@@ -17,7 +17,8 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 - [x] Reconcile the unrelated Git histories. Merge commit `6d0c561` preserves GitHub's initial commit and the application's history, retaining the project's full README.
 - [x] Push `release/render` to GitHub and open [draft pull request #1](https://github.com/robertangeles/codex-passe-culinaire/pull/1) against `main`.
 - [ ] Review the draft pull request and its CI gates, then connect the intended Git branch to Render. [Render can build from a linked Git provider](https://render.com/docs/web-services).
-- [x] Run `pnpm lint && pnpm typecheck && pnpm test && pnpm build` against the project's separate test database before the release. All four passed on 12 October 2026; 63 test files and 359 tests passed. Never run `pnpm test` against production; its setup resets the test schema.
+- [x] Run `pnpm lint && pnpm typecheck && pnpm test && pnpm build` against the project's separate test database before the release. All four passed on 12 October 2026; 63 test files and 360 tests passed. Never run `pnpm test` against production; its setup resets the test schema.
+- [ ] Resolve the GitHub mobile performance gate before merge. Integration and browser CI pass. The same 21 Lighthouse measurements passed locally on 12 October, but three GitHub attempts fell below the required 95 median on different pages (About, CulinAIre Kitchen, then Services and Journal). Keep the threshold at 95; investigate runner variability or improve rendering before treating CI as accepted.
 - [x] Pin Node 22 for Render with `.node-version` (`22.22.3`) and an upper bound in `package.json`. Do not override it with a different `NODE_VERSION` service setting. [Render Node version rules](https://render.com/docs/node-version).
 
 ## 2. Set up Render resources
