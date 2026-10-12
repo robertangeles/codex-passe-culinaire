@@ -32,7 +32,7 @@ For a bad code deployment, use Render's deploy history to redeploy the prior kno
 
 ## Domain cutover
 
-Do not change GoDaddy DNS until the Render URL passes launch checks, including contact inbox receipt and durable off-platform backup retention. The user approved the nine genuine eligible links already in `llms.txt` for launch on 13 October 2026. `passeculinaire.com` and `www.passeculinaire.com` are already attached to this Render service, pending DNS verification; Render will redirect `www` to the root.
+Do not change GoDaddy DNS until the Render URL passes launch checks, including durable off-platform backup retention. Rob confirmed receipt of the one live Render contact test on 13 October 2026. The user approved the nine genuine eligible links already in `llms.txt` for launch on the same date. `passeculinaire.com` and `www.passeculinaire.com` are already attached to this Render service, pending DNS verification; Render will redirect `www` to the root.
 
 1. Capture the full DNS zone, especially MX, SPF, DKIM and DMARC. Pause admin edits for the cutover window.
 2. Change only the GoDaddy web records: root `@` A to Render's documented `216.24.57.1` and `www` CNAME to `cc-passe-culinaire.onrender.com`; remove conflicting web A/AAAA/forwarding records after reviewing them. Preserve email and Resend records. Keep `NEXT_PUBLIC_SERVER_URL` on the Render address while DNS propagates. Publication jobs send the revalidation secret to that configured origin; changing it before DNS reaches Render would send the secret to the old host.
