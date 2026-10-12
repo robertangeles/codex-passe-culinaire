@@ -12,9 +12,10 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 
 ## 1. Release the source
 
-- [ ] Review and commit the approved site changes and both founder portraits. The current worktree has many uncommitted files, including the portrait files; Render cannot build local-only changes.
-- [ ] Reconcile the unrelated Git histories before pushing: GitHub's `main` currently has only an initial `README.md`, while this checkout has the application history. Preserve both histories; do not force-push over GitHub's initial commit. Then push the intended release branch and connect it to Render. [Render can build from a linked Git provider](https://render.com/docs/web-services).
-- [ ] Run `pnpm lint && pnpm typecheck && pnpm test && pnpm build` against the project's separate test database before the release. Never run `pnpm test` against production; its setup resets the test schema.
+- [x] Review and commit the approved site changes and both founder portraits. The release commit is `e9349ba`; local tool files and design studies remain outside the release.
+- [x] Reconcile the unrelated Git histories. Merge commit `6d0c561` preserves GitHub's initial commit and the application's history, retaining the project's full README.
+- [ ] Push `release/render` to GitHub, review it in a draft pull request, then connect the intended branch to Render. [Render can build from a linked Git provider](https://render.com/docs/web-services).
+- [x] Run `pnpm lint && pnpm typecheck && pnpm test && pnpm build` against the project's separate test database before the release. All four passed on 12 October 2026; 63 test files and 359 tests passed. Never run `pnpm test` against production; its setup resets the test schema.
 - [ ] Pin Node 22 for Render (for example, `NODE_VERSION=22.22.3`); the current `package.json` range has no upper bound, so Render can select a newer major version. [Render Node version rules](https://render.com/docs/node-version).
 
 ## 2. Set up Render resources
@@ -54,4 +55,4 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 - [ ] At the active DNS host, point the root `@` A record to Render's documented `216.24.57.1`, and `www` CNAME to this service's actual `*.onrender.com` hostname. Remove conflicting web A/AAAA/forwarding records only after checking what they currently serve. Keep mail and Resend verification records. [Render DNS records](https://render.com/docs/configure-other-dns).
 - [ ] Verify the domain in Render, allow TLS issuance, and confirm HTTPS, the `www` redirect, the contact form, public images, sitemap and canonical URLs from outside the development machine. Render manages the certificate. [Custom-domain verification](https://render.com/docs/custom-domains).
 
-**First next step:** review and commit the approved local changes, then reconcile the two Git histories and push the release branch. The database/media choice and the three VPS-specific adaptations above must be settled before the public DNS switch.
+**First next step:** push `release/render`, review the draft pull request, and settle the database/media choice and VPS-specific adaptations before connecting the production service or changing DNS.
