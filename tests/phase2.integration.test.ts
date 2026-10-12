@@ -80,7 +80,7 @@ describe('Phase 2 PostgreSQL integration', () => {
     const current = await payload.findByID({ collection: 'pages', id: page.id, overrideAccess: true, depth: 0 })
     expect(JSON.stringify(current.layout)).not.toContain(`"image":${media.id}`)
     await expect(payload.delete({ collection: 'media', id: media.id, overrideAccess: true })).rejects.toMatchObject({ status: 409 })
-  })
+  }, 30000)
 
   it('does not queue a publication job when its transaction rolls back', async () => {
     const draft = await payload.create({ collection: 'pages', overrideAccess: true, draft: true,

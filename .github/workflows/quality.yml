@@ -54,7 +54,7 @@ jobs:
           mkdir -p .local/caddy-download .local/bin
           gh release download v2.11.4 --repo caddyserver/caddy --pattern caddy_2.11.4_linux_amd64.tar.gz --pattern caddy_2.11.4_checksums.txt --dir .local/caddy-download
           cd .local/caddy-download
-          sha256sum --check --ignore-missing caddy_2.11.4_checksums.txt
+          sha512sum --check --ignore-missing caddy_2.11.4_checksums.txt
           tar -xzf caddy_2.11.4_linux_amd64.tar.gz -C ../bin caddy
           ../bin/caddy version
       - name: Browser gate

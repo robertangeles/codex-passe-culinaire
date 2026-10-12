@@ -5,6 +5,7 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 ## Already confirmed
 
 - [x] The **Passe Culinaire** Render project exists (confirmed by Rob). A [Render project](https://render.com/docs/projects) groups resources; the web service and database still need to be confirmed or created inside its production environment.
+- [x] Render CLI access is confirmed. The project's Production environment currently holds the separate CulinAIre Kitchen web service and its DEV/PROD databases. Leave those resources untouched; this website needs its own web service and database.
 - [x] Render MCP is installed in Codex and OAuth sign-in completed.
 - [x] The private [GitHub repository](https://github.com/robertangeles/codex-passe-culinaire) is linked as this checkout's `origin`. GitHub access is confirmed.
 - [x] One Resend notification reached Rob's inbox from the local contact workflow. Keep Alex off the notification list for now.
@@ -21,17 +22,17 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 
 ## 2. Set up Render resources
 
-- [ ] Confirm Render management access in the active session. The Render MCP is configured, but its tools are not exposed in this session; the separate Render CLI currently returns `unauthorized`. Reconnect the MCP in a new session or sign in with `render login` before provisioning.
-- [ ] Create or confirm a **Node web service** and **Render Postgres** in the project's production environment, in the same region. This is a server-rendered Next/Payload application, not a static site. Set the health check path to `/api/health`. The service must listen on Render's `PORT` and `0.0.0.0`. [Web service setup](https://render.com/docs/web-services).
+- [x] Confirm Render management access in the active session through the Render CLI.
+- [ ] Create a **separate Node web service** and **Render Postgres** for this website in the project's Production environment, in the same Singapore region as CulinAIre Kitchen. This is a server-rendered Next/Payload application, not a static site. Set the health check path to `/api/health`. The service must listen on Render's `PORT` and `0.0.0.0`. [Web service setup](https://render.com/docs/web-services).
 - [ ] Choose production compute and database plans before accepting recurring charges. Free web services sleep when idle, and Free Postgres expires after 30 days and has no backups; these are unsuitable for the live company site. [Free plan limits](https://render.com/docs/free).
 - [ ] Choose persistent media storage. The app supports `MEDIA_STORAGE=s3` and `MEDIA_STORAGE=local`. Prefer the existing S3 integration if a public HTTPS media URL and private bucket credentials are ready. Otherwise attach a paid persistent disk and set `MEDIA_DIR` to its mount path. Without either, Payload uploads vanish on a restart or deploy. A disk prevents zero-downtime deploys and single-service horizontal scaling. [Render disk behaviour](https://render.com/docs/disks).
-- [ ] Use `pnpm install --frozen-lockfile && pnpm build` as the build command and `pnpm start` as the start command, after a clean Render build rehearsal. Set `NODE_VERSION` and all build-time environment values before that rehearsal. [Render build/start stages](https://render.com/docs/deploys).
+- [ ] Use `pnpm install --frozen-lockfile && pnpm build` as the build command and `env RUN_JOBS=true pnpm start` as the start command on a paid single-instance web service, after a clean Render build rehearsal. Keep `RUN_JOBS=false` in the service environment so build and pre-deploy commands do not start the worker. [Render build/start stages](https://render.com/docs/deploys).
 
 ## 3. Adapt the VPS-specific code and operating plan
 
 - [x] Make the first-run seed work from Render environment variables without requiring a local `.env` file.
 - [x] Support Render's edge-written `CF-Connecting-IP` header for the contact rate limit when `TRUST_PROXY=render`. Continue to use the Caddy-written header only for `TRUST_PROXY=true`; never use a client-supplied `X-Forwarded-For` value. [Render's client-IP guidance](https://render.com/articles/host-pocketbase-on-render).
-- [ ] On a paid, single-instance web service, set `RUN_JOBS=true` to use the existing ten-second Payload `autoRun`. Do not also configure Render cron or the VPS systemd timer. Verify scheduled publish/unpublish and dependent HTML/exports within **60 seconds** at the Render URL. [Payload job runner guidance](https://payloadcms.com/docs/jobs-queue/schedules).
+- [ ] On a paid, single-instance web service, enable the existing ten-second Payload `autoRun` only in the start command. Do not also configure Render cron or the VPS systemd timer. Verify scheduled publish/unpublish and dependent HTML/exports within **60 seconds** at the Render URL. [Payload job runner guidance](https://payloadcms.com/docs/jobs-queue/schedules).
 - [ ] Rehearse migration/seed/build ordering against a clean Render database. Use committed migrations (`push: false`); do not assume a fresh database has tables during `next build`. A paid web service can run `pnpm migrate` in a pre-deploy command. Seed once on initial setup, not on every deploy. [Pre-deploy commands](https://render.com/docs/deploys).
 - [ ] Replace VPS-only backup, Caddy, systemd and readiness steps in `docs/DEPLOY.md` with a Render runbook before launch. Arrange database and media restore tests, monitoring and rollback. [Render Postgres backups](https://render.com/docs/postgresql-backups).
 
@@ -41,7 +42,7 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 - [ ] Set the initial Rob and Alex admin emails/passwords for the one-time seed. Do not commit these values.
 - [ ] Set `MAIL_PROVIDER=resend`, a production `RESEND_API_KEY`, the verified `MAIL_FROM_ADDRESS`, and `CONTACT_TO_ADDRESS` with **Rob's address only** for the first live test. The local `.env` does not automatically configure Render. Add Alex only when requested.
 - [ ] Set the selected media variables. For S3: `MEDIA_STORAGE=s3`, bucket, region, access credentials and crawler-accessible HTTPS `S3_PUBLIC_BASE_URL`. For disk: `MEDIA_STORAGE=local` and absolute `MEDIA_DIR` at the disk mount.
-- [ ] Set `TRUST_PROXY=render` and `RUN_JOBS=true` on the paid single-instance web service, then verify both live. Do not copy the VPS `TRUST_PROXY=true` or systemd settings. [Render environment variables](https://render.com/docs/configure-environment-variables).
+- [ ] Set `TRUST_PROXY=render` and `RUN_JOBS=false` in the Render environment, with `RUN_JOBS=true` only in the web start command, then verify both live. Do not copy the VPS `TRUST_PROXY=true` or systemd settings. [Render environment variables](https://render.com/docs/configure-environment-variables).
 
 ## 5. Bring up and inspect the Render URL first
 
@@ -52,7 +53,8 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 
 ## 6. Move the GoDaddy domain only after the service is ready
 
-- [ ] Confirm `passeculinaire.com` uses GoDaddy nameservers. If it uses another DNS host, edit records there instead. Export or capture the existing DNS zone, especially email MX, SPF, DKIM and DMARC records. [GoDaddy DNS management](https://www.godaddy.com/en-uk/help/manage-dns-records-680).
+- [x] Public DNS currently uses GoDaddy nameservers (`ns19.domaincontrol.com`, `ns20.domaincontrol.com`). The root has A records `3.33.130.190` and `15.197.148.33`; `www` is a CNAME to the root. Google MX records are present. These are observations from 12 October 2026, not a complete zone export.
+- [ ] Export or capture the full DNS zone immediately before cutover, especially email MX, SPF, DKIM and DMARC records. [GoDaddy DNS management](https://www.godaddy.com/en-uk/help/manage-dns-records-680).
 - [ ] Add `passeculinaire.com` as the custom domain on the **Render web service**; Render also adds `www` and redirects it to the root. [Render custom domains](https://render.com/docs/custom-domains).
 - [ ] At the active DNS host, point the root `@` A record to Render's documented `216.24.57.1`, and `www` CNAME to this service's actual `*.onrender.com` hostname. Remove conflicting web A/AAAA/forwarding records only after checking what they currently serve. Keep mail and Resend verification records. [Render DNS records](https://render.com/docs/configure-other-dns).
 - [ ] Verify the domain in Render, allow TLS issuance, and confirm HTTPS, the `www` redirect, the contact form, public images, sitemap and canonical URLs from outside the development machine. Render manages the certificate. [Custom-domain verification](https://render.com/docs/custom-domains).
