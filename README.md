@@ -9,7 +9,7 @@ pnpm seed
 pnpm dev
 ```
 
-Open `/` for the public shell and `/admin` for Payload. The seed creates two admins from private environment credentials, 12 labelled image placeholders, four published company pages, and draft services, training entries and journal posts. It preserves existing records and non-empty globals on repeat. The placeholders and draft offerings are editorial starting points, not production claims. Replace or confirm them before publishing. The ten eligible curated `llms.txt` links remain a production content gate.
+Open `/` for the public shell and `/admin` for Payload. The seed creates two admins from private environment credentials, 12 labelled image placeholders, four published company pages, and draft services, training entries and journal posts. It preserves existing records and non-empty globals on repeat. The placeholders and draft offerings are editorial starting points, not production claims. Replace or confirm them before publishing. The launch `llms.txt` index contains nine genuine eligible links, as approved on 13 October 2026.
 
 Changes to Payload fields require a committed migration. Run `pnpm migrate:create <name>` after a schema change, inspect the generated SQL, and run `pnpm migrate` before starting the changed app. Database push mode is disabled. `pnpm test` migrates and seeds only the separate local test database, uses `.local/test-media`, and leaves the application database intact. It requires `psql` in `PATH` and the test database to exist.
 

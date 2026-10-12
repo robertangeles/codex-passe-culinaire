@@ -104,6 +104,7 @@ Preserve these exact brand values in this file and globals.css. Use accessible s
 - Approved signature details: the selected reinforced P/C monogram, lowercase light-weight Fraunces wordmark and Southern Hemisphere seasonal hero. No weather readout.
 - Keep moss off dark-theme text/focus where contrast fails. WCAG 2.2 AA, semantic landmarks, one h1, skip link and visible focus are required.
 - Mobile targets: Lighthouse Performance, Accessibility, Best Practices and SEO >=95; LCP <2.0s on the documented throttled 4G profile; home JavaScript <120kB gzipped. On 26 September 2026 the user approved retaining the stack with exceptions for the measured 158kB home JavaScript and up-to-2.48s median LCP. Regression ceilings are <160kB and <=2.6s (small measurement tolerance); category scores remain >=95. QUALITY_STRICT_BUDGETS=true restores the original targets.
+- On 13 October 2026 the user approved the documented local Lighthouse run at these unchanged thresholds as the Render release performance gate because GitHub's shared runner produced inconsistent CPU measurements. Keep the red GitHub performance job visible; do not describe it as passing.
 
 ## Content and public behaviour
 
@@ -117,7 +118,7 @@ Preserve these exact brand values in this file and globals.css. Use accessible s
 - Every public content route is server-rendered or statically generated with its text in HTML. Preview and private responses must never enter shared public caches.
 - Public Payload Local API calls must respect access controls and publication rules. Public author projections exclude authentication/private fields.
 - noIndex content is excluded from sitemap, feeds and LLM exports; sitemap-only exclusion affects sitemap only.
-- Keep public media crawler-accessible while preserving the required /api robots disallow. The exact ten-link llms.txt requirement remains a production content gate.
+- Keep public media crawler-accessible while preserving the required /api robots disallow. On 13 October 2026 the user approved nine genuine, eligible `llms.txt` links for launch; do not add a filler page to reach ten.
 - Changes become public within 60 seconds without a rebuild; prove commit/invalidation ordering and dependent-output freshness.
 - Commit migrations; no schema push mode. Use private environment configuration for admin credentials. Never commit working secrets.
 - Preserve all existing project tools and unrelated user work.
