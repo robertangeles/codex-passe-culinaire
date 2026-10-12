@@ -16,7 +16,7 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 - [x] Reconcile the unrelated Git histories. Merge commit `6d0c561` preserves GitHub's initial commit and the application's history, retaining the project's full README.
 - [ ] Push `release/render` to GitHub, review it in a draft pull request, then connect the intended branch to Render. [Render can build from a linked Git provider](https://render.com/docs/web-services).
 - [x] Run `pnpm lint && pnpm typecheck && pnpm test && pnpm build` against the project's separate test database before the release. All four passed on 12 October 2026; 63 test files and 359 tests passed. Never run `pnpm test` against production; its setup resets the test schema.
-- [ ] Pin Node 22 for Render (for example, `NODE_VERSION=22.22.3`); the current `package.json` range has no upper bound, so Render can select a newer major version. [Render Node version rules](https://render.com/docs/node-version).
+- [x] Pin Node 22 for Render with `.node-version` (`22.22.3`) and an upper bound in `package.json`. Do not override it with a different `NODE_VERSION` service setting. [Render Node version rules](https://render.com/docs/node-version).
 
 ## 2. Set up Render resources
 
@@ -27,9 +27,9 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 
 ## 3. Adapt the VPS-specific code and operating plan
 
-- [ ] Make the first-run seed work from Render environment variables without requiring a local `.env` file. `scripts/seed.ts` currently calls `process.loadEnvFile('.env')`, while `.env` is Git-ignored.
-- [ ] Rework the contact rate-limit peer IP for Render's proxy. It currently trusts a header written by Caddy; on Render, missing that header makes all visitors share one five-enquiries-per-hour limit. Verify Render's forwarded-header behaviour before trusting a replacement. [Render's client-IP guidance](https://render.com/articles/how-render-handles-ddos-attacks).
-- [ ] Decide how publication jobs run every ten seconds or otherwise prove the required **under-60-second** content freshness on Render. The current systemd timer belongs to the VPS design. Render cron jobs use minute-based schedules; a one-minute tick may exceed this app's freshness gate. Keep exactly one active scheduler and test publication/unpublication. [Render cron jobs](https://render.com/docs/cronjobs).
+- [x] Make the first-run seed work from Render environment variables without requiring a local `.env` file.
+- [x] Support Render's edge-written `CF-Connecting-IP` header for the contact rate limit when `TRUST_PROXY=render`. Continue to use the Caddy-written header only for `TRUST_PROXY=true`; never use a client-supplied `X-Forwarded-For` value. [Render's client-IP guidance](https://render.com/articles/host-pocketbase-on-render).
+- [ ] On a paid, single-instance web service, set `RUN_JOBS=true` to use the existing ten-second Payload `autoRun`. Do not also configure Render cron or the VPS systemd timer. Verify scheduled publish/unpublish and dependent HTML/exports within **60 seconds** at the Render URL. [Payload job runner guidance](https://payloadcms.com/docs/jobs-queue/schedules).
 - [ ] Rehearse migration/seed/build ordering against a clean Render database. Use committed migrations (`push: false`); do not assume a fresh database has tables during `next build`. A paid web service can run `pnpm migrate` in a pre-deploy command. Seed once on initial setup, not on every deploy. [Pre-deploy commands](https://render.com/docs/deploys).
 - [ ] Replace VPS-only backup, Caddy, systemd and readiness steps in `docs/DEPLOY.md` with a Render runbook before launch. Arrange database and media restore tests, monitoring and rollback. [Render Postgres backups](https://render.com/docs/postgresql-backups).
 
@@ -39,7 +39,7 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 - [ ] Set the initial Rob and Alex admin emails/passwords for the one-time seed. Do not commit these values.
 - [ ] Set `MAIL_PROVIDER=resend`, a production `RESEND_API_KEY`, the verified `MAIL_FROM_ADDRESS`, and `CONTACT_TO_ADDRESS` with **Rob's address only** for the first live test. The local `.env` does not automatically configure Render. Add Alex only when requested.
 - [ ] Set the selected media variables. For S3: `MEDIA_STORAGE=s3`, bucket, region, access credentials and crawler-accessible HTTPS `S3_PUBLIC_BASE_URL`. For disk: `MEDIA_STORAGE=local` and absolute `MEDIA_DIR` at the disk mount.
-- [ ] Set the final proxy/jobs values only after their Render adaptations are tested. Do not copy the VPS `TRUST_PROXY=true` or systemd settings blindly. [Render environment variables](https://render.com/docs/configure-environment-variables).
+- [ ] Set `TRUST_PROXY=render` and `RUN_JOBS=true` on the paid single-instance web service, then verify both live. Do not copy the VPS `TRUST_PROXY=true` or systemd settings. [Render environment variables](https://render.com/docs/configure-environment-variables).
 
 ## 5. Bring up and inspect the Render URL first
 

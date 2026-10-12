@@ -62,9 +62,13 @@ export async function sendContactMessage(
   try {
     const payload = await getPayload({ config })
     const requestHeaders = await headers()
-    const forwardedPeer = requestHeaders.get('x-passe-client-ip')
-    const peerIp = process.env.TRUST_PROXY === 'true' && forwardedPeer && isIP(forwardedPeer) !== 0
-      ? forwardedPeer
+    const trustedPeer = process.env.TRUST_PROXY === 'render'
+      ? requestHeaders.get('cf-connecting-ip')
+      : process.env.TRUST_PROXY === 'true'
+        ? requestHeaders.get('x-passe-client-ip')
+        : null
+    const peerIp = trustedPeer && isIP(trustedPeer) !== 0
+      ? trustedPeer
       : 'untrusted-source'
     const result = await submitContact(payload, validated, peerIp)
     const receipt = `Reference ${result.id}`

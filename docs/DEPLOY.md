@@ -125,11 +125,9 @@ sudo install -m 0644 /srv/passe-culinaire/current/deploy/systemd/passe-culinaire
 sudo systemctl daemon-reload
 ```
 
-Run migration with the production environment, waiting for its exit status. Only seed the production database on initial setup; repeat seeds preserve existing records but must not become an unattended upgrade step. The seed expects a `.env` file, so create an empty mode-0600 file in the release before running it; existing process environment has priority. Leave that file empty in production.
+Run migration with the production environment, waiting for its exit status. Only seed the production database on initial setup; repeat seeds preserve existing records but must not become an unattended upgrade step. The seed reads process environment values and loads a local `.env` only when that file exists.
 
 ```sh
-sudo -u passe touch /srv/passe-culinaire/current/.env
-sudo chmod 600 /srv/passe-culinaire/current/.env
 sudo systemd-run --wait --pipe --collect --property=User=passe --property=WorkingDirectory=/srv/passe-culinaire/current --property=EnvironmentFile=/etc/passe-culinaire.env /srv/passe-culinaire/node/bin/node node_modules/payload/bin.js migrate
 sudo systemd-run --wait --pipe --collect --property=User=passe --property=WorkingDirectory=/srv/passe-culinaire/current --property=EnvironmentFile=/etc/passe-culinaire.env /srv/passe-culinaire/node/bin/node node_modules/tsx/dist/cli.mjs scripts/seed.ts
 ```

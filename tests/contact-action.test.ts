@@ -102,6 +102,21 @@ describe('sendContactMessage', () => {
     expect(mocks.submitContact.mock.calls[2]?.[2]).toBe('untrusted-source')
   })
 
+  it('uses the Render edge client IP when configured for Render', async () => {
+    process.env.TRUST_PROXY = 'render'
+    mocks.headers.mockResolvedValue(headers({
+      'cf-connecting-ip': '2001:db8::2',
+      'x-passe-client-ip': '198.51.100.8',
+      'x-forwarded-for': '198.51.100.77',
+    }))
+    await sendContactMessage(previousState, formData())
+    expect(mocks.submitContact.mock.calls[0]?.[2]).toBe('2001:db8::2')
+
+    mocks.headers.mockResolvedValue(headers({ 'cf-connecting-ip': 'not-an-ip' }))
+    await sendContactMessage(previousState, formData())
+    expect(mocks.submitContact.mock.calls[1]?.[2]).toBe('untrusted-source')
+  })
+
   it.each([
     ['saved', 'Your message has been saved.'],
     ['emailed', 'Your message has been saved and an email notification sent.'],

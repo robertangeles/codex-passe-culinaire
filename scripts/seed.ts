@@ -1,9 +1,10 @@
 import sharp from 'sharp'
+import { existsSync } from 'node:fs'
 import { ensureHomepageImage, homepageLayout } from './homepage-content'
 import { getPayload } from 'payload'
 import type { Page, Post } from '../src/payload-types'
 
-process.loadEnvFile('.env')
+if (existsSync('.env')) process.loadEnvFile('.env')
 const { default: config } = await import('../src/payload.config')
 const payload = await getPayload({ config })
 
