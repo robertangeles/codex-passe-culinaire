@@ -14,12 +14,14 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 
 - [x] Review and commit the approved site changes and both founder portraits. The release commit is `e9349ba`; local tool files and design studies remain outside the release.
 - [x] Reconcile the unrelated Git histories. Merge commit `6d0c561` preserves GitHub's initial commit and the application's history, retaining the project's full README.
-- [ ] Push `release/render` to GitHub, review it in a draft pull request, then connect the intended branch to Render. [Render can build from a linked Git provider](https://render.com/docs/web-services).
+- [x] Push `release/render` to GitHub and open [draft pull request #1](https://github.com/robertangeles/codex-passe-culinaire/pull/1) against `main`.
+- [ ] Review the draft pull request and its CI gates, then connect the intended Git branch to Render. [Render can build from a linked Git provider](https://render.com/docs/web-services).
 - [x] Run `pnpm lint && pnpm typecheck && pnpm test && pnpm build` against the project's separate test database before the release. All four passed on 12 October 2026; 63 test files and 359 tests passed. Never run `pnpm test` against production; its setup resets the test schema.
 - [x] Pin Node 22 for Render with `.node-version` (`22.22.3`) and an upper bound in `package.json`. Do not override it with a different `NODE_VERSION` service setting. [Render Node version rules](https://render.com/docs/node-version).
 
 ## 2. Set up Render resources
 
+- [ ] Confirm Render management access in the active session. The Render MCP is configured, but its tools are not exposed in this session; the separate Render CLI currently returns `unauthorized`. Reconnect the MCP in a new session or sign in with `render login` before provisioning.
 - [ ] Create or confirm a **Node web service** and **Render Postgres** in the project's production environment, in the same region. This is a server-rendered Next/Payload application, not a static site. Set the health check path to `/api/health`. The service must listen on Render's `PORT` and `0.0.0.0`. [Web service setup](https://render.com/docs/web-services).
 - [ ] Choose production compute and database plans before accepting recurring charges. Free web services sleep when idle, and Free Postgres expires after 30 days and has no backups; these are unsuitable for the live company site. [Free plan limits](https://render.com/docs/free).
 - [ ] Choose persistent media storage. The app supports `MEDIA_STORAGE=s3` and `MEDIA_STORAGE=local`. Prefer the existing S3 integration if a public HTTPS media URL and private bucket credentials are ready. Otherwise attach a paid persistent disk and set `MEDIA_DIR` to its mount path. Without either, Payload uploads vanish on a restart or deploy. A disk prevents zero-downtime deploys and single-service horizontal scaling. [Render disk behaviour](https://render.com/docs/disks).
@@ -55,4 +57,4 @@ Status checked 12 October 2026. This is a launch plan, not a record of a live de
 - [ ] At the active DNS host, point the root `@` A record to Render's documented `216.24.57.1`, and `www` CNAME to this service's actual `*.onrender.com` hostname. Remove conflicting web A/AAAA/forwarding records only after checking what they currently serve. Keep mail and Resend verification records. [Render DNS records](https://render.com/docs/configure-other-dns).
 - [ ] Verify the domain in Render, allow TLS issuance, and confirm HTTPS, the `www` redirect, the contact form, public images, sitemap and canonical URLs from outside the development machine. Render manages the certificate. [Custom-domain verification](https://render.com/docs/custom-domains).
 
-**First next step:** push `release/render`, review the draft pull request, and settle the database/media choice and VPS-specific adaptations before connecting the production service or changing DNS.
+**First next step:** finish the draft PR's CI checks, confirm Render management access and the media choice, then provision the production service and database. Keep GoDaddy DNS unchanged until the Render URL passes launch checks.
