@@ -61,7 +61,7 @@ Status checked 12 October 2026. The site is live at its temporary Render address
 
 - [x] Public DNS currently uses GoDaddy nameservers (`ns19.domaincontrol.com`, `ns20.domaincontrol.com`). The root has A records `3.33.130.190` and `15.197.148.33`; `www` is a CNAME to the root. Google MX records are present. These are observations from 12 October 2026, not a complete zone export.
 - [ ] Export or capture the full DNS zone immediately before cutover, especially email MX, SPF, DKIM and DMARC records. [GoDaddy DNS management](https://www.godaddy.com/en-uk/help/manage-dns-records-680).
-- [ ] Add `passeculinaire.com` as the custom domain on the **Render web service**; Render also adds `www` and redirects it to the root. [Render custom domains](https://render.com/docs/custom-domains).
+- [x] Add `passeculinaire.com` as the custom domain on **this** Render web service. Render also added `www.passeculinaire.com` with a redirect to the root. Both show **Waiting for DNS / Waiting for Verification** while GoDaddy still points elsewhere. [Render custom domains](https://render.com/docs/custom-domains).
 - [ ] At the active DNS host, point the root `@` A record to Render's documented `216.24.57.1`, and `www` CNAME to this service's actual `*.onrender.com` hostname. Remove conflicting web A/AAAA/forwarding records only after checking what they currently serve. Keep mail and Resend verification records. [Render DNS records](https://render.com/docs/configure-other-dns).
 - [ ] Verify the domain in Render, allow TLS issuance, and confirm HTTPS, the `www` redirect, the contact form, public images, sitemap and canonical URLs from outside the development machine. Render manages the certificate. [Custom-domain verification](https://render.com/docs/custom-domains).
 
