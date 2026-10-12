@@ -65,7 +65,7 @@ At the end of every phase run `pnpm lint && pnpm typecheck && pnpm test && pnpm 
 - `tests/`: Vitest and Playwright coverage.
 - `docs/PLAN.md`: approved plan and review record, parent-owned.
 - `docs/designs/`: approved design, sketch and review evidence.
-- `docs/DEPLOY.md`: plain Node VPS deployment and recovery instructions.
+- `docs/DEPLOY.md`: current Render production deployment and recovery instructions. Historical plain Node VPS procedures are in `docs/DEPLOY-VPS.md`.
 - The supported Payload integration determines the exact config/generated file locations after installed docs/types are checked.
 
 ## Design tokens

@@ -1,6 +1,8 @@
 # Passe Culinaire build plan
 
-Status: implementation scope approved with defaults; visual acceptance reopened on 26 September 2026 following the user’s rejection of the current presentation. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–7 are accepted for local implementation, with explicitly approved Phase 6 performance exceptions. Live deployment and production content inputs remain outstanding. The ten-link LLM index remains a production content gate. See the latest checkpoint below.
+Status: implementation scope approved with defaults; visual acceptance reopened on 26 September 2026 following the user’s rejection of the current presentation. Office-hours design and sketch approved; CEO and engineering plan reviews complete. Phases 1–7 are accepted for local implementation, with explicitly approved Phase 6 performance exceptions. The ten-link LLM index remains a production content gate. See the latest checkpoint below.
+
+**Render deployment update, 12 October 2026:** The user replaced the earlier VPS target with one Render **Passe Culinaire / Production** environment and approved the Starter web service, Basic PostgreSQL database and 1 GB media disk at approximately $13.25/month. `cc-passe-culinaire` is live at its temporary `onrender.com` URL with the restored site content and media. The older VPS defaults and phase notes below remain historical. Current operating instructions and outstanding domain-cutover gates are in [DEPLOY.md](DEPLOY.md) and [RENDER-DEPLOY-CHECKLIST.md](RENDER-DEPLOY-CHECKLIST.md). GoDaddy DNS has not changed.
 
 ## 1. Approved defaults and remaining production inputs
 
