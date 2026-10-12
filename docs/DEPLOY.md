@@ -20,6 +20,8 @@ The temporary site URL is <https://cc-passe-culinaire.onrender.com>. GoDaddy DNS
 
 As observed on 12 October 2026, Render CLI v2.20.0 accepted `services update` command flags without changing the nested build/start settings. Verify the stored values after any CLI update; use the service Settings page if they remain unchanged. Its deployment logs confirmed Node 22.22.3 from `.node-version` during the real build.
 
+The live worker was checked with a temporary page on 12 October 2026. Scheduled publish reached HTML and the page sitemap after 24.2 seconds; scheduled unpublish removed it from both after 23.5 seconds. The curated LLM index did not include the test page. The page was deleted, and the production database again has four real pages.
+
 ## Media, backups and recovery
 
 Media writes belong on the attached disk. Files under other runtime paths are ephemeral. The disk is unavailable during build and pre-deploy, so never put media migration in those commands. Use the service's SSH address and SFTP/SCP for a private transfer; verify Render Singapore's published SSH host fingerprint first. A 135-file media archive was transferred and checksum-checked on 12 October 2026. The temporary archive was removed after extraction.
