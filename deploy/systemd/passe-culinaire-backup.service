@@ -1,0 +1,11 @@
+[Unit]
+Description=Back up matching Passe Culinaire database and local media
+After=postgresql.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/passe-culinaire.env
+Environment=PATH=/usr/lib/postgresql/16/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ExecStart=/bin/bash /srv/passe-culinaire/current/deploy/backup.sh
+TimeoutStartSec=65min
+UMask=0077

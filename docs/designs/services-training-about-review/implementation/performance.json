@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-02",
+  "command": "pnpm test:performance",
+  "result": "pass",
+  "runs": 21,
+  "results": [
+    {
+      "path": "/",
+      "runs": 3,
+      "medianLCPms": 2105,
+      "medianScores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "path": "/services",
+      "runs": 3,
+      "medianLCPms": 2369,
+      "medianScores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "path": "/training",
+      "runs": 3,
+      "medianLCPms": 1952,
+      "medianScores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "path": "/about",
+      "runs": 3,
+      "medianLCPms": 2251,
+      "medianScores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "path": "/culinaire-kitchen",
+      "runs": 3,
+      "medianLCPms": 2252,
+      "medianScores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "path": "/journal",
+      "runs": 3,
+      "medianLCPms": 2290,
+      "medianScores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "path": "/contact",
+      "runs": 3,
+      "medianLCPms": 2253,
+      "medianScores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    }
+  ]
+}

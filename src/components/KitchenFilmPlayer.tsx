@@ -1,0 +1,291 @@
+'use client'
+
+import { useEffect, useRef, type ReactNode } from 'react'
+
+const FILM_DURATION = 128
+const PORTRAIT_MAX_WIDTH = 760
+
+type SaveDataConnection = {
+  saveData?: boolean
+}
+
+type NavigatorWithConnection = Navigator & {
+  connection?: SaveDataConnection
+}
+
+function formatTime(seconds: number): string {
+  const safeSeconds = Number.isFinite(seconds)
+    ? Math.max(0, Math.min(FILM_DURATION, seconds))
+    : 0
+
+  return `${Math.floor(safeSeconds / 60)}:${String(Math.floor(safeSeconds % 60)).padStart(2, '0')}`
+}
+
+export function KitchenFilmPlayer({ children, autoStart = true, className }: { children: ReactNode; autoStart?: boolean; className?: string }) {
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+
+    const video = root.querySelector<HTMLVideoElement>('video[data-kitchen-video]')
+    const stage = root.querySelector<HTMLElement>('[data-film-stage]')
+    const poster = root.querySelector<HTMLElement>('[data-film-poster]')
+    const controls = root.querySelector<HTMLElement>('[data-film-controls]')
+    const playButton = root.querySelector<HTMLButtonElement>('button[data-film-play]')
+    const seek = root.querySelector<HTMLInputElement>('input[data-film-seek]')
+    const timeText = root.querySelector<HTMLSpanElement>('span[data-film-time]')
+    const fullscreenButton = root.querySelector<HTMLButtonElement>('button[data-film-fullscreen]')
+    const cinema = root.querySelector<HTMLElement>('[data-film-cinema]')
+    const errorMessage = root.querySelector<HTMLElement>('[data-film-error]')
+
+    if (
+      !video || !stage || !poster || !controls || !playButton || !seek || !timeText ||
+      !fullscreenButton || !cinema || !errorMessage
+    ) return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const connection = (navigator as NavigatorWithConnection).connection
+    const saveData = connection?.saveData === true
+    const format = window.matchMedia(`(max-width: ${PORTRAIT_MAX_WIDTH}px)`).matches
+      ? 'portrait'
+      : 'landscape'
+
+    stage.dataset.format = format
+    video.muted = true
+    video.playsInline = true
+    video.preload = 'none'
+    seek.min = '0'
+    seek.max = String(FILM_DURATION)
+    seek.step = '0.1'
+    controls.hidden = false
+    errorMessage.hidden = true
+
+    let visible = false
+    let sourceAttached = video.hasAttribute('src')
+    let mediaFailed = false
+    let manuallyPaused = false
+    let resumeWhenVisible = false
+    let automaticStartAttempted = false
+    let pendingSeek: number | null = null
+    const listeners: Array<() => void> = []
+    const listen = (target: EventTarget, type: string, handler: EventListener) => {
+      target.addEventListener(type, handler)
+      listeners.push(() => target.removeEventListener(type, handler))
+    }
+
+    const updateTime = (seconds: number) => {
+      const safeSeconds = Number.isFinite(seconds)
+        ? Math.max(0, Math.min(FILM_DURATION, seconds))
+        : 0
+      seek.value = String(safeSeconds)
+      seek.setAttribute('aria-valuetext', `${formatTime(safeSeconds)} of ${formatTime(FILM_DURATION)}`)
+      timeText.textContent = `${formatTime(safeSeconds)} / ${formatTime(FILM_DURATION)}`
+    }
+
+    const updatePlayButton = () => {
+      const playing = !video.paused && !video.ended
+      const label = playing
+        ? 'Pause the kitchen film'
+        : video.ended
+          ? 'Replay the kitchen film'
+          : 'Play the kitchen film'
+      playButton.textContent = playing ? 'Pause' : video.ended ? 'Replay' : 'Play'
+      playButton.setAttribute('aria-label', label)
+    }
+
+    const attachSource = (manual: boolean) => {
+      if (mediaFailed) return false
+      const expectedSource = format === 'portrait'
+        ? video.dataset.mobileSrc
+        : video.dataset.desktopSrc
+      if (!expectedSource) return false
+
+      if (!sourceAttached) {
+        video.poster = format === 'portrait' ? video.dataset.mobilePoster ?? '' : video.dataset.desktopPoster ?? ''
+        video.preload = manual || reducedMotion.matches || saveData ? 'metadata' : 'auto'
+        video.src = expectedSource
+        video.load()
+        sourceAttached = true
+      }
+      return true
+    }
+
+    const play = async (manual: boolean) => {
+      if (mediaFailed || !attachSource(manual)) return
+      if (manual) {
+        automaticStartAttempted = true
+        manuallyPaused = false
+        resumeWhenVisible = false
+      }
+      if (video.ended || video.currentTime >= FILM_DURATION - 0.05) {
+        if (video.readyState >= HTMLMediaElement.HAVE_METADATA) video.currentTime = 0
+        else pendingSeek = 0
+      }
+
+      try {
+        await video.play()
+      } catch {
+        updatePlayButton()
+      }
+    }
+
+    const setTime = (seconds: number) => {
+      const safeSeconds = Number.isFinite(seconds)
+        ? Math.max(0, Math.min(FILM_DURATION, seconds))
+        : 0
+      manuallyPaused = true
+      resumeWhenVisible = false
+      video.pause()
+      updateTime(safeSeconds)
+
+      if (!attachSource(true)) return
+      if (video.readyState >= HTMLMediaElement.HAVE_METADATA) {
+        video.currentTime = safeSeconds
+        pendingSeek = null
+      } else {
+        pendingSeek = safeSeconds
+      }
+    }
+
+    const tryAutomaticStart = () => {
+      if (
+        !autoStart || !visible || manuallyPaused || mediaFailed || document.hidden ||
+        reducedMotion.matches || saveData || automaticStartAttempted
+      ) return
+
+      automaticStartAttempted = true
+      void play(false)
+    }
+
+    const resumeIfAllowed = () => {
+      if (!autoStart || !visible || document.hidden || reducedMotion.matches || mediaFailed || manuallyPaused) return
+      if (resumeWhenVisible) {
+        resumeWhenVisible = false
+        void play(false)
+      } else {
+        tryAutomaticStart()
+      }
+    }
+
+    const pauseForVisibility = () => {
+      if (autoStart && !video.paused && !video.ended && !manuallyPaused) resumeWhenVisible = true
+      video.pause()
+    }
+
+    const handlePlayClick: EventListener = () => {
+      if (video.paused || video.ended) void play(true)
+      else {
+        manuallyPaused = true
+        resumeWhenVisible = false
+        video.pause()
+      }
+    }
+
+    const handleSeek: EventListener = () => setTime(Number(seek.value))
+
+    const handleFullscreenClick: EventListener = async () => {
+      if (document.fullscreenElement) {
+        try {
+          await document.exitFullscreen()
+        } catch {
+          // Browsers may deny a fullscreen transition.
+        }
+      } else {
+        try {
+          await cinema.requestFullscreen()
+        } catch {
+          // Keep inline playback available if fullscreen is denied.
+        }
+      }
+    }
+
+    const handleFullscreenChange: EventListener = () => {
+      const fullscreen = document.fullscreenElement === cinema
+      fullscreenButton.textContent = fullscreen ? 'Exit full screen' : 'Full screen'
+      fullscreenButton.setAttribute(
+        'aria-label',
+        fullscreen ? 'Exit full screen' : 'View the kitchen film full screen',
+      )
+    }
+
+    const handleMetadata: EventListener = () => {
+      if (pendingSeek !== null) {
+        video.currentTime = pendingSeek
+        pendingSeek = null
+      }
+      updateTime(video.currentTime)
+    }
+
+    const handleLoadedData: EventListener = () => {
+      poster.hidden = true
+      video.hidden = false
+      video.classList.add('is-ready')
+      controls.hidden = false
+    }
+
+    const handleMediaError: EventListener = () => {
+      mediaFailed = true
+      video.hidden = true
+      poster.hidden = false
+      errorMessage.hidden = false
+      playButton.disabled = true
+      seek.disabled = true
+      fullscreenButton.disabled = true
+    }
+
+    listen(playButton, 'click', handlePlayClick)
+    listen(seek, 'input', handleSeek)
+    listen(fullscreenButton, 'click', handleFullscreenClick)
+    listen(document, 'fullscreenchange', handleFullscreenChange)
+    listen(video, 'loadedmetadata', handleMetadata)
+    listen(video, 'loadeddata', handleLoadedData)
+    listen(video, 'error', handleMediaError)
+    listen(video, 'timeupdate', () => updateTime(video.currentTime))
+    listen(video, 'seeked', () => updateTime(video.currentTime))
+    listen(video, 'play', updatePlayButton)
+    listen(video, 'pause', updatePlayButton)
+    listen(video, 'ended', () => {
+      updateTime(FILM_DURATION)
+      updatePlayButton()
+      manuallyPaused = false
+      resumeWhenVisible = false
+    })
+    listen(document, 'visibilitychange', () => {
+      if (document.hidden) pauseForVisibility()
+      else resumeIfAllowed()
+    })
+    listen(reducedMotion, 'change', () => {
+      if (reducedMotion.matches) {
+        manuallyPaused = true
+        resumeWhenVisible = false
+        video.pause()
+      }
+    })
+
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries.find((item) => item.target === stage)
+      if (!entry) return
+      visible = entry.intersectionRatio >= 0.5
+      if (visible) {
+        if (autoStart && !sourceAttached && !reducedMotion.matches && !saveData) attachSource(false)
+        resumeIfAllowed()
+      } else {
+        pauseForVisibility()
+      }
+    }, { threshold: [0, 0.5, 1] })
+    observer.observe(stage)
+
+    updateTime(0)
+    updatePlayButton()
+    handleFullscreenChange(new Event('fullscreenchange'))
+
+    return () => {
+      observer.disconnect()
+      listeners.forEach((removeListener) => removeListener())
+      video.pause()
+    }
+  }, [autoStart])
+
+  return <div ref={rootRef} className={className}>{children}</div>
+}

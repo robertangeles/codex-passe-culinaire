@@ -1,0 +1,11 @@
+import { readFile, writeFile } from 'node:fs/promises'
+const read = (name) => readFile(new URL(name, import.meta.url), 'utf8')
+const [template, artwork, props, json] = await Promise.all(['./index.template.html', './actors.svg', './station-props.svg', './story.json'].map(read))
+const story = JSON.parse(json)
+const escape = (value) => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]))
+const records = story.map((act, index) => `<article class="record" id="record-${index}"${index ? ' hidden' : ''}><p class="eyebrow">${escape(act.module)}</p><h2>${escape(act.question)}</h2><dl>${act.rows.map(([label, value]) => `<div class="record-row"><dt>${escape(label)}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl>${index === 7 ? '<div class="sales-comparison" aria-hidden="true"><span>Forecast</span><i class="forecast-bar"></i><span>Actual</span><i class="actual-bar"></i></div>' : ''}${index === 8 ? '<div class="summary-tags"><span>Stock</span><span>Waste</span><span>Team</span><span>Sales</span></div>' : ''}</article>`).join('\n')
+const narrative = story.map((act, index) => `<li><span>${String(index + 1).padStart(2, '0')}</span><div><h3>${escape(act.title)}</h3><p>${escape(act.narrative)}</p><small>${escape(act.module)}</small></div></li>`).join('\n')
+const station = props.replace(/<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '')
+const actors = artwork.replace('<!-- STATION PROPS -->', station)
+const page = template.replace('<!-- ACTORS -->', actors).replace('<!-- RECORDS -->', records).replace('<!-- NARRATIVE -->', narrative).replace('<!-- STORY DATA -->', JSON.stringify(story).replace(/</g, '\\u003c'))
+await writeFile(new URL('./index.html', import.meta.url), page.split('\n').map(line => line.trimEnd()).join('\n'))

@@ -1,0 +1,24 @@
+[
+  {
+    "file": "kitchen-day.mp4",
+    "width": 1600,
+    "height": 900,
+    "durationSeconds": 80,
+    "frames": 1920,
+    "fps": 24,
+    "codec": "H.264 / yuv420p",
+    "bytes": 23167080,
+    "sha256": "dda80a9efcb0938935f599a7ec5653e13a639b839409dd9009111689d1aa5ecd"
+  },
+  {
+    "file": "kitchen-day-mobile.mp4",
+    "width": 720,
+    "height": 720,
+    "durationSeconds": 80,
+    "frames": 1920,
+    "fps": 24,
+    "codec": "H.264 / yuv420p",
+    "bytes": 11365562,
+    "sha256": "f1331da451c587531dc1c1a2664567c2c574a47050b9158ab4d3cef866e0a319"
+  }
+]

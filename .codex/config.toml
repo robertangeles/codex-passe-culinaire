@@ -1,0 +1,27 @@
+# Project-scoped Codex config. Lives at <repo>/.codex/config.toml
+# Sol runs the workflow; Astra is consulted through the advisor role only when needed.
+# Canonical roles live in .codex/agents/. Verify model slugs with `codex debug models`.
+
+model = "gpt-6-sol"
+model_reasoning_effort = "high"
+
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 4
+default_subagent_model = "gpt-6-luna"
+default_subagent_reasoning_effort = "high"
+
+[features]
+hooks = true
+
+[plugins."context-mode@passe-culinaire-tools"]
+enabled = true
+
+[plugins."ponytail@passe-culinaire-tools"]
+enabled = true
+
+[mcp_servers.gbrain]
+command = "/bin/bash"
+args = ["/home/robangeles/Documents/My AI Projects/codex-passe-culinaire/scripts/gbrain", "serve", "--surface", "verbs"]
+startup_timeout_sec = 60
+tool_timeout_sec = 120

@@ -1,0 +1,708 @@
+{
+  "errors": [],
+  "layouts": [
+    {
+      "width": 320,
+      "chapter": 1,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 191
+    },
+    {
+      "width": 320,
+      "chapter": 2,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 191
+    },
+    {
+      "width": 320,
+      "chapter": 3,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 191
+    },
+    {
+      "width": 320,
+      "chapter": 4,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 191
+    },
+    {
+      "width": 320,
+      "chapter": 5,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 191
+    },
+    {
+      "width": 320,
+      "chapter": 6,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 191
+    },
+    {
+      "width": 320,
+      "chapter": 7,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 191
+    },
+    {
+      "width": 320,
+      "chapter": 8,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 191
+    },
+    {
+      "width": 320,
+      "chapter": 9,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 191
+    },
+    {
+      "width": 390,
+      "chapter": 1,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 237
+    },
+    {
+      "width": 390,
+      "chapter": 2,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 237
+    },
+    {
+      "width": 390,
+      "chapter": 3,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 237
+    },
+    {
+      "width": 390,
+      "chapter": 4,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 237
+    },
+    {
+      "width": 390,
+      "chapter": 5,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 237
+    },
+    {
+      "width": 390,
+      "chapter": 6,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 237
+    },
+    {
+      "width": 390,
+      "chapter": 7,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 237
+    },
+    {
+      "width": 390,
+      "chapter": 8,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 237
+    },
+    {
+      "width": 390,
+      "chapter": 9,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 237
+    },
+    {
+      "width": 640,
+      "chapter": 1,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 404
+    },
+    {
+      "width": 640,
+      "chapter": 2,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 404
+    },
+    {
+      "width": 640,
+      "chapter": 3,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 404
+    },
+    {
+      "width": 640,
+      "chapter": 4,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 404
+    },
+    {
+      "width": 640,
+      "chapter": 5,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 404
+    },
+    {
+      "width": 640,
+      "chapter": 6,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 404
+    },
+    {
+      "width": 640,
+      "chapter": 7,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 404
+    },
+    {
+      "width": 640,
+      "chapter": 8,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 404
+    },
+    {
+      "width": 640,
+      "chapter": 9,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 404
+    },
+    {
+      "width": 768,
+      "chapter": 1,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 479
+    },
+    {
+      "width": 768,
+      "chapter": 2,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 479
+    },
+    {
+      "width": 768,
+      "chapter": 3,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 479
+    },
+    {
+      "width": 768,
+      "chapter": 4,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 479
+    },
+    {
+      "width": 768,
+      "chapter": 5,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 479
+    },
+    {
+      "width": 768,
+      "chapter": 6,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 479
+    },
+    {
+      "width": 768,
+      "chapter": 7,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 479
+    },
+    {
+      "width": 768,
+      "chapter": 8,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 479
+    },
+    {
+      "width": 768,
+      "chapter": 9,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 479
+    },
+    {
+      "width": 1024,
+      "chapter": 1,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 649
+    },
+    {
+      "width": 1024,
+      "chapter": 2,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 649
+    },
+    {
+      "width": 1024,
+      "chapter": 3,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 649
+    },
+    {
+      "width": 1024,
+      "chapter": 4,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 649
+    },
+    {
+      "width": 1024,
+      "chapter": 5,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 649
+    },
+    {
+      "width": 1024,
+      "chapter": 6,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 649
+    },
+    {
+      "width": 1024,
+      "chapter": 7,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 649
+    },
+    {
+      "width": 1024,
+      "chapter": 8,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 649
+    },
+    {
+      "width": 1024,
+      "chapter": 9,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 649
+    },
+    {
+      "width": 1100,
+      "chapter": 1,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1100,
+      "chapter": 2,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1100,
+      "chapter": 3,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1100,
+      "chapter": 4,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1100,
+      "chapter": 5,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1100,
+      "chapter": 6,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1100,
+      "chapter": 7,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1100,
+      "chapter": 8,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1100,
+      "chapter": 9,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1280,
+      "chapter": 1,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1280,
+      "chapter": 2,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1280,
+      "chapter": 3,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1280,
+      "chapter": 4,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1280,
+      "chapter": 5,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1280,
+      "chapter": 6,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1280,
+      "chapter": 7,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1280,
+      "chapter": 8,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1280,
+      "chapter": 9,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1440,
+      "chapter": 1,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1440,
+      "chapter": 2,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1440,
+      "chapter": 3,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1440,
+      "chapter": 4,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1440,
+      "chapter": 5,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1440,
+      "chapter": 6,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1440,
+      "chapter": 7,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1440,
+      "chapter": 8,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1440,
+      "chapter": 9,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 620
+    },
+    {
+      "width": 1600,
+      "chapter": 1,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1600,
+      "chapter": 2,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1600,
+      "chapter": 3,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1600,
+      "chapter": 4,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1600,
+      "chapter": 5,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1600,
+      "chapter": 6,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1600,
+      "chapter": 7,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1600,
+      "chapter": 8,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    },
+    {
+      "width": 1600,
+      "chapter": 9,
+      "pageOverflow": false,
+      "storyOverflow": false,
+      "pictureOverflow": false,
+      "stageHeight": 700
+    }
+  ],
+  "chapters": [
+    {
+      "title": "Before the first knife.",
+      "time": 0.05
+    },
+    {
+      "title": "From pantry to section.",
+      "time": 9.05
+    },
+    {
+      "title": "The work behind the plate.",
+      "time": 19.05
+    },
+    {
+      "title": "Preparation becomes service.",
+      "time": 29.05
+    },
+    {
+      "title": "Account for what was used.",
+      "time": 39.05
+    },
+    {
+      "title": "Receive what actually arrives.",
+      "time": 47.05
+    },
+    {
+      "title": "A team with the same picture.",
+      "time": 57.05
+    },
+    {
+      "title": "Close the day with the facts.",
+      "time": 65.05
+    },
+    {
+      "title": "One kitchen. The whole picture.",
+      "time": 73.05
+    }
+  ],
+  "axeDesktop": [],
+  "axeMobile": [],
+  "playbackMs": 80013,
+  "video": {
+    "duration": 80,
+    "time": 80,
+    "playing": false,
+    "totalFrames": 1928,
+    "droppedFrames": 0
+  },
+  "reducedMotion": true,
+  "noJavaScript": true,
+  "mediaFailure": true,
+  "manualPause": true,
+  "offscreenPauseResume": true,
+  "finite": true,
+  "replay": true
+}

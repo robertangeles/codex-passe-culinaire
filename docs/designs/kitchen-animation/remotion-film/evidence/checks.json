@@ -1,0 +1,513 @@
+{
+  "errors": [],
+  "layouts": [
+    {
+      "width": 320,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 42,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 52,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 60,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 68,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 76,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 84,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 94,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 100,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 110,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "time": 120,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 42,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 52,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 60,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 68,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 76,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 84,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 94,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 100,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 110,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 120,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 42,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 52,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 60,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 68,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 76,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 84,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 94,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 100,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 110,
+      "overflow": false
+    },
+    {
+      "width": 760,
+      "time": 120,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 42,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 52,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 60,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 68,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 76,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 84,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 94,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 100,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 110,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 120,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 42,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 52,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 60,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 68,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 76,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 84,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 94,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 100,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 110,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 120,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 0,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 6,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 14,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 22,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 32,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 42,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 52,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 60,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 68,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 76,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 84,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 94,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 100,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 110,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 120,
+      "overflow": false
+    }
+  ],
+  "accessibility": [
+    {
+      "width": 390,
+      "violations": []
+    },
+    {
+      "width": 1440,
+      "violations": []
+    }
+  ],
+  "playback": [
+    {
+      "label": "desktop",
+      "elapsedMs": 128045,
+      "time": 128,
+      "playing": false,
+      "totalFrames": 3850,
+      "droppedFrames": 1
+    },
+    {
+      "label": "mobile",
+      "elapsedMs": 128029,
+      "time": 128,
+      "playing": false,
+      "totalFrames": 3851,
+      "droppedFrames": 3
+    }
+  ],
+  "safeguards": {
+    "finite": true,
+    "replay": true,
+    "manualPause": true,
+    "offscreenPauseResume": true,
+    "reducedMotion": true,
+    "fullscreenControls": true,
+    "keyboardSeeking": true,
+    "hiddenTabPauseEvent": true,
+    "noJavaScript": true,
+    "mediaFailure": true
+  },
+  "features": [
+    "Waste Management",
+    "Rostering",
+    "Inventory",
+    "Purchasing",
+    "Receiving",
+    "Mise en Place",
+    "Production",
+    "Sales",
+    "Recipe Lab",
+    "Patisserie Lab",
+    "Cocktail Lab"
+  ],
+  "duration": 128,
+  "films": {
+    "kitchen-day.mp4": "16a01fba4fd08b83b75fe62d002b641a70364c40a8a44e0baedf65e35e82ce16",
+    "kitchen-day-mobile.mp4": "e70cfbfc022aa09f9fad43ecb78d5dc5b49b4efbb9063e177b2e951937fbb2f7"
+  }
+}

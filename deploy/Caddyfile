@@ -1,0 +1,96 @@
+{
+	admin {$CADDY_ADMIN:localhost:2019}
+	persist_config off
+}
+
+(upstream_headers) {
+	header_up X-Passe-Client-IP {http.request.remote.host}
+	header_down Cache-Control "^s-maxage=(.*)$" "public, s-maxage=$1"
+}
+
+{$SITE_ADDRESS} {
+	encode zstd gzip
+	route {
+		handle_path /assets/fonts/* {
+			root * "{$APP_ROOT}/src/fonts"
+			header Cache-Control "public, max-age=86400"
+			file_server
+		}
+		handle /assets/errors/error.css {
+			root * "{$APP_ROOT}/public/errors"
+			rewrite * /error.css
+			header Cache-Control "public, max-age=3600"
+			file_server
+		}
+
+		@notReady not file {
+			root "{$READINESS_DIR:/run/passe-culinaire}"
+			try_files ready
+		}
+		handle @notReady {
+			header Cache-Control "no-store"
+			header Retry-After "60"
+			@apiUnavailable path /api /api/*
+			handle @apiUnavailable {
+				header Content-Type "application/json"
+				respond `{"error":"Unavailable"}` 503
+			}
+			handle {
+				root * "{$APP_ROOT}/public/errors"
+				rewrite * /503.html
+				file_server {
+					status 503
+				}
+			}
+		}
+
+		@infrastructure path /admin /admin/* /api /api/* /media /media/* /_next/*
+		handle @infrastructure {
+			reverse_proxy 127.0.0.1:{$PORT:3000} {
+				import upstream_headers
+			}
+		}
+
+		handle {
+			reverse_proxy 127.0.0.1:{$PORT:3000} {
+				import upstream_headers
+				@missing status 404
+				handle_response @missing {
+					header Cache-Control "no-store"
+					header X-Robots-Tag "noindex"
+					root * "{$APP_ROOT}/public/errors"
+					rewrite * /404.html
+					file_server {
+						status 404
+					}
+				}
+				@unavailable status 5xx
+				handle_response @unavailable {
+					header Cache-Control "no-store"
+					header Retry-After "60"
+					root * "{$APP_ROOT}/public/errors"
+					rewrite * /503.html
+					file_server {
+						status 503
+					}
+				}
+			}
+		}
+	}
+	handle_errors {
+		header Cache-Control "no-store"
+		header Retry-After "60"
+		@api path /api /api/*
+		handle @api {
+			header Content-Type "application/json"
+			respond `{"error":"Unavailable"}` 503
+		}
+		handle {
+			root * "{$APP_ROOT}/public/errors"
+			rewrite * /503.html
+			file_server {
+				status 503
+			}
+		}
+	}
+}

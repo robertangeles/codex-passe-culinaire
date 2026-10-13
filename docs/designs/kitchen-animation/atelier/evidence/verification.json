@@ -1,0 +1,34 @@
+{
+  "verified_utc": "2026-09-27T06:53:38.365764+00:00",
+  "film_sha256": "ddbb6f430ccb1e91972ff0eb94d7b07da585dbbdd63882b8a3226b2cc2397176",
+  "film_bytes": 15723622,
+  "decoded_frames": 1920,
+  "duration_seconds": 80,
+  "served_film_sha256": "ddbb6f430ccb1e91972ff0eb94d7b07da585dbbdd63882b8a3226b2cc2397176",
+  "browser_report_sha256": "83b95a702ec5559d6a0263a80e4fc45436ee35ddbca99448c911251119c971b8",
+  "desktop_screenshot_sha256": "414161b7a3fdd10a4bf82d7bcf6ec81748d11951c2cbccb37fbd12c3f5e1e654",
+  "mobile_screenshot_sha256": "382a26339e7e98cdfda9089f4870f91e140c515defd09f79815e6eda0fa28de9",
+  "browser": {
+    "playback_ms": 80013,
+    "dropped_frames": 0,
+    "layout_states": 81,
+    "axe_violations": 0,
+    "page_errors": 0
+  },
+  "application": {
+    "command": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "exit_code": 0,
+    "test_files_passed": 57,
+    "tests_passed": 311
+  },
+  "visual_review": {
+    "parent": "PASS",
+    "independent": "PASS",
+    "coverage": "All nine sources, retimed contact motion, full progression, and every chapter boundary. Dense final cooking and sales review."
+  },
+  "runtime_reservation": {
+    "temporary_guard_removed": true,
+    "model_server_restored": true,
+    "persistent_service_file_changed": false
+  }
+}

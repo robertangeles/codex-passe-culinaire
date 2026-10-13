@@ -1,0 +1,587 @@
+.page {
+  color: var(--foreground);
+}
+
+.hero,
+.operationIntro,
+.operationRow,
+.labs,
+.example,
+.film,
+.continuation {
+  box-sizing: border-box;
+  width: min(calc(100% - var(--space-16) - var(--space-16)), 1312px);
+  margin-inline: auto;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: var(--space-16);
+  padding-block: var(--space-12) var(--space-16);
+}
+
+.heroCopy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding-block: var(--space-6);
+}
+
+.kicker {
+  margin: 0 0 var(--space-6);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.heroHeading,
+.sectionHeading {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  line-height: var(--display-leading);
+  letter-spacing: -0.025em;
+  white-space: pre-line;
+}
+
+.heroHeading {
+  max-width: 12ch;
+  font-size: clamp(3rem, 1.5rem + 4.3vw, 5.5rem);
+  white-space: pre-line;
+}
+
+.heroSummary {
+  max-width: 42ch;
+  margin: var(--space-8) 0 0;
+  font-size: var(--step-0);
+  line-height: var(--body-leading);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-8);
+  margin: var(--space-8) 0 var(--space-12);
+}
+
+.primaryAction {
+  display: inline-flex;
+  min-height: var(--space-12);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-6);
+  border: 1px solid var(--foreground);
+  background: var(--foreground);
+  color: var(--surface) !important;
+  text-decoration: none;
+}
+
+.primaryAction:hover {
+  background: var(--surface-muted);
+  color: var(--foreground) !important;
+}
+
+.heroMedia {
+  position: relative;
+  min-width: 0;
+  min-height: 500px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.heroMedia :global(img) {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: 48% center;
+}
+
+.heroMedia :global(figcaption) {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  left: var(--space-4);
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface);
+}
+
+.ledger {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2) var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-6);
+  border-top: var(--rule);
+  font-size: var(--step--1);
+}
+
+.ledger a,
+.textLink {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--link);
+  text-underline-offset: 0.2em;
+}
+
+.ledger a {
+  text-decoration: none;
+}
+
+.ledger a:hover,
+.textLink:hover {
+  text-decoration: underline;
+}
+
+.ledger span {
+  color: var(--foreground);
+  font-size: 12px;
+}
+
+.operationIntro {
+  padding-block: var(--space-16) var(--space-12);
+  border-top: var(--rule);
+}
+
+.operationIntroCopy {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: end;
+  gap: var(--space-8) var(--space-16);
+}
+
+.operationIntroCopy > div {
+  max-width: none;
+}
+
+.operationIntro :global(h2) {
+  max-width: 14ch;
+  font-size: clamp(2rem, 1.4rem + 2.5vw, 3.8rem);
+}
+
+.operationIntro :global(p) {
+  max-width: 45ch;
+  margin: 0 0 var(--space-1);
+}
+
+.operationRow {
+  display: grid;
+  grid-template-columns: minmax(0, .58fr) minmax(0, 2fr);
+  gap: var(--space-12);
+  padding-block: var(--space-12);
+  border-top: var(--rule);
+}
+
+.operationTitle {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-6);
+}
+
+.operationTitle > span {
+  padding-top: var(--space-2);
+  color: var(--foreground);
+  font-size: 14px;
+  letter-spacing: .06em;
+}
+
+.operationTitle h3 {
+  margin: 0;
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-size: clamp(1.7rem, 1.4rem + 1vw, 2.4rem);
+  font-weight: 300;
+  line-height: 1.15;
+}
+
+.operationBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.operationBody > div {
+  display: contents;
+}
+
+.operationBody :global(p) {
+  max-width: 38ch;
+  margin: 0;
+  color: var(--foreground);
+  font-size: var(--step--1);
+}
+
+.operationBody :global(p:first-child) {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.operationBody :global(p:nth-child(n + 2)) {
+  grid-column: 2;
+}
+
+.operationBody :global(strong) {
+  display: block;
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.labs {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: var(--space-16);
+  width: 100%;
+  max-width: none;
+  padding: var(--space-16) max(var(--space-16), calc((100vw - 1312px) / 2));
+  background: var(--surface-muted);
+}
+
+.labImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.labCopy {
+  max-width: 620px;
+}
+
+.labCopy > div {
+  max-width: none;
+}
+
+.labCopy :global(p:first-of-type) {
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  font-size: var(--step--1);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.labCopy :global(h2) {
+  margin: 0 0 var(--space-8);
+  font-size: clamp(2rem, 1.4rem + 2.5vw, 3.8rem);
+}
+
+.labCopy :global(h3) {
+  margin: 0;
+  padding-block: var(--space-6) var(--space-3);
+  border-top: var(--rule);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-size: clamp(1.7rem, 1.4rem + 1vw, 2.4rem);
+  font-weight: 300;
+  line-height: var(--display-leading);
+}
+
+.labCopy :global(p) {
+  max-width: 42ch;
+  margin: 0;
+  padding-bottom: var(--space-6);
+  color: var(--foreground);
+  font-size: var(--step--1);
+}
+
+.example {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-16);
+  padding-block: var(--space-16);
+}
+
+.exampleImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.exampleCopy {
+  min-width: 0;
+}
+
+.exampleCopy :global(h2) {
+  max-width: 16ch;
+  font-size: clamp(2.2rem, 1.5rem + 3vw, 4.2rem);
+}
+
+.exampleCopy :global(p) {
+  max-width: 42ch;
+  margin-top: var(--space-6);
+}
+
+.exampleCopy :global(p:has(> strong)) {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  max-width: none;
+  padding-block: var(--space-4);
+  margin: 0;
+  border-bottom: var(--rule);
+  font-size: var(--step--1);
+}
+
+.exampleCopy :global(strong) {
+  font-weight: 500;
+}
+
+.film {
+  display: grid;
+  grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
+  align-items: start;
+  gap: var(--space-16);
+  padding-block: var(--space-16);
+  border-top: var(--rule);
+}
+
+.filmPlayer {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.filmCopy :global(h2) {
+  max-width: 15ch;
+  margin: 0 0 var(--space-6);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-size: clamp(2rem, 1.4rem + 2.5vw, 3.8rem);
+  font-weight: 300;
+  line-height: var(--display-leading);
+}
+
+.filmCopy :global(p) {
+  max-width: 36ch;
+  margin: 0;
+  color: var(--foreground);
+  font-size: var(--step--1);
+}
+
+.continuation {
+  width: 100%;
+  max-width: none;
+  padding: var(--space-16) max(var(--space-16), calc((100vw - 1312px) / 2));
+  background: var(--surface-muted);
+}
+
+.continuation > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-16);
+  max-width: 1312px;
+  margin-inline: auto;
+}
+
+.continuation :global(h2) {
+  max-width: 18ch;
+  font-size: clamp(2rem, 1.4rem + 2.5vw, 3.8rem);
+}
+
+.continuation :global(p) {
+  max-width: 48ch;
+  margin: 0 0 var(--space-4);
+}
+
+.continuation > div > div :global(p:nth-of-type(2) a[href^='https://www.culinaire.kitchen']) {
+  min-height: 48px;
+  justify-content: center;
+  padding: var(--space-2) var(--space-6);
+  background: var(--foreground);
+  color: var(--surface) !important;
+  text-decoration: none;
+}
+
+.continuation > div > div :global(p:nth-of-type(2) a[href^='https://www.culinaire.kitchen']:hover) {
+  background: var(--surface-muted);
+  color: var(--foreground) !important;
+}
+
+.continuation :global(a) {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-right: var(--space-6);
+  color: var(--link);
+  text-underline-offset: .2em;
+}
+
+@media (max-width: 1100px) {
+  .hero,
+  .operationRow,
+  .labs,
+  .example,
+  .film,
+  .continuation > div {
+    gap: var(--space-12);
+  }
+
+  .hero,
+  .operationIntro,
+  .operationRow,
+  .example,
+  .film {
+    width: calc(100% - var(--space-16));
+  }
+
+  .labs,
+  .continuation {
+    padding-inline: var(--space-8);
+  }
+
+  .labs {
+    width: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .hero,
+  .operationIntro,
+  .operationRow,
+  .labs,
+  .example,
+  .film,
+  .continuation > div {
+    display: block;
+  }
+
+  .hero,
+  .operationIntro,
+  .operationRow,
+  .example,
+  .film {
+    width: calc(100% - var(--space-12));
+  }
+
+  .hero {
+    padding-block: var(--space-6) var(--space-12);
+  }
+
+  .heroCopy {
+    padding-block: var(--space-3) 0;
+  }
+
+  .heroHeading {
+    font-size: 48px;
+  }
+
+  .heroSummary {
+    margin-top: var(--space-6);
+  }
+
+  .actions {
+    margin: var(--space-6) 0 var(--space-8);
+  }
+
+  .heroMedia {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    margin-top: var(--space-8);
+  }
+
+  .operationIntro {
+    padding-top: var(--space-12);
+  }
+
+  .operationIntroCopy {
+    display: block;
+  }
+
+  .operationIntroCopy > div {
+    display: block;
+  }
+
+  .operationIntro :global(p) {
+    margin-top: var(--space-6);
+  }
+
+  .ledger {
+    gap: var(--space-2) var(--space-4);
+    font-size: 13px;
+  }
+
+  .operationRow {
+    padding-block: var(--space-8);
+  }
+
+  .operationTitle {
+    grid-template-columns: var(--space-6) minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+
+  .operationTitle h3 {
+    font-size: 28px;
+  }
+
+  .operationBody {
+    display: block;
+    margin: var(--space-6) 0 0 var(--space-12);
+  }
+
+  .operationBody :global(p) + :global(p) {
+    margin-top: var(--space-4);
+  }
+
+  .labs {
+    width: 100%;
+    padding: var(--space-12) var(--space-6);
+  }
+
+  .labImage {
+    aspect-ratio: 4 / 3;
+  }
+
+  .labCopy {
+    margin: var(--space-8) auto 0;
+  }
+
+  .example {
+    padding-block: var(--space-12);
+  }
+
+  .exampleCopy {
+    margin-top: var(--space-8);
+  }
+
+  .exampleCopy :global(h2) {
+    font-size: 36px;
+  }
+
+  .film {
+    padding-block: var(--space-12);
+  }
+
+  .filmCopy :global(h2) {
+    font-size: 36px;
+  }
+
+  .filmPlayer {
+    margin-top: var(--space-8);
+  }
+
+  .continuation {
+    padding: var(--space-12) var(--space-6);
+  }
+
+  .continuation > div > div {
+    margin-top: var(--space-6);
+  }
+}

@@ -1,0 +1,25 @@
+.statement {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-optical-sizing: auto;
+  font-size: var(--step-2);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-top: var(--space-6);
+  color: var(--link);
+  font-family: var(--loaded-inter), var(--font-body), sans-serif;
+  line-height: var(--body-leading);
+  text-underline-offset: 0.2em;
+}
+
+.link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}

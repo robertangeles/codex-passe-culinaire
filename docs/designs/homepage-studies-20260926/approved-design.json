@@ -1,0 +1,20 @@
+{
+  "status": "implemented-locally-and-verified",
+  "selected": "C4, Option B on the logo visibility board",
+  "user_feedback": "Option B is the winner",
+  "board_url": "http://127.0.0.1:43559/boards/b-20260926-025503-5mkqz4/",
+  "preview_url": "http://127.0.0.1:4181/c4.html",
+  "implementation_authorised": true,
+  "implementation_note": "Explicitly authorised by the user, applied to the local CMS and verified. See ../c4-implementation/README.md.",
+  "files": {
+    "c4.html": "a6ee22b1f29e3c573f058768e7e22af4252c71ad5fcc35724faf8ab04582e876",
+    "c4.css": "67e07b2a844c2956a955567b0210b2ff82ae4fc9389921c78d572b6edf694d75",
+    "c2.css": "3a4161b0c55b1ec713fafb598310447b6483f8946be691d2b7aaaae943bcbe0b",
+    "studies.css": "cdd46b382731f051b6a631c8fa8088b56ea7261ecab583ed7ac3d956606c1e64",
+    "assets/monogram-reversed-small-clear.svg": "24953bfce488633423ba997e7f6e97b64eacb9acd5e46bbb9d0643925d935470",
+    "assets/monogram-reversed-display-clear.svg": "2d59d39466315935c61e26dcf6c2a7842ca07b416cecfce1d1ae1e937a73956b",
+    "assets/photo-new.png": "c3ac297e2dd307efc79195be392030cd8cb0f9d106cfad9c73289597b8b2a3be",
+    "screens/c4-desktop.jpg": "8fbc46fbca0bca6b29d983047d531dc3c2ca41e5e60509e14d0b1545587530c1"
+  },
+  "application_url": "http://localhost:3000"
+}

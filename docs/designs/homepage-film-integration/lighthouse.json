@@ -1,0 +1,222 @@
+{
+  "profile": "docs/QUALITY.md mobile throttled 4G via local Caddy HTTPS",
+  "summary": {
+    "https://localhost:3443/culinaire-kitchen": {
+      "runs": 3,
+      "medianLcpMs": 1802,
+      "medianScores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    "https://localhost:3443/": {
+      "runs": 3,
+      "medianLcpMs": 2104,
+      "medianScores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    "https://localhost:3443/about": {
+      "runs": 3,
+      "medianLcpMs": 2403,
+      "medianScores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    "https://localhost:3443/journal": {
+      "runs": 3,
+      "medianLcpMs": 2177,
+      "medianScores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    "https://localhost:3443/contact": {
+      "runs": 3,
+      "medianLcpMs": 2252,
+      "medianScores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    }
+  },
+  "runs": [
+    {
+      "url": "https://localhost:3443/culinaire-kitchen",
+      "fetchTime": "2026-09-28T00:49:00.191Z",
+      "lcpMs": 1802.2815,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/",
+      "fetchTime": "2026-09-28T00:48:09.345Z",
+      "lcpMs": 1953.1885,
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/culinaire-kitchen",
+      "fetchTime": "2026-09-28T00:49:10.269Z",
+      "lcpMs": 1801.6444999999999,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/",
+      "fetchTime": "2026-09-28T00:47:59.071Z",
+      "lcpMs": 2103.8175,
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/about",
+      "fetchTime": "2026-09-28T00:48:29.903Z",
+      "lcpMs": 2403.792,
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/journal",
+      "fetchTime": "2026-09-28T00:49:20.330Z",
+      "lcpMs": 2196.1785,
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/about",
+      "fetchTime": "2026-09-28T00:48:19.629Z",
+      "lcpMs": 2103.565,
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/contact",
+      "fetchTime": "2026-09-28T00:49:50.456Z",
+      "lcpMs": 2252.4094999999998,
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/culinaire-kitchen",
+      "fetchTime": "2026-09-28T00:48:50.120Z",
+      "lcpMs": 1801.76,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/journal",
+      "fetchTime": "2026-09-28T00:49:40.421Z",
+      "lcpMs": 1803.034,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/",
+      "fetchTime": "2026-09-28T00:47:48.181Z",
+      "lcpMs": 2104.6459999999997,
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/about",
+      "fetchTime": "2026-09-28T00:48:40.011Z",
+      "lcpMs": 2402.5675,
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/contact",
+      "fetchTime": "2026-09-28T00:50:10.657Z",
+      "lcpMs": 2251.8375,
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/contact",
+      "fetchTime": "2026-09-28T00:50:00.569Z",
+      "lcpMs": 1802.751,
+      "scores": {
+        "performance": 100,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    },
+    {
+      "url": "https://localhost:3443/journal",
+      "fetchTime": "2026-09-28T00:49:30.382Z",
+      "lcpMs": 2176.851,
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 100
+      }
+    }
+  ]
+}

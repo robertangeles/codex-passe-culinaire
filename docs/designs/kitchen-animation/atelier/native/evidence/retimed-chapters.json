@@ -1,0 +1,74 @@
+[
+  {
+    "scene": "forecast",
+    "decoded_frames": 216,
+    "duration_seconds": 9.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "fa82583a7d867a49d633fd34eb8ed8c6acb5448f0c03ac761c0468df4e1eb7d3"
+  },
+  {
+    "scene": "pantry",
+    "decoded_frames": 240,
+    "duration_seconds": 10.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "7f8a3057cf9e566fa5e2fa67693675579031e3e41158679c62e0021470b95673"
+  },
+  {
+    "scene": "preparation",
+    "decoded_frames": 240,
+    "duration_seconds": 10.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "d401d085a90651c8a1f6d5d502724fe9eeb3c32ade67f2aad896f2da9303a7cd"
+  },
+  {
+    "scene": "waste",
+    "decoded_frames": 192,
+    "duration_seconds": 8.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "df9ad1f204ca36b8897e0c4ab6aa999c8bf7d1a31e7c7e62e14c426116587886"
+  },
+  {
+    "scene": "receiving",
+    "decoded_frames": 240,
+    "duration_seconds": 10.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "35bfc01baceb246e425e7e39233d3e18f36eefa546ae6a75339d4dd0d79f6171"
+  },
+  {
+    "scene": "team",
+    "decoded_frames": 192,
+    "duration_seconds": 8.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "96ce9d8292f5e35d3caa3001d244881c9b7767f9c783663e320101fa30d86a1c"
+  },
+  {
+    "scene": "sales",
+    "decoded_frames": 192,
+    "duration_seconds": 8.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "20a2f0ffa77239adafce03edebff5477ae40f1c600d6da5e94bb0f8933aba61b"
+  },
+  {
+    "scene": "tomorrow",
+    "decoded_frames": 168,
+    "duration_seconds": 7.0,
+    "fps": 24,
+    "width": 960,
+    "height": 640,
+    "sha256": "8cd918e2bdbf48e5f8b49c65805dad59e0c2aaec63c805434046d3c868acca75"
+  }
+]

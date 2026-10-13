@@ -1,0 +1,90 @@
+.hero,
+.prose,
+.foundersInner,
+.closingInner {
+  width: min(calc(100% - 128px), 1312px);
+  margin-inline: auto;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  align-items: center;
+  gap: 80px;
+  padding-block: 70px 64px;
+}
+
+.heroCopy { min-width: 0; }
+.eyebrow { margin: 0 0 18px; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; }
+.heroHeading,
+.name,
+.closingHeading { margin: 0; font-family: var(--loaded-fraunces), var(--font-display), serif; font-weight: 300; line-height: 1.05; letter-spacing: -.03em; white-space: pre-line; }
+.heroHeading { max-width: 14ch; font-size: clamp(48px, 5vw, 72px); }
+.intro { max-width: 53ch; margin: 28px 0 0; font-size: var(--step-1); line-height: 1.65; }
+.monogram { width: 170px; height: 188px; justify-self: center; }
+
+.prose { padding-block: 0 28px; }
+.prose > div { max-width: none; }
+.prose > div > h2:first-child { margin: 0; font-family: var(--loaded-inter), var(--font-body), sans-serif; font-size: 12px; font-weight: 400; letter-spacing: .15em; line-height: 1.6; text-transform: uppercase; }
+
+.founders { background: var(--surface); color: var(--foreground); }
+.foundersInner { padding-block: 16px 24px; }
+.founder { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); align-items: center; gap: 80px; padding-block: 40px; border-top: 1px solid color-mix(in srgb, var(--color-ash) 30%, transparent); }
+.founder:nth-child(even) { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); }
+.founder:nth-child(even) .portrait { grid-column: 2; grid-row: 1; justify-self: end; }
+.founder:nth-child(even) .founderCopy { grid-column: 1; grid-row: 1; }
+.portrait { display: block; width: 100%; max-width: 380px; margin: 0; overflow: visible; }
+.portrait :global(picture) { display: block; width: 100%; aspect-ratio: 4 / 5; }
+.portrait :global(img) { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.portrait :global(figcaption) { margin-top: 8px; color: var(--foreground); font-size: 12px; line-height: 1.5; }
+.placeholder { display: flex; flex-direction: column; overflow: visible; }
+.placeholderFrame { display: flex; flex: 1; aspect-ratio: 4 / 5; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 24px; border: 1px solid color-mix(in srgb, var(--color-ash) 30%, transparent); background: var(--surface-muted); color: var(--foreground); text-align: center; }
+.portraitKind { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; }
+.portraitName { font-family: var(--loaded-fraunces), var(--font-display), serif; font-size: 28px; font-weight: 300; line-height: 1.2; }
+.portraitNote { font-size: 12px; }
+.name { font-size: 42px; }
+.role { margin: 12px 0 0; font-size: 13px; }
+.bio { max-width: 51ch; margin-top: 20px; }
+.bio > div { font-size: 16px; line-height: 1.7; }
+.bio > div > p:first-child { margin-top: 0; font-family: var(--loaded-fraunces), var(--font-display), serif; font-size: 22px; line-height: 1.4; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 18px 0 0; padding: 0; list-style: none; }
+.links a { display: inline-flex; min-height: 44px; align-items: center; color: var(--link); text-underline-offset: .2em; }
+.links a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+.closing { background: var(--surface-muted); }
+.closingInner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding-block: 64px; }
+.closingHeading { max-width: 15ch; font-size: clamp(44px, 3.8vw, 56px); }
+.closingContent { max-width: 55ch; }
+.closingContent > div { max-width: none; }
+.closingContent > div > p:has(> a) { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 28px; }
+.closingContent > div a { display: inline-flex; min-height: 44px; align-items: center; }
+.closingContent > div > p > a:first-of-type { padding: 12px 20px; border: 1px solid var(--foreground); background: var(--foreground); color: var(--surface); text-decoration: none; }
+.closingContent > div > p > a:first-of-type:hover { background: var(--surface); color: var(--foreground); }
+
+@media (max-width: 1100px) {
+  .hero, .founder, .founder:nth-child(even), .closingInner { gap: 40px; }
+  .hero, .prose, .foundersInner, .closingInner { width: calc(100% - 64px); }
+}
+
+@media (max-width: 800px) {
+  .hero, .prose, .foundersInner, .closingInner { width: calc(100% - 48px); }
+  .hero { display: block; padding-block: 34px 36px; }
+  .heroHeading { font-size: 50px; }
+  .intro { margin-top: 24px; font-size: 16px; }
+  .monogram { display: none; }
+  .prose { padding-bottom: 24px; }
+  .foundersInner { padding-block: 4px 12px; }
+  .founder, .founder:nth-child(even) { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding-block: 28px; }
+  .founder:nth-child(even) .portrait, .founder:nth-child(even) .founderCopy { grid-column: auto; grid-row: auto; }
+  .portrait { max-width: none; margin-bottom: 24px; }
+  .portraitName { font-size: 26px; }
+  .name { font-size: 38px; }
+  .role { font-size: 13px; }
+  .bio { margin-top: 18px; }
+  .bio > div > p:first-child { font-size: 21px; }
+  .closingInner { display: block; padding-block: 40px 44px; }
+  .closingHeading { font-size: 38px; }
+  .closingContent { margin-top: 24px; }
+}
+
+

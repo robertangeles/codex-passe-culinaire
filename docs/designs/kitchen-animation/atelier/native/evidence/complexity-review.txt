@@ -1,0 +1,5 @@
+render-native-motion.py:L512: delete: duplicate float-to-uint8 conversion in encode_frames. main already supplies uint8 frames; retain shape validation.
+render-native-motion.py:L241: delete: unneeded .bin checkpoint fallback for this pinned safetensors-only model. Nothing replaces it.
+net: -6 lines possible.
+
+Advisory only. Resource containment and checkpoint verification are necessary after the observed failure. No application dependency or general-purpose rendering framework was added.

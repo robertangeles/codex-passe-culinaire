@@ -1,0 +1,689 @@
+{
+  "cases": [
+    {
+      "route": "services",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "Start withthe kitchen."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Start withthe kitchen.",
+        "A place to begin.",
+        "Service details are being prepared.",
+        "Your kitchen",
+        "Your team",
+        "Your priorities",
+        "Culinary experience.A shared perspective.",
+        "Our first offer.CulinAIre Kitchen."
+      ],
+      "links": [
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Meet the founders",
+          "href": "/about"
+        },
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "About Passe Culinaire ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Explore CulinAIre Kitchen ↗",
+          "href": "/culinaire-kitchen"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "services",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "Start withthe kitchen."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Start withthe kitchen.",
+        "A place to begin.",
+        "Service details are being prepared.",
+        "Your kitchen",
+        "Your team",
+        "Your priorities",
+        "Culinary experience.A shared perspective.",
+        "Our first offer.CulinAIre Kitchen."
+      ],
+      "links": [
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Meet the founders",
+          "href": "/about"
+        },
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "About Passe Culinaire ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Explore CulinAIre Kitchen ↗",
+          "href": "/culinaire-kitchen"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "services",
+      "width": 768,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "Start withthe kitchen."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Start withthe kitchen.",
+        "A place to begin.",
+        "Service details are being prepared.",
+        "Your kitchen",
+        "Your team",
+        "Your priorities",
+        "Culinary experience.A shared perspective.",
+        "Our first offer.CulinAIre Kitchen."
+      ],
+      "links": [
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Meet the founders",
+          "href": "/about"
+        },
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "About Passe Culinaire ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Explore CulinAIre Kitchen ↗",
+          "href": "/culinaire-kitchen"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "services",
+      "width": 768,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "Start withthe kitchen."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Start withthe kitchen.",
+        "A place to begin.",
+        "Service details are being prepared.",
+        "Your kitchen",
+        "Your team",
+        "Your priorities",
+        "Culinary experience.A shared perspective.",
+        "Our first offer.CulinAIre Kitchen."
+      ],
+      "links": [
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Meet the founders",
+          "href": "/about"
+        },
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "About Passe Culinaire ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Explore CulinAIre Kitchen ↗",
+          "href": "/culinaire-kitchen"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "services",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "Start withthe kitchen."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Start withthe kitchen.",
+        "A place to begin.",
+        "Service details are being prepared.",
+        "Your kitchen",
+        "Your team",
+        "Your priorities",
+        "Culinary experience.A shared perspective.",
+        "Our first offer.CulinAIre Kitchen."
+      ],
+      "links": [
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Meet the founders",
+          "href": "/about"
+        },
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "About Passe Culinaire ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Explore CulinAIre Kitchen ↗",
+          "href": "/culinaire-kitchen"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "services",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "Start withthe kitchen."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Start withthe kitchen.",
+        "A place to begin.",
+        "Service details are being prepared.",
+        "Your kitchen",
+        "Your team",
+        "Your priorities",
+        "Culinary experience.A shared perspective.",
+        "Our first offer.CulinAIre Kitchen."
+      ],
+      "links": [
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Meet the founders",
+          "href": "/about"
+        },
+        {
+          "label": "Discuss your kitchen ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "About Passe Culinaire ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Explore CulinAIre Kitchen ↗",
+          "href": "/culinaire-kitchen"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "training",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "Make roomfor the craft."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Make roomfor the craft.",
+        "Tell us whatyou want to learn.",
+        "Know the peoplebehind the company."
+      ],
+      "links": [
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Training enquiries ↓",
+          "href": "#programme"
+        },
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Read the founders’ backgrounds ↗",
+          "href": "/about"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "training",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "Make roomfor the craft."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Make roomfor the craft.",
+        "Tell us whatyou want to learn.",
+        "Know the peoplebehind the company."
+      ],
+      "links": [
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Training enquiries ↓",
+          "href": "#programme"
+        },
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Read the founders’ backgrounds ↗",
+          "href": "/about"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "training",
+      "width": 768,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "Make roomfor the craft."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Make roomfor the craft.",
+        "Tell us whatyou want to learn.",
+        "Know the peoplebehind the company."
+      ],
+      "links": [
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Training enquiries ↓",
+          "href": "#programme"
+        },
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Read the founders’ backgrounds ↗",
+          "href": "/about"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "training",
+      "width": 768,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "Make roomfor the craft."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Make roomfor the craft.",
+        "Tell us whatyou want to learn.",
+        "Know the peoplebehind the company."
+      ],
+      "links": [
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Training enquiries ↓",
+          "href": "#programme"
+        },
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Read the founders’ backgrounds ↗",
+          "href": "/about"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "training",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "Make roomfor the craft."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Make roomfor the craft.",
+        "Tell us whatyou want to learn.",
+        "Know the peoplebehind the company."
+      ],
+      "links": [
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Training enquiries ↓",
+          "href": "#programme"
+        },
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Read the founders’ backgrounds ↗",
+          "href": "/about"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "training",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "Make roomfor the craft."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Make roomfor the craft.",
+        "Tell us whatyou want to learn.",
+        "Know the peoplebehind the company."
+      ],
+      "links": [
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Training enquiries ↓",
+          "href": "#programme"
+        },
+        {
+          "label": "Ask about training ↗",
+          "href": "/contact"
+        },
+        {
+          "label": "Read the founders’ backgrounds ↗",
+          "href": "/about"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "about",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "From the kitchen,\nlooking forward."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "From the kitchen,\nlooking forward.",
+        "Two founders. Complementary experience.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "Experience,\nput to work."
+      ],
+      "links": [
+        {
+          "label": "Explore CulinAIre Kitchen",
+          "href": "/culinaire-kitchen"
+        },
+        {
+          "label": "Start a conversation",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "about",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "From the kitchen,\nlooking forward."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "From the kitchen,\nlooking forward.",
+        "Two founders. Complementary experience.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "Experience,\nput to work."
+      ],
+      "links": [
+        {
+          "label": "Explore CulinAIre Kitchen",
+          "href": "/culinaire-kitchen"
+        },
+        {
+          "label": "Start a conversation",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "about",
+      "width": 768,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "From the kitchen,\nlooking forward."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "From the kitchen,\nlooking forward.",
+        "Two founders. Complementary experience.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "Experience,\nput to work."
+      ],
+      "links": [
+        {
+          "label": "Explore CulinAIre Kitchen",
+          "href": "/culinaire-kitchen"
+        },
+        {
+          "label": "Start a conversation",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "about",
+      "width": 768,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "From the kitchen,\nlooking forward."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "From the kitchen,\nlooking forward.",
+        "Two founders. Complementary experience.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "Experience,\nput to work."
+      ],
+      "links": [
+        {
+          "label": "Explore CulinAIre Kitchen",
+          "href": "/culinaire-kitchen"
+        },
+        {
+          "label": "Start a conversation",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "about",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "From the kitchen,\nlooking forward."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "From the kitchen,\nlooking forward.",
+        "Two founders. Complementary experience.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "Experience,\nput to work."
+      ],
+      "links": [
+        {
+          "label": "Explore CulinAIre Kitchen",
+          "href": "/culinaire-kitchen"
+        },
+        {
+          "label": "Start a conversation",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "route": "about",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "From the kitchen,\nlooking forward."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "From the kitchen,\nlooking forward.",
+        "Two founders. Complementary experience.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "Experience,\nput to work."
+      ],
+      "links": [
+        {
+          "label": "Explore CulinAIre Kitchen",
+          "href": "/culinaire-kitchen"
+        },
+        {
+          "label": "Start a conversation",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "violations": []
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --font-display: "Fraunces"; /* variable, opsz + wght, self-hosted */
+  --font-body: "Inter"; /* variable, self-hosted */
+  --font-mono: "JetBrains Mono"; /* self-hosted, code and captions */
+
+  --color-bone: #F4F1EA;
+  --color-ink: #1A1A18;
+  --color-moss: #4A5A3F;
+  --color-clay: #B8674B;
+  --color-ash: #8A8A82;
+  --color-charcoal: #141412;
+  --color-linen: #E8E4DA;
+
+  --step--1: clamp(0.83rem, 0.8rem + 0.2vw, 0.95rem);
+  --step-0: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  --step-1: clamp(1.3rem, 1.2rem + 0.6vw, 1.7rem);
+  --step-2: clamp(1.7rem, 1.4rem + 1.4vw, 2.6rem);
+  --step-3: clamp(2.3rem, 1.6rem + 3vw, 4.2rem);
+  --step-4: clamp(3rem, 1.5rem + 6.5vw, 7.5rem);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-36: 144px;
+  --measure: 62ch;
+  --body-leading: 1.55;
+  --display-leading: 1.05;
+  --input-radius: 2px;
+  --rule: 1px solid color-mix(in srgb, var(--color-ash) 30%, transparent);
+  --surface: var(--color-charcoal);
+  --surface-muted: #23251f;
+  --surface-panel: #272a22;
+  --foreground: var(--color-bone);
+  --link: var(--color-bone);
+  color-scheme: dark;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--foreground);
+  font-family: var(--loaded-inter), var(--font-body), sans-serif;
+  font-size: var(--step-0);
+  line-height: var(--body-leading);
+}
+a { color: var(--link); text-underline-offset: 0.2em; }
+a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.skip-link {
+  position: absolute;
+  z-index: 10;
+  top: var(--space-4);
+  left: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface);
+  color: var(--foreground);
+  transform: translateY(-150%);
+}
+.skip-link:focus { transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

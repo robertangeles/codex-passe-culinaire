@@ -1,0 +1,605 @@
+{
+  "cases": [
+    {
+      "route": "culinaire-kitchen",
+      "width": 320,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "Behind every service."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Behind every service.",
+        "A kitchen day,\nconsidered.",
+        "Plan the day.",
+        "Know what comes in.",
+        "Prepare for service.",
+        "Understand what went out.",
+        "Three disciplines.\nSpace to explore.",
+        "Recipe Lab",
+        "Patisserie Lab",
+        "Cocktail Lab",
+        "Two dishes.\nOne preparation.",
+        "Watch the day\ncome together.",
+        "Culinary practice.\nA technical perspective.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "See where it fits\nin your kitchen."
+      ],
+      "links": [
+        {
+          "label": "Visit CulinAIre Kitchen ↗",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Watch the kitchen film",
+          "href": "#film"
+        },
+        {
+          "label": "01The daily operation",
+          "href": "#operation"
+        },
+        {
+          "label": "02The three labs",
+          "href": "#labs"
+        },
+        {
+          "label": "03A practical example",
+          "href": "#example"
+        },
+        {
+          "label": "04A kitchen day on film",
+          "href": "#film"
+        },
+        {
+          "label": "Open the film directly",
+          "href": "/films/kitchen-day/landscape-v1.mp4"
+        },
+        {
+          "label": "Meet the founders ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Visit CulinAIre Kitchen",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Talk to us",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "videoRequests": [],
+      "violations": []
+    },
+    {
+      "route": "culinaire-kitchen",
+      "width": 320,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "Behind every service."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Behind every service.",
+        "A kitchen day,\nconsidered.",
+        "Plan the day.",
+        "Know what comes in.",
+        "Prepare for service.",
+        "Understand what went out.",
+        "Three disciplines.\nSpace to explore.",
+        "Recipe Lab",
+        "Patisserie Lab",
+        "Cocktail Lab",
+        "Two dishes.\nOne preparation.",
+        "Watch the day\ncome together.",
+        "Culinary practice.\nA technical perspective.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "See where it fits\nin your kitchen."
+      ],
+      "links": [
+        {
+          "label": "Visit CulinAIre Kitchen ↗",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Watch the kitchen film",
+          "href": "#film"
+        },
+        {
+          "label": "01The daily operation",
+          "href": "#operation"
+        },
+        {
+          "label": "02The three labs",
+          "href": "#labs"
+        },
+        {
+          "label": "03A practical example",
+          "href": "#example"
+        },
+        {
+          "label": "04A kitchen day on film",
+          "href": "#film"
+        },
+        {
+          "label": "Open the film directly",
+          "href": "/films/kitchen-day/landscape-v1.mp4"
+        },
+        {
+          "label": "Meet the founders ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Visit CulinAIre Kitchen",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Talk to us",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "videoRequests": [],
+      "violations": []
+    },
+    {
+      "route": "culinaire-kitchen",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "Behind every service."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Behind every service.",
+        "A kitchen day,\nconsidered.",
+        "Plan the day.",
+        "Know what comes in.",
+        "Prepare for service.",
+        "Understand what went out.",
+        "Three disciplines.\nSpace to explore.",
+        "Recipe Lab",
+        "Patisserie Lab",
+        "Cocktail Lab",
+        "Two dishes.\nOne preparation.",
+        "Watch the day\ncome together.",
+        "Culinary practice.\nA technical perspective.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "See where it fits\nin your kitchen."
+      ],
+      "links": [
+        {
+          "label": "Visit CulinAIre Kitchen ↗",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Watch the kitchen film",
+          "href": "#film"
+        },
+        {
+          "label": "01The daily operation",
+          "href": "#operation"
+        },
+        {
+          "label": "02The three labs",
+          "href": "#labs"
+        },
+        {
+          "label": "03A practical example",
+          "href": "#example"
+        },
+        {
+          "label": "04A kitchen day on film",
+          "href": "#film"
+        },
+        {
+          "label": "Open the film directly",
+          "href": "/films/kitchen-day/landscape-v1.mp4"
+        },
+        {
+          "label": "Meet the founders ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Visit CulinAIre Kitchen",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Talk to us",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "videoRequests": [],
+      "violations": []
+    },
+    {
+      "route": "culinaire-kitchen",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "Behind every service."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Behind every service.",
+        "A kitchen day,\nconsidered.",
+        "Plan the day.",
+        "Know what comes in.",
+        "Prepare for service.",
+        "Understand what went out.",
+        "Three disciplines.\nSpace to explore.",
+        "Recipe Lab",
+        "Patisserie Lab",
+        "Cocktail Lab",
+        "Two dishes.\nOne preparation.",
+        "Watch the day\ncome together.",
+        "Culinary practice.\nA technical perspective.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "See where it fits\nin your kitchen."
+      ],
+      "links": [
+        {
+          "label": "Visit CulinAIre Kitchen ↗",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Watch the kitchen film",
+          "href": "#film"
+        },
+        {
+          "label": "01The daily operation",
+          "href": "#operation"
+        },
+        {
+          "label": "02The three labs",
+          "href": "#labs"
+        },
+        {
+          "label": "03A practical example",
+          "href": "#example"
+        },
+        {
+          "label": "04A kitchen day on film",
+          "href": "#film"
+        },
+        {
+          "label": "Open the film directly",
+          "href": "/films/kitchen-day/landscape-v1.mp4"
+        },
+        {
+          "label": "Meet the founders ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Visit CulinAIre Kitchen",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Talk to us",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "videoRequests": [],
+      "violations": []
+    },
+    {
+      "route": "culinaire-kitchen",
+      "width": 768,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "Behind every service."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Behind every service.",
+        "A kitchen day,\nconsidered.",
+        "Plan the day.",
+        "Know what comes in.",
+        "Prepare for service.",
+        "Understand what went out.",
+        "Three disciplines.\nSpace to explore.",
+        "Recipe Lab",
+        "Patisserie Lab",
+        "Cocktail Lab",
+        "Two dishes.\nOne preparation.",
+        "Watch the day\ncome together.",
+        "Culinary practice.\nA technical perspective.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "See where it fits\nin your kitchen."
+      ],
+      "links": [
+        {
+          "label": "Visit CulinAIre Kitchen ↗",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Watch the kitchen film",
+          "href": "#film"
+        },
+        {
+          "label": "01The daily operation",
+          "href": "#operation"
+        },
+        {
+          "label": "02The three labs",
+          "href": "#labs"
+        },
+        {
+          "label": "03A practical example",
+          "href": "#example"
+        },
+        {
+          "label": "04A kitchen day on film",
+          "href": "#film"
+        },
+        {
+          "label": "Open the film directly",
+          "href": "/films/kitchen-day/landscape-v1.mp4"
+        },
+        {
+          "label": "Meet the founders ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Visit CulinAIre Kitchen",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Talk to us",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "videoRequests": [],
+      "violations": []
+    },
+    {
+      "route": "culinaire-kitchen",
+      "width": 768,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "Behind every service."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Behind every service.",
+        "A kitchen day,\nconsidered.",
+        "Plan the day.",
+        "Know what comes in.",
+        "Prepare for service.",
+        "Understand what went out.",
+        "Three disciplines.\nSpace to explore.",
+        "Recipe Lab",
+        "Patisserie Lab",
+        "Cocktail Lab",
+        "Two dishes.\nOne preparation.",
+        "Watch the day\ncome together.",
+        "Culinary practice.\nA technical perspective.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "See where it fits\nin your kitchen."
+      ],
+      "links": [
+        {
+          "label": "Visit CulinAIre Kitchen ↗",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Watch the kitchen film",
+          "href": "#film"
+        },
+        {
+          "label": "01The daily operation",
+          "href": "#operation"
+        },
+        {
+          "label": "02The three labs",
+          "href": "#labs"
+        },
+        {
+          "label": "03A practical example",
+          "href": "#example"
+        },
+        {
+          "label": "04A kitchen day on film",
+          "href": "#film"
+        },
+        {
+          "label": "Open the film directly",
+          "href": "/films/kitchen-day/landscape-v1.mp4"
+        },
+        {
+          "label": "Meet the founders ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Visit CulinAIre Kitchen",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Talk to us",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "videoRequests": [],
+      "violations": []
+    },
+    {
+      "route": "culinaire-kitchen",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "h1": [
+        "Behind every service."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Behind every service.",
+        "A kitchen day,\nconsidered.",
+        "Plan the day.",
+        "Know what comes in.",
+        "Prepare for service.",
+        "Understand what went out.",
+        "Three disciplines.\nSpace to explore.",
+        "Recipe Lab",
+        "Patisserie Lab",
+        "Cocktail Lab",
+        "Two dishes.\nOne preparation.",
+        "Watch the day\ncome together.",
+        "Culinary practice.\nA technical perspective.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "See where it fits\nin your kitchen."
+      ],
+      "links": [
+        {
+          "label": "Visit CulinAIre Kitchen ↗",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Watch the kitchen film",
+          "href": "#film"
+        },
+        {
+          "label": "01The daily operation",
+          "href": "#operation"
+        },
+        {
+          "label": "02The three labs",
+          "href": "#labs"
+        },
+        {
+          "label": "03A practical example",
+          "href": "#example"
+        },
+        {
+          "label": "04A kitchen day on film",
+          "href": "#film"
+        },
+        {
+          "label": "Open the film directly",
+          "href": "/films/kitchen-day/landscape-v1.mp4"
+        },
+        {
+          "label": "Meet the founders ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Visit CulinAIre Kitchen",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Talk to us",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "videoRequests": [],
+      "violations": []
+    },
+    {
+      "route": "culinaire-kitchen",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "h1": [
+        "Behind every service."
+      ],
+      "overflow": false,
+      "broken": [],
+      "headings": [
+        "Behind every service.",
+        "A kitchen day,\nconsidered.",
+        "Plan the day.",
+        "Know what comes in.",
+        "Prepare for service.",
+        "Understand what went out.",
+        "Three disciplines.\nSpace to explore.",
+        "Recipe Lab",
+        "Patisserie Lab",
+        "Cocktail Lab",
+        "Two dishes.\nOne preparation.",
+        "Watch the day\ncome together.",
+        "Culinary practice.\nA technical perspective.",
+        "Alex Charasse",
+        "Rob Angeles",
+        "See where it fits\nin your kitchen."
+      ],
+      "links": [
+        {
+          "label": "Visit CulinAIre Kitchen ↗",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Watch the kitchen film",
+          "href": "#film"
+        },
+        {
+          "label": "01The daily operation",
+          "href": "#operation"
+        },
+        {
+          "label": "02The three labs",
+          "href": "#labs"
+        },
+        {
+          "label": "03A practical example",
+          "href": "#example"
+        },
+        {
+          "label": "04A kitchen day on film",
+          "href": "#film"
+        },
+        {
+          "label": "Open the film directly",
+          "href": "/films/kitchen-day/landscape-v1.mp4"
+        },
+        {
+          "label": "Meet the founders ↗",
+          "href": "/about"
+        },
+        {
+          "label": "Visit CulinAIre Kitchen",
+          "href": "https://www.culinaire.kitchen"
+        },
+        {
+          "label": "Talk to us",
+          "href": "/contact"
+        }
+      ],
+      "placeholderNumbers": false,
+      "errors": [],
+      "videoRequests": [],
+      "violations": []
+    }
+  ],
+  "failures": []
+}

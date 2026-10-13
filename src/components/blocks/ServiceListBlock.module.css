@@ -1,0 +1,70 @@
+.heading {
+  margin: 0 0 var(--space-8);
+  color: var(--foreground);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-size: var(--step-2);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--rule);
+}
+
+.item {
+  padding-block: var(--space-6);
+  border-bottom: var(--rule);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-size: var(--step-1);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.title a,
+.contactLink {
+  color: var(--link);
+  text-underline-offset: 0.2em;
+}
+
+.title a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
+.title a:focus-visible,
+.contactLink:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.description,
+.audience {
+  max-width: var(--measure);
+  margin: var(--space-3) 0 0;
+  line-height: var(--body-leading);
+}
+
+.audience {
+  font-size: var(--step--1);
+}
+
+.empty p {
+  margin: 0;
+  line-height: var(--body-leading);
+}
+
+.contactLink {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-top: var(--space-4);
+  line-height: var(--body-leading);
+}

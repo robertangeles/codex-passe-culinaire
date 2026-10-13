@@ -1,0 +1,52 @@
+{
+  "layouts": [
+    {
+      "width": 320,
+      "time": 43,
+      "paused": true,
+      "source": "http://127.0.0.1:3000/films/kitchen-day/portrait-v1.mp4",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "time": 43,
+      "paused": true,
+      "source": "http://127.0.0.1:3000/films/kitchen-day/portrait-v1.mp4",
+      "overflow": false,
+      "lightAxe": []
+    },
+    {
+      "width": 760,
+      "time": 43,
+      "paused": true,
+      "source": "http://127.0.0.1:3000/films/kitchen-day/portrait-v1.mp4",
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "time": 43,
+      "paused": true,
+      "source": "http://127.0.0.1:3000/films/kitchen-day/landscape-v1.mp4",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "time": 43,
+      "paused": true,
+      "source": "http://127.0.0.1:3000/films/kitchen-day/landscape-v1.mp4",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "time": 43,
+      "paused": true,
+      "source": "http://127.0.0.1:3000/films/kitchen-day/landscape-v1.mp4",
+      "overflow": false,
+      "lightAxe": []
+    }
+  ],
+  "errors": [],
+  "saveData": true,
+  "hiddenTabEvent": true,
+  "fullscreen": true
+}

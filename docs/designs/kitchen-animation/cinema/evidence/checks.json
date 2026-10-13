@@ -1,0 +1,24 @@
+{
+  "rig": {
+    "maxArmError": 2.220446049250313e-16,
+    "overlaps": []
+  },
+  "desktopAxe": 0,
+  "mobileAxe": 0,
+  "errors": [],
+  "playbackMs": 80026,
+  "quality": {
+    "total": 1938,
+    "dropped": 0
+  },
+  "durationSeconds": 80,
+  "renderer": "native H.264 video; no WebGL on review page",
+  "reducedMotion": "paused",
+  "finitePlayback": "stops; replay starts from beginning",
+  "controls": "pause, seek, chapter jump, replay, offscreen pause/resume",
+  "fallbacks": "poster and nine-part HTML story; no JavaScript and failed video",
+  "viewportWidths": [
+    1440,
+    390
+  ]
+}

@@ -1,0 +1,53 @@
+.preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 0.75rem 1rem;
+  border-block-end: 1px solid color-mix(in srgb, var(--color-ash) 30%, transparent);
+}
+
+.preview p {
+  margin: 0;
+}
+
+.preview a,
+.authors a,
+.taxonomies a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--link);
+  text-underline-offset: 0.2em;
+}
+
+.preview a:focus-visible,
+.authors a:focus-visible,
+.taxonomies a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem var(--space-4);
+  margin-block-end: 1rem;
+  font-family: var(--loaded-jetbrains-mono), var(--font-mono), monospace;
+  font-size: var(--step--1);
+}
+
+.byline p {
+  margin: 0;
+}
+
+.authors,
+.taxonomies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}

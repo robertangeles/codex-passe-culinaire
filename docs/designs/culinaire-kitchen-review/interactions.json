@@ -1,0 +1,54 @@
+[
+  {
+    "study": "a",
+    "width": 390,
+    "playing": {
+      "time": 0.01862,
+      "paused": false,
+      "src": "http://127.0.0.1:3000/films/kitchen-day/portrait-v1.mp4",
+      "loop": false
+    },
+    "paused": true,
+    "light": "light",
+    "localAnchors": true
+  },
+  {
+    "study": "a",
+    "width": 1440,
+    "playing": {
+      "time": 0.014574,
+      "paused": false,
+      "src": "http://127.0.0.1:3000/films/kitchen-day/landscape-v1.mp4",
+      "loop": false
+    },
+    "paused": true,
+    "light": "light",
+    "localAnchors": true
+  },
+  {
+    "study": "b",
+    "width": 390,
+    "playing": {
+      "time": 0.02153,
+      "paused": false,
+      "src": "http://127.0.0.1:3000/films/kitchen-day/portrait-v1.mp4",
+      "loop": false
+    },
+    "paused": true,
+    "light": "light",
+    "localAnchors": true
+  },
+  {
+    "study": "b",
+    "width": 1440,
+    "playing": {
+      "time": 0.014827,
+      "paused": false,
+      "src": "http://127.0.0.1:3000/films/kitchen-day/landscape-v1.mp4",
+      "loop": false
+    },
+    "paused": true,
+    "light": "light",
+    "localAnchors": true
+  }
+]

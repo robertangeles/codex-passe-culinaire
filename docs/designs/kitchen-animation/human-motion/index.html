@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#141412">
+    <title>The craft comes first | Passe Culinaire</title>
+    <link rel="stylesheet" href="./human-motion.css">
+    <script type="module" src="./player.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#study">Skip to the movement study</a>
+    <header class="masthead">
+      <a class="brand" href="#study" aria-label="Passe Culinaire movement study">
+        <img src="../assets/monogram-reversed-small-clear.svg" alt="" width="32" height="34">
+        <span>passe culinaire</span>
+      </a>
+      <p class="masthead-note">A character motion study</p>
+    </header>
+
+    <main id="study">
+      <section class="study" aria-labelledby="study-title">
+        <div class="study-copy">
+          <p class="eyebrow">Character motion study <span aria-hidden="true">/</span> Mise en place</p>
+          <h1 id="study-title">The craft comes first.</h1>
+          <p class="intro">A chef at work, preparing the kitchen for service.</p>
+          <p class="disclosure">A short movement study. Illustrative, not product footage.</p>
+        </div>
+
+        <figure class="motion-figure">
+          <div class="artwork" id="artwork">
+            <div class="sprite-fallback" id="sprite-fallback" role="img" aria-label="An illustrated pastry chef whisking a copper bowl"></div>
+            <canvas class="sprite-canvas" id="sprite-canvas" aria-label="A chef gently whisking a bowl during mise en place" hidden></canvas>
+            <p class="load-fallback" id="load-fallback" hidden>The movement study could not be loaded. Please refresh to try again.</p>
+          </div>
+          <figcaption class="figure-caption">
+            <span>Mise en place</span>
+            <span>01 <span aria-hidden="true">/</span> 01</span>
+          </figcaption>
+        </figure>
+
+        <div class="player" aria-label="Movement study controls" hidden>
+          <div class="player-row">
+            <button class="play-button" id="play-button" type="button" aria-label="Pause movement study" aria-pressed="true">
+              <svg class="pause-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+              <svg class="play-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5 12 8l-7 4.5z" fill="currentColor"/></svg>
+            </button>
+            <label class="visually-hidden" for="timeline">Movement study position</label>
+            <input id="timeline" class="timeline" type="range" min="0" max="5.333333" step="0.01" value="0" disabled>
+            <output id="time-readout" for="timeline">0:00 <span aria-hidden="true">/</span> 0:05</output>
+            <button class="replay-button" id="replay-button" type="button" aria-label="Replay movement study">
+              <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 8.5a5.5 5.5 0 1 0 1.35-3.63L3.5 6.5M3.5 3.5v3h3" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <p class="player-status" id="player-status" role="status" aria-live="polite">Loading movement study</p>
+        </div>
+
+        <aside class="aside-note" aria-label="Study note">
+          <span class="aside-rule" aria-hidden="true"></span>
+          <p>Hands at work. Attention on the bowl. A quiet moment before the kitchen fills.</p>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="colophon">
+      <span>Passe Culinaire</span>
+      <span>Kitchen, considered.</span>
+    </footer>
+  </body>
+</html>

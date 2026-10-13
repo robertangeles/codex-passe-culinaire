@@ -1,0 +1,134 @@
+.searchForm {
+  max-width: 62ch;
+  margin-inline: auto;
+}
+
+.searchForm label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+.searchControls {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+}
+
+.searchControls input {
+  min-width: 0;
+  min-height: 48px;
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid color-mix(in srgb, var(--foreground) 60%, var(--surface));
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--foreground);
+  font: inherit;
+}
+
+.searchControls button,
+.searchPagination a {
+  display: inline-flex;
+  min-width: 44px;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-3);
+  border: 1px solid var(--foreground);
+  background: transparent;
+  color: var(--foreground);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.searchControls input:focus-visible,
+.searchControls button:focus-visible,
+.searchPagination a:focus-visible,
+.resultList a:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 3px;
+}
+
+.searchMessage {
+  margin: var(--space-2) 0 0;
+  color: color-mix(in srgb, var(--foreground) 78%, transparent);
+  font-size: var(--step--1);
+}
+
+.searchResults {
+  max-width: 62ch;
+  margin: var(--space-8) auto 0;
+}
+
+.resultCount {
+  margin-bottom: var(--space-3);
+  color: color-mix(in srgb, var(--foreground) 78%, transparent);
+  font-size: var(--step--1);
+}
+
+.resultList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.resultList li {
+  padding-block: var(--space-4);
+  border-top: 1px solid color-mix(in srgb, var(--foreground) 30%, transparent);
+}
+
+.resultList h2 {
+  margin: 0;
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-size: var(--step-1);
+  font-weight: 450;
+  line-height: 1.15;
+}
+
+.resultList a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
+.resultList p {
+  max-width: 62ch;
+  margin: var(--space-2) 0 0;
+  color: color-mix(in srgb, var(--foreground) 78%, transparent);
+  line-height: 1.55;
+}
+
+.emptyState {
+  padding-block: var(--space-4);
+  border-top: 1px solid color-mix(in srgb, var(--foreground) 30%, transparent);
+}
+
+.searchPagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  font-size: var(--step--1);
+  text-align: center;
+}
+
+.searchPagination a {
+  min-height: 44px;
+}
+
+@media (max-width: 480px) {
+  .searchControls {
+    flex-wrap: wrap;
+  }
+
+  .searchControls button {
+    flex: 1 0 100%;
+  }
+}

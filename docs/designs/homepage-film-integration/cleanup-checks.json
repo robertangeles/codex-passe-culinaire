@@ -1,0 +1,30 @@
+[
+  {
+    "width": 390,
+    "removedGrid": true,
+    "removedCaption": true,
+    "autoplay": true,
+    "pause": true,
+    "seek": true,
+    "sceneText": true,
+    "finiteEnd": true,
+    "replay": true,
+    "transcriptItems": 15,
+    "axeViolations": 0,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "removedGrid": true,
+    "removedCaption": true,
+    "autoplay": true,
+    "pause": true,
+    "seek": true,
+    "sceneText": true,
+    "finiteEnd": true,
+    "replay": true,
+    "transcriptItems": 15,
+    "axeViolations": 0,
+    "errors": []
+  }
+]

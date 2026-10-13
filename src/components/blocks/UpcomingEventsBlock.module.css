@@ -1,0 +1,117 @@
+.events {
+  width: 100%;
+  max-width: 1600px;
+  margin-inline: auto;
+  color: var(--foreground);
+}
+
+.heading {
+  margin: 0 0 var(--space-8);
+  color: var(--foreground);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-optical-sizing: auto;
+  font-size: var(--step-2);
+  font-weight: 400;
+  line-height: var(--display-leading);
+}
+
+.entries {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block-start: var(--rule);
+}
+
+.entry {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-block: var(--space-8);
+  border-block-end: var(--rule);
+}
+
+.copy {
+  min-width: 0;
+  max-width: var(--measure);
+}
+
+.title {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--loaded-fraunces), var(--font-display), serif;
+  font-optical-sizing: auto;
+  font-size: var(--step-1);
+  font-weight: 400;
+  line-height: var(--display-leading);
+}
+
+.link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.link:focus-visible,
+.contact:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.summary,
+.venue {
+  margin: var(--space-3) 0 0;
+  color: var(--foreground);
+  line-height: var(--body-leading);
+}
+
+.date {
+  display: block;
+  margin-top: var(--space-3);
+  color: var(--foreground);
+  font-family: var(--loaded-jetbrains-mono), var(--font-mono), monospace;
+  font-size: var(--step--1);
+  line-height: var(--body-leading);
+}
+
+.status {
+  flex: none;
+  margin: var(--space-3) 0 0;
+  color: var(--foreground);
+  font-size: var(--step--1);
+  line-height: var(--body-leading);
+}
+
+.empty {
+  max-width: 62ch;
+  color: var(--foreground);
+  line-height: var(--body-leading);
+}
+
+.empty p {
+  margin: 0;
+}
+
+.contact {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-top: var(--space-4);
+  color: var(--link);
+  line-height: var(--body-leading);
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 520px) {
+  .entry {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .status {
+    margin-top: 0;
+  }
+}

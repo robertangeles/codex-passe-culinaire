@@ -1,0 +1,38 @@
+[
+  {
+    "width": 320,
+    "overflow": false,
+    "note": "Narrow screen"
+  },
+  {
+    "width": 320,
+    "themeButtons": [
+      {
+        "name": "Light palette",
+        "pressed": "true"
+      },
+      {
+        "name": "Light palette",
+        "pressed": "true"
+      }
+    ]
+  },
+  {
+    "width": 720,
+    "overflow": false,
+    "note": "Reflow viewport equivalent to 200% browser zoom from 1440 CSS pixels"
+  },
+  {
+    "width": 720,
+    "themeButtons": [
+      {
+        "name": "Light palette",
+        "pressed": "true"
+      },
+      {
+        "name": "Light palette",
+        "pressed": "true"
+      }
+    ]
+  }
+]

@@ -1,0 +1,139 @@
+{
+  "durationSeconds": 65,
+  "errors": [],
+  "autoplay": true,
+  "endsWithoutLoop": true,
+  "replay": true,
+  "pause": true,
+  "resume": true,
+  "offscreenPause": true,
+  "keyboardSeek": true,
+  "motion": [
+    {
+      "selector": "#chef-working-arm",
+      "transforms": [
+        "matrix(0.999917, 0.0128501, -0.0128501, 0.999917, 0, 0)",
+        "matrix(0.987688, 0.156434, -0.156434, 0.987688, 0, 0)"
+      ]
+    },
+    {
+      "selector": "#stock-basket",
+      "transforms": [
+        "matrix(1, 0, 0, 1, -167.9, -32.8282)",
+        "matrix(1, 0, 0, 1, -49.7174, -11.6159)"
+      ]
+    },
+    {
+      "selector": "#oven-door",
+      "transforms": [
+        "matrix(1, 0, 0, 0.980016, 0, 0)",
+        "matrix(1, 0, 0, 0.535626, 0, 0)"
+      ]
+    },
+    {
+      "selector": "#supplier-position",
+      "transforms": [
+        "matrix(1, 0, 0, 1, -254.565, 0)",
+        "matrix(1, 0, 0, 1, -114.261, 0)"
+      ]
+    },
+    {
+      "selector": "#sales-slip",
+      "transforms": [
+        "matrix(0.996159, 0, 0, 0.996159, -74.3672, 39.2319)",
+        "matrix(0.881662, 0, 0, 0.881662, 93.5621, 16.3324)"
+      ]
+    }
+  ],
+  "layouts": [
+    {
+      "width": 1440,
+      "nineChaptersFit": true,
+      "heights": [
+        733,
+        733,
+        733,
+        733,
+        733,
+        733,
+        733,
+        733,
+        733
+      ]
+    },
+    {
+      "width": 1024,
+      "nineChaptersFit": true,
+      "heights": [
+        1052.265625,
+        1052.265625,
+        1052.265625,
+        1052.265625,
+        1052.265625,
+        1052.265625,
+        1052.265625,
+        1052.265625,
+        1052.265625
+      ]
+    },
+    {
+      "width": 768,
+      "nineChaptersFit": true,
+      "heights": [
+        908.265625,
+        908.265625,
+        908.265625,
+        908.265625,
+        908.265625,
+        908.265625,
+        908.265625,
+        908.265625,
+        908.265625
+      ]
+    },
+    {
+      "width": 390,
+      "nineChaptersFit": true,
+      "heights": [
+        854.140625,
+        854.140625,
+        854.140625,
+        854.140625,
+        854.140625,
+        854.140625,
+        854.140625,
+        854.140625,
+        854.140625
+      ]
+    },
+    {
+      "width": 320,
+      "nineChaptersFit": true,
+      "heights": [
+        861.390625,
+        861.390625,
+        861.390625,
+        861.390625,
+        861.390625,
+        861.390625,
+        861.390625,
+        861.390625,
+        861.390625
+      ]
+    }
+  ],
+  "axe": [
+    {
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "width": 320,
+      "violations": []
+    }
+  ],
+  "reducedMotion": true,
+  "noJS": true,
+  "assetFailureFallback": true,
+  "finalGeometryChecked": true
+}

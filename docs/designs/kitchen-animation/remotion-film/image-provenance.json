@@ -1,0 +1,100 @@
+{
+  "generator": "built-in image_gen",
+  "generatedOn": "2026-09-27",
+  "note": "Original fictional photographic scenes. Human poses remain still. Five additional scenes broaden the expanded film across kitchen, bar, inventory, production and waste.",
+  "images": [
+    {
+      "id": "opening",
+      "prompt": "Use case: photorealistic-natural. Create one photographic cinema frame, landscape 16:9 1920x1080 or higher, for an elegant French-influenced Melbourne restaurant brand film. Genuine editorial food photography, not illustration, not CGI. Early morning in a credible small professional pastry kitchen: ivory tiled walls, brushed stainless steel worktops, dark walnut shelving, subtle olive green cabinetry, warm side window light, deep soft shadows. Foreground hero on the right two-thirds: a gorgeous freshly baked French pear and almond tart on a worn silver tray, delicate fanned golden pear slices, crisp thin pastry edge, folded ivory linen and three imperfect green pears. In soft background on far right, a real adult chef in a clean ivory jacket and olive apron, hair secured, quietly reading a preparation notebook, anatomically credible understated presence. Left third falls into richly textured dark shadow with uncluttered breathing room for typography added later. Low eye-level 50mm lens, restrained film grain, warm neutral colour, tangible pastry and steel textures, refined editorial composition, romantic but hardworking. No lettering, no logos, no text, no watermarks. This is a single still photograph, not a collage.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-40c8b425-9a60-4221-9f78-b72f51b7c054.png",
+      "method": "built-in image_gen",
+      "file": "public/opening.png",
+      "sha256": "58e84b2d1c127cf8b16b30c2eb18775f4e34fb1a1ee13986d03ac1ead243506c"
+    },
+    {
+      "id": "pantry",
+      "prompt": "Use case: photorealistic-natural. Create one original single photographic film frame for a French-influenced Melbourne restaurant brand film. The head chef is a real-looking adult woman with dark brown hair secured in a bun, an ivory jacket and olive apron. Landscape 16:9, high detail. Same ivory tiled professional pastry kitchen, brushed steel, olive apron, warm neutral film colour, natural grain and honest food textures. Absolutely photorealistic editorial cinema, no illustration or CGI. No words, letters, logos or watermarks. Scene: mise en place stock draw. Close overhead-oblique view of a brushed steel workbench, a small wooden produce crate of green pears at upper right, five pears in a stainless bowl on a compact commercial digital bench scale at lower centre, edge of a chef's olive apron at far right. The visible hands of the same chef rest separately on the two crate handles, natural anatomy, no fingers crossing objects. A folded ivory kitchen towel and closed plain notebook. Composition rich but uncluttered, work and pears centred right, left third falls into shadow. This should feel like the moment ingredients are weighed out for a pastry section. No giant household decorative objects.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-050b3c4b-a118-490f-889e-3530df74b292.png",
+      "method": "built-in image_gen",
+      "file": "public/pantry.png",
+      "sha256": "6f9b57eb05bb983fa27c3bcefc231cddaba67960bf22f2760c022a2c5a17a084"
+    },
+    {
+      "id": "preparation",
+      "prompt": "Use case: photorealistic-natural. Create one original single photographic film frame for a French-influenced Melbourne restaurant brand film. The head chef is a real-looking adult woman with dark brown hair secured in a bun, an ivory jacket and olive apron. Landscape 16:9, high detail. Same ivory tiled professional pastry kitchen, brushed steel, olive apron, warm neutral film colour, natural grain and honest food textures. Absolutely photorealistic editorial cinema, no illustration or CGI. No words, letters, logos or watermarks. Scene: detailed intimate close shot at waist height of the same female chef in ivory jacket and olive apron preparing a French pear tart. Face outside crop; only torso, two anatomically correct hands and work visible. One hand gently fans slices of pear on almond cream in a shallow raw pastry tart shell; the other rests on the edge of the stainless workbench away from food. Crisp pastry fluting, slightly flour-dusted working mat, small stainless ingredient bowls. No knife. Main pastry/working hands centre-right, breathing room at left. Soft directional window light shows the craft, tactile and skilled, beautifully composed editorial food photograph.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-7cf6224f-06ab-4c56-b218-d32c90413dcd.png",
+      "method": "built-in image_gen",
+      "file": "public/preparation.png",
+      "sha256": "762317411a411673c60044b8288b2292fab17d2c6d2828df4b7795774f7b125d"
+    },
+    {
+      "id": "tart",
+      "prompt": "Use case: photorealistic-natural. Create one original single photographic film frame for a French-influenced Melbourne restaurant brand film. The head chef is a real-looking adult woman with dark brown hair secured in a bun, an ivory jacket and olive apron. Landscape 16:9, high detail. Same ivory tiled professional pastry kitchen, brushed steel, olive apron, warm neutral film colour, natural grain and honest food textures. Absolutely photorealistic editorial cinema, no illustration or CGI. No words, letters, logos or watermarks. Scene: service at the pass. Extreme cinematic close view of an exquisite single slice of the same baked French pear almond tart on an understated ivory ceramic restaurant plate, with a small precise quenelle of vanilla cream. Crisp thin pastry, moist almond filling, translucent fanned pear, tiny toasted almond garnish. Plate occupies lower right with softly reflected warm pass light; edge of second finished plate softly out of focus behind. Commercial stainless pass, no people or hands, dark soft background. Low three-quarter camera, shallow depth, appetising natural texture, restrained sophistication. Left third dark uncluttered for later overlay.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-001f5483-fc38-41dd-98bd-c68fbb1935da.png",
+      "method": "built-in image_gen",
+      "file": "public/tart.png",
+      "sha256": "ec4723b39a852113a9c9ce5d0772625cd14d4fa0bd4b118d8b8cc59f96b52a38"
+    },
+    {
+      "id": "receiving",
+      "prompt": "Use case: photorealistic-natural. Create one original single photographic film frame for a French-influenced Melbourne restaurant brand film. The head chef is a real-looking adult woman with dark brown hair secured in a bun, an ivory jacket and olive apron. Landscape 16:9, high detail. Same ivory tiled professional pastry kitchen, brushed steel, olive apron, warm neutral film colour, natural grain and honest food textures. Absolutely photorealistic editorial cinema, no illustration or CGI. No words, letters, logos or watermarks. Scene: delivery inspection in the same kitchen later that morning. Medium close candid view of the same woman chef, dark brown hair secured in a bun, ivory chef jacket and olive apron, face clearly human and natural, standing right of frame by two small wooden produce crates of green pears on stainless bench. She holds ONE pear in one open hand at waist height while visually inspecting it; her other hand rests flat on a clipboard on the bench. Hands and pear visibly separate and anatomically correct. A plain delivery sheet on clipboard with no readable text. Side window light, credible restaurant receiving area. No deliveryman, no handshake, no costumes. Left third darker uncluttered kitchen context.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-9fc68f62-6aa3-476b-be47-0252a743e1bf.png",
+      "method": "built-in image_gen",
+      "file": "public/receiving.png",
+      "sha256": "8a883f9814d59aeb7e7922fa19a1204ef3d6927a9c5d4d7469d6a402f1404b17"
+    },
+    {
+      "id": "team",
+      "prompt": "Use case: photorealistic-natural. Create one original single photographic film frame for a French-influenced Melbourne restaurant brand film. The head chef is a real-looking adult woman with dark brown hair secured in a bun, an ivory jacket and olive apron. Landscape 16:9, high detail. Same ivory tiled professional pastry kitchen, brushed steel, olive apron, warm neutral film colour, natural grain and honest food textures. Absolutely photorealistic editorial cinema, no illustration or CGI. No words, letters, logos or watermarks. Scene: end of service in same intimate restaurant kitchen. Medium wide candid editorial photograph of the same adult woman chef with secured dark brown hair, ivory jacket and olive apron, and a fictional adult restaurant owner in a charcoal linen shirt, at a small dark timber desk beside stainless pass. Both are calmly reviewing an open laptop angled away so no screen lettering is visible. Each person's hands rest naturally separated on the desk, one chef index finger indicates an open paper preparation notebook on the desk without touching laptop. Faces natural, thoughtful, not advertising smiles, no handshake. Two glasses of water and a folded towel, warm evening practical lighting balanced with soft cool window, refined dark cinematic tones. People/laptop occupy right two thirds, ample dark breathing room left. Distinct realistic people, no distortions.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-db810b52-eaf8-4267-8930-e771dd8f964a.png",
+      "method": "built-in image_gen",
+      "file": "public/team.png",
+      "sha256": "2a7e3d7ecc74058673ec90a8e9a5ab91b17541d02a28417ff1d3d7f5186906a5"
+    },
+    {
+      "id": "recipe-lab",
+      "prompt": "Use case: photorealistic-natural. One original landscape16:9 photographic cinema frame for an elegant French-influenced Melbourne restaurant film, high detail. Real editorial photography, not CGI or illustration. Ivory tile, brushed stainless worktops, dark walnut, muted olive textiles, warm directional window light, deep natural shadows, restrained film grain. No text, logos, watermarks or collage. Authentic professional kitchen, beautifully understated and tactile. Scene: savoury recipe development. An exquisite shallow ivory bowl of roasted slender carrots on dark French lentils with a small amount of fresh herb dressing, placed centre-right on the stainless working bench. Nearby restrained mise en place bowls of lentils and fresh herbs, one open plain recipe notebook with faint unrecognisable marks, a chef's ivory sleeve cropped at far right with NO visible hands or face. Low three-quarter camera, carrots and lentils unmistakable, modest restaurant portion, no pears or pastries. Left third richly shadowed breathing room for later graphic overlays. Wide cinematic still, refined food photograph.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-2e763cd3-6a07-4fed-8b47-89d6a668e79c.png",
+      "method": "built-in image_gen",
+      "generatedOn": "2026-09-28",
+      "file": "public/recipe-lab.png",
+      "sha256": "ab73d8ff5ff2e341d07fafc3140e0acf6d0a597ff2dd90ae07184ece023bb9da"
+    },
+    {
+      "id": "cocktail-lab",
+      "prompt": "Use case: photorealistic-natural. One original landscape16:9 photographic cinema frame for an elegant French-influenced Melbourne restaurant film, high detail. Real editorial photography, not CGI or illustration. Ivory tile, brushed stainless worktops, dark walnut, muted olive textiles, warm directional window light, deep natural shadows, restrained film grain. No text, logos, watermarks or collage. Authentic professional kitchen, beautifully understated and tactile. Scene: the restaurant cocktail bar. Close cinematic view of a single elegant chilled pale-gold pear and thyme cocktail in a stemmed coupe, crystal clear glass with natural fine condensation, a slender pear slice and tiny thyme sprig neatly garnishing its rim. Beside it a stainless jigger, mixing glass, citrus peel and two small unlabelled ingredient vessels arranged in an orderly working bartender station. No people or hands. Dark walnut counter, softly blurred amber bar shelves, warm reflected practical light, quiet romantic French dining ambience. Drink and working tools on right two thirds, left third dark and uncluttered for text. Natural correct glass geometry, no giant garnish, no flashy neon.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-d2d00db9-58f8-4a02-9bf0-aee39f193baa.png",
+      "method": "built-in image_gen",
+      "generatedOn": "2026-09-28",
+      "file": "public/cocktail-lab.png",
+      "sha256": "f76b91f3d9732d50e79039f2a1d7a6bc76dc20e99f49a12714126fd1e101ff86"
+    },
+    {
+      "id": "inventory",
+      "prompt": "Use case: photorealistic-natural. One original landscape16:9 photographic cinema frame for an elegant French-influenced Melbourne restaurant film, high detail. Real editorial photography, not CGI or illustration. Ivory tile, brushed stainless worktops, dark walnut, muted olive textiles, warm directional window light, deep natural shadows, restrained film grain. No text, logos, watermarks or collage. Authentic professional kitchen, beautifully understated and tactile. Scene: organised working restaurant produce store. An eye-level medium view of two perforated food-grade crates of imperfect green pears sitting neatly on a stainless shelf, one older shallow crate in front left and a fuller new crate behind right, small blank paper batch tags clipped safely to crates. Surrounding shelves softly out of focus with neatly closed food-safe containers, nothing on floor. Credible small commercial stockroom, no people, no hand action, no decorative supermarket signs. Crates in central-right frame, muted shadow on left, natural side light, precise texture of pears and steel, practical not luxurious retail display.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-90007d89-c3d7-4722-acc5-f1ba696f89df.png",
+      "method": "built-in image_gen",
+      "generatedOn": "2026-09-28",
+      "file": "public/inventory.png",
+      "sha256": "884396765b46fc3b0b07b184ed7c4f70c6a83769e90ef6195ca42c3a8d7d6a9d"
+    },
+    {
+      "id": "production",
+      "prompt": "Use case: photorealistic-natural. One original landscape16:9 photographic cinema frame for an elegant French-influenced Melbourne restaurant film, high detail. Real editorial photography, not CGI or illustration. Ivory tile, brushed stainless worktops, dark walnut, muted olive textiles, warm directional window light, deep natural shadows, restrained film grain. No text, logos, watermarks or collage. Authentic professional kitchen, beautifully understated and tactile. Scene: the baking stage in a real professional patisserie kitchen. Three full-sized golden pear and almond tarts, each in a separate shallow metal tart ring, on three spaced commercial sheet pans on a sturdy stainless cooling rack immediately beside a CLOSED commercial convection oven. Racks and oven straight and physically plausible. Warm oven practical light and soft window daylight, clearly baked pastry crusts, fanned pear and almond filling. No people or hands, no open dangerous oven, no flames or smoke. Low three-quarter view, rack and tarts centre-right, darker uncluttered left third, honest working bakery details rather than decorative home kitchen.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-02bdde37-257a-4b4f-af38-c0c14eb1f8a7.png",
+      "method": "built-in image_gen",
+      "generatedOn": "2026-09-28",
+      "file": "public/production.png",
+      "sha256": "eb03c78a03775988013f5c1a39db72f7cf4bb748653cbb2ad6c3ab7fc737e50a"
+    },
+    {
+      "id": "waste",
+      "prompt": "Use case: photorealistic-natural. One original landscape16:9 photographic cinema frame for an elegant French-influenced Melbourne restaurant film, high detail. Real editorial photography, not CGI or illustration. Ivory tile, brushed stainless worktops, dark walnut, muted olive textiles, warm directional window light, deep natural shadows, restrained film grain. No text, logos, watermarks or collage. Authentic professional kitchen, beautifully understated and tactile. Scene: honest preparation waste recording in a restaurant kitchen, beautifully restrained overhead-oblique editorial photograph. On a clean brushed steel workbench centre-right, a compact commercial scale supports a small stainless bowl containing only a modest handful of pear peel ribbons and a few pear cores. Alongside it, a SEPARATE clean bowl holds usable pale pear wedges for return to prep; a small folded plain record sheet rests nearby, with no readable letters or digits. A whole green pear at back. No rubbish bin, no dirty food, no mess, no people, no hands, no cooked dish. Distinct containers make usable ingredients and unavoidable trim visibly different. Natural warm side light, reflective steel controlled, left third darker breathing room. Scale display turned away so no false numeric readout.",
+      "source": "/home/robangeles/.codex/generated_images/01a0d6dc-12ea-79e1-9663-0e0d928b942c/exec-9281a6d7-45c2-40a2-8030-2146078d3bb8.png",
+      "method": "built-in image_gen",
+      "generatedOn": "2026-09-28",
+      "file": "public/waste.png",
+      "sha256": "582b1e1b010a3957f67bb72de7b12ab24a7013fb4ae464dc1d768c828b004a06"
+    }
+  ]
+}

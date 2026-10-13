@@ -1,0 +1,42 @@
+{
+  "sourceCommit": "b7ca961",
+  "encoding": {
+    "codec": "libx264",
+    "preset": "slow",
+    "crf": 24,
+    "threads": 2,
+    "pixelFormat": "yuv420p",
+    "movflags": "+faststart",
+    "audio": false
+  },
+  "files": {
+    "landscape-v1.mp4": {
+      "bytes": 12959944,
+      "sha256": "52cbc2690faf5f2cdb8ff20c3cb694cf3d556dab87ea3d1c40bab03781fa687f",
+      "sourceSha256": "16a01fba4fd08b83b75fe62d002b641a70364c40a8a44e0baedf65e35e82ce16",
+      "width": 1920,
+      "height": 1080,
+      "frames": 3840,
+      "duration": 128.0,
+      "fps": 30.0
+    },
+    "portrait-v1.mp4": {
+      "bytes": 6236081,
+      "sha256": "3aa42605993ae121ffb2b1bed708fbde3b26a420c85066d8b2069e34bedf8832",
+      "sourceSha256": "e70cfbfc022aa09f9fad43ecb78d5dc5b49b4efbb9063e177b2e951937fbb2f7",
+      "width": 864,
+      "height": 1080,
+      "frames": 3840,
+      "duration": 128.0,
+      "fps": 30.0
+    },
+    "poster-landscape-v1.webp": {
+      "bytes": 100148,
+      "sha256": "e63b431e236906fc147190dbaf66138427b30d11fbcbb79467c31d79326b4bc4"
+    },
+    "poster-portrait-v1.webp": {
+      "bytes": 60516,
+      "sha256": "6436c91eefbc8003458079d353c30e15d2550060073d235fc89c96ad8b4e8003"
+    }
+  }
+}

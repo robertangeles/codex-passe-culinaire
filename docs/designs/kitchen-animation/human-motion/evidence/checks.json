@@ -1,0 +1,39 @@
+{
+  "elapsed": 5342,
+  "uniqueFrames": 16,
+  "layouts": [
+    {
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "width": 640,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "width": 1600,
+      "overflow": false
+    }
+  ],
+  "axeDesktop": [],
+  "axeMobile": [],
+  "errors": [],
+  "reducedMotion": true,
+  "pause": true,
+  "finite": true,
+  "replay": true,
+  "nojs": true,
+  "assetFailure": true
+}

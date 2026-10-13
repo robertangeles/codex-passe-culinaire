@@ -1,0 +1,140 @@
+{
+  "duration": 128,
+  "chapters": [
+    {
+      "id": "opening",
+      "at": 0,
+      "end": 6,
+      "label": "Opening",
+      "title": "The craft. The whole kitchen.",
+      "description": "A kitchen day connects the food, the people and the decisions behind service.",
+      "photo": "opening.png"
+    },
+    {
+      "id": "forecast",
+      "at": 6,
+      "end": 14,
+      "label": "Forecast",
+      "title": "Begin with service in mind.",
+      "description": "Review expected covers and decide what the team needs to prepare.",
+      "photo": "opening.png"
+    },
+    {
+      "id": "roster",
+      "at": 14,
+      "end": 22,
+      "label": "Rostering",
+      "title": "The right hands, ready.",
+      "description": "Review shifts and section coverage. Send the preparation plan to the team before work begins.",
+      "photo": "team.png"
+    },
+    {
+      "id": "recipe",
+      "at": 22,
+      "end": 32,
+      "label": "Recipe Lab",
+      "title": "An idea becomes a recipe.",
+      "description": "Set ingredients, cuisine and portions. Develop and refine the recipe, then review the menu cost.",
+      "photo": "recipe-lab.png"
+    },
+    {
+      "id": "patisserie",
+      "at": 32,
+      "end": 42,
+      "label": "Patisserie Lab",
+      "title": "Every component matters.",
+      "description": "Develop the pastry by type and technique, with component planning and make-ahead notes.",
+      "photo": "preparation.png"
+    },
+    {
+      "id": "cocktail",
+      "at": 42,
+      "end": 52,
+      "label": "Cocktail Lab",
+      "title": "The bar has a craft of its own.",
+      "description": "Choose the spirit base, flavour and style. Develop a drink specification and a batch for service.",
+      "photo": "cocktail-lab.png"
+    },
+    {
+      "id": "purchasing",
+      "at": 52,
+      "end": 60,
+      "label": "Purchasing",
+      "title": "Order against what is needed.",
+      "description": "Review stock against the target, prepare a purchase order and track what was ordered.",
+      "photo": "receiving.png"
+    },
+    {
+      "id": "receiving",
+      "at": 60,
+      "end": 68,
+      "label": "Receiving",
+      "title": "Check what actually arrives.",
+      "description": "Inspect the delivery against the purchase order. Record accepted quantities and a short delivery.",
+      "photo": "receiving.png"
+    },
+    {
+      "id": "inventory",
+      "at": 68,
+      "end": 76,
+      "label": "Inventory",
+      "title": "Know what is on the shelf.",
+      "description": "Keep opening stock and the new delivery visible as separate batches. Draw from the older stock first.",
+      "photo": "inventory.png"
+    },
+    {
+      "id": "mise",
+      "at": 76,
+      "end": 84,
+      "label": "Mise en Place",
+      "title": "From stockroom to section.",
+      "description": "Draw the ingredients, record the transfer and organise the preparation tasks for the pastry section.",
+      "photo": "pantry.png"
+    },
+    {
+      "id": "production",
+      "at": 84,
+      "end": 94,
+      "label": "Production",
+      "title": "Preparation becomes a batch.",
+      "description": "Work through the preparation and baking stages, then record the completed yield for service.",
+      "photo": "production.png"
+    },
+    {
+      "id": "service",
+      "at": 94,
+      "end": 100,
+      "label": "Service",
+      "title": "Ready for the room.",
+      "description": "The savoury kitchen, pastry section and bar bring their preparation to service.",
+      "photo": "tart.png"
+    },
+    {
+      "id": "waste",
+      "at": 100,
+      "end": 110,
+      "label": "Waste Management",
+      "title": "Record the loss. Learn from it.",
+      "description": "Separate recipe use, usable stock returned and preparation waste. Record the reason and review its cost.",
+      "photo": "waste.png"
+    },
+    {
+      "id": "sales",
+      "at": 110,
+      "end": 120,
+      "label": "Sales",
+      "title": "Bring service back to the numbers.",
+      "description": "Upload the sales file and compare what was planned, prepared and sold. Review unsold portions separately from waste.",
+      "photo": "team.png"
+    },
+    {
+      "id": "closing",
+      "at": 120,
+      "end": 128,
+      "label": "The whole kitchen",
+      "title": "Your craft. A clearer picture.",
+      "description": "CulinAIre Kitchen brings the eleven areas into view, from the three labs to the daily operation.",
+      "photo": "opening.png"
+    }
+  ]
+}

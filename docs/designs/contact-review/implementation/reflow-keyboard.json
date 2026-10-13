@@ -1,0 +1,8 @@
+{
+  "reflow": "720 CSS px, equivalent to 1440px at 200% browser zoom",
+  "overflow": false,
+  "nativeRole": "chef",
+  "keyboardTopicFocused": true,
+  "nativeValidationFocus": true,
+  "focusStyle": "solid"
+}

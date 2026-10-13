@@ -1,0 +1,13 @@
+{
+  "approved_variant": "B",
+  "title": "Behind every service",
+  "reference": "/home/robangeles/.gstack/projects/codex-passe-culinaire/designs/culinaire-kitchen-20261002/approved-b.html",
+  "retained_example": true,
+  "authorisation": "User selected B, then said Let\u2019s go after recommendation to keep the example.",
+  "recorded_at": "2026-10-02T09:19:07.831353+00:00",
+  "files": {
+    "approved-b.html": "eb0173f4297927bc693d90bf5ef2a6783343b1a293f8c1dc103cbd38ff4e7531",
+    "base.css": "0b63a097c8e8f39104d45ff92cc299762f524d5edcc9c49acde597776bbb28ab",
+    "styles.css": "31698a625cecdc3b6db628c6833532dfd0a81b6f9b796ea91bc5086351f914f9"
+  }
+}

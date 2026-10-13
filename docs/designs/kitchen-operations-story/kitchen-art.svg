@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" role="img" aria-labelledby="kitchen-title kitchen-description" data-stage="0">
+  <title id="kitchen-title">A pastry kitchen through the working day</title>
+  <desc id="kitchen-description">A fine-line kitchen elevation showing receiving, cool storage, recipe planning, pastry preparation, service at the pass, and a closing ledger.</desc>
+  <style>
+    .ink { fill: none; stroke: #e9e2d4; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+    .fine { fill: none; stroke: #bdb6a9; stroke-width: .8; stroke-linecap: round; stroke-linejoin: round; }
+    .quiet { fill: none; stroke: #817d72; stroke-width: .8; stroke-linecap: round; stroke-linejoin: round; }
+    .warm { fill: none; stroke: #bf795d; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+    .surface { fill: #24251f; stroke: #928b7e; stroke-width: 1; stroke-linejoin: round; }
+    .shadow-surface { fill: #1b1c18; stroke: #777368; stroke-width: .8; stroke-linejoin: round; }
+    .paper { fill: #e9e2d4; stroke: #e9e2d4; stroke-width: .8; stroke-linejoin: round; }
+    .paper-line { fill: none; stroke: #57564e; stroke-width: .8; stroke-linecap: round; }
+    .copper-fill { fill: #9d604b; stroke: #d19a7a; stroke-width: .9; }
+    .glass { fill: #34362f; fill-opacity: .76; stroke: #aaa294; stroke-width: .8; }
+    .common { opacity: 1; }
+    .station { opacity: .34; transition: opacity 240ms ease; }
+    [data-stage="0"] #station-plan,
+    [data-stage="1"] #station-receiving,
+    [data-stage="2"] #station-prep,
+    [data-stage="3"] #station-service,
+    [data-stage="4"] #station-close { opacity: 1; }
+    [data-stage="0"] #station-plan .accent,
+    [data-stage="1"] #station-receiving .accent,
+    [data-stage="2"] #station-prep .accent,
+    [data-stage="3"] #station-service .accent,
+    [data-stage="4"] #station-close .accent { stroke: #d08a69; }
+    .transfer-crate { opacity: .34; transform-box: view-box; transform-origin: 0 0; transition: opacity 240ms ease; }
+    [data-stage="1"] #transfer-crate,
+    [data-stage="2"] #transfer-crate { opacity: 1; }
+    [data-stage="2"] #transfer-crate { transform: translateX(340px); }
+    .transfer-active { animation: crate-travel 900ms cubic-bezier(.2,.72,.26,1) 1 both; }
+    @keyframes crate-travel {
+      from { transform: translateX(0); }
+      to { transform: translateX(340px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .station, .transfer-crate { transition: none; }
+      [data-stage="2"] #transfer-crate { transform: translateX(340px); }
+    .transfer-active { animation: none; transform: translateX(340px); }
+    }
+  </style>
+
+  <rect width="1100" height="640" fill="#23251f" aria-hidden="true"/>
+
+  <g class="common" aria-hidden="true">
+    <!-- A quiet, continuous room shell: tiled wall, hanging rail and stone floor. -->
+    <path class="ink" d="M28 91V518H1072V91M28 121H1072M28 463H1072"/>
+    <path class="quiet" d="M28 159H1072M28 197H1072M28 235H1072"/>
+    <path class="quiet" d="M102 121V250M176 121V250M250 121V250M324 121V250M398 121V250M472 121V250M546 121V250M620 121V250M694 121V250M768 121V250M842 121V250M916 121V250M990 121V250"/>
+    <path class="ink" d="M28 518H1072M28 526H1072M62 527l-20 29m144-29-17 29m142-29-13 29m142-29-9 29m142-29-5 29m142-29 1 29m142-29 5 29m142-29 9 29m142-29 13 29m142-29 17 29"/>
+    <path class="quiet" d="M28 91h1044M65 91V76h70v15m122 0V76h70v15m122 0V76h70v15m122 0V76h70v15m122 0V76h70v15m122 0V76h70v15"/>
+    <!-- Pendant task lights and the slender overhead service rail. -->
+    <path class="fine" d="M690 77v39m-5 0h10m172-39v39m-5 0h10m173-39v39m-5 0h10"/>
+    <path class="warm" d="M679 116h23m160 0h23m161 0h23"/>
+    <path class="quiet" d="M715 135v294m174-294v294m173-294v294"/>
+    <!-- Plinth and cabinet rhythm anchor the separate work areas as one kitchen. -->
+    <path class="ink" d="M47 430H1054v80H47zM47 510H1054M47 497H1054"/>
+    <path class="fine" d="M59 444h90v54H59zm102 0h90v54h-90zm102 0h90v54h-90zm102 0h90v54h-90zm102 0h90v54h-90zm102 0h90v54h-90zm102 0h90v54h-90zm102 0h90v54h-90zm102 0h90v54h-90zm102 0h23v54h-23"/>
+    <path class="quiet" d="M104 467h8m93 0h8m94 0h8m93 0h8m93 0h8m94 0h8m93 0h8m94 0h8m93 0h8"/>
+  </g>
+
+  <g id="station-plan" class="station" aria-label="Menu and recipe planning">
+    <!-- Folded recipe ledger on a narrow wall shelf. -->
+    <path class="surface" d="M272 276h159v10H272zM282 285h9v33h-9zm132 0h9v33h-9z"/>
+    <path class="paper" d="M300 199l47-10 20 75-47 10z"/>
+    <path class="paper" d="M347 189l48-8 14 76-42 7z"/>
+    <path class="paper-line" d="M308 208l27-6m-23 14 30-7m-26 16 30-7m-26 16 32-7m-27 17 31-7m-17-43 34-6m-30 14 30-5m-26 15 30-5m-26 14 31-5m-26 14 27-4"/>
+    <path class="paper-line" d="M335 200l4 3 6-8m8 41 5 3 6-9m-42 1 8 1m52-27 20-3"/>
+    <!-- Menu card, copper pin, pencilled cost marks. -->
+    <path class="paper" d="M369 208l47-8 11 62-47 8z"/>
+    <path class="paper-line" d="M377 220l28-5m-26 13 31-5m-29 14 26-4m-24 13 31-5m-26 13 20-3"/>
+    <circle class="copper-fill" cx="407" cy="204" r="3"/>
+    <path class="warm accent" d="M319 181c17-12 38-16 58-13m-59 0 4 13m-4-13 13 2"/>
+    <path class="quiet" d="M282 332h132m-130 8h47m-47 8h75"/>
+  </g>
+
+  <g id="station-receiving" class="station" aria-label="Receiving and storage">
+    <!-- Receiving hatch, stainless bench, and a supplier docket clipped upright. -->
+    <path class="ink" d="M49 160h202v85H49zM56 168h188v67H56z"/>
+    <path class="quiet" d="M66 180h169m-169 9h169m-169 9h169m-169 9h169m-169 9h169"/>
+    <path class="surface" d="M39 330h261v13H39zM48 343h12v87H48zm229 0h12v87h-12z"/>
+    <path class="fine" d="M64 356h228m-215 0v57m207-57v57"/>
+    <path class="paper" d="M67 270h53v52H67z"/>
+    <path class="paper-line" d="M76 282h33m-33 8h25m-25 8h33m-33 8h22"/>
+    <path class="warm" d="M111 267v7m-7-4h14"/>
+    <path class="fine" d="M138 307h47m-47 7h32"/>
+    <!-- Tall coolroom cabinet: insulated leaf, inset, hinges and long pulls. -->
+    <path class="surface" d="M62 126h89v197H62z"/>
+    <path class="fine" d="M70 135h72v180H70zM107 136v178"/>
+    <path class="ink" d="M128 198v44m-4-2 4 4 4-4m-4 23v34m-4-2 4 4 4-4"/>
+    <circle class="quiet" cx="96" cy="224" r="2"/>
+    <!-- Two shelves of stoppered jars and a hanging ladle. -->
+    <path class="ink" d="M157 172h125m-125 53h125m-125 4h125"/>
+    <g class="fine">
+      <path d="M166 148h22v22h-22zm3-7h16v7h-16m-2 21h20"/>
+      <path d="M194 155h19v15h-19zm2-6h15v6h-15m-1 15h17"/>
+      <path d="M219 144h24v26h-24zm4-8h16v8h-16m-3 26h22"/>
+      <path d="M251 151h23v19h-23zm3-7h17v7h-17m-2 19h21"/>
+      <path d="M166 200h22v22h-22zm3-7h16v7h-16m-2 22h20"/>
+      <path d="M195 204h19v18h-19zm2-7h15v7h-15m-1 18h17"/>
+      <path d="M222 197h22v25h-22zm3-7h16v7h-16m-2 25h20"/>
+      <path d="M252 201h22v21h-22zm3-7h16v7h-16m-2 21h20"/>
+    </g>
+    <path class="warm" d="M177 151v15m54-19v19m52 42v18"/>
+    <path class="fine" d="M287 134v46m-4 0c0 7 8 7 8 0m-4-46v-8"/>
+  </g>
+
+  <g id="station-prep" class="station" aria-label="Pastry preparation and mise en place">
+    <!-- Broad pastry slab and lower drawers. -->
+    <path class="surface" d="M414 323h320v17H414zM425 340h16v90h-16zm282 0h16v90h-16z"/>
+    <path class="ink" d="M452 359h87v57h-87zm104 0h111v57H556z"/>
+    <path class="fine" d="M482 376h27m-14-4v8m116-3h21"/>
+    <path class="quiet" d="M468 429h247"/>
+    <!-- Flour bowl with a fine rim and whisk; rolling pin across the stone. -->
+    <path class="ink" d="M455 288c4 32 18 45 40 45s36-13 40-45m-80 0c0-7 17-12 40-12s40 5 40 12-17 12-40 12-40-5-40-12z"/>
+    <path class="fine" d="M465 297c11 6 49 6 61 0m-40-20c4 8 9 13 14 17m-14-17-4 9m18-9-8 9m16-9-12 8"/>
+    <path class="warm" d="M465 332h61"/>
+    <path class="ink" d="M557 306h98m-7-6 10 6-10 6m-84-6 10-6m-10 6 10 6"/>
+    <path class="fine" d="M572 300v12m66-12v12"/>
+    <!-- Tray, parchment and a row of tiny pear tartlets. -->
+    <path class="surface" d="M574 232h126l-9 60H583z"/>
+    <path class="fine" d="M583 239h108l-7 47h-94z"/>
+    <g class="ink">
+      <path d="M592 266c0-10 6-17 14-17s14 7 14 17v4h-28z"/>
+      <path d="M621 266c0-10 6-17 14-17s14 7 14 17v4h-28z"/>
+      <path d="M650 266c0-10 6-17 14-17s14 7 14 17v4h-28z"/>
+    </g>
+    <g class="warm">
+      <path d="M601 254c-3-5 0-10 4-10 4 3 4 6 2 9m25 1c-3-5 0-10 4-10 4 3 4 6 2 9m25 1c-3-5 0-10 4-10 4 3 4 6 2 9"/>
+      <path d="M598 274h20m9 0h20m9 0h20"/>
+    </g>
+    <!-- Pastry cloth and a small ingredient ramekin. -->
+    <path class="fine" d="M687 301c14-7 26-4 34 8l-7 13h-35z"/>
+    <path class="surface" d="M673 294h25l-3 9h-19z"/>
+    <ellipse class="fine" cx="685" cy="294" rx="12" ry="4"/>
+    <path class="warm" d="M680 293c3-3 8-3 11 0"/>
+    <!-- Hanging pans and a folded towel. -->
+    <path class="fine" d="M432 129v26m-11 0c0 13 22 13 22 0m-11 0v8m34-34v25m-10 0c0 12 20 12 20 0m-10 0v9"/>
+    <path class="ink" d="M420 167h25m26-1h22m-31 1v7"/>
+    <path class="fine" d="M691 191h28v29h-28zm5 0v29m19-29v29m-19-15h19"/>
+    <path class="warm" d="M699 197v17m9-17v17"/>
+  </g>
+
+  <g id="station-service" class="station" aria-label="Service at the kitchen pass">
+    <!-- Pass shelf, warming lamp and the plating ledge. -->
+    <path class="surface" d="M748 255h296v13H748zM748 364h296v15H748z"/>
+    <path class="ink" d="M764 268v96m267-96v96m-267-65h267"/>
+    <path class="fine" d="M776 344h241"/>
+    <path class="warm" d="M850 105v34m-29 0h58l-8 15h-42z"/>
+    <path class="fine" d="M830 154c5 13 8 25 9 37m30-37c-5 13-8 25-9 37"/>
+    <path class="quiet" d="M826 196h38"/>
+    <!-- Three quiet plates at the pass, finished with pear and leaf. -->
+    <g class="ink">
+      <ellipse cx="804" cy="329" rx="32" ry="12"/><ellipse cx="804" cy="329" rx="25" ry="8"/>
+      <ellipse cx="894" cy="329" rx="32" ry="12"/><ellipse cx="894" cy="329" rx="25" ry="8"/>
+      <ellipse cx="984" cy="329" rx="32" ry="12"/><ellipse cx="984" cy="329" rx="25" ry="8"/>
+    </g>
+    <g class="warm">
+      <path d="M797 327c-4-7-1-13 5-13 6 4 6 9 2 13m-5 1c3-3 6-3 10 0"/>
+      <path d="M887 327c-4-7-1-13 5-13 6 4 6 9 2 13m-5 1c3-3 6-3 10 0"/>
+      <path d="M977 327c-4-7-1-13 5-13 6 4 6 9 2 13m-5 1c3-3 6-3 10 0"/>
+    </g>
+    <!-- A roster sheet and a small handover note live near the pass. -->
+    <path class="paper" d="M771 173h67v68h-67z"/>
+    <path class="paper-line" d="M780 185h48m-48 8h48m-48 8h48m-48 8h48m-48 8h36"/>
+    <path class="warm" d="M780 182h16m3 11v4m13 4v4m-16 4v4"/>
+    <path class="paper" d="M949 183l55-4 4 47-55 4z"/>
+    <path class="paper-line" d="M959 191l36-3m-35 11 39-3m-38 11 28-2"/>
+    <path class="warm" d="M963 214c7-7 13-5 16 1 7-10 12-10 17-8"/>
+    <!-- Utensils rest within reach, never as decorative clip-art. -->
+    <path class="fine" d="M1021 164v73m-5-73v19m5-19v19m5-19v19m-5 0v54m11-54c-10 0-10-21-2-21 8 0 8 21-2 21"/>
+  </g>
+
+  <g id="station-close" class="station" aria-label="Closing stock and waste ledger">
+    <!-- End-of-day ledger and offcut bowl at the near corner of the bench. -->
+    <path class="paper" d="M920 390l78-5 13 60-78 5z"/>
+    <path class="paper" d="M998 385l31-2 13 60-31 2z"/>
+    <path class="paper-line" d="M930 402l54-4m-51 12 58-4m-55 12 45-3m-42 11 53-4m-49 11 41-3"/>
+    <path class="paper-line" d="M1005 397l20-2m-18 10 21-2m-18 10 20-2m-18 10 21-2"/>
+    <path class="warm accent" d="M935 422c7-8 12-7 16 0 8-8 14-7 18 0m12-28 4 6 8-10"/>
+    <path class="surface" d="M845 404h52l-5 24h-42z"/>
+    <path class="fine" d="M851 404c1-11 39-11 40 0m-34 5c7 5 19 5 27 0"/>
+    <path class="warm" d="M859 413c2-4 5-6 8-4m9 3c1-4 4-6 7-4"/>
+    <path class="quiet" d="M920 455h115m-108 8h101"/>
+  </g>
+  <!-- The marked crate travels once from the receiving bench to preparation. -->
+  <g id="transfer-crate" class="transfer-crate" aria-label="A crate of pears moving to preparation">
+    <path class="surface" d="M203 280h84l-5 47h-74z"/>
+    <path class="ink" d="M210 292h71m-70 12h68m-67 12h65m-47-36v47m34-47v47"/>
+    <path class="warm" d="M231 280c-5-10 0-19 9-20 7 4 8 11 4 18m6 2c-1-9 5-15 13-13 4 8 1 14-7 17m-13-14c-1-7 3-12 9-14"/>
+    <path class="fine" d="M227 347c4 3 7 3 11 0m8 0c4 3 7 3 11 0"/>
+  </g>
+
+</svg>

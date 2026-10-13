@@ -1,0 +1,56 @@
+[
+  {
+    "width": 1600,
+    "filmHeightMin": 766,
+    "filmHeightMax": 766,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "filmHeightMin": 686,
+    "filmHeightMax": 686,
+    "overflow": false
+  },
+  {
+    "width": 1280,
+    "filmHeightMin": 686,
+    "filmHeightMax": 686,
+    "overflow": false
+  },
+  {
+    "width": 1100,
+    "filmHeightMin": 946.25,
+    "filmHeightMax": 946.25,
+    "overflow": false
+  },
+  {
+    "width": 1024,
+    "filmHeightMin": 903.5,
+    "filmHeightMax": 903.5,
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "filmHeightMin": 786.5,
+    "filmHeightMax": 811.125,
+    "overflow": false
+  },
+  {
+    "width": 700,
+    "filmHeightMin": 1244.4375,
+    "filmHeightMax": 1244.4375,
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "filmHeightMin": 956.53125,
+    "filmHeightMax": 984.53125,
+    "overflow": false
+  },
+  {
+    "width": 320,
+    "filmHeightMin": 908.625,
+    "filmHeightMax": 972.25,
+    "overflow": false
+  }
+]
