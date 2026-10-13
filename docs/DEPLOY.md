@@ -8,7 +8,7 @@ The website runs in Render's existing **Passe Culinaire / Production** environme
 | Database `Passe Culinaire DB - PROD` | `dpg-db69mc8473hc73dmb5eg-a` | PostgreSQL 16, Basic 256 MB, Singapore |
 | Media disk | Attached to the web service | 1 GB at `/opt/render/project/src/media` |
 
-The temporary site URL is <https://cc-passe-culinaire.onrender.com>. GoDaddy DNS still points elsewhere. [PR #1](https://github.com/robertangeles/codex-passe-culinaire/pull/1) merged on 13 October 2026; the service now tracks `main` with automatic deploys off. Merge commit `b5d89a54e2a959533f3179bf60c5483020b12064` is live as Render deploy `dep-db6sudt9fdbs73e8ih10`. The release branch was not a second Render environment.
+The public site is <https://passeculinaire.com>, with GoDaddy still hosting its DNS. The Render address <https://cc-passe-culinaire.onrender.com> remains available. [PR #1](https://github.com/robertangeles/codex-passe-culinaire/pull/1) merged on 13 October 2026; the service tracks `main` with automatic deploys off. Commit `e07f1c723a8aeb9f1e7397297842c703c2011339` is live as Render deploy `dep-db6vdqk9v7es739v5mug` after the domain cutover. The release branch was not a second Render environment.
 
 ## Release and settings
 
@@ -32,7 +32,9 @@ For a bad code deployment, use Render's deploy history to redeploy the prior kno
 
 ## Domain cutover
 
-Do not change GoDaddy DNS until the Render URL passes launch checks and the complete GoDaddy DNS zone is captured. The verified launch backup is stored separately from Render and the Git checkout as described above. Rob confirmed receipt of the one live Render contact test on 13 October 2026. The user approved the nine genuine eligible links already in `llms.txt` for launch on the same date. `passeculinaire.com` and `www.passeculinaire.com` are already attached to this Render service, pending DNS verification; Render will redirect `www` to the root.
+The cutover completed on 13 October 2026. GoDaddy now serves root `A @ = 216.24.57.1` and `CNAME www = cc-passe-culinaire.onrender.com`; domain and subdomain forwarding remain off. Both domains are verified in Render, HTTPS health is 200, and `www` redirects to the root. The complete pre-cutover zone export is stored in ignored `.local/render-release/dns-zone-before-cutover.txt`; the verified launch database and media backup is stored separately from Render and the Git checkout as described above. Rob confirmed receipt of the one live Render contact test before cutover. The user approved the nine genuine eligible links in `llms.txt` for launch. No second contact email was sent during the cutover.
+
+If the domain must be pointed back to this Render service after a DNS change, use this order:
 
 1. Capture the full DNS zone, especially MX, SPF, DKIM and DMARC. Pause admin edits for the cutover window.
 2. Change only the GoDaddy web records: root `@` A to Render's documented `216.24.57.1` and `www` CNAME to `cc-passe-culinaire.onrender.com`; remove conflicting web A/AAAA/forwarding records after reviewing them. Preserve email and Resend records. Keep `NEXT_PUBLIC_SERVER_URL` on the Render address while DNS propagates. Publication jobs send the revalidation secret to that configured origin; changing it before DNS reaches Render would send the secret to the old host.
