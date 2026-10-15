@@ -8,9 +8,11 @@ The website runs in Render's existing **Passe Culinaire / Production** environme
 | Database `Passe Culinaire DB - PROD` | `dpg-db69mc8473hc73dmb5eg-a` | PostgreSQL 16, Basic 256 MB, Singapore |
 | Media disk | Attached to the web service | 1 GB at `/opt/render/project/src/media` |
 
-The public site is <https://passeculinaire.com>, with GoDaddy still hosting its DNS. The Render address <https://cc-passe-culinaire.onrender.com> remains available. [PR #1](https://github.com/robertangeles/codex-passe-culinaire/pull/1) merged on 13 October 2026; the service tracks `main` with automatic deploys off. Commit `5df9f27c4c664d48dafb07e3c2f5692a5455be6d` is live as Render deploy `dep-db89hnbncjis73f4k9n0` after the 15 October 2026 website policy release. The earlier domain-cutover deploy was `e07f1c723a8aeb9f1e7397297842c703c2011339`. The release branch was not a second Render environment.
+The public site is <https://passeculinaire.com>, with GoDaddy still hosting its DNS. The Render address <https://cc-passe-culinaire.onrender.com> remains available. [PR #1](https://github.com/robertangeles/codex-passe-culinaire/pull/1) merged on 13 October 2026; the service tracks `main` with automatic deploys off. Commit `4f38c3e8b8c3d8fe233cebc9b71892bbf6a5d301` is live as Render deploy `dep-db8kclmi0phs73br1qf0` after the 16 October 2026 legal-page hero release. The previous policy release was `5df9f27c4c664d48dafb07e3c2f5692a5455be6d`. The release branch was not a second Render environment.
 
 The policy release passed lint, typecheck, 362 tests, build, the existing seven-route mobile Lighthouse gate (21 runs), and local axe checks on Privacy, Terms and Contact. On the public domain, both policy routes, About links, the contact notice, sitemap entries and health endpoint returned 200. The `www` redirect remained 301 and the recent service logs showed no errors. The source and scope review is in [LEGAL-POLICIES-REVIEW.md](LEGAL-POLICIES-REVIEW.md).
+
+The legal-page hero release passed lint, typecheck, 362 tests, build, and desktop, tablet and mobile browser checks. The local images loaded and both legal pages had no axe violations. On the public domain, both pages, both image requests and `/api/health` returned 200.
 
 ## Release and settings
 
