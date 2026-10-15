@@ -179,6 +179,12 @@
   white-space: pre-line;
 }
 
+.legalNavigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
 .socialNavigation {
   margin-inline-start: auto;
 }

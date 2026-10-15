@@ -36,6 +36,9 @@ describe('generic CMS page route', () => {
     expect(html).toContain('<h1')
     expect(html).toContain('About Passe Culinaire')
     expect(html).toContain('We work with kitchens through training and publishing.')
+    expect(html).toContain('aria-label="Company policies"')
+    expect(html).toContain('href="/about/privacy-policy"')
+    expect(html).toContain('href="/about/terms-and-conditions"')
     expect(html).not.toContain('Explore CulinAIre Kitchen')
   })
 
@@ -64,6 +67,7 @@ describe('generic CMS page route', () => {
     expect(productHtml).toContain('Behind every service.')
     expect(productHtml).toContain('id="operation"')
     expect(productHtml).toContain('CulinAIre Kitchen shows ingredients shared by selected dishes')
+    expect(productHtml).not.toContain('aria-label="Company policies"')
     expect(productHtml.match(/<h1\b/g)).toHaveLength(1)
 
     mocks.page.mockResolvedValue({

@@ -10,7 +10,7 @@ export type SitemapKind = (typeof sitemapKinds)[number]
 const changeFrequencies = new Set(['always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never'])
 const defaultFrequencies = new Set(['daily', 'weekly', 'monthly', 'yearly'])
 const priorities = new Set(['0.1', '0.2', '0.3', '0.4', '0.5', '0.6', '0.7', '0.8', '0.9', '1.0'])
-const builtInPages = ['/journal', '/services', '/training']
+const builtInPages = ['/journal', '/services', '/training', '/about/privacy-policy', '/about/terms-and-conditions']
 const collectionsByKind: Record<SitemapKind, ExportCollection[]> = {
   pages: ['pages'], posts: ['posts'], taxonomies: ['categories', 'tags'], authors: ['users'],
   services: ['services'], training: ['events'],

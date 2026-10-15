@@ -33,6 +33,7 @@ describe('PublicShell', () => {
         id: 1,
         navItems: [
           { label: 'Journal', url: '/journal', children: [{ label: 'Kitchen notes', url: '/journal/kitchen-notes' }] },
+          { label: 'About', url: '/about' },
           { label: 'Unsafe', url: 'javascript:alert(1)' },
         ],
       },
@@ -50,6 +51,9 @@ describe('PublicShell', () => {
     expect(html).toContain('aria-label="Main navigation"')
     expect(html).toContain('<summary class="')
     expect(html).toContain('href="/journal/kitchen-notes"')
+    expect(html).toContain('href="/about/privacy-policy"')
+    expect(html).toContain('href="/about/terms-and-conditions"')
+    expect(html).toContain('aria-label="Legal information"')
     expect(html).not.toContain('javascript:')
     expect(html).toContain('Melbourne, Australia')
     expect(html).toContain('ABN: [TO CONFIRM]')

@@ -54,6 +54,8 @@ describe('sitemap generation', () => {
     expect(xml).toContain('<loc>https://example.test/</loc>')
     expect(xml).toContain('<loc>https://example.test/about-us</loc>')
     expect(xml).toContain('<loc>https://example.test/journal</loc>')
+    expect(xml).toContain('<loc>https://example.test/about/privacy-policy</loc>')
+    expect(xml).toContain('<loc>https://example.test/about/terms-and-conditions</loc>')
     expect(xml.match(/<loc>https:\/\/example\.test\/journal<\/loc>/g)).toHaveLength(1)
     expect(xml).toContain('<lastmod>2026-01-02T03:04:05.000Z</lastmod>')
     expect(xml).toContain('<changefreq>weekly</changefreq><priority>0.7</priority>')

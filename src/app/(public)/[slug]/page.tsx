@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation'
 
 import { BlockRenderer } from '../../../components/BlockRenderer'
 import { getPageViewModel } from '../../../lib/page-view-model'
+import styles from './page.module.css'
 
 export const revalidate = 600
 
@@ -63,6 +64,16 @@ export default async function CMSPage({ params }: PageProps) {
         culinaireKitchen={page.slug === 'culinaire-kitchen'}
         externalEmbedsEnabled={externalEmbedsEnabled}
       />
+      {page.slug === 'about' ? (
+        <nav aria-label="Company policies" className={styles.policies}>
+          <h2>Company policies</h2>
+          <p>How we handle your information and the terms for using this website.</p>
+          <ul>
+            <li><Link href="/about/privacy-policy">Privacy policy</Link></li>
+            <li><Link href="/about/terms-and-conditions">Terms and conditions</Link></li>
+          </ul>
+        </nav>
+      ) : null}
     </main>
   )
 }

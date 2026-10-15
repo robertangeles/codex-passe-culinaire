@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useActionState, useEffect, useRef } from 'react'
 import type { ContactField, ContactFormAction, ContactFormState } from '@/lib/contact-form-state'
 import styles from './ContactForm.module.css'
@@ -144,6 +145,10 @@ export default function ContactForm({ initialState, action }: ContactFormProps) 
         />
         {state.errors.message ? <p className={styles.error} id={fieldErrorId('message')}>{state.errors.message}</p> : null}
       </div>
+
+      <p className={`${styles.privacyNote} ${styles.fullWidth}`}>
+        We use your details to reply to your enquiry. See our <Link href="/about/privacy-policy">privacy policy</Link> for how we store and share them.
+      </p>
 
       <button className={`${styles.submit} ${styles.fullWidth}`} disabled={pending} type="submit">
         {pending ? 'Sending…' : 'Send message'}

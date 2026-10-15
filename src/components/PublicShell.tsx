@@ -15,6 +15,11 @@ type FooterColumn = NonNullable<Footer['columns']>[number]
 type FooterLink = NonNullable<FooterColumn['links']>[number]
 type SocialLink = NonNullable<SiteSetting['socialLinks']>[number]
 
+const legalLinks = [
+  { id: 'privacy-policy', label: 'Privacy policy', url: '/about/privacy-policy' },
+  { id: 'terms-and-conditions', label: 'Terms and conditions', url: '/about/terms-and-conditions' },
+]
+
 function NavigationLinks({ items }: { items: Header['navItems'] }) {
   return (
     <ul className={styles.navigationList}>
@@ -22,7 +27,10 @@ function NavigationLinks({ items }: { items: Header['navItems'] }) {
         const label = item.label.trim()
         if (!label) return null
         const href = safePublicHref(item.url)
-        const children = (item.children ?? []).filter((child) => child.label.trim() && safePublicHref(child.url))
+        const children = [
+          ...(item.children ?? []).filter((child) => child.label.trim() && safePublicHref(child.url)),
+          ...(href === '/about' ? legalLinks.filter((legal) => !item.children?.some((child) => safePublicHref(child.url) === legal.url)) : []),
+        ]
 
         if (children.length > 0) {
           return (
@@ -135,6 +143,9 @@ export default async function PublicShell({ children }: { children: ReactNode })
               {footer.legalText?.trim() ? <p>{footer.legalText}</p> : null}
               <p>ABN: {footer.abn?.trim() || '[TO CONFIRM]'}</p>
             </div>
+            <nav aria-label="Legal information" className={styles.legalNavigation}>
+              {legalLinks.map((link) => <Link className={styles.footerLink} href={link.url} key={link.url}>{link.label}</Link>)}
+            </nav>
             <SocialLinks links={siteSettings.socialLinks} />
           </div>
         </div>
