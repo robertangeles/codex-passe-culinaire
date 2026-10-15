@@ -15,7 +15,7 @@ export function generateMetadata(): Metadata {
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPage title="Privacy policy" introduction="When you write to us, you should know where your message goes and how we use it.">
+    <LegalPage title="Privacy policy" introduction="When you write to us, you should know where your message goes and how we use it." imageSrc="/images/company-pages/services.webp" imageAlt="Pears being weighed on a kitchen prep bench.">
       <section>
         <h2>Who this policy covers</h2>
         <p>PASSE CULINAIRE PTY LTD (ABN 23 700 551 800) operates this website. This policy covers information collected through passeculinaire.com and direct correspondence with Passe Culinaire about the website or our work. CulinAIre Kitchen and any separate service may have their own privacy terms.</p>

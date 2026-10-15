@@ -15,7 +15,7 @@ export function generateMetadata(): Metadata {
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms and conditions" introduction="These terms explain how you may use the Passe Culinaire website and what to expect from its content.">
+    <LegalPage title="Terms and conditions" introduction="These terms explain how you may use the Passe Culinaire website and what to expect from its content." imageSrc="/images/journal/kitchen-notebook.webp" imageAlt="A kitchen notebook beside a prepared dish.">
       <section>
         <h2>About these terms</h2>
         <p>This website is operated by PASSE CULINAIRE PTY LTD (ABN 23 700 551 800). These terms apply to your use of passeculinaire.com. They do not set the terms for buying CulinAIre Kitchen, training, advisory work or any other paid service. Those arrangements need separate terms agreed with you.</p>

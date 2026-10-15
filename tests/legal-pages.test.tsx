@@ -12,6 +12,7 @@ describe('company policies', () => {
     expect(html).toContain('keyed hash')
     expect(html).toContain('Singapore')
     expect(html).toContain('United States')
+    expect(html).toContain('alt="Pears being weighed on a kitchen prep bench."')
     expect(html).toContain('href="/contact"')
   })
 
@@ -20,6 +21,7 @@ describe('company policies', () => {
     expect(html.match(/<h1\b/g)).toHaveLength(1)
     expect(html).toContain('They do not set the terms for buying CulinAIre Kitchen')
     expect(html).toContain('Australian Consumer Law')
+    expect(html).toContain('alt="A kitchen notebook beside a prepared dish."')
     expect(html).toContain('href="/about/privacy-policy"')
   })
 })
