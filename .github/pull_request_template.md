@@ -5,7 +5,7 @@ Describe the user-facing change and any migration or content impact.
 ## Checks
 
 - [ ] `pnpm lint && pnpm typecheck && pnpm test && pnpm build` passed locally
-- [ ] GitHub integration and browser jobs passed, or a failure is explained below
+- [ ] Required GitHub integration and browser jobs passed
 - [ ] Local `pnpm test:performance` passed for a release, with the result recorded below
 - [ ] The diff and deployment risk were reviewed before merge
 

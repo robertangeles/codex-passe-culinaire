@@ -139,7 +139,7 @@ The user approved the build plan with defaults and the reviewed office-hours des
 
 All initial services, events and sample posts are drafts. Do not publish fictitious offerings to populate the site. The current design preserves truthful empty states and the company-to-product path. Detailed requirements and acceptance criteria are in docs/PLAN.md and the original supplied brief.
 
-For future changes, work on a feature or fix branch and open a pull request into `main`. Run the local integration gate and review the GitHub integration and browser checks before merging. Record the approved local Lighthouse release result and investigate CI performance failures. Deploy only the reviewed, merged `main` commit to Render Production, then verify it. GitHub cannot currently enforce branch protection on this private repository's plan; treat the PR gate as a team rule until an eligible plan enables required checks. See docs/DEPLOY.md.
+For future changes, work on a feature or fix branch and open a pull request into `main`. Run the local integration gate; GitHub branch protection requires current passing integration and browser checks before merge, including for admins. Record the approved local Lighthouse release result and investigate CI performance failures. Deploy only the reviewed, merged `main` commit to Render Production, then verify it. See docs/DEPLOY.md.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
