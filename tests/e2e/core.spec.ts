@@ -92,15 +92,19 @@ test('footer keeps the legal details and has no colour selector', async ({ page 
   await expect(page.locator('body')).toHaveCSS('background-color', 'rgb(20, 20, 18)')
 })
 
-test('mobile navigation links can be reached and followed by keyboard', async ({ page }) => {
+test('About navigation links can be reached and followed by keyboard', async ({ page }) => {
   await page.goto('/')
-  const menu = page.locator('header details').first()
-  const mobile = await menu.isVisible()
+  const menuSummary = page.locator('header summary').filter({ hasText: /^Menu$/u })
+  const mobile = await menuSummary.isVisible()
   if (mobile) {
-    await menu.locator('summary').focus()
+    await menuSummary.focus()
     await page.keyboard.press('Enter')
   }
   const mainNavigation = page.getByRole('navigation', { name: mobile ? 'Mobile navigation' : 'Main navigation', exact: true })
+
+  const aboutDisclosure = mainNavigation.locator('summary').filter({ hasText: /^About$/u })
+  await aboutDisclosure.focus()
+  await page.keyboard.press('Enter')
 
   const aboutLink = mainNavigation.getByRole('link', { name: 'About' })
   await expect(aboutLink).toBeVisible()
