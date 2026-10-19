@@ -26,10 +26,6 @@ export function LegalPage({ title, introduction, imageSrc, imageAlt, children }:
         </figure>
       </div>
       <article className={styles.content}>{children}</article>
-      <nav aria-label="Other company policy" className={styles.related}>
-        <Link href="/about/privacy-policy">Privacy policy</Link>
-        <Link href="/about/terms-and-conditions">Terms and conditions</Link>
-      </nav>
     </main>
   )
 }
